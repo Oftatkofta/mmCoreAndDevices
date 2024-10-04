@@ -16,28 +16,35 @@ ThorlabsMCM3001::~ThorlabsMCM3001()
 
 int ThorlabsMCM3001::Initialize()
 {
+    LogMessage("Initializing ThorlabsMCM3001...", true);
+
     if (initialized_)
+    {
+        LogMessage("Device already initialized.", true);
         return DEVICE_OK;
+    }
 
     long deviceCount = 0;
-    if (!FindDevices(deviceCount) || deviceCount == 0)
+    long result = FindDevices(deviceCount);
+    if (result != 1) // Assuming 1 indicates success
     {
-        LogMessage("No devices found during initialization.", true);
-        return DEVICE_ERR;
+        LogMessage("FindDevices failed with error code: " + std::to_string(result), true);
+        return DEVICE_NOT_CONNECTED;
     }
 
-    if (!SelectDevice(0))
+    if (deviceCount == 0)
     {
-        LogMessage("Failed to select device.", true);
-        return DEVICE_ERR;
+        LogMessage("No devices found.", true);
+        return DEVICE_NOT_CONNECTED;
     }
 
-    // Optionally retrieve device information here
+    LogMessage("Devices found: " + std::to_string(deviceCount), true);
 
-    if (!PreflightPosition())
+    result = SelectDevice(0);
+    if (result != 1)
     {
-        LogMessage("Failed to preflight position.", true);
-        return DEVICE_ERR;
+        LogMessage("SelectDevice failed with error code: " + std::to_string(result), true);
+        return DEVICE_NOT_CONNECTED;
     }
 
     initialized_ = true;
@@ -48,9 +55,11 @@ int ThorlabsMCM3001::Initialize()
 
 
 
+
+
 MODULE_API void InitializeModuleData()
 {
-    RegisterDevice("ThorlabsMCM3001", MM::StageDevice, "Thorlabs MCM3000 Z Stage");
+    RegisterDevice("ThorlabsMCM3001", MM::StageDevice, "Thorlabs MCM3001 Stage");
 }
 
 MODULE_API MM::Device* CreateDevice(const char* deviceName)
@@ -147,9 +156,9 @@ int ThorlabsMCM3001::Shutdown()
     return DEVICE_OK; // or appropriate return code
 }
 
-void ThorlabsMCM3001::GetName(char* pszName) const
+void ThorlabsMCM3001::GetName(char* name) const
 {
-    CDeviceUtils::CopyLimitedString(pszName, "Thorlabs MCM3000 Z Stage");
+    CDeviceUtils::CopyLimitedString(name, "ThorlabsMCM3001");
 }
 
 bool ThorlabsMCM3001::Busy()

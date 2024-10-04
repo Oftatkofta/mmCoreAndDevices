@@ -15,7 +15,7 @@ public:
     // Device API
     int Initialize() override;
     int Shutdown() override;
-    void GetName(char* pszName) const override;
+    void GetName(char* name) const override;
     bool Busy() override;
 
     // Stage API
