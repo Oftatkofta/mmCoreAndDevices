@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32802.440
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMCore", "MMCore\MMCore.vcxproj", "{36571628-728C-4ACD-A47F-503BA91C5D43}"
 EndProject
@@ -492,11 +492,19 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DahengGalaxy", "DeviceAdapt
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PyDevice", "DeviceAdapters\PyDevice\PyDevice.vcxproj", "{36CF524A-8214-404C-8E6B-B5DEC1FDADF9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hikrobot", "DeviceAdapters\HikRobot\HikRobot.vcxproj", "{38DCD378-83FE-4C42-8916-1C477A35F65F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hikrobot", "DeviceAdapters\Hikrobot\HikRobot.vcxproj", "{38DCD378-83FE-4C42-8916-1C477A35F65F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenFlexure", "DeviceAdapters\OpenFlexure\OpenFlexure.vcxproj", "{149B6A9D-40FB-4FDF-BC0C-6B68E3BC4938}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScientificaMotion8", "DeviceAdapters\ScientificaMotion8\ScientificaMotion8.vcxproj", "{E4E9FA4F-E9DD-4483-9140-2FD472C28F1D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{306ADED9-3575-4AD9-A647-C6D23167E7FF}"
+	ProjectSection(SolutionItems) = preProject
+		DeviceAdapters\ThorlabsMCM3000\ThorlabsMCM3000.cpp = DeviceAdapters\ThorlabsMCM3000\ThorlabsMCM3000.cpp
+		DeviceAdapters\ThorlabsMCM3000\ThorlabsMCM3000.h = DeviceAdapters\ThorlabsMCM3000\ThorlabsMCM3000.h
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ThorlabsMCM3001", "DeviceAdapters\ThorlabsMCM3001\ThorlabsMCM3001.vcxproj", "{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1996,6 +2004,14 @@ Global
 		{E4E9FA4F-E9DD-4483-9140-2FD472C28F1D}.Release|x64.ActiveCfg = Release|x64
 		{E4E9FA4F-E9DD-4483-9140-2FD472C28F1D}.Release|x64.Build.0 = Release|x64
 		{E4E9FA4F-E9DD-4483-9140-2FD472C28F1D}.Release|x86.ActiveCfg = Release|x64
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Debug|x64.ActiveCfg = Debug|x64
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Debug|x64.Build.0 = Debug|x64
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Debug|x86.ActiveCfg = Debug|Win32
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Debug|x86.Build.0 = Debug|Win32
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Release|x64.ActiveCfg = Release|x64
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Release|x64.Build.0 = Release|x64
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Release|x86.ActiveCfg = Release|Win32
+		{029DEFF6-3AC3-4933-B7C4-5644C6CE7A2B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
