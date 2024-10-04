@@ -135,10 +135,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ThorlabsMCM3000.cpp" />
+    <ClCompile Include="ThorlabsMCM3001.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ThorlabsMCM3000.h" />
+    <ClInclude Include="ThorlabsMCM3001.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

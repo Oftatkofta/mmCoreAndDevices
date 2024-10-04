@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ThorlabsMCM3000.cpp">
+    <ClCompile Include="ThorlabsMCM3001.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ThorlabsMCM3000.h">
+    <ClInclude Include="ThorlabsMCM3001.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
