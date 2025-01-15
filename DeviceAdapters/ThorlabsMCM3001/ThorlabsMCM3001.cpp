@@ -1,61 +1,7 @@
 #include "ThorlabsMCM3001.h"
 #include "ModuleInterface.h"
-#include "MCM3000_SDK.h"
-
-ThorlabsMCM3001::ThorlabsMCM3001() : initialized_(false), busy_(false), posUm_(0.0)
-{
-    InitializeDefaultErrorMessages();
-}
-
-
-
-ThorlabsMCM3001::~ThorlabsMCM3001()
-{
-    Shutdown(); // Ensure proper resource cleanup
-}
-
-int ThorlabsMCM3001::Initialize()
-{
-    LogMessage("Initializing ThorlabsMCM3001...", true);
-
-    if (initialized_)
-    {
-        LogMessage("Device already initialized.", true);
-        return DEVICE_OK;
-    }
-
-    long deviceCount = 0;
-    long result = FindDevices(deviceCount);
-    if (result != 1) // Assuming 1 indicates success
-    {
-        LogMessage("FindDevices failed with error code: " + std::to_string(result), true);
-        return DEVICE_NOT_CONNECTED;
-    }
-
-    if (deviceCount == 0)
-    {
-        LogMessage("No devices found.", true);
-        return DEVICE_NOT_CONNECTED;
-    }
-
-    LogMessage("Devices found: " + std::to_string(deviceCount), true);
-
-    result = SelectDevice(0);
-    if (result != 1)
-    {
-        LogMessage("SelectDevice failed with error code: " + std::to_string(result), true);
-        return DEVICE_NOT_CONNECTED;
-    }
-
-    initialized_ = true;
-    LogMessage("ThorlabsMCM3001 initialized successfully.", true);
-    return DEVICE_OK;
-}
-
-
-
-
-
+#include <cstdio>
+#include <sstream>
 
 MODULE_API void InitializeModuleData()
 {
@@ -64,15 +10,13 @@ MODULE_API void InitializeModuleData()
 
 MODULE_API MM::Device* CreateDevice(const char* deviceName)
 {
-    if (deviceName == nullptr)
-        return nullptr;
+    if (deviceName == 0)
+        return 0;
 
     if (strcmp(deviceName, "ThorlabsMCM3001") == 0)
-    {
         return new ThorlabsMCM3001();
-    }
 
-    return nullptr;
+    return 0;
 }
 
 MODULE_API void DeleteDevice(MM::Device* pDevice)
@@ -80,80 +24,25 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
     delete pDevice;
 }
 
-int ThorlabsMCM3001::SetPositionUm(double posUm)
+ThorlabsMCM3001::ThorlabsMCM3001() :
+    initialized_(false),
+    busy_(false),
+    stepSizeUm_(ENCODER_RESOLUTION_UM),
+    posUm_(0.0),
+    port_("")
 {
-    if (!initialized_)
-        return DEVICE_NOT_CONNECTED;
+    InitializeDefaultErrorMessages();
 
-    long deviceUnits = UmToDeviceUnits(posUm);
-
-    if (!SetParam(PARAM_Z_POS, static_cast<double>(deviceUnits)))
-    {
-        LogMessage("Failed to set Z position.", true);
-        return DEVICE_ERR;
-    }
-
-    return PrepareAndStartMovement();
+    // Add custom error messages
+    SetErrorText(ERR_PORT_CHANGE_FORBIDDEN, "Port change is not allowed while the device is connected.");
+    
+    // Create pre-initialization properties
+    CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false);
 }
 
-
-
-int ThorlabsMCM3001::GetPositionUm(double& posUm)
+ThorlabsMCM3001::~ThorlabsMCM3001()
 {
-    if (!initialized_)
-        return DEVICE_NOT_CONNECTED;
-
-    double deviceUnits = 0.0;
-    if (!GetParam(PARAM_Z_POS_CURRENT, deviceUnits))
-    {
-        LogMessage("Failed to get current Z position.", true);
-        return DEVICE_ERR;
-    }
-
-    long counts = static_cast<long>(deviceUnits);
-    posUm = DeviceUnitsToUm(counts);
-    return DEVICE_OK;
-}
-
-
-
-int ThorlabsMCM3001::SetPositionSteps(long steps)
-{
-    if (!initialized_)
-        return DEVICE_NOT_CONNECTED;
-
-    if (!SetParam(PARAM_Z_POS, static_cast<double>(steps)))
-    {
-        LogMessage("Failed to set Z position (steps).", true);
-        return DEVICE_ERR;
-    }
-
-    return PrepareAndStartMovement();
-}
-
-
-int ThorlabsMCM3001::GetPositionSteps(long& steps)
-{
-    if (!initialized_)
-        return DEVICE_NOT_CONNECTED;
-
-    double deviceUnits = 0.0;
-    if (!GetParam(PARAM_Z_POS_CURRENT, deviceUnits))
-    {
-        LogMessage("Failed to get current Z position (steps).", true);
-        return DEVICE_ERR;
-    }
-
-    steps = static_cast<long>(deviceUnits);
-    return DEVICE_OK;
-}
-
-
-
-int ThorlabsMCM3001::Shutdown()
-{
-    initialized_ = false;
-    return DEVICE_OK; // or appropriate return code
+    Shutdown();
 }
 
 void ThorlabsMCM3001::GetName(char* name) const
@@ -161,86 +50,236 @@ void ThorlabsMCM3001::GetName(char* name) const
     CDeviceUtils::CopyLimitedString(name, "ThorlabsMCM3001");
 }
 
-bool ThorlabsMCM3001::Busy()
+int ThorlabsMCM3001::Initialize()
 {
-    // Update busy_ based on device status
-    // For example:
-    long status = STATUS_READY;
-    if (!StatusPosition(status))
-    {
-        LogMessage("Failed to get status position.", true);
-        return false;
-    }
-    busy_ = (status == STATUS_BUSY);
-    return busy_;
+    if (initialized_)
+        return DEVICE_OK;
+
+    // Set up serial port
+    if (port_.empty())
+        return DEVICE_ERR;
+
+    int ret = SetSerialProperties(port_.c_str(),
+        "500",    // timeout
+        "460800", // baud
+        "0",      // delayBetweenChars
+        "None",   // handshaking
+        "None",   // parity
+        "1");     // stopBits
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Clear communication
+    ret = ClearPort();
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Create post-initialization properties
+    CreateProperty("StepSize", CDeviceUtils::ConvertToString(stepSizeUm_), 
+        MM::Float, true);
+
+    initialized_ = true;
+    return DEVICE_OK;
 }
 
+int ThorlabsMCM3001::Shutdown()
+{
+    if (initialized_)
+    {
+        Stop();
+        initialized_ = false;
+    }
+    return DEVICE_OK;
+}
 
+bool ThorlabsMCM3001::Busy()
+{
+    MMThreadGuard guard(lock_);
+    return IsControllerBusy();
+}
+
+int ThorlabsMCM3001::SetPositionUm(double pos)
+{
+    MMThreadGuard guard(lock_);
+    
+    long steps = UmToSteps(pos);
+    uint8_t cmd[] = {
+        CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
+        0x00, 0x00,  // Channel ID
+        static_cast<uint8_t>(steps & 0xFF),
+        static_cast<uint8_t>((steps >> 8) & 0xFF),
+        static_cast<uint8_t>((steps >> 16) & 0xFF),
+        static_cast<uint8_t>((steps >> 24) & 0xFF)
+    };
+
+    int ret = SendCommand(cmd, sizeof(cmd));
+    if (ret != DEVICE_OK)
+        return ret;
+
+    busy_ = true;
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::GetPositionUm(double& pos)
+{
+    MMThreadGuard guard(lock_);
+    
+    uint8_t cmd[] = {CMD_QUERY_POS, 0x04, 0x00, 0x00, 0x00, 0x00};
+    int ret = SendCommand(cmd, sizeof(cmd));
+    if (ret != DEVICE_OK)
+        return ret;
+
+    uint8_t response[12];
+    ret = ReadResponse(response, sizeof(response));
+    if (ret != DEVICE_OK)
+        return ret;
+
+    int32_t steps = 
+        (response[11] << 24) | 
+        (response[10] << 16) | 
+        (response[9] << 8) | 
+        response[8];
+
+    pos = StepsToUm(steps);
+    posUm_ = pos;
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::SetPositionSteps(long steps)
+{
+    return SetPositionUm(StepsToUm(steps));
+}
+
+int ThorlabsMCM3001::GetPositionSteps(long& steps)
+{
+    double pos;
+    int ret = GetPositionUm(pos);
+    if (ret != DEVICE_OK)
+        return ret;
+    
+    steps = UmToSteps(pos);
+    return DEVICE_OK;
+}
 
 int ThorlabsMCM3001::SetOrigin()
 {
-    if (!SetParam(PARAM_Z_ZERO, 0.0))
-    {
-        LogMessage("Failed to zero Z axis.", true);
-        return DEVICE_ERR;
-    }
+    MMThreadGuard guard(lock_);
+    
+    uint8_t cmd[] = {
+        CMD_SET_POSITION, 0x04, 0x06, 0x00, 0x00, 0x00,
+        0x00, 0x00,  // Channel ID
+        0x00, 0x00, 0x00, 0x00  // Zero position
+    };
+
+    return SendCommand(cmd, sizeof(cmd));
+}
+
+int ThorlabsMCM3001::GetLimits(double& lower, double& upper)
+{
+    // These should be determined from the device specifications
+    lower = -25000.0; // μm
+    upper = 25000.0;  // μm
     return DEVICE_OK;
 }
 
-
-
-int ThorlabsMCM3001::GetLimits(double& min, double& max)
+int ThorlabsMCM3001::Stop()
 {
-    long paramType = 0, paramAvailable = 0, paramReadOnly = 0;
-    double paramMin = 0.0, paramMax = 0.0, paramDefault = 0.0;
+    MMThreadGuard guard(lock_);
+    
+    uint8_t cmd[] = {CMD_STOP, 0x04, 0x00, 0x01, 0x00, 0x00};
+    return SendCommand(cmd, sizeof(cmd));
+}
 
-    if (!GetParamInfo(PARAM_Z_POS, paramType, paramAvailable, paramReadOnly,
-        paramMin, paramMax, paramDefault))
-    {
-        LogMessage("Failed to get parameter info for Z position.", true);
-        return DEVICE_ERR;
-    }
+bool ThorlabsMCM3001::IsControllerBusy()
+{
+    uint8_t cmd[] = {CMD_REQUEST_STATUS, 0x04, 0x00, 0x00, 0x00, 0x00};
+    if (SendCommand(cmd, sizeof(cmd)) != DEVICE_OK)
+        return false;
 
-    min = DeviceUnitsToUm(static_cast<long>(paramMin));
-    max = DeviceUnitsToUm(static_cast<long>(paramMax));
+    uint8_t response[34];
+    if (ReadResponse(response, sizeof(response)) != DEVICE_OK)
+        return false;
+
+    return (response[16] & 0x30) != 0;
+}
+
+int ThorlabsMCM3001::SendCommand(const unsigned char* command, unsigned length)
+{
+    int ret = WriteToComPort(port_.c_str(), command, length);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    return WaitForResponse();
+}
+
+int ThorlabsMCM3001::ReadResponse(unsigned char* response, unsigned length)
+{
+    unsigned long bytesRead = 0;
+    int ret = ReadFromComPort(port_.c_str(), response, length, bytesRead);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    if (bytesRead != length)
+        return DEVICE_SERIAL_INVALID_RESPONSE;
+
     return DEVICE_OK;
 }
 
-
-
-int ThorlabsMCM3001::IsStageSequenceable(bool& isSequenceable) const
+int ThorlabsMCM3001::WaitForResponse(unsigned timeoutMs)
 {
-    isSequenceable = false; // Update this based on your hardware capabilities
-    return DEVICE_OK;
+    MM::MMTime startTime = GetCurrentMMTime();
+    unsigned long bytesRead = 0;
+    unsigned char dummy;
+    
+    do {
+        if (ReadFromComPort(port_.c_str(), &dummy, 1, bytesRead) == DEVICE_OK && bytesRead > 0)
+            return DEVICE_OK;
+    } 
+    while ((GetCurrentMMTime() - startTime).getMsec() < timeoutMs);
+    
+    return DEVICE_SERIAL_TIMEOUT;
+}
+
+int ThorlabsMCM3001::ClearPort()
+{
+    return PurgeComPort(port_.c_str());
+}
+
+bool ThorlabsMCM3001::IsStageSequenceable(bool& isSequenceable) const
+{
+    isSequenceable = false;
+    return true;
 }
 
 bool ThorlabsMCM3001::IsContinuousFocusDrive() const
 {
-    return false; // Update based on the intended usage of the device
+    return false;
 }
 
-int ThorlabsMCM3001::PrepareAndStartMovement()
+int ThorlabsMCM3001::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
-    busy_ = true;
-
-    if (!SetupPosition())
+    if (eAct == MM::BeforeGet)
     {
-        LogMessage("Failed to setup position.", true);
-        busy_ = false;
-        return DEVICE_ERR;
+        pProp->Set(port_.c_str());
     }
-
-    if (!StartPosition())
+    else if (eAct == MM::AfterSet)
     {
-        LogMessage("Failed to start position movement.", true);
-        busy_ = false;
-        return DEVICE_ERR;
+        if (initialized_)
+        {
+            pProp->Set(port_.c_str());
+            return ERR_PORT_CHANGE_FORBIDDEN;
+        }
+        pProp->Get(port_);
     }
+    return DEVICE_OK;
+}
 
-    // Optionally, you can wait for movement to complete here
-    // Or rely on the Busy() method to check the status
-
-    busy_ = false; // Set to false if movement is complete
+int ThorlabsMCM3001::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::BeforeGet)
+    {
+        pProp->Set(stepSizeUm_);
+    }
     return DEVICE_OK;
 }
 
