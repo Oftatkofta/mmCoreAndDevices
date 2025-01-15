@@ -46,6 +46,8 @@ public:
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
 
+    int Home();
+
 private:
     bool initialized_;
     bool busy_;

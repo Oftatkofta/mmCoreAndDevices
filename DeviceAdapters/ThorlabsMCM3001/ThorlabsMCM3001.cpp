@@ -49,7 +49,23 @@ int ThorlabsMCM3001::Initialize()
     CreateProperty("StepSize", CDeviceUtils::ConvertToString(stepSizeUm_), 
         MM::Float, true);
 
+    // Add status property
+    CPropertyAction* pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnStatus);
+    int ret = CreateProperty("Status", "Idle", MM::String, true, pAct);
+    if (ret != DEVICE_OK)
+        return ret;
+
     initialized_ = true;
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::OnStatus(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::BeforeGet)
+    {
+        std::string status = busy_ ? "Busy" : "Idle";
+        pProp->Set(status.c_str());
+    }
     return DEVICE_OK;
 }
 
