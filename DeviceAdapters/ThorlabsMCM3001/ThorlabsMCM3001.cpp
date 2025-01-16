@@ -595,6 +595,26 @@ ThorlabsMCM3001::~ThorlabsMCM3001()
     Shutdown();
 }
 
+long ThorlabsMCM3001::UmToSteps(double um) const
+{
+    LogMessage("Converting " + std::to_string(um) + " um to steps using resolution " + 
+              std::to_string(encoderResolutionUm_) + " um/count", true);
+              
+    long steps = static_cast<long>(um / encoderResolutionUm_);
+    LogMessage("Conversion result: " + std::to_string(steps) + " steps", true);
+    return steps;
+}
+
+double ThorlabsMCM3001::StepsToUm(long steps) const
+{
+    LogMessage("Converting " + std::to_string(steps) + " steps to um using resolution " + 
+              std::to_string(encoderResolutionUm_) + " um/count", true);
+              
+    double um = steps * encoderResolutionUm_;
+    LogMessage("Conversion result: " + std::to_string(um) + " um", true);
+    return um;
+}
+
 
 
 
