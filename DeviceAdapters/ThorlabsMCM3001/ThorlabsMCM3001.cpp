@@ -28,10 +28,11 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
 ThorlabsMCM3001::ThorlabsMCM3001() :
     initialized_(false),
     busy_(false),
-    stepSizeUm_(ENCODER_RESOLUTION_UM),
+    stepSizeUm_(0.1),
     posUm_(0.0),
     port_(""),
-    currentAxis_(0)
+    currentAxis_(0),
+    encoderResolutionUm_(DEFAULT_ENCODER_RESOLUTION_UM)
 {
     InitializeDefaultErrorMessages();
 
@@ -46,6 +47,23 @@ ThorlabsMCM3001::ThorlabsMCM3001() :
     CPropertyAction* pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnAxis);
     CreateProperty("Axis", "0", MM::Integer, false, pAct);
     SetPropertyLimits("Axis", 0, 2);
+
+    // Add encoder resolution property with detailed description
+    pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnEncoderResolution);
+    char defaultValue[32];
+    snprintf(defaultValue, sizeof(defaultValue), "%.7f", DEFAULT_ENCODER_RESOLUTION_UM);
+    
+    // Create property with description
+    CreateProperty("EncoderResolution(um/count)", 
+                  defaultValue, 
+                  MM::Float, 
+                  false, 
+                  pAct, 
+                  "Stage-specific conversion factor (micrometers per encoder count). "
+                  "Default value 0.2116667 is calibrated for Thorlabs ZFM2020 and ZFM2030 stages. "
+                  "Change only if using a different stage model.");
+                  
+    SetPropertyLimits("EncoderResolution(um/count)", 0.0001, 10.0);  // Reasonable limits
 }
 
 ThorlabsMCM3001::~ThorlabsMCM3001()
@@ -149,7 +167,7 @@ int ThorlabsMCM3001::GetPositionUm(double& pos)
     CmdPacket6 cmd = {
         CMD_QUERY_POS,      // Command byte
         0x04,               // Length
-        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID
         0x00,               // Param1
         0x00,               // Param2
         0x00                // Param3
@@ -164,7 +182,14 @@ int ThorlabsMCM3001::GetPositionUm(double& pos)
     if (ret != DEVICE_OK)
         return ret;
 
-    pos = StepsToUm(response.encoderCount);
+    // Extract position from data packet
+    int32_t steps = 
+        (response.data[5] << 24) | 
+        (response.data[4] << 16) | 
+        (response.data[3] << 8) | 
+        response.data[2];
+
+    pos = StepsToUm(steps);
     return DEVICE_OK;
 }
 
@@ -202,7 +227,7 @@ int ThorlabsMCM3001::GetPositionSteps(long& steps)
     CmdPacket6 cmd = {
         CMD_QUERY_POS,      // Command byte
         0x04,               // Length
-        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID
         0x00,               // Param1
         0x00,               // Param2
         0x00                // Param3
@@ -217,7 +242,13 @@ int ThorlabsMCM3001::GetPositionSteps(long& steps)
     if (ret != DEVICE_OK)
         return ret;
 
-    steps = response.encoderCount;
+    // Extract position from data packet
+    steps = 
+        (response.data[5] << 24) | 
+        (response.data[4] << 16) | 
+        (response.data[3] << 8) | 
+        response.data[2];
+
     return DEVICE_OK;
 }
 
@@ -227,13 +258,13 @@ int ThorlabsMCM3001::SetOrigin()
     if (!initialized_)
         return DEVICE_NOT_CONNECTED;
 
-    CmdPacket12 cmd = {
-        0x09,           // CMD_SET_POSITION
-        0x04,           // Length
-        0x06,          // Param1
-        0x00,          // Param2
-        currentAxis_,   // Channel ID
-        0              // Set current position as zero
+    CmdPacket6 cmd = {
+        CMD_SET_ENCODER,    // Command byte
+        0x04,               // Length
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
+        0x00,               // Param1
+        0x00,               // Param2
+        0x00                // Param3
     };
 
     return SendCommand(cmd);
@@ -321,6 +352,36 @@ int ThorlabsMCM3001::OnStatus(MM::PropertyBase* pProp, MM::ActionType eAct)
     return DEVICE_OK;
 }
 
+int ThorlabsMCM3001::OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::BeforeGet)
+    {
+        pProp->Set(encoderResolutionUm_);
+    }
+    else if (eAct == MM::AfterSet)
+    {
+        if (initialized_)
+        {
+            pProp->Set(encoderResolutionUm_); // Revert to previous value
+            return DEVICE_INVALID_PROPERTY_VALUE;  // Can't change after initialization
+        }
+            
+        double resolution;
+        pProp->Get(resolution);
+        if (resolution <= 0.0)
+        {
+            // If invalid, revert to default and explain
+            encoderResolutionUm_ = DEFAULT_ENCODER_RESOLUTION_UM;
+            pProp->Set(DEFAULT_ENCODER_RESOLUTION_UM);
+            LogMessage("Invalid encoder resolution. Reverting to default value (0.2116667 um/count for ZFM2020/ZFM2030).");
+            return DEVICE_INVALID_PROPERTY_VALUE;
+        }
+            
+        encoderResolutionUm_ = resolution;
+    }
+    return DEVICE_OK;
+}
+
 // Utility functions
 int ThorlabsMCM3001::SendCommand(const CmdPacket6& cmd)
 {
@@ -400,6 +461,16 @@ void ThorlabsMCM3001::LogError(const char* message)
     char buf[MM::MaxStrLength];
     snprintf(buf, MM::MaxStrLength, "ThorlabsMCM3001: %s", message);
     LogMessage(buf, false);
+}
+
+long ThorlabsMCM3001::UmToSteps(double um) const 
+{ 
+    return static_cast<long>(um / encoderResolutionUm_); 
+}
+
+double ThorlabsMCM3001::StepsToUm(long steps) const 
+{ 
+    return steps * encoderResolutionUm_; 
 }
 
 

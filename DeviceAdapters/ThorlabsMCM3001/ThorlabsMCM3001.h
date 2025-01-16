@@ -38,9 +38,8 @@ struct CmdPacket12 {
 
 // Response structures
 struct PosResponse {
-    uint8_t header[6];  // 0B 04 06 00 00 00
-    uint16_t channelId;
-    int32_t encoderCount;
+    uint8_t header[6];  // Response header
+    uint8_t data[6];    // Data packet containing position
 };
 
 struct StatusResponse {
@@ -76,6 +75,10 @@ public:
     int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnStatus(MM::PropertyBase* pProp, MM::ActionType eAct);
+    int OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType eAct);
+
+    // Default encoder resolution for MCM3001 with ZFM2020/ZFM2030 stages
+    static constexpr double DEFAULT_ENCODER_RESOLUTION_UM = 0.2116667;  // For ZFM2020/ZFM2030
 
 private:
     bool initialized_;
@@ -85,6 +88,7 @@ private:
     std::string port_;
     uint16_t currentAxis_;
     MMThreadLock lock_;
+    double encoderResolutionUm_;
 
     // Utility functions
     int SendCommand(const CmdPacket6& cmd);
