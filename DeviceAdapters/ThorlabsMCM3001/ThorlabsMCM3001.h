@@ -5,13 +5,19 @@
 #include "ModuleInterface.h"
 #include <string>
 
-// Command codes
-#define CMD_REQUEST_STATUS 0x80
-#define CMD_QUERY_POS     0x0A
-#define CMD_GOTO_POS      0x53
-#define CMD_SET_ENCODER   0x09
+// Error codes
+const int ERR_PORT_CHANGE_FORBIDDEN = 101;
+const int ERR_INVALID_AXIS = 102;
+const int ERR_COMMAND_FAILED = 103;
 
-// Command structures
+// Command codes for serial communication
+const uint8_t CMD_SET_ENCODER = 0x09;    // Set encoder counter
+const uint8_t CMD_STOP = 0x65;           // Stop any motor move
+const uint8_t CMD_QUERY_POS = 0x0A;      // Query position
+const uint8_t CMD_GOTO_POS = 0x53;       // Go to position
+const uint8_t CMD_REQUEST_STATUS = 0x80;  // Request motor status
+
+// Command packet structures (match hardware protocol)
 struct CmdPacket6 {
     uint8_t cmd;        // Command byte
     uint8_t length;     // Always 0x04
@@ -32,7 +38,7 @@ struct CmdPacket12 {
     int32_t value;      // Four bytes, little endian
 };
 
-// Response structures
+// Response packet structures
 struct PosResponse {
     uint8_t header[6];  // Response header
     uint8_t data[6];    // Data packet containing position
@@ -46,6 +52,7 @@ struct StatusResponse {
 class ThorlabsMCM3001 : public CStageBase<ThorlabsMCM3001>
 {
 public:
+    // Default encoder resolution for MCM3001 with ZFM2020/ZFM2030 stages
     static const double DEFAULT_ENCODER_RESOLUTION_UM;  // For ZFM2020/ZFM2030
 
     ThorlabsMCM3001();
@@ -68,12 +75,14 @@ public:
     bool IsContinuousFocusDrive() const;
     int Home();
 
-    // Action interface
+    // Action interface (properties)
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
+    int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType eAct);
 
 private:
+    // Internal state
     bool initialized_;
     bool busy_;
     double stepSizeUm_;
@@ -90,7 +99,7 @@ private:
     int WaitForResponse(unsigned timeoutMs = 500);
     int ClearPort();
     int SetupSerialPort();
-
+    
     // Conversion functions
     long UmToSteps(double um) const;
     double StepsToUm(long steps) const;

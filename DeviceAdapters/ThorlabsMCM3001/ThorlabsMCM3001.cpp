@@ -1,8 +1,10 @@
 #include "ThorlabsMCM3001.h"
 #include "ModuleInterface.h"
-#include "MMDevice.h"
-#include <cstdio>
+#include "DeviceUtils.h"  // For CDeviceUtils
 #include <sstream>
+
+// Default encoder resolution for MCM3001 with ZFM2020/ZFM2030 stages (in micrometers per count)
+const double ThorlabsMCM3001::DEFAULT_ENCODER_RESOLUTION_UM = 0.2116667;
 
 MODULE_API void InitializeModuleData()
 {
@@ -36,26 +38,33 @@ ThorlabsMCM3001::ThorlabsMCM3001() :
 {
     InitializeDefaultErrorMessages();
 
-    // Add custom error messages
+    // Add custom error messages using MM's message system
+    SetErrorText(ERR_PORT_CHANGE_FORBIDDEN, "Port cannot be changed while device is in use.");
+    SetErrorText(ERR_INVALID_AXIS, "Invalid axis specified (valid: 0-2).");
+    SetErrorText(ERR_COMMAND_FAILED, "Command failed or no response from device.");
     SetErrorText(DEVICE_SERIAL_COMMAND_FAILED, "Command failed or no response from device.");
     SetErrorText(DEVICE_NOT_CONNECTED, "Invalid serial port configuration.");
     SetErrorText(DEVICE_INVALID_PROPERTY_VALUE, "Invalid axis specified (valid: 0-2).");
     
     // Create pre-initialization properties
-    CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false);
+    // Serial port
+    CPropertyAction* pAct = new CPropertyAction (this, &ThorlabsMCM3001::OnPort);
+    CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false, pAct, true);
 
-    CPropertyAction* pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnAxis);
+    // Create axis selection property
+    pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnAxis);
     CreateProperty("Axis", "0", MM::Integer, false, pAct);
     SetPropertyLimits("Axis", 0, 2);
 
     // Add encoder resolution property with detailed description
     pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnEncoderResolution);
-    char defaultValue[32];
-    snprintf(defaultValue, sizeof(defaultValue), "%.7f", DEFAULT_ENCODER_RESOLUTION_UM);
+    std::ostringstream defaultValue;
+    defaultValue.precision(7);
+    defaultValue << DEFAULT_ENCODER_RESOLUTION_UM;
     
     // Create property with description
     CreateProperty("EncoderResolution(um/count)", 
-                  defaultValue, 
+                  defaultValue.str().c_str(), 
                   MM::Float, 
                   false, 
                   pAct, 
@@ -78,18 +87,39 @@ void ThorlabsMCM3001::GetName(char* name) const
 
 int ThorlabsMCM3001::Initialize()
 {
+    // Check if already initialized
     if (initialized_)
         return DEVICE_OK;
 
-    // Check if we have a port
-    if (port_.empty())
-        return DEVICE_NOT_CONNECTED;
+    // Get the port from MM's device manager
+    MM::Device* pDevice = GetCoreCallback()->GetDevice(this, port_.c_str());
+    if (pDevice == NULL)
+    {
+        LogMessage("Invalid serial port for MCM3001");
+        return DEVICE_INVALID_PROPERTY_VALUE;
+    }
 
-    // Setup the port
-    int ret = SetupSerialPort();
-    if (ret != DEVICE_OK)
-        return ret;
-
+    // Configure the serial port using MM's property interface
+    // Default settings for MCM3001:
+    // Baud Rate = 460800, Data bits = 8, Parity = None, Stop bits = 1, Flow control = None
+    MM::Serial* pSerial = static_cast<MM::Serial*>(pDevice);
+    
+    int ret = pSerial->SetProperty(MM::g_Keyword_BaudRate, "460800");
+    if (ret != DEVICE_OK) return ret;
+    
+    ret = pSerial->SetProperty(MM::g_Keyword_DataBits, "8");
+    if (ret != DEVICE_OK) return ret;
+    
+    ret = pSerial->SetProperty(MM::g_Keyword_StopBits, "1");
+    if (ret != DEVICE_OK) return ret;
+    
+    ret = pSerial->SetProperty(MM::g_Keyword_Parity, "None");
+    if (ret != DEVICE_OK) return ret;
+    
+    ret = pSerial->SetProperty(MM::g_Keyword_Handshaking, "Off");
+    if (ret != DEVICE_OK) return ret;
+    
+    // Clear communication
     ret = ClearPort();
     if (ret != DEVICE_OK)
         return ret;
