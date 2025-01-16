@@ -1,5 +1,6 @@
 #include "ThorlabsMCM3001.h"
 #include "ModuleInterface.h"
+#include "DeviceUtils.h"
 #include <sstream>
 
 // Define the static member
@@ -163,23 +164,29 @@ int ThorlabsMCM3001::Initialize()
 int ThorlabsMCM3001::SendCommand(const CmdPacket6& cmd)
 {
     MMThreadGuard guard(lock_);
-    LogMessage("Sending 6-byte command: " + std::to_string(cmd.cmd));
+    
+    std::stringstream ss;
+    ss << "Sending 6-byte command: 0x" << std::hex << (int)cmd.cmd 
+       << " to axis " << std::dec << (int)cmd.channelId;
+    LogMessage(ss.str(), true);
     
     MM::Device* pDevice = GetCoreCallback()->GetDevice(this, port_.c_str());
-    if (pDevice == NULL) {
-        LogMessage("Invalid serial port for command");
+    if (pDevice == NULL)
+    {
+        LogMessage("Failed to get serial port device", false);
         return DEVICE_INVALID_PROPERTY_VALUE;
     }
     
     MM::Serial* pSerial = static_cast<MM::Serial*>(pDevice);
     unsigned char* buf = (unsigned char*)&cmd;
     int ret = pSerial->Write(buf, sizeof(CmdPacket6));
-    if (ret != DEVICE_OK) {
-        LogMessage("Failed to write command");
-        return ret;
-    }
     
-    return DEVICE_OK;
+    if (ret != DEVICE_OK)
+        LogMessage("Command send failed", false);
+    else
+        LogMessage("Command sent successfully", true);
+        
+    return ret;
 }
 
 int ThorlabsMCM3001::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
@@ -384,6 +391,208 @@ int ThorlabsMCM3001::GetLimits(double& lower, double& upper)
     lower = -12700.0;  // micrometers
     upper = 12700.0;   // micrometers
     return DEVICE_OK;
+}
+
+bool ThorlabsMCM3001::Busy()
+{
+    LogMessage("Busy check: " + std::string(busy_ ? "true" : "false"), true);
+    return busy_;
+}
+
+void ThorlabsMCM3001::GetName(char* name) const
+{
+    CDeviceUtils::CopyLimitedString(name, "ThorlabsMCM3001");
+    LogMessage("GetName called", true);
+}
+
+int ThorlabsMCM3001::Shutdown()
+{
+    LogMessage("Shutting down device", true);
+    initialized_ = false;
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::SetPositionUm(double pos)
+{
+    LogMessage("SetPositionUm: " + std::to_string(pos) + " um", true);
+    long steps = UmToSteps(pos);
+    LogMessage("Converting to steps: " + std::to_string(steps), true);
+    return SetPositionSteps(steps);
+}
+
+int ThorlabsMCM3001::GetPositionUm(double& pos)
+{
+    long steps;
+    int ret = GetPositionSteps(steps);
+    if (ret != DEVICE_OK)
+    {
+        LogMessage("GetPositionSteps failed", false);
+        return ret;
+    }
+    pos = StepsToUm(steps);
+    LogMessage("GetPositionUm: " + std::to_string(pos) + " um", true);
+    return DEVICE_OK;
+}
+
+bool ThorlabsMCM3001::IsContinuousFocusDrive() const
+{
+    LogMessage("IsContinuousFocusDrive: false", true);
+    return false;
+}
+
+int ThorlabsMCM3001::IsStageSequenceable(bool& isSequenceable) const
+{
+    isSequenceable = false;
+    LogMessage("IsStageSequenceable: false", true);
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::BeforeGet)
+    {
+        LogMessage("OnAxis BeforeGet: " + std::to_string(currentAxis_), true);
+        pProp->Set((long)currentAxis_);
+    }
+    else if (eAct == MM::AfterSet)
+    {
+        long axis;
+        pProp->Get(axis);
+        LogMessage("OnAxis AfterSet requested axis: " + std::to_string(axis), true);
+        if (axis < 0 || axis > 2)
+        {
+            LogMessage("Invalid axis specified", false);
+            return ERR_INVALID_AXIS;
+        }
+        currentAxis_ = (uint16_t)axis;
+        LogMessage("Axis set to: " + std::to_string(currentAxis_), true);
+    }
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::BeforeGet)
+    {
+        LogMessage("OnEncoderResolution BeforeGet: " + std::to_string(encoderResolutionUm_), true);
+        pProp->Set(encoderResolutionUm_);
+    }
+    else if (eAct == MM::AfterSet)
+    {
+        double oldResolution = encoderResolutionUm_;
+        pProp->Get(encoderResolutionUm_);
+        LogMessage("Encoder resolution changed from " + std::to_string(oldResolution) + 
+                  " to " + std::to_string(encoderResolutionUm_) + " um/count", true);
+    }
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::SendCommand(const CmdPacket12& cmd)
+{
+    MMThreadGuard guard(lock_);
+    
+    std::stringstream ss;
+    ss << "Sending 12-byte command: 0x" << std::hex << (int)cmd.cmd 
+       << " to axis " << std::dec << (int)cmd.channelId 
+       << " with value " << cmd.value;
+    LogMessage(ss.str(), true);
+    
+    MM::Device* pDevice = GetCoreCallback()->GetDevice(this, port_.c_str());
+    if (pDevice == NULL)
+    {
+        LogMessage("Failed to get serial port device", false);
+        return DEVICE_INVALID_PROPERTY_VALUE;
+    }
+    
+    MM::Serial* pSerial = static_cast<MM::Serial*>(pDevice);
+    unsigned char* buf = (unsigned char*)&cmd;
+    int ret = pSerial->Write(buf, sizeof(CmdPacket12));
+    
+    if (ret != DEVICE_OK)
+        LogMessage("Command send failed", false);
+    else
+        LogMessage("Command sent successfully", true);
+        
+    return ret;
+}
+
+int ThorlabsMCM3001::ReadResponse(unsigned char* response, unsigned length)
+{
+    MMThreadGuard guard(lock_);
+    
+    LogMessage("Attempting to read " + std::to_string(length) + " bytes", true);
+    
+    MM::Device* pDevice = GetCoreCallback()->GetDevice(this, port_.c_str());
+    if (pDevice == NULL)
+    {
+        LogMessage("Failed to get serial port device", false);
+        return DEVICE_INVALID_PROPERTY_VALUE;
+    }
+    
+    MM::Serial* pSerial = static_cast<MM::Serial*>(pDevice);
+    unsigned long bytesRead = 0;
+    unsigned long totalRead = 0;
+    unsigned long timeoutMs = 500;
+    
+    while (totalRead < length) {
+        int ret = pSerial->Read(response + totalRead, length - totalRead, bytesRead);
+        if (ret != DEVICE_OK)
+        {
+            LogMessage("Read failed with error: " + std::to_string(ret), false);
+            return ret;
+        }
+        if (bytesRead == 0) {
+            CDeviceUtils::SleepMs(2);
+            timeoutMs -= 2;
+            if (timeoutMs == 0)
+            {
+                LogMessage("Read timeout after 500ms", false);
+                return ERR_COMMAND_FAILED;
+            }
+            continue;
+        }
+        totalRead += bytesRead;
+        LogMessage("Read " + std::to_string(bytesRead) + " bytes", true);
+    }
+    
+    LogMessage("Successfully read " + std::to_string(totalRead) + " bytes", true);
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::ClearPort()
+{
+    MMThreadGuard guard(lock_);
+    
+    LogMessage("Clearing port " + port_, true);
+    
+    MM::Device* pDevice = GetCoreCallback()->GetDevice(this, port_.c_str());
+    if (pDevice == NULL)
+    {
+        LogMessage("Failed to get serial port device", false);
+        return DEVICE_INVALID_PROPERTY_VALUE;
+    }
+    
+    MM::Serial* pSerial = static_cast<MM::Serial*>(pDevice);
+    
+    // Read any remaining bytes
+    unsigned char buf[128];
+    unsigned long read = 1;
+    int ret = DEVICE_OK;
+    unsigned long totalCleared = 0;
+    
+    while (read > 0 && ret == DEVICE_OK) {
+        ret = pSerial->Read(buf, 128, read);
+        totalCleared += read;
+    }
+    
+    LogMessage("Cleared " + std::to_string(totalCleared) + " bytes from port", true);
+    return DEVICE_OK;
+}
+
+ThorlabsMCM3001::~ThorlabsMCM3001()
+{
+    LogMessage("Destructor called", true);
+    Shutdown();
 }
 
 
