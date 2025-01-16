@@ -94,7 +94,7 @@ bool ThorlabsMCM3001::Busy()
     CmdPacket6 cmd = {
         CMD_REQUEST_STATUS,  // Command byte
         0x04,               // Length
-        (uint8_t)currentAxis_, // Channel ID
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
         0x00,               // Param1
         0x00,               // Param2
         0x00                // Param3
@@ -147,30 +147,24 @@ int ThorlabsMCM3001::GetPositionUm(double& pos)
         return DEVICE_NOT_CONNECTED;
 
     CmdPacket6 cmd = {
-        0x0A,           // CMD_QUERY_POS
-        0x04,           // Length
-        currentAxis_,   // Channel ID
-        0x00,          // Param1
-        0x00           // Param2
+        CMD_QUERY_POS,      // Command byte
+        0x04,               // Length
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
+        0x00,               // Param1
+        0x00,               // Param2
+        0x00                // Param3
     };
 
     int ret = SendCommand(cmd);
     if (ret != DEVICE_OK)
         return ret;
 
-    unsigned char response[12];
-    ret = ReadResponse(response, sizeof(response));
+    PosResponse response;
+    ret = ReadResponse(reinterpret_cast<unsigned char*>(&response), sizeof(response));
     if (ret != DEVICE_OK)
         return ret;
 
-    // Extract position value (bytes 8-11, little endian)
-    int32_t steps = 
-        (response[11] << 24) | 
-        (response[10] << 16) | 
-        (response[9] << 8) | 
-        response[8];
-
-    pos = StepsToUm(steps);
+    pos = StepsToUm(response.encoderCount);
     return DEVICE_OK;
 }
 
@@ -181,12 +175,14 @@ int ThorlabsMCM3001::SetPositionSteps(long steps)
         return DEVICE_NOT_CONNECTED;
 
     CmdPacket12 cmd = {
-        0x53,           // CMD_GOTO_POS
-        0x04,           // Length
-        0x06,          // Param1
-        0x00,          // Param2
-        currentAxis_,   // Channel ID
-        steps          // Position value
+        CMD_GOTO_POS,       // Command byte
+        0x04,               // Length
+        0x06,               // Param1
+        0x00,               // Param2
+        0x00,               // Param3
+        0x00,               // Param4
+        static_cast<uint16_t>(currentAxis_), // Channel ID (full 16-bit)
+        steps               // Position value
     };
 
     int ret = SendCommand(cmd);
@@ -204,27 +200,24 @@ int ThorlabsMCM3001::GetPositionSteps(long& steps)
         return DEVICE_NOT_CONNECTED;
 
     CmdPacket6 cmd = {
-        0x0A,           // CMD_QUERY_POS
-        0x04,           // Length
-        currentAxis_,   // Channel ID
-        0x00,          // Param1
-        0x00           // Param2
+        CMD_QUERY_POS,      // Command byte
+        0x04,               // Length
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
+        0x00,               // Param1
+        0x00,               // Param2
+        0x00                // Param3
     };
 
     int ret = SendCommand(cmd);
     if (ret != DEVICE_OK)
         return ret;
 
-    unsigned char response[12];
-    ret = ReadResponse(response, sizeof(response));
+    PosResponse response;
+    ret = ReadResponse(reinterpret_cast<unsigned char*>(&response), sizeof(response));
     if (ret != DEVICE_OK)
         return ret;
 
-    steps = (response[11] << 24) | 
-            (response[10] << 16) | 
-            (response[9] << 8) | 
-            response[8];
-
+    steps = response.encoderCount;
     return DEVICE_OK;
 }
 
