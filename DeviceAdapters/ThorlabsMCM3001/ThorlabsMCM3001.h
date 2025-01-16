@@ -5,15 +5,11 @@
 #include "ModuleInterface.h"
 #include <string>
 
-// Device specific constants
-const double ENCODER_RESOLUTION_UM = 0.2116667; // μm per count
-
 // Command codes
-const uint8_t CMD_SET_ENCODER = 0x09;  // Set encoder counter
-const uint8_t CMD_STOP = 0x65;         // Stop any motor move
-const uint8_t CMD_QUERY_POS = 0x0A;    // Query position
-const uint8_t CMD_GOTO_POS = 0x53;     // Go to position
-const uint8_t CMD_REQUEST_STATUS = 0x80; // Request motor status
+#define CMD_REQUEST_STATUS 0x80
+#define CMD_QUERY_POS     0x0A
+#define CMD_GOTO_POS      0x53
+#define CMD_SET_ENCODER   0x09
 
 // Command structures
 struct CmdPacket6 {
@@ -50,8 +46,7 @@ struct StatusResponse {
 class ThorlabsMCM3001 : public CStageBase<ThorlabsMCM3001>
 {
 public:
-    // Default encoder resolution for MCM3001 with ZFM2020/ZFM2030 stages
-    static constexpr double DEFAULT_ENCODER_RESOLUTION_UM = 0.2116667;  // For ZFM2020/ZFM2030
+    static const double DEFAULT_ENCODER_RESOLUTION_UM;  // For ZFM2020/ZFM2030
 
     ThorlabsMCM3001();
     ~ThorlabsMCM3001();
@@ -73,14 +68,12 @@ public:
     bool IsContinuousFocusDrive() const;
     int Home();
 
-    // Action interface (properties)
+    // Action interface
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
-    int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType eAct);
 
 private:
-    // Internal state
     bool initialized_;
     bool busy_;
     double stepSizeUm_;
@@ -97,10 +90,9 @@ private:
     int WaitForResponse(unsigned timeoutMs = 500);
     int ClearPort();
     int SetupSerialPort();
-    void LogError(const char* message);
-    
+
     // Conversion functions
-    long UmToSteps(double um) const { return static_cast<long>(um / encoderResolutionUm_); }
-    double StepsToUm(long steps) const { return steps * encoderResolutionUm_; }
+    long UmToSteps(double um) const;
+    double StepsToUm(long steps) const;
 };
 

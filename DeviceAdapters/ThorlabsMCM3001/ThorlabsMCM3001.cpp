@@ -351,7 +351,7 @@ int ThorlabsMCM3001::OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType
             // If invalid, revert to default and explain
             encoderResolutionUm_ = DEFAULT_ENCODER_RESOLUTION_UM;
             pProp->Set(DEFAULT_ENCODER_RESOLUTION_UM);
-            LogMessage("Invalid encoder resolution. Reverting to default value (0.2116667 um/count for ZFM2020/ZFM2030).", false);
+            LogMessage("Invalid encoder resolution. Reverting to default value (0.2116667 um/count for ZFM2020/ZFM2030).");
             return DEVICE_INVALID_PROPERTY_VALUE;
         }
             
@@ -375,6 +375,7 @@ int ThorlabsMCM3001::ReadResponse(unsigned char* response, unsigned length)
 {
     const unsigned long timeoutMs = 1000;
     MM::MMTime startTime = GetCurrentMMTime();
+    
     unsigned long bytesRead = 0;
     unsigned long totalBytesRead = 0;
 
@@ -434,21 +435,14 @@ int ThorlabsMCM3001::SetupSerialPort()
     return DEVICE_OK;
 }
 
-void ThorlabsMCM3001::LogError(const char* message)
+long ThorlabsMCM3001::UmToSteps(double um) const
 {
-    char buf[MM::MaxStrLength];
-    snprintf(buf, MM::MaxStrLength, "ThorlabsMCM3001: %s", message);
-    LogMessage(buf, false);
+    return static_cast<long>(um / encoderResolutionUm_);
 }
 
-long ThorlabsMCM3001::UmToSteps(double um) const 
-{ 
-    return static_cast<long>(um / encoderResolutionUm_); 
-}
-
-double ThorlabsMCM3001::StepsToUm(long steps) const 
-{ 
-    return steps * encoderResolutionUm_; 
+double ThorlabsMCM3001::StepsToUm(long steps) const
+{
+    return steps * encoderResolutionUm_;
 }
 
 
