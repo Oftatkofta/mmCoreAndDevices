@@ -86,9 +86,13 @@ int ThorlabsMCM3001::Initialize()
         return DEVICE_NOT_CONNECTED;
 
     // Setup the port
-    MM::Device* pDevice = GetDevice(port_.c_str());
-    if (!pDevice)
-        return DEVICE_NOT_CONNECTED;
+    int ret = SetupSerialPort();
+    if (ret != DEVICE_OK)
+        return ret;
+
+    ret = ClearPort();
+    if (ret != DEVICE_OK)
+        return ret;
 
     initialized_ = true;
     return DEVICE_OK;
@@ -112,7 +116,7 @@ bool ThorlabsMCM3001::Busy()
     CmdPacket6 cmd = {
         CMD_REQUEST_STATUS,  // Command byte
         0x04,               // Length
-        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID
         0x00,               // Param1
         0x00,               // Param2
         0x00                // Param3
@@ -125,7 +129,8 @@ bool ThorlabsMCM3001::Busy()
     if (ReadResponse(reinterpret_cast<unsigned char*>(&response), sizeof(response)) != DEVICE_OK)
         return false;
 
-    return (response.data[16] & 0x30) != 0;
+    busy_ = (response.data[16] & 0x30) != 0;
+    return busy_;
 }
 
 int ThorlabsMCM3001::SetPositionUm(double pos)
@@ -149,10 +154,7 @@ int ThorlabsMCM3001::SetPositionUm(double pos)
 
     int ret = SendCommand(cmd);
     if (ret != DEVICE_OK)
-    {
-        LogMessage("Failed to set position", false);
-        return DEVICE_SERIAL_COMMAND_FAILED;
-    }
+        return ret;
 
     busy_ = true;
     return DEVICE_OK;
@@ -206,8 +208,8 @@ int ThorlabsMCM3001::SetPositionSteps(long steps)
         0x00,               // Param2
         0x00,               // Param3
         0x00,               // Param4
-        static_cast<uint16_t>(currentAxis_), // Channel ID (full 16-bit)
-        steps               // Position value
+        currentAxis_,       // Channel ID
+        steps              // Position value
     };
 
     int ret = SendCommand(cmd);
@@ -261,7 +263,7 @@ int ThorlabsMCM3001::SetOrigin()
     CmdPacket6 cmd = {
         CMD_SET_ENCODER,    // Command byte
         0x04,               // Length
-        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID (take lower byte)
+        static_cast<uint8_t>(currentAxis_ & 0xFF), // Channel ID
         0x00,               // Param1
         0x00,               // Param2
         0x00                // Param3
@@ -272,24 +274,8 @@ int ThorlabsMCM3001::SetOrigin()
 
 int ThorlabsMCM3001::GetLimits(double& lower, double& upper)
 {
-    lower = -25000.0; // These values should be adjusted based on your stage
-    upper = 25000.0;  // These values should be adjusted based on your stage
-    return DEVICE_OK;
-}
-
-int ThorlabsMCM3001::Home()
-{
-    MMThreadGuard guard(lock_);
-    if (!initialized_)
-        return DEVICE_NOT_CONNECTED;
-
-    // For MCM3001, homing is setting position to 0
-    return SetPositionUm(0.0);
-}
-
-int ThorlabsMCM3001::IsStageSequenceable(bool& isSequenceable) const
-{
-    isSequenceable = false;
+    lower = 0;
+    upper = 25000;  // 25mm travel range
     return DEVICE_OK;
 }
 
@@ -298,7 +284,17 @@ bool ThorlabsMCM3001::IsContinuousFocusDrive() const
     return false;
 }
 
-// Property handlers
+int ThorlabsMCM3001::IsStageSequenceable(bool& isSequenceable) const
+{
+    isSequenceable = false;
+    return DEVICE_OK;
+}
+
+int ThorlabsMCM3001::Home()
+{
+    return DEVICE_UNSUPPORTED_COMMAND;
+}
+
 int ThorlabsMCM3001::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
@@ -317,15 +313,6 @@ int ThorlabsMCM3001::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
     return DEVICE_OK;
 }
 
-int ThorlabsMCM3001::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
-{
-    if (eAct == MM::BeforeGet)
-    {
-        pProp->Set(CDeviceUtils::ConvertToString(stepSizeUm_));
-    }
-    return DEVICE_OK;
-}
-
 int ThorlabsMCM3001::OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
@@ -339,15 +326,6 @@ int ThorlabsMCM3001::OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct)
         if (axis < 0 || axis > 2)
             return DEVICE_INVALID_PROPERTY_VALUE;
         currentAxis_ = (uint16_t)axis;
-    }
-    return DEVICE_OK;
-}
-
-int ThorlabsMCM3001::OnStatus(MM::PropertyBase* pProp, MM::ActionType eAct)
-{
-    if (eAct == MM::BeforeGet)
-    {
-        pProp->Set(busy_ ? "Busy" : "Idle");
     }
     return DEVICE_OK;
 }
@@ -373,7 +351,7 @@ int ThorlabsMCM3001::OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType
             // If invalid, revert to default and explain
             encoderResolutionUm_ = DEFAULT_ENCODER_RESOLUTION_UM;
             pProp->Set(DEFAULT_ENCODER_RESOLUTION_UM);
-            LogMessage("Invalid encoder resolution. Reverting to default value (0.2116667 um/count for ZFM2020/ZFM2030).");
+            LogMessage("Invalid encoder resolution. Reverting to default value (0.2116667 um/count for ZFM2020/ZFM2030).", false);
             return DEVICE_INVALID_PROPERTY_VALUE;
         }
             

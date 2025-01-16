@@ -50,6 +50,9 @@ struct StatusResponse {
 class ThorlabsMCM3001 : public CStageBase<ThorlabsMCM3001>
 {
 public:
+    // Default encoder resolution for MCM3001 with ZFM2020/ZFM2030 stages
+    static constexpr double DEFAULT_ENCODER_RESOLUTION_UM = 0.2116667;  // For ZFM2020/ZFM2030
+
     ThorlabsMCM3001();
     ~ThorlabsMCM3001();
 
@@ -70,25 +73,22 @@ public:
     bool IsContinuousFocusDrive() const;
     int Home();
 
-    // Action interface
+    // Action interface (properties)
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct);
-    int OnStatus(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType eAct);
 
-    // Default encoder resolution for MCM3001 with ZFM2020/ZFM2030 stages
-    static constexpr double DEFAULT_ENCODER_RESOLUTION_UM = 0.2116667;  // For ZFM2020/ZFM2030
-
 private:
+    // Internal state
     bool initialized_;
     bool busy_;
     double stepSizeUm_;
     double posUm_;
     std::string port_;
     uint16_t currentAxis_;
-    MMThreadLock lock_;
     double encoderResolutionUm_;
+    MMThreadLock lock_;
 
     // Utility functions
     int SendCommand(const CmdPacket6& cmd);
@@ -100,7 +100,7 @@ private:
     void LogError(const char* message);
     
     // Conversion functions
-    long UmToSteps(double um) const { return static_cast<long>(um / ENCODER_RESOLUTION_UM); }
-    double StepsToUm(long steps) const { return steps * ENCODER_RESOLUTION_UM; }
+    long UmToSteps(double um) const { return static_cast<long>(um / encoderResolutionUm_); }
+    double StepsToUm(long steps) const { return steps * encoderResolutionUm_; }
 };
 
