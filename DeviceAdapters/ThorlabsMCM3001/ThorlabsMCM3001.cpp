@@ -2,6 +2,9 @@
 #include "ModuleInterface.h"
 #include <sstream>
 
+// Define the static member
+const double ThorlabsMCM3001::DEFAULT_ENCODER_RESOLUTION_UM = 0.2116667;  // For ZFM2020/ZFM2030
+
 MODULE_API void InitializeModuleData()
 {
     RegisterDevice("ThorlabsMCM3001", 

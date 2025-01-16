@@ -1,8 +1,8 @@
-﻿#pragma once
+﻿#ifndef _THORLABS_MCM3001_H_
+#define _THORLABS_MCM3001_H_
 
 #include "MMDevice.h"
 #include "DeviceBase.h"
-#include "ModuleInterface.h"
 #include <string>
 
 // Error codes
@@ -10,7 +10,7 @@ const int ERR_PORT_CHANGE_FORBIDDEN = 101;
 const int ERR_INVALID_AXIS = 102;
 const int ERR_COMMAND_FAILED = 103;
 
-// Command codes for serial communication
+// Command codes
 const uint8_t CMD_SET_ENCODER = 0x09;    // Set encoder counter
 const uint8_t CMD_STOP = 0x65;           // Stop any motor move
 const uint8_t CMD_QUERY_POS = 0x0A;      // Query position
@@ -45,15 +45,15 @@ struct PosResponse {
 };
 
 struct StatusResponse {
-    uint8_t header[6];
-    uint8_t data[28];  // Busy status in byte 16: true if (byte16 & 0x30)
+    uint8_t header[6];  // Response header
+    uint8_t data[28];   // Busy status in byte 16: true if (byte16 & 0x30)
 };
 
 class ThorlabsMCM3001 : public CStageBase<ThorlabsMCM3001>
 {
 public:
-    // Default encoder resolution for MCM3001 with ZFM2020/ZFM2030 stages
-    static const double DEFAULT_ENCODER_RESOLUTION_UM;  // For ZFM2020/ZFM2030
+    // For ZFM2020/ZFM2030
+    static const double DEFAULT_ENCODER_RESOLUTION_UM;  // Defined in cpp file
 
     ThorlabsMCM3001();
     ~ThorlabsMCM3001();
@@ -75,9 +75,8 @@ public:
     bool IsContinuousFocusDrive() const;
     int Home();
 
-    // Action interface (properties)
+    // Action interface
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
-    int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnEncoderResolution(MM::PropertyBase* pProp, MM::ActionType eAct);
 
@@ -104,4 +103,6 @@ private:
     long UmToSteps(double um) const;
     double StepsToUm(long steps) const;
 };
+
+#endif  // _THORLABS_MCM3001_H_
 
