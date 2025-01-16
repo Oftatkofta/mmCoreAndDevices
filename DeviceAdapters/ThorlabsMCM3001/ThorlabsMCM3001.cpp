@@ -1,5 +1,6 @@
 #include "ThorlabsMCM3001.h"
 #include "ModuleInterface.h"
+#include "MMDevice.h"
 #include <cstdio>
 #include <sstream>
 
@@ -34,11 +35,12 @@ ThorlabsMCM3001::ThorlabsMCM3001() :
 {
     InitializeDefaultErrorMessages();
 
-    SetErrorText(ERR_PORT_CHANGE_FORBIDDEN, "Port change is not allowed while the device is connected.");
-    SetErrorText(ERR_INVALID_SERIAL_PARAMS, "Invalid serial port parameters.");
-    SetErrorText(ERR_COMMAND_FAILED, "Command failed or no response from device.");
-    SetErrorText(ERR_INVALID_AXIS, "Invalid axis specified (valid: 0-2).");
+    // Add custom error messages
+    SetErrorText(DEVICE_SERIAL_COMMAND_FAILED, "Command failed or no response from device.");
+    SetErrorText(DEVICE_NOT_CONNECTED, "Invalid serial port configuration.");
+    SetErrorText(DEVICE_INVALID_PROPERTY_VALUE, "Invalid axis specified (valid: 0-2).");
     
+    // Create pre-initialization properties
     CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false);
 
     CPropertyAction* pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnAxis);
@@ -61,22 +63,14 @@ int ThorlabsMCM3001::Initialize()
     if (initialized_)
         return DEVICE_OK;
 
+    // Check if we have a port
     if (port_.empty())
-        return ERR_INVALID_SERIAL_PARAMS;
+        return DEVICE_NOT_CONNECTED;
 
-    int ret = SetupSerialPort();
-    if (ret != DEVICE_OK)
-        return ret;
-
-    ret = ClearPort();
-    if (ret != DEVICE_OK)
-        return ret;
-
-    // Add status property
-    CPropertyAction* pAct = new CPropertyAction(this, &ThorlabsMCM3001::OnStatus);
-    ret = CreateProperty("Status", "Idle", MM::String, true, pAct);
-    if (ret != DEVICE_OK)
-        return ret;
+    // Setup the port
+    MM::Device* pDevice = GetDevice(port_.c_str());
+    if (!pDevice)
+        return DEVICE_NOT_CONNECTED;
 
     initialized_ = true;
     return DEVICE_OK;
@@ -98,22 +92,22 @@ bool ThorlabsMCM3001::Busy()
         return false;
 
     CmdPacket6 cmd = {
-        0x80,           // CMD_REQUEST_STATUS
-        0x04,           // Length
-        currentAxis_,   // Channel ID
-        0x00,          // Param1
-        0x00,          // Param2
-        0x00           // Param3
+        CMD_REQUEST_STATUS,  // Command byte
+        0x04,               // Length
+        (uint8_t)currentAxis_, // Channel ID
+        0x00,               // Param1
+        0x00,               // Param2
+        0x00                // Param3
     };
 
     if (SendCommand(cmd) != DEVICE_OK)
         return false;
 
-    unsigned char response[34];
-    if (ReadResponse(response, sizeof(response)) != DEVICE_OK)
+    StatusResponse response;
+    if (ReadResponse(reinterpret_cast<unsigned char*>(&response), sizeof(response)) != DEVICE_OK)
         return false;
 
-    return (response[16] & 0x30) != 0;
+    return (response.data[16] & 0x30) != 0;
 }
 
 int ThorlabsMCM3001::SetPositionUm(double pos)
@@ -125,21 +119,21 @@ int ThorlabsMCM3001::SetPositionUm(double pos)
     long steps = UmToSteps(pos);
     
     CmdPacket12 cmd = {
-        0x53,           // CMD_GOTO_POS
-        0x04,           // Length
-        0x06,           // Param1
-        0x00,           // Param2
-        0x00,           // Param3
-        0x00,           // Param4
-        currentAxis_,   // Channel ID
-        steps          // Position value
+        CMD_GOTO_POS,       // Command byte
+        0x04,               // Length
+        0x06,               // Param1
+        0x00,               // Param2
+        0x00,               // Param3
+        0x00,               // Param4
+        currentAxis_,       // Channel ID
+        steps              // Position value
     };
 
     int ret = SendCommand(cmd);
     if (ret != DEVICE_OK)
     {
-        LogError("Failed to set position");
-        return ret;
+        LogMessage("Failed to set position", false);
+        return DEVICE_SERIAL_COMMAND_FAILED;
     }
 
     busy_ = true;
@@ -157,8 +151,7 @@ int ThorlabsMCM3001::GetPositionUm(double& pos)
         0x04,           // Length
         currentAxis_,   // Channel ID
         0x00,          // Param1
-        0x00,          // Param2
-        0x00           // Param3
+        0x00           // Param2
     };
 
     int ret = SendCommand(cmd);
@@ -190,10 +183,8 @@ int ThorlabsMCM3001::SetPositionSteps(long steps)
     CmdPacket12 cmd = {
         0x53,           // CMD_GOTO_POS
         0x04,           // Length
-        0x06,           // Param1
-        0x00,           // Param2
-        0x00,           // Param3
-        0x00,           // Param4
+        0x06,          // Param1
+        0x00,          // Param2
         currentAxis_,   // Channel ID
         steps          // Position value
     };
@@ -217,8 +208,7 @@ int ThorlabsMCM3001::GetPositionSteps(long& steps)
         0x04,           // Length
         currentAxis_,   // Channel ID
         0x00,          // Param1
-        0x00,          // Param2
-        0x00           // Param3
+        0x00           // Param2
     };
 
     int ret = SendCommand(cmd);
@@ -247,10 +237,8 @@ int ThorlabsMCM3001::SetOrigin()
     CmdPacket12 cmd = {
         0x09,           // CMD_SET_POSITION
         0x04,           // Length
-        0x06,           // Param1
-        0x00,           // Param2
-        0x00,           // Param3
-        0x00,           // Param4
+        0x06,          // Param1
+        0x00,          // Param2
         currentAxis_,   // Channel ID
         0              // Set current position as zero
     };
@@ -298,7 +286,7 @@ int ThorlabsMCM3001::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
         if (initialized_)
         {
             pProp->Set(port_.c_str());
-            return ERR_PORT_CHANGE_FORBIDDEN;
+            return DEVICE_INVALID_PROPERTY_VALUE;
         }
         pProp->Get(port_);
     }
@@ -325,7 +313,7 @@ int ThorlabsMCM3001::OnAxis(MM::PropertyBase* pProp, MM::ActionType eAct)
         long axis;
         pProp->Get(axis);
         if (axis < 0 || axis > 2)
-            return ERR_INVALID_AXIS;
+            return DEVICE_INVALID_PROPERTY_VALUE;
         currentAxis_ = (uint16_t)axis;
     }
     return DEVICE_OK;
