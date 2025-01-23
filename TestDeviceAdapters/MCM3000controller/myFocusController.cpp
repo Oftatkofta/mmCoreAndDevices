@@ -7,13 +7,6 @@
 const char* g_ControllerName = "MCM3000Controller";
 const char* g_PropertyPort = "Port";
 
-// Error codes
-const int ERR_PORT_CHANGE_FORBIDDEN = 101;
-const int ERR_UNRECOGNIZED_ANSWER = 102;
-const int ERR_RESPONSE_TIMEOUT = 103;
-const int ERR_HOME_REQUIRED = 104;
-const int ERR_BUSY = 105;
-
 // Command lengths
 const int SET_POS_LENGTH = 12;
 const int QUERY_POS_LENGTH = 6;
@@ -56,11 +49,12 @@ myFocusController::myFocusController() :
     lastMoveTime_(0.0)
 {
     InitializeDefaultErrorMessages();
-    SetErrorText(ERR_PORT_CHANGE_FORBIDDEN, "Port change is not allowed after device has been initialized.");
-    SetErrorText(ERR_UNRECOGNIZED_ANSWER, "Invalid response from the device.");
-    SetErrorText(ERR_RESPONSE_TIMEOUT, "Device response timeout.");
-    SetErrorText(ERR_HOME_REQUIRED, "Stage must be homed before sending MOVE commands.");
-    SetErrorText(ERR_BUSY, "Device is busy.");
+
+    // Add custom messages
+    SetErrorText(DEVICE_SERIAL_COMMAND_FAILED, "Serial command failed. Is the device connected?");
+    SetErrorText(DEVICE_SERIAL_INVALID_RESPONSE, "Invalid response from device");
+    SetErrorText(DEVICE_SERIAL_TIMEOUT, "Serial timeout");
+    SetErrorText(DEVICE_NOT_CONNECTED, "Device not connected");
 
     // Pre-initialization properties
     CreateProperty(MM::g_Keyword_Name, g_ControllerName, MM::String, true);
@@ -95,7 +89,7 @@ int myFocusController::Initialize()
 
     // Check if we can communicate with the device
     if (!GetMotorStatus())
-        return ERR_UNRECOGNIZED_ANSWER;
+        return DEVICE_SERIAL_INVALID_RESPONSE;
 
     // Add step size property
     CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
@@ -150,10 +144,10 @@ int myFocusController::GetPositionUm(double& pos)
 int myFocusController::SetPositionSteps(long steps)
 {
     if (!home_)
-        return ERR_HOME_REQUIRED;
+        return DEVICE_ERR;
 
     if (Busy())
-        return ERR_BUSY;
+        return DEVICE_ERR;
 
     cmdThread_->StartMove(steps);
     lastMoveTime_ = GetCurrentMMTime();
@@ -172,7 +166,6 @@ int myFocusController::GetPositionSteps(long& steps)
     if (ret != DEVICE_OK)
         return ret;
 
-    // Parse position from response (little endian format)
     steps = ((long)response[10] << 24) |
             ((long)response[9] << 16) |
             ((long)response[8] << 8) |
@@ -187,17 +180,11 @@ int myFocusController::SetOrigin()
     // Set encoder counter to 0
     unsigned char cmd[] = {0x09, 0x04, 0x06, 0x00, 0x00, 0x00, 
                           0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    int ret = SendCommand(cmd, 12);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    curSteps_ = 0;
-    return DEVICE_OK;
+    return SendCommand(cmd, SET_POS_LENGTH);
 }
 
 int myFocusController::Stop()
 {
-    // Stop command with abrupt stop mode
     unsigned char cmd[] = {0x65, 0x04, 0x00, 0x01, 0x00, 0x00};
     int ret = SendCommand(cmd, 6);
     if (ret != DEVICE_OK)
@@ -210,7 +197,6 @@ int myFocusController::Stop()
         CDeviceUtils::SleepMs(5);
     }
 
-    // Also stop any ongoing thread operations
     if (cmdThread_->IsMoving())
     {
         cmdThread_->Stop();
@@ -229,7 +215,6 @@ int myFocusController::Home()
 
 int myFocusController::GetLimits(double& lower, double& upper)
 {
-    // Using reasonable limits based on device capabilities
     lower = -25000.0 * stepSizeUm_; // -25mm
     upper = 25000.0 * stepSizeUm_;  // +25mm
     return DEVICE_OK;
@@ -261,7 +246,7 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
     }
     
     if (bytesRead != length)
-        return ERR_RESPONSE_TIMEOUT;
+        return DEVICE_SERIAL_TIMEOUT;
     
     return DEVICE_OK;
 }
@@ -305,7 +290,7 @@ int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
         if (initialized_)
         {
             pProp->Set(port_.c_str());
-            return ERR_PORT_CHANGE_FORBIDDEN;
+            return DEVICE_ERR;
         }
         pProp->Get(port_);
     }
@@ -321,7 +306,7 @@ int myFocusController::OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct
     else if (eAct == MM::AfterSet)
     {
         if (initialized_)
-            return ERR_PORT_CHANGE_FORBIDDEN;
+            return DEVICE_ERR;
         pProp->Get(stepSizeUm_);
     }
     return DEVICE_OK;
@@ -330,7 +315,7 @@ int myFocusController::OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct
 int myFocusController::MoveBlocking(long steps, bool relative)
 {
     if (!home_)
-        return ERR_HOME_REQUIRED;
+        return DEVICE_ERR;
 
     unsigned char cmd[12];
     if (relative) {
@@ -359,7 +344,7 @@ int myFocusController::MoveBlocking(long steps, bool relative)
     do {
         busy = GetMotorStatus();
         if ((GetCurrentMMTime() - startTime).getMsec() > answerTimeoutMs_)
-            return ERR_RESPONSE_TIMEOUT;
+            return DEVICE_SERIAL_TIMEOUT;
         
         CDeviceUtils::SleepMs(5);
     } while (busy);

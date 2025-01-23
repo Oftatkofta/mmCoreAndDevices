@@ -4,18 +4,6 @@
 #include <string>
 #include <DeviceThreads.h>
 
-// Command lengths
-const int SET_POS_LENGTH = 12;
-const int QUERY_POS_LENGTH = 6;
-const int STATUS_LENGTH = 6;
-
-// Error codes
-const int ERR_PORT_CHANGE_FORBIDDEN = 10004;
-const int ERR_UNRECOGNIZED_ANSWER = 10009;
-const int ERR_RESPONSE_TIMEOUT = 10013;
-const int ERR_BUSY = 10014;
-const int ERR_HOME_REQUIRED = 10015;
-
 class myFocusController : public CStageBase<myFocusController>
 {
 public:
@@ -36,13 +24,15 @@ public:
     int GetLimits(double& lower, double& upper);
     int Home();
     int Stop();
-    int SetOrigin() { return SetPositionSteps(0); }
+    int SetOrigin();
+    int Move(double velocity);
+    int SetAdapterOriginUm(double d);
 
     // Focus-specific functions
-    int GetFocusDirection(MM::FocusDirection& direction) { direction = MM::FocusDirectionUnknown; return DEVICE_OK; }
-    bool IsContinuousFocusDrive() const { return false; }
-    int IsStageSequenceable(bool& isSequenceable) const { isSequenceable = false; return DEVICE_OK; }
-    int IsStageLinearSequenceable(bool& isSequenceable) const { isSequenceable = false; return DEVICE_OK; }
+    int GetFocusDirection(MM::FocusDirection& direction);
+    bool IsContinuousFocusDrive() const;
+    int IsStageSequenceable(bool& isSequenceable) const;
+    int IsStageLinearSequenceable(bool& isSequenceable) const;
 
     // Action interface
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
@@ -78,6 +68,13 @@ private:
     int ClearPort();
     bool GetMotorStatus();
     int MoveBlocking(long steps, bool relative = false);
+
+    // Private constants
+    enum {
+        SET_POS_LENGTH = 12,
+        QUERY_POS_LENGTH = 6,
+        STATUS_LENGTH = 6
+    };
 
     bool initialized_;
     std::string port_;
