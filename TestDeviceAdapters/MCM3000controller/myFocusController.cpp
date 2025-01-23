@@ -5,12 +5,6 @@
 #include <sstream>
 
 const char* g_ControllerName = "MCM3000Controller";
-const char* g_PropertyPort = "Port";
-
-// Command lengths
-const int SET_POS_LENGTH = 12;
-const int QUERY_POS_LENGTH = 6;
-const int STATUS_LENGTH = 6;
 
 myFocusController::CommandThread::CommandThread(myFocusController* stage) :
     stop_(false), 
@@ -38,10 +32,10 @@ int myFocusController::CommandThread::svc()
     return errCode_;
 }
 
-myFocusController::myFocusController() :
+myFocusController::myFocusController() : 
     initialized_(false),
     port_("Undefined"),
-    stepSizeUm_(0.2116667), // um per count from documentation
+    stepSizeUm_(0.2116667),
     answerTimeoutMs_(1000.0),
     cmdThread_(nullptr),
     home_(false),
@@ -56,10 +50,19 @@ myFocusController::myFocusController() :
     SetErrorText(DEVICE_SERIAL_TIMEOUT, "Serial timeout");
     SetErrorText(DEVICE_NOT_CONNECTED, "Device not connected");
 
-    // Pre-initialization properties
+    // Create pre-initialization properties
     CreateProperty(MM::g_Keyword_Name, g_ControllerName, MM::String, true);
-    CreateProperty(MM::g_Keyword_Description, "MCM3000 Focus Controller", MM::String, true);
+    std::string description = "MCM3000 Focus Controller\n\n";
+    description += "Serial port settings:\n";
+    description += "  Baud Rate: 460800\n";
+    description += "  Data Bits: 8\n";
+    description += "  Stop Bits: 1\n";
+    description += "  Parity: None\n";
+    description += "  Flow Control: None\n\n";
+    description += "Please configure these settings in the system's COM port settings.";
+    CreateProperty(MM::g_Keyword_Description, description.c_str(), MM::String, true);
 
+    // Port
     CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnPort);
     CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false, pAct, true);
 
