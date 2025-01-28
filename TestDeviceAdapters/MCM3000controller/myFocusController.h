@@ -1,8 +1,14 @@
 #pragma once
-#include <MMDevice.h>
-#include <DeviceBase.h>
+#include "MMDevice.h"
+#include "DeviceBase.h"
+#include "DeviceThreads.h"
+#include "ModuleInterface.h"
 #include <string>
-#include <DeviceThreads.h>
+
+// Command lengths
+const int SET_POS_LENGTH = 12;
+const int QUERY_POS_LENGTH = 6;
+const int STATUS_LENGTH = 6;
 
 class myFocusController : public CStageBase<myFocusController>
 {
@@ -68,13 +74,6 @@ private:
     int ClearPort();
     bool GetMotorStatus();
     int MoveBlocking(long steps, bool relative = false);
-
-    // Private constants
-    enum {
-        SET_POS_LENGTH = 12,
-        QUERY_POS_LENGTH = 6,
-        STATUS_LENGTH = 6
-    };
 
     bool initialized_;
     std::string port_;

@@ -1,10 +1,39 @@
+#ifdef WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+
 #include "myFocusController.h"
+#include "ModuleInterface.h"
 #include "DeviceUtils.h"
 #include <cstdio>
 #include <string>
 #include <sstream>
 
-const char* g_ControllerName = "MCM3000Controller";
+const char* g_DeviceName = "MCM3000";
+
+// Module interface
+MODULE_API void InitializeModuleData()
+{
+    RegisterDevice(g_DeviceName, MM::StageDevice, "MCM3000 Focus Controller");
+}
+
+MODULE_API MM::Device* CreateDevice(const char* deviceName)
+{
+    if (deviceName == 0)
+        return 0;
+
+    if (strcmp(deviceName, g_DeviceName) == 0)
+    {
+        return new myFocusController();
+    }
+    return 0;
+}
+
+MODULE_API void DeleteDevice(MM::Device* pDevice)
+{
+    delete pDevice;
+}
 
 myFocusController::CommandThread::CommandThread(myFocusController* stage) :
     stop_(false), 
@@ -32,10 +61,10 @@ int myFocusController::CommandThread::svc()
     return errCode_;
 }
 
-myFocusController::myFocusController() : 
+myFocusController::myFocusController() :
     initialized_(false),
     port_("Undefined"),
-    stepSizeUm_(0.2116667),
+    stepSizeUm_(0.2116667), // um per count from documentation
     answerTimeoutMs_(1000.0),
     cmdThread_(nullptr),
     home_(false),
@@ -51,7 +80,7 @@ myFocusController::myFocusController() :
     SetErrorText(DEVICE_NOT_CONNECTED, "Device not connected");
 
     // Create pre-initialization properties
-    CreateProperty(MM::g_Keyword_Name, g_ControllerName, MM::String, true);
+    CreateProperty(MM::g_Keyword_Name, g_DeviceName, MM::String, true);
     std::string description = "MCM3000 Focus Controller\n\n";
     description += "Serial port settings:\n";
     description += "  Baud Rate: 460800\n";
@@ -75,9 +104,9 @@ myFocusController::~myFocusController()
     delete cmdThread_;
 }
 
-void myFocusController::GetName(char* Name) const
+void myFocusController::GetName(char* name) const
 {
-    CDeviceUtils::CopyLimitedString(Name, g_ControllerName);
+    CDeviceUtils::CopyLimitedString(name, g_DeviceName);
 }
 
 int myFocusController::Initialize()
