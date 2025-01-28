@@ -119,24 +119,26 @@ int myFocusController::Initialize()
     if (ret != DEVICE_OK)
         return ret;
 
-    // Check if we can communicate with the device
-    if (!GetMotorStatus())
-        return DEVICE_SERIAL_INVALID_RESPONSE;
+    // Check if we can communicate with the device by checking status
+    if (!Busy())  // Changed from GetMotorStatus() to Busy()
+    {
+        // Add step size property
+        CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
+        ret = CreateProperty("StepSizeUm", CDeviceUtils::ConvertToString(stepSizeUm_), MM::Float, false, pAct);
+        if (ret != DEVICE_OK)
+            return ret;
 
-    // Add step size property
-    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
-    ret = CreateProperty("StepSizeUm", CDeviceUtils::ConvertToString(stepSizeUm_), MM::Float, false, pAct);
-    if (ret != DEVICE_OK)
-        return ret;
+        // Set origin at startup
+        ret = SetOrigin();
+        if (ret != DEVICE_OK)
+            return ret;
 
-    // Set origin at startup
-    ret = SetOrigin();
-    if (ret != DEVICE_OK)
-        return ret;
-
-    home_ = true;
-    initialized_ = true;
-    return DEVICE_OK;
+        initialized_ = true;
+        home_ = true;  // Consider device homed after initialization
+        return DEVICE_OK;
+    }
+    
+    return DEVICE_SERIAL_INVALID_RESPONSE;
 }
 
 int myFocusController::Shutdown()
@@ -153,7 +155,33 @@ int myFocusController::Shutdown()
 
 bool myFocusController::Busy()
 {
-    return cmdThread_->IsMoving() || GetMotorStatus();
+    if (!initialized_)
+        return false;
+
+    // Send status request command
+    unsigned char cmd[] = {0x80, 0x04, 0x00, 0x00, 0x00, 0x00};
+    int ret = SendCommand(cmd, STATUS_LENGTH);
+    if (ret != DEVICE_OK)
+        return false;
+
+    // Get 6-byte header response
+    unsigned char response[6];
+    ret = GetResponse(response, 6);
+    if (ret != DEVICE_OK)
+        return false;
+
+    // Verify response header
+    if (response[0] != 0x81 || response[1] != 0x04)
+        return false;
+
+    // Get status data packet (20 bytes)
+    unsigned char statusData[20];
+    ret = GetResponse(statusData, 20);
+    if (ret != DEVICE_OK)
+        return false;
+
+    // Check motor moving status (bits 4-5 of byte 16)
+    return (statusData[16] & 0x30) != 0;
 }
 
 int myFocusController::SetPositionUm(double pos)
@@ -175,7 +203,7 @@ int myFocusController::GetPositionUm(double& pos)
 
 int myFocusController::SetPositionSteps(long steps)
 {
-    if (!home_)
+    if (!initialized_)
         return DEVICE_ERR;
 
     if (Busy())
@@ -224,7 +252,7 @@ int myFocusController::Stop()
 
     // Wait for the device to actually stop
     MM::MMTime startTime = GetCurrentMMTime();
-    while (GetMotorStatus() && (GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_)
+    while (Busy() && (GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_)
     {
         CDeviceUtils::SleepMs(5);
     }
@@ -257,7 +285,6 @@ int myFocusController::SendCommand(const unsigned char* command, unsigned length
     int ret = GetCoreCallback()->WriteToSerial(this, port_.c_str(), command, length);
     if (ret != DEVICE_OK)
         return ret;
-    
     return DEVICE_OK;
 }
 
@@ -281,20 +308,6 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
         return DEVICE_SERIAL_TIMEOUT;
     
     return DEVICE_OK;
-}
-
-bool myFocusController::GetMotorStatus()
-{
-    unsigned char cmd[] = {0x80, 0x04, 0x00, 0x00, 0x00, 0x00};
-    if (SendCommand(cmd, STATUS_LENGTH) != DEVICE_OK)
-        return true;
-
-    unsigned char response[34];
-    if (GetResponse(response, 34) != DEVICE_OK)
-        return true;
-
-    // Check if motor is moving (bits 4-5 of byte 16)
-    return (response[16] & 0x30) != 0;
 }
 
 int myFocusController::ClearPort()
@@ -346,41 +359,29 @@ int myFocusController::OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct
 
 int myFocusController::MoveBlocking(long steps, bool relative)
 {
-    if (!home_)
+    if (!initialized_)
         return DEVICE_ERR;
 
-    unsigned char cmd[12];
-    if (relative) {
-        cmd[0] = 0x48; // Relative move command
-    } else {
-        cmd[0] = 0x53; // Absolute move command
-    }
-    
+    if (Busy())
+        return DEVICE_ERR;
+
+    // Format move command
+    unsigned char cmd[SET_POS_LENGTH];
+    cmd[0] = relative ? 0x48 : 0x53;  // 0x48 for relative, 0x53 for absolute
     cmd[1] = 0x04;
     cmd[2] = 0x06;
     cmd[3] = 0x00;
     cmd[4] = 0x00;
     cmd[5] = 0x00;
-    cmd[6] = (unsigned char)(steps & 0xFF);
-    cmd[7] = (unsigned char)((steps >> 8) & 0xFF);
-    cmd[8] = (unsigned char)((steps >> 16) & 0xFF);
-    cmd[9] = (unsigned char)((steps >> 24) & 0xFF);
     
+    // Convert steps to little-endian bytes
+    memcpy(cmd + 6, &steps, 4);
+
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
-    // Wait for move to complete
-    MM::MMTime startTime = GetCurrentMMTime();
-    bool busy;
-    do {
-        busy = GetMotorStatus();
-        if ((GetCurrentMMTime() - startTime).getMsec() > answerTimeoutMs_)
-            return DEVICE_SERIAL_TIMEOUT;
-        
-        CDeviceUtils::SleepMs(5);
-    } while (busy);
-
+    lastMoveTime_ = GetCurrentMMTime();
     return DEVICE_OK;
 }
 

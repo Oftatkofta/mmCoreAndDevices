@@ -72,7 +72,6 @@ private:
     int SendCommand(const unsigned char* command, unsigned length);
     int GetResponse(unsigned char* response, unsigned length);
     int ClearPort();
-    bool GetMotorStatus();
     int MoveBlocking(long steps, bool relative = false);
 
     bool initialized_;
