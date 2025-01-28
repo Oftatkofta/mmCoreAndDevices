@@ -63,7 +63,10 @@ __pycache__/
 *.class
 *.jar
 *-Tests
-build/
+build/Debug
+build/intermediates
+*.lib
+*.pdb
 test-reports/
 
 # Generated source
