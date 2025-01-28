@@ -119,26 +119,27 @@ int myFocusController::Initialize()
     if (ret != DEVICE_OK)
         return ret;
 
-    // Check if we can communicate with the device by checking status
-    if (!Busy())  // Changed from GetMotorStatus() to Busy()
-    {
-        // Add step size property
-        CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
-        ret = CreateProperty("StepSizeUm", CDeviceUtils::ConvertToString(stepSizeUm_), MM::Float, false, pAct);
-        if (ret != DEVICE_OK)
-            return ret;
+    // Test communication by getting position
+    long steps;
+    ret = GetPositionSteps(steps);
+    if (ret != DEVICE_OK)
+        return ret;
 
-        // Set origin at startup
-        ret = SetOrigin();
-        if (ret != DEVICE_OK)
-            return ret;
+    // Add step size property
+    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
+    ret = CreateProperty("StepSizeUm", CDeviceUtils::ConvertToString(stepSizeUm_), MM::Float, false, pAct);
+    if (ret != DEVICE_OK)
+        return ret;
 
-        initialized_ = true;
-        home_ = true;  // Consider device homed after initialization
-        return DEVICE_OK;
-    }
-    
-    return DEVICE_SERIAL_INVALID_RESPONSE;
+    // Set origin at startup
+    ret = SetOrigin();
+    if (ret != DEVICE_OK)
+        return ret;
+
+    initialized_ = true;
+    home_ = true;  // Consider device homed after initialization
+
+    return DEVICE_OK;
 }
 
 int myFocusController::Shutdown()
@@ -164,30 +165,35 @@ bool myFocusController::Busy()
     if (ret != DEVICE_OK)
         return false;
 
-    // Get 6-byte header response
+    // Get response (6 bytes)
     unsigned char response[6];
     ret = GetResponse(response, 6);
     if (ret != DEVICE_OK)
         return false;
 
-    // Verify response header
-    if (response[0] != 0x81 || response[1] != 0x04)
-        return false;
-
-    // Get status data packet (20 bytes)
-    unsigned char statusData[20];
-    ret = GetResponse(statusData, 20);
-    if (ret != DEVICE_OK)
-        return false;
-
-    // Check motor moving status (bits 4-5 of byte 16)
-    return (statusData[16] & 0x30) != 0;
+    // Check if moving (byte 5)
+    return (response[5] & 0x01) != 0;
 }
 
-int myFocusController::SetPositionUm(double pos)
+int myFocusController::GetPositionSteps(long& steps)
 {
-    long steps = (long)(pos / stepSizeUm_);
-    return SetPositionSteps(steps);
+    // Query Position command
+    unsigned char cmd[] = {0x0A, 0x04, 0x00, 0x00, 0x00, 0x00};
+    int ret = SendCommand(cmd, QUERY_POS_LENGTH);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Get response (12 bytes total)
+    unsigned char response[12];
+    ret = GetResponse(response, 12);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Position is a 4-byte signed integer in little-endian format
+    memcpy(&steps, response, 4);
+    curSteps_ = steps;
+
+    return DEVICE_OK;
 }
 
 int myFocusController::GetPositionUm(double& pos)
@@ -201,6 +207,12 @@ int myFocusController::GetPositionUm(double& pos)
     return DEVICE_OK;
 }
 
+int myFocusController::SetPositionUm(double pos)
+{
+    long steps = (long)(pos / stepSizeUm_);
+    return SetPositionSteps(steps);
+}
+
 int myFocusController::SetPositionSteps(long steps)
 {
     if (!initialized_)
@@ -209,75 +221,59 @@ int myFocusController::SetPositionSteps(long steps)
     if (Busy())
         return DEVICE_ERR;
 
-    cmdThread_->StartMove(steps);
-    lastMoveTime_ = GetCurrentMMTime();
-    return DEVICE_OK;
-}
+    // Go to Position command
+    unsigned char cmd[SET_POS_LENGTH];
+    cmd[0] = 0x53;  // Go to absolute position
+    cmd[1] = 0x04;
+    cmd[2] = 0x06;
+    cmd[3] = 0x00;
+    cmd[4] = 0x00;
+    cmd[5] = 0x00;
+    
+    // Position as 4-byte signed integer in little-endian format
+    memcpy(cmd + 6, &steps, 4);
 
-int myFocusController::GetPositionSteps(long& steps)
-{
-    unsigned char cmd[] = {0x0A, 0x04, 0x00, 0x00, 0x00, 0x00};
-    int ret = SendCommand(cmd, QUERY_POS_LENGTH);
+    int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
-
-    unsigned char response[12];
-    ret = GetResponse(response, 12);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    steps = ((long)response[10] << 24) |
-            ((long)response[9] << 16) |
-            ((long)response[8] << 8) |
-            (long)response[7];
 
     curSteps_ = steps;
-    return DEVICE_OK;
-}
-
-int myFocusController::SetOrigin()
-{
-    // Set encoder counter to 0
-    unsigned char cmd[] = {0x09, 0x04, 0x06, 0x00, 0x00, 0x00, 
-                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    return SendCommand(cmd, SET_POS_LENGTH);
-}
-
-int myFocusController::Stop()
-{
-    unsigned char cmd[] = {0x65, 0x04, 0x00, 0x01, 0x00, 0x00};
-    int ret = SendCommand(cmd, 6);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    // Wait for the device to actually stop
-    MM::MMTime startTime = GetCurrentMMTime();
-    while (Busy() && (GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_)
-    {
-        CDeviceUtils::SleepMs(5);
-    }
-
-    if (cmdThread_->IsMoving())
-    {
-        cmdThread_->Stop();
-        cmdThread_->wait();
-    }
-
-    return DEVICE_OK;
-}
-
-int myFocusController::Home()
-{
-    SetOrigin();
-    home_ = true;
+    lastMoveTime_ = GetCurrentMMTime();
     return DEVICE_OK;
 }
 
 int myFocusController::GetLimits(double& lower, double& upper)
 {
-    lower = -25000.0 * stepSizeUm_; // -25mm
-    upper = 25000.0 * stepSizeUm_;  // +25mm
+    // MCM3000 has a travel range of ±12.5mm
+    lower = -12500.0;  // μm
+    upper = 12500.0;   // μm
     return DEVICE_OK;
+}
+
+int myFocusController::SetOrigin()
+{
+    if (!initialized_)
+        return DEVICE_ERR;
+
+    // Set encoder counter to 0
+    unsigned char cmd[] = {0x09, 0x04, 0x06, 0x00, 0x00, 0x00, 
+                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    int ret = SendCommand(cmd, SET_POS_LENGTH);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    curSteps_ = 0;
+    return DEVICE_OK;
+}
+
+int myFocusController::Stop()
+{
+    if (!initialized_)
+        return DEVICE_ERR;
+
+    // Stop command
+    unsigned char cmd[] = {0x65, 0x04, 0x00, 0x01, 0x00, 0x00};
+    return SendCommand(cmd, 6);
 }
 
 int myFocusController::SendCommand(const unsigned char* command, unsigned length)
@@ -285,6 +281,10 @@ int myFocusController::SendCommand(const unsigned char* command, unsigned length
     int ret = GetCoreCallback()->WriteToSerial(this, port_.c_str(), command, length);
     if (ret != DEVICE_OK)
         return ret;
+    
+    // Add small delay after sending command
+    CDeviceUtils::SleepMs(1);
+    
     return DEVICE_OK;
 }
 
@@ -292,20 +292,27 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
 {
     MM::MMTime startTime = GetCurrentMMTime();
     unsigned long bytesRead = 0;
-    unsigned char* pos = response;
     
     while ((bytesRead < length) && ((GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_))
     {
         unsigned long readNow = 0;
-        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), pos, length - bytesRead, readNow);
+        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), response + bytesRead, length - bytesRead, readNow);
         if (ret != DEVICE_OK)
             return ret;
-        bytesRead += readNow;
-        pos += readNow;
+        if (readNow > 0)
+        {
+            bytesRead += readNow;
+        }
+        else
+        {
+            CDeviceUtils::SleepMs(1);
+        }
     }
     
     if (bytesRead != length)
+    {
         return DEVICE_SERIAL_TIMEOUT;
+    }
     
     return DEVICE_OK;
 }
@@ -314,13 +321,15 @@ int myFocusController::ClearPort()
 {
     unsigned char clear[100];
     unsigned long read = 100;
-    int ret;
-    while (read == 100)
-    {
-        ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), clear, 100, read);
+    MM::MMTime startTime = GetCurrentMMTime();
+    
+    do {
+        read = 100;
+        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), clear, read, read);
         if (ret != DEVICE_OK)
             return ret;
-    }
+    } while (read == 100 && (GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_);
+    
     return DEVICE_OK;
 }
 
@@ -385,14 +394,31 @@ int myFocusController::MoveBlocking(long steps, bool relative)
     return DEVICE_OK;
 }
 
-// Required Stage API methods
-int myFocusController::SetAdapterOriginUm(double d)
+int myFocusController::Home()
+{
+    if (!initialized_)
+        return DEVICE_ERR;
+
+    // Set encoder counter to 0
+    unsigned char cmd[] = {0x09, 0x04, 0x06, 0x00, 0x00, 0x00, 
+                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    int ret = SendCommand(cmd, SET_POS_LENGTH);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    curSteps_ = 0;
+    home_ = true;
+    return DEVICE_OK;
+}
+
+int myFocusController::SetAdapterOriginUm(double)
 {
     return DEVICE_OK;
 }
 
 int myFocusController::Move(double /*velocity*/)
 {
+    // MCM3000 doesn't support continuous motion
     return DEVICE_UNSUPPORTED_COMMAND;
 }
 
