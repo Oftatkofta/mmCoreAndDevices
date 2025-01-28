@@ -1,0 +1,160 @@
+2025-01-28T17:04:32.191433 tid15732 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250128T170432_pid9908.txt
+2025-01-28T17:04:32.191523 tid15732 [IFO,App] User: admin
+2025-01-28T17:04:32.193576 tid15732 [IFO,App] Host: FLEXOPC
+2025-01-28T17:04:32.193588 tid15732 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-01-28T17:04:32.193626 tid15732 [IFO,App] MMCore version 11.3.0
+2025-01-28T17:04:32.193642 tid15732 [IFO,App] Device API version 71, Module API version 10
+2025-01-28T17:04:32.193650 tid15732 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-01-28T17:04:32.193656 tid15732 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-01-28T17:04:32.609283 tid17132 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@3da0c0d2
+2025-01-28T17:04:32.612912 tid17132 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@22028329
+2025-01-28T17:04:32.613003 tid17132 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@63f9669b
+2025-01-28T17:04:32.613090 tid17132 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@320edc05
+2025-01-28T17:04:32.614046 tid17132 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@29358010
+2025-01-28T17:04:32.614139 tid17132 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@6d1f9fc7
+2025-01-28T17:04:32.614212 tid17132 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@3394f243
+2025-01-28T17:04:32.614266 tid17132 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@35daa735
+2025-01-28T17:04:32.614319 tid17132 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@306a949e
+2025-01-28T17:04:32.614384 tid17132 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@219ac4f3
+2025-01-28T17:04:32.614516 tid17132 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@35083c69
+2025-01-28T17:04:32.614591 tid17132 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@550bd6f2
+2025-01-28T17:04:32.614785 tid17132 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@312166a9
+2025-01-28T17:04:32.614867 tid17132 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@46eb8122
+2025-01-28T17:04:32.614939 tid17132 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@327416e2
+2025-01-28T17:04:32.615836 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@2d714af5
+2025-01-28T17:04:32.616975 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@744e220f
+2025-01-28T17:04:32.617549 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@585d973f
+2025-01-28T17:04:32.618037 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@7452beda
+2025-01-28T17:04:32.623364 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@5cfa15e0
+2025-01-28T17:04:32.624382 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@498a4b28
+2025-01-28T17:04:32.624890 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@455302ec
+2025-01-28T17:04:32.627800 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@4e04aaa7
+2025-01-28T17:04:32.628643 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@6d8c8af7
+2025-01-28T17:04:32.628861 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@6b65473
+2025-01-28T17:04:32.629323 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@139ce472
+2025-01-28T17:04:32.629403 tid17132 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@27bd2fbe
+2025-01-28T17:04:32.630073 tid17132 [IFO,App] Plugin loading took 800ms
+2025-01-28T17:04:32.630246 tid15732 [IFO,App] Finished waiting for plugins to load
+2025-01-28T17:04:39.864966 tid15732 [dbg,Core] Will unload all devices
+2025-01-28T17:04:39.864973 tid15732 [IFO,Core] Did unload all devices
+2025-01-28T17:04:39.865308 tid15732 [dbg,Core] Will set Core property: Initialize = 0
+2025-01-28T17:04:39.865310 tid15732 [dbg,Core] Will unload all devices
+2025-01-28T17:04:39.865312 tid15732 [IFO,Core] Did unload all devices
+2025-01-28T17:04:39.865363 tid15732 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-01-28T17:04:39.865366 tid15732 [dbg,App] Notification from MMCore ignored
+2025-01-28T17:04:39.865374 tid15732 [dbg,Core] Did set Core property: Initialize = 0
+2025-01-28T17:04:39.865385 tid15732 [dbg,Core] Will load device COM5 from SerialManager
+2025-01-28T17:04:39.866952 tid15732 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-01-28T17:04:39.866958 tid15732 [dbg,Core] Will load device COM6 from SerialManager
+2025-01-28T17:04:39.867002 tid15732 [IFO,Core] Did load device COM6 from SerialManager; label = COM6
+2025-01-28T17:04:39.867006 tid15732 [dbg,Core] Will load device COM7 from SerialManager
+2025-01-28T17:04:39.867028 tid15732 [IFO,Core] Did load device COM7 from SerialManager; label = COM7
+2025-01-28T17:04:39.867031 tid15732 [dbg,Core] Will load device COM4 from SerialManager
+2025-01-28T17:04:39.867061 tid15732 [IFO,Core] Did load device COM4 from SerialManager; label = COM4
+2025-01-28T17:04:39.867064 tid15732 [dbg,Core] Will load device HamamatsuHam_DCAM from HamamatsuHam
+2025-01-28T17:04:39.870099 tid15732 [IFO,Core] Did load device HamamatsuHam_DCAM from HamamatsuHam; label = ORCA-Fusion
+2025-01-28T17:04:39.870106 tid15732 [dbg,Core] Will load device Thorlabs DC4100 from ThorlabsDCxxxx
+2025-01-28T17:04:39.909587 tid15732 [IFO,Core] Did load device Thorlabs DC4100 from ThorlabsDCxxxx; label = Thorlabs DC4100
+2025-01-28T17:04:39.909601 tid15732 [dbg,Core] Will load device Arduino-Hub from Arduino
+2025-01-28T17:04:39.910697 tid15732 [IFO,Core] Did load device Arduino-Hub from Arduino; label = Arduino-Hub
+2025-01-28T17:04:39.910704 tid15732 [dbg,Core] Will load device Arduino-Shutter from Arduino
+2025-01-28T17:04:39.910753 tid15732 [IFO,Core] Did load device Arduino-Shutter from Arduino; label = Arduino-Shutter
+2025-01-28T17:04:39.910757 tid15732 [dbg,Core] Will load device Arduino-Switch from Arduino
+2025-01-28T17:04:39.910770 tid15732 [IFO,Core] Did load device Arduino-Switch from Arduino; label = Arduino-Switch
+2025-01-28T17:04:39.910773 tid15732 [dbg,Core] Will load device XYStage from Thorlabs
+2025-01-28T17:04:39.911651 tid15732 [IFO,Core] Did load device XYStage from Thorlabs; label = XYStage
+2025-01-28T17:04:39.911657 tid15732 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-01-28T17:04:39.912497 tid15732 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-01-28T17:04:39.912506 tid15732 [dbg,Core:dev:Thorlabs DC4100] Will set property "Port" to "COM6"
+2025-01-28T17:04:39.912512 tid15732 [dbg,Core:dev:Thorlabs DC4100] Did set property "Port" to "COM6"
+2025-01-28T17:04:39.912517 tid15732 [dbg,Core:dev:Arduino-Hub] Will set property "Logic" to "Normal"
+2025-01-28T17:04:39.912522 tid15732 [dbg,Core:dev:Arduino-Hub] Did set property "Logic" to "Normal"
+2025-01-28T17:04:39.912526 tid15732 [dbg,Core:dev:Arduino-Hub] Will set property "Port" to "COM4"
+2025-01-28T17:04:39.912527 tid15732 [dbg,Core:dev:Arduino-Hub] Did set property "Port" to "COM4"
+2025-01-28T17:04:39.912531 tid15732 [dbg,Core:dev:XYStage] Will set property "Port" to "COM7"
+2025-01-28T17:04:39.912535 tid15732 [dbg,Core:dev:XYStage] Did set property "Port" to "COM7"
+2025-01-28T17:04:39.912539 tid15732 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-01-28T17:04:39.912541 tid15732 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-01-28T17:04:39.912545 tid15732 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912552 tid15732 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912557 tid15732 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-01-28T17:04:39.912559 tid15732 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-01-28T17:04:39.912562 tid15732 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-01-28T17:04:39.912564 tid15732 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-01-28T17:04:39.912567 tid15732 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-01-28T17:04:39.912570 tid15732 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-01-28T17:04:39.912574 tid15732 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912582 tid15732 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912588 tid15732 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912590 tid15732 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912593 tid15732 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912595 tid15732 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912598 tid15732 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-01-28T17:04:39.912600 tid15732 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-01-28T17:04:39.912604 tid15732 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-01-28T17:04:39.912606 tid15732 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-01-28T17:04:39.912608 tid15732 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-01-28T17:04:39.912610 tid15732 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-01-28T17:04:39.912613 tid15732 [dbg,Core:dev:COM6] Will set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912615 tid15732 [dbg,Core:dev:COM6] Did set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912618 tid15732 [dbg,Core:dev:COM6] Will set property "BaudRate" to "115200"
+2025-01-28T17:04:39.912626 tid15732 [dbg,Core:dev:COM6] Did set property "BaudRate" to "115200"
+2025-01-28T17:04:39.912628 tid15732 [dbg,Core:dev:COM6] Will set property "DataBits" to "8"
+2025-01-28T17:04:39.912630 tid15732 [dbg,Core:dev:COM6] Did set property "DataBits" to "8"
+2025-01-28T17:04:39.912633 tid15732 [dbg,Core:dev:COM6] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912635 tid15732 [dbg,Core:dev:COM6] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912641 tid15732 [dbg,Core:dev:COM6] Will set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912643 tid15732 [dbg,Core:dev:COM6] Did set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912647 tid15732 [dbg,Core:dev:COM6] Will set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912649 tid15732 [dbg,Core:dev:COM6] Did set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912652 tid15732 [dbg,Core:dev:COM6] Will set property "Parity" to "None"
+2025-01-28T17:04:39.912654 tid15732 [dbg,Core:dev:COM6] Did set property "Parity" to "None"
+2025-01-28T17:04:39.912656 tid15732 [dbg,Core:dev:COM6] Will set property "StopBits" to "1"
+2025-01-28T17:04:39.912658 tid15732 [dbg,Core:dev:COM6] Did set property "StopBits" to "1"
+2025-01-28T17:04:39.912660 tid15732 [dbg,Core:dev:COM6] Will set property "Verbose" to "1"
+2025-01-28T17:04:39.912662 tid15732 [dbg,Core:dev:COM6] Did set property "Verbose" to "1"
+2025-01-28T17:04:39.912664 tid15732 [dbg,Core:dev:COM6] Will set property "DTR" to "Disable"
+2025-01-28T17:04:39.912666 tid15732 [dbg,Core:dev:COM6] Did set property "DTR" to "Disable"
+2025-01-28T17:04:39.912669 tid15732 [dbg,Core:dev:COM7] Will set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912671 tid15732 [dbg,Core:dev:COM7] Did set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912674 tid15732 [dbg,Core:dev:COM7] Will set property "BaudRate" to "115200"
+2025-01-28T17:04:39.912675 tid15732 [dbg,Core:dev:COM7] Did set property "BaudRate" to "115200"
+2025-01-28T17:04:39.912685 tid15732 [dbg,Core:dev:COM7] Will set property "DataBits" to "8"
+2025-01-28T17:04:39.912686 tid15732 [dbg,Core:dev:COM7] Did set property "DataBits" to "8"
+2025-01-28T17:04:39.912704 tid15732 [dbg,Core:dev:COM7] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912710 tid15732 [dbg,Core:dev:COM7] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912717 tid15732 [dbg,Core:dev:COM7] Will set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912726 tid15732 [dbg,Core:dev:COM7] Did set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912735 tid15732 [dbg,Core:dev:COM7] Will set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912736 tid15732 [dbg,Core:dev:COM7] Did set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912739 tid15732 [dbg,Core:dev:COM7] Will set property "Parity" to "None"
+2025-01-28T17:04:39.912741 tid15732 [dbg,Core:dev:COM7] Did set property "Parity" to "None"
+2025-01-28T17:04:39.912743 tid15732 [dbg,Core:dev:COM7] Will set property "StopBits" to "1"
+2025-01-28T17:04:39.912745 tid15732 [dbg,Core:dev:COM7] Did set property "StopBits" to "1"
+2025-01-28T17:04:39.912747 tid15732 [dbg,Core:dev:COM7] Will set property "Verbose" to "1"
+2025-01-28T17:04:39.912749 tid15732 [dbg,Core:dev:COM7] Did set property "Verbose" to "1"
+2025-01-28T17:04:39.912751 tid15732 [dbg,Core:dev:COM7] Will set property "DTR" to "Disable"
+2025-01-28T17:04:39.912753 tid15732 [dbg,Core:dev:COM7] Did set property "DTR" to "Disable"
+2025-01-28T17:04:39.912756 tid15732 [dbg,Core:dev:COM4] Will set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912758 tid15732 [dbg,Core:dev:COM4] Did set property "AnswerTimeout" to "500.0000"
+2025-01-28T17:04:39.912761 tid15732 [dbg,Core:dev:COM4] Will set property "BaudRate" to "57600"
+2025-01-28T17:04:39.912763 tid15732 [dbg,Core:dev:COM4] Did set property "BaudRate" to "57600"
+2025-01-28T17:04:39.912765 tid15732 [dbg,Core:dev:COM4] Will set property "DataBits" to "8"
+2025-01-28T17:04:39.912767 tid15732 [dbg,Core:dev:COM4] Did set property "DataBits" to "8"
+2025-01-28T17:04:39.912770 tid15732 [dbg,Core:dev:COM4] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912772 tid15732 [dbg,Core:dev:COM4] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-28T17:04:39.912776 tid15732 [dbg,Core:dev:COM4] Will set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912777 tid15732 [dbg,Core:dev:COM4] Did set property "Fast USB to Serial" to "Disable"
+2025-01-28T17:04:39.912781 tid15732 [dbg,Core:dev:COM4] Will set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912782 tid15732 [dbg,Core:dev:COM4] Did set property "Handshaking" to "Off"
+2025-01-28T17:04:39.912785 tid15732 [dbg,Core:dev:COM4] Will set property "Parity" to "None"
+2025-01-28T17:04:39.912788 tid15732 [dbg,Core:dev:COM4] Did set property "Parity" to "None"
+2025-01-28T17:04:39.912797 tid15732 [dbg,Core:dev:COM4] Will set property "StopBits" to "1"
+2025-01-28T17:04:39.912807 tid15732 [dbg,Core:dev:COM4] Did set property "StopBits" to "1"
+2025-01-28T17:04:39.912810 tid15732 [dbg,Core:dev:COM4] Will set property "Verbose" to "1"
+2025-01-28T17:04:39.912811 tid15732 [dbg,Core:dev:COM4] Did set property "Verbose" to "1"
+2025-01-28T17:04:39.912814 tid15732 [dbg,Core:dev:COM4] Will set property "DTR" to "Disable"
+2025-01-28T17:04:39.912815 tid15732 [dbg,Core:dev:COM4] Did set property "DTR" to "Disable"
+2025-01-28T17:04:39.912827 tid15732 [dbg,Core] Will set Core property: Initialize = 1
+2025-01-28T17:04:39.912836 tid15732 [IFO,Core] Will initialize 11 devices
+2025-01-28T17:04:39.912844 tid15732 [IFO,Core] Will initialize device COM5
