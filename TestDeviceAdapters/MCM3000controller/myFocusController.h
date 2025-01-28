@@ -5,6 +5,17 @@
 #include "ModuleInterface.h"
 #include <string>
 
+// Error codes
+#define ERR_PORT_CHANGE_FORBIDDEN    10004
+#define ERR_UNRECOGNIZED_ANSWER      10009
+#define ERR_UNSPECIFIED_ERROR        10010
+#define ERR_HOME_REQUIRED            10011
+#define ERR_INVALID_PACKET_LENGTH    10012
+#define ERR_RESPONSE_TIMEOUT         10013
+#define ERR_BUSY                     10014
+#define ERR_STEPS_OUT_OF_RANGE       10015
+#define ERR_STAGE_NOT_ZEROED         10016
+
 // Command lengths
 const int SET_POS_LENGTH = 12;
 const int QUERY_POS_LENGTH = 6;
@@ -33,6 +44,7 @@ public:
     int SetOrigin();
     int Move(double velocity);
     int SetAdapterOriginUm(double d);
+    int MoveBlocking(long steps, bool relative = false);
 
     // Focus-specific functions
     int GetFocusDirection(MM::FocusDirection& direction);
@@ -44,41 +56,19 @@ public:
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct);
 
+    // Device specific constants
+    static const char* DeviceName;
+    static const char* Description;
+
 private:
-    class CommandThread : public MMDeviceThreadBase
-    {
-    public:
-        CommandThread(myFocusController* stage);
-        ~CommandThread() {}
-        
-        int svc();
-        void Stop() {stop_ = true;}
-        bool GetStop() const {return stop_;}
-        int GetErrorCode() const {return errCode_;}
-        bool IsMoving() const {return moving_;}
-        
-        void StartMove(long pos, bool relative = false);
-
-    private:
-        void Reset() {stop_ = false; errCode_ = DEVICE_OK; moving_ = false;}
-        bool stop_;
-        bool moving_;
-        bool relative_;
-        myFocusController* stage_;
-        long pos_;
-        int errCode_;
-    };
-
     int SendCommand(const unsigned char* command, unsigned length);
     int GetResponse(unsigned char* response, unsigned length);
     int ClearPort();
-    int MoveBlocking(long steps, bool relative = false);
 
     bool initialized_;
     std::string port_;
     double stepSizeUm_;
     double answerTimeoutMs_;
-    CommandThread* cmdThread_;
     bool home_;
     long curSteps_;
     MM::MMTime lastMoveTime_;
