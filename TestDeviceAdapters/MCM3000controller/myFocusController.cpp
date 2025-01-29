@@ -165,13 +165,13 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Buffer for response (6 + 14 bytes observed)
+    // Buffer for response (we get two parts)
     unsigned char response[20];
     memset(response, 0, sizeof(response));
     unsigned long totalRead = 0;
     MM::MMTime startTime = GetCurrentMMTime();
 
-    // Keep reading until we get enough data or timeout
+    // Keep reading until we get both parts or timeout
     while (totalRead < 20 && (GetCurrentMMTime() - startTime).getMsec() < 100)
     {
         unsigned long readNow = 0;
@@ -187,7 +187,23 @@ bool myFocusController::Busy()
 
         if (readNow > 0)
         {
+            std::ostringstream msg;
+            msg << "Received " << readNow << " bytes: ";
+            for (unsigned long i = 0; i < readNow; i++)
+                msg << std::hex << (int)response[totalRead + i] << " ";
+            LogMessage(msg.str().c_str(), true);
+            
             totalRead += readNow;
+
+            // Check if we have a complete first part (14 bytes)
+            if (totalRead >= 14 && !positionValid_)
+            {
+                // First part contains status info
+                bool isMoving = (response[10] & 0x02) != 0;  // Status bit in first part
+                if (isMoving)
+                    positionValid_ = false;
+                return isMoving;
+            }
         }
         else
         {
@@ -195,12 +211,8 @@ bool myFocusController::Busy()
         }
     }
 
-    // If device is moving, invalidate position cache
-    bool isMoving = (response[16] & 0x30) != 0;
-    if (isMoving)
-        positionValid_ = false;
-
-    return isMoving;
+    LogMessage("Incomplete status response", true);
+    return false;
 }
 
 int myFocusController::GetPositionSteps(long& steps)
