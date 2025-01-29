@@ -86,65 +86,63 @@ void myFocusController::GetName(char* name) const
 
 int myFocusController::Initialize()
 {
+    // Log initialization start
+    LogMessage("MCM3000 initialization started...");
+
     if (initialized_)
         return DEVICE_OK;
 
-    // Set default error messages
-    InitializeDefaultErrorMessages();
-    SetErrorText(ERR_PORT_CHANGE_FORBIDDEN, "Port change is not allowed after device has been initialized.");
-    SetErrorText(ERR_UNRECOGNIZED_ANSWER, "Unrecognized answer received from the device.");
-    SetErrorText(ERR_HOME_REQUIRED, "Home device before moving.");
-    SetErrorText(ERR_INVALID_PACKET_LENGTH, "Invalid packet length.");
-    SetErrorText(ERR_RESPONSE_TIMEOUT, "Device response timeout.");
-    SetErrorText(ERR_BUSY, "Device is busy.");
-    SetErrorText(ERR_STEPS_OUT_OF_RANGE, "Position out of range.");
-    SetErrorText(ERR_STAGE_NOT_ZEROED, "Stage must be zeroed before use.");
+    // Check if port is set
+    if (port_ == "Undefined") {
+        LogMessage("Port not set");
+        return DEVICE_ERR;
+    }
 
-    // Create pre-initialization properties
-    CreateProperty(MM::g_Keyword_Name, DeviceName, MM::String, true);
-    
-    std::string description = Description;
-    description += "\n\nSerial port settings:\n";
-    description += "  Baud Rate: 460800\n";
-    description += "  Data Bits: 8\n";
-    description += "  Stop Bits: 1\n";
-    description += "  Parity: None\n";
-    description += "  Flow Control: None";
-    CreateProperty(MM::g_Keyword_Description, description.c_str(), MM::String, true);
-
-    // Port
-    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnPort);
-    CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false, pAct, true);
-
-    // Wait for port to be set
-    if (port_ == "Undefined")
-        return DEVICE_OK;
-
-    // Clear serial port
+    // Clear port before starting
     int ret = ClearPort();
-    if (ret != DEVICE_OK)
+    if (ret != DEVICE_OK) {
+        LogMessage("Failed to clear port");
         return ret;
+    }
 
-    // Test communication by getting position
-    long steps;
-    ret = GetPositionSteps(steps);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    // Add step size property
-    pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
+    // Add step size property before attempting communication
+    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
     ret = CreateProperty("StepSizeUm", CDeviceUtils::ConvertToString(stepSizeUm_), MM::Float, false, pAct);
-    if (ret != DEVICE_OK)
+    if (ret != DEVICE_OK) {
+        LogMessage("Failed to create StepSizeUm property");
         return ret;
+    }
 
-    // Set origin at startup
-    ret = SetOrigin();
-    if (ret != DEVICE_OK)
+    // Test communication with simple status query
+    LogMessage("Testing communication...");
+    unsigned char cmd[] = {0x80, 0x04, 0x00, 0x00, 0x00, 0x00};
+    ret = SendCommand(cmd, STATUS_LENGTH);
+    if (ret != DEVICE_OK) {
+        LogMessage("Failed to send status command");
         return ret;
+    }
 
+    // Get response (6 bytes)
+    unsigned char response[6];
+    ret = GetResponse(response, 6);
+    if (ret != DEVICE_OK) {
+        LogMessage("Failed to get status response");
+        return ret;
+    }
+
+    // Set initialized flag before setting origin
     initialized_ = true;
-    home_ = true;  // Consider device homed after initialization
 
+    // Set origin
+    ret = SetOrigin();
+    if (ret != DEVICE_OK) {
+        initialized_ = false;
+        LogMessage("Failed to set origin");
+        return ret;
+    }
+
+    home_ = true;
+    LogMessage("MCM3000 initialization completed successfully");
     return DEVICE_OK;
 }
 
@@ -258,13 +256,21 @@ int myFocusController::Stop()
 
 int myFocusController::SendCommand(const unsigned char* command, unsigned length)
 {
+    if (!command)
+        return DEVICE_ERR;
+
+    std::stringstream msg;
+    msg << "Sending command: ";
+    for (unsigned i = 0; i < length; i++)
+        msg << std::hex << (int)command[i] << " ";
+    LogMessage(msg.str().c_str(), true);
+
     int ret = GetCoreCallback()->WriteToSerial(this, port_.c_str(), command, length);
     if (ret != DEVICE_OK)
         return ret;
-    
+
     // Add small delay after sending command
-    CDeviceUtils::SleepMs(1);
-    
+    CDeviceUtils::SleepMs(10);
     return DEVICE_OK;
 }
 
@@ -282,18 +288,27 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
         int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), response + bytesRead, length - bytesRead, readNow);
         if (ret != DEVICE_OK)
             return ret;
+        
         if (readNow > 0)
         {
             bytesRead += readNow;
+            
+            // Log partial response
+            std::stringstream msg;
+            msg << "Received " << readNow << " bytes: ";
+            for (unsigned long i = 0; i < readNow; i++)
+                msg << std::hex << (int)response[bytesRead - readNow + i] << " ";
+            LogMessage(msg.str().c_str(), true);
         }
         else
         {
-            CDeviceUtils::SleepMs(2);  // Increased sleep time
+            CDeviceUtils::SleepMs(5);
         }
     }
     
     if (bytesRead != length)
     {
+        LogMessage("Response timeout", true);
         return DEVICE_SERIAL_TIMEOUT;
     }
     
@@ -302,21 +317,25 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
 
 int myFocusController::ClearPort()
 {
-    if (port_ == "Undefined")
-        return DEVICE_OK;
-
+    LogMessage("Clearing serial port...");
+    
     unsigned char clear[100];
     unsigned long read = 100;
-    MM::MMTime startTime = GetCurrentMMTime();
+    int ret;
     
+    MM::MMTime startTime = GetCurrentMMTime();
     do {
         read = 100;
-        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), clear, read, read);
-        if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)  // Ignore timeout errors
+        ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), clear, read, read);
+        if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
+        {
+            LogMessage("Error clearing port");
             return ret;
-        CDeviceUtils::SleepMs(1);  // Add small delay
+        }
+        CDeviceUtils::SleepMs(5);
     } while (read == 100 && (GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_);
     
+    LogMessage("Port cleared");
     return DEVICE_OK;
 }
 
