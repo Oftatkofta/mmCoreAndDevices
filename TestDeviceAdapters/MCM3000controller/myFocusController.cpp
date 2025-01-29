@@ -40,7 +40,6 @@ myFocusController::myFocusController() :
     initialized_(false),
     port_("Undefined"),
     stepSizeUm_(0.2116667), // um per count from documentation
-    answerTimeoutMs_(1000.0),
     home_(false),
     curSteps_(0),
     lastMoveTime_(0.0)
@@ -166,26 +165,58 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Get complete 34-byte response (6 + 28 bytes)
+    // Buffer for maximum possible response (6 + 28 bytes)
     unsigned char response[34];
-    ret = GetResponse(response, 34);
-    if (ret != DEVICE_OK)
+    memset(response, 0, sizeof(response));
+    unsigned long totalRead = 0;
+
+    // Read as much as available, up to 34 bytes
+    while (totalRead < 34)
     {
-        LogMessage("Failed to get status response", true);
-        return false;
+        unsigned long readNow = 0;
+        ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
+                                              response + totalRead, 
+                                              34 - totalRead, 
+                                              readNow);
+        if (ret != DEVICE_OK)
+        {
+            LogMessage("Serial read error", true);
+            return false;
+        }
+
+        if (readNow > 0)
+        {
+            std::ostringstream msg;
+            msg << "Received " << readNow << " bytes: ";
+            for (unsigned long i = 0; i < readNow; i++)
+                msg << std::hex << (int)response[totalRead + i] << " ";
+            LogMessage(msg.str().c_str(), true);
+
+            totalRead += readNow;
+
+            // If we have at least 22 bytes (6 + 16), we can check busy status
+            if (totalRead >= 22)
+            {
+                // Check byte 16 (after 6-byte header) for busy status
+                bool isMoving = (response[22] & 0x30) != 0;
+                LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
+                return isMoving;
+            }
+        }
+        else
+        {
+            CDeviceUtils::SleepMs(2);
+        }
     }
 
-    // Log the complete response
+    // If we get here without enough bytes for status, log and return error
     std::ostringstream msg;
-    msg << "Status response: ";
-    for (int i = 0; i < 34; i++)
+    msg << "Incomplete response. Got " << totalRead << " bytes: ";
+    for (unsigned long i = 0; i < totalRead; i++)
         msg << std::hex << (int)response[i] << " ";
     LogMessage(msg.str().c_str(), true);
 
-    // Check byte 16 (after 6-byte header) for busy status
-    bool isMoving = (response[22] & 0x30) != 0;  // byte 16 + 6 header bytes = 22
-    LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
-    return isMoving;
+    return false;
 }
 
 int myFocusController::GetPositionSteps(long& steps)
