@@ -85,7 +85,6 @@ void myFocusController::GetName(char* name) const
 
 int myFocusController::Initialize()
 {
-    // Log initialization start
     LogMessage("MCM3000 initialization started...");
 
     if (initialized_)
@@ -121,11 +120,11 @@ int myFocusController::Initialize()
         return ret;
     }
 
-    // Get complete 34-byte response (6 + 28 bytes)
-    unsigned char response[34];
-    ret = GetResponse(response, 34);
+    // Try to read at least 6 bytes first
+    unsigned char response[6];
+    ret = GetResponse(response, 6);
     if (ret != DEVICE_OK) {
-        LogMessage("Failed to get status response");
+        LogMessage("Failed to get initial response");
         return ret;
     }
 
@@ -432,50 +431,43 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
     if (!response)
         return DEVICE_ERR;
 
-    MM::MMTime startTime = GetCurrentMMTime();
     unsigned long bytesRead = 0;
-    
-    // Keep reading until we get all expected bytes or timeout
-    while ((bytesRead < length) && ((GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_))
+    unsigned long totalRead = 0;
+    MM::MMTime startTime = GetCurrentMMTime();
+
+    while (totalRead < length)
     {
-        unsigned long readNow = 0;
         int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
-                                                  response + bytesRead, 
-                                                  length - bytesRead, 
-                                                  readNow);
-        if (ret != DEVICE_OK)
-        {
-            LogMessage("Serial read error", true);
-            return ret;
-        }
+                                              response + totalRead, 
+                                              length - totalRead, 
+                                              bytesRead);
         
-        if (readNow > 0)
+        if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
+            return ret;
+
+        if (bytesRead > 0)
         {
             std::ostringstream msg;
-            msg << "Received " << readNow << " bytes: ";
-            for (unsigned long i = 0; i < readNow; i++)
-                msg << std::hex << (int)response[bytesRead + i] << " ";
+            msg << "Received " << bytesRead << " bytes: ";
+            for (unsigned long i = 0; i < bytesRead; i++)
+                msg << std::hex << (int)response[totalRead + i] << " ";
             LogMessage(msg.str().c_str(), true);
             
-            bytesRead += readNow;
-            
-            // Reset timeout on successful read
-            startTime = GetCurrentMMTime();
+            totalRead += bytesRead;
+        }
+        else if ((GetCurrentMMTime() - startTime).getMsec() > 500)  // 500ms timeout
+        {
+            std::ostringstream msg;
+            msg << "Response timeout. Expected " << length << " bytes, got " << totalRead;
+            LogMessage(msg.str().c_str(), true);
+            return DEVICE_SERIAL_TIMEOUT;
         }
         else
         {
             CDeviceUtils::SleepMs(2);
         }
     }
-    
-    if (bytesRead != length)
-    {
-        std::ostringstream msg;
-        msg << "Response timeout. Expected " << length << " bytes, got " << bytesRead;
-        LogMessage(msg.str().c_str(), true);
-        return DEVICE_SERIAL_TIMEOUT;
-    }
-    
+
     return DEVICE_OK;
 }
 
