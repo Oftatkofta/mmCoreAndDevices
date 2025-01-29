@@ -41,7 +41,7 @@ myFocusController::myFocusController() :
     port_("Undefined"),
     stepSizeUm_(0.2116667), // um per count from documentation
     home_(false),
-    curSteps_(0),
+    curSteps_(INVALID_POSITION),  // Initialize to invalid
     lastMoveTime_(0.0)
 {
     InitializeDefaultErrorMessages();
@@ -164,43 +164,14 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Buffer for maximum possible response (6 + 28 bytes)
+    // Buffer for response (6 + 28 bytes)
     unsigned char response[34];
     memset(response, 0, sizeof(response));
     unsigned long totalRead = 0;
-
-    // First try to read at least 6 bytes
-    while (totalRead < 6)
-    {
-        unsigned long readNow = 0;
-        ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
-                                              response + totalRead, 
-                                              6 - totalRead, 
-                                              readNow);
-        if (ret != DEVICE_OK)
-        {
-            LogMessage("Serial read error on header", true);
-            return false;
-        }
-
-        if (readNow > 0)
-        {
-            std::ostringstream msg;
-            msg << "Received " << readNow << " bytes: ";
-            for (unsigned long i = 0; i < readNow; i++)
-                msg << std::hex << (int)response[totalRead + i] << " ";
-            LogMessage(msg.str().c_str(), true);
-            totalRead += readNow;
-        }
-        else
-        {
-            CDeviceUtils::SleepMs(2);
-        }
-    }
-
-    // Now try to read more data
     MM::MMTime startTime = GetCurrentMMTime();
-    while (totalRead < 34 && (GetCurrentMMTime() - startTime).getMsec() < 100)  // 100ms max for additional data
+
+    // Keep reading until we get enough data or timeout
+    while (totalRead < 34 && (GetCurrentMMTime() - startTime).getMsec() < 100)
     {
         unsigned long readNow = 0;
         ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
@@ -209,23 +180,25 @@ bool myFocusController::Busy()
                                               readNow);
         if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
         {
-            LogMessage("Serial read error on data", true);
+            LogMessage("Serial read error", true);
             return false;
         }
 
         if (readNow > 0)
         {
             std::ostringstream msg;
-            msg << "Received additional " << readNow << " bytes: ";
+            msg << "Received " << (totalRead == 0 ? "" : "additional ") 
+                << readNow << " bytes: ";
             for (unsigned long i = 0; i < readNow; i++)
                 msg << std::hex << (int)response[totalRead + i] << " ";
             LogMessage(msg.str().c_str(), true);
+            
             totalRead += readNow;
 
-            // If we have enough bytes to check status, do it
-            if (totalRead >= 22)  // 6 + 16 bytes
+            // Check byte 16 for busy status as per documentation
+            if (totalRead >= 22)  // 6 header + 16 bytes
             {
-                bool isMoving = (response[22] & 0x30) != 0;
+                bool isMoving = (response[22] & 0x30) != 0;  // byte 16 + 6 header bytes
                 LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
                 return isMoving;
             }

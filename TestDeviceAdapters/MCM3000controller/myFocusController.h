@@ -67,12 +67,14 @@ private:
     int ClearPort();
     int MoveBlocking(long steps, bool relative);
 
+    static const long INVALID_POSITION = 0x80000000;  // Invalid position marker
+    
     bool initialized_;
     std::string port_;
     double stepSizeUm_;
     double answerTimeoutMs_;
     bool home_;
-    long curSteps_;
+    long curSteps_;  // Cached position
     MM::MMTime lastMoveTime_;
 };
 
