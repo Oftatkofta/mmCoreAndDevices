@@ -170,17 +170,17 @@ bool myFocusController::Busy()
     memset(response, 0, sizeof(response));
     unsigned long totalRead = 0;
 
-    // Read as much as available, up to 34 bytes
-    while (totalRead < 34)
+    // First try to read at least 6 bytes
+    while (totalRead < 6)
     {
         unsigned long readNow = 0;
         ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
                                               response + totalRead, 
-                                              34 - totalRead, 
+                                              6 - totalRead, 
                                               readNow);
         if (ret != DEVICE_OK)
         {
-            LogMessage("Serial read error", true);
+            LogMessage("Serial read error on header", true);
             return false;
         }
 
@@ -191,13 +191,41 @@ bool myFocusController::Busy()
             for (unsigned long i = 0; i < readNow; i++)
                 msg << std::hex << (int)response[totalRead + i] << " ";
             LogMessage(msg.str().c_str(), true);
+            totalRead += readNow;
+        }
+        else
+        {
+            CDeviceUtils::SleepMs(2);
+        }
+    }
 
+    // Now try to read more data
+    MM::MMTime startTime = GetCurrentMMTime();
+    while (totalRead < 34 && (GetCurrentMMTime() - startTime).getMsec() < 100)  // 100ms max for additional data
+    {
+        unsigned long readNow = 0;
+        ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
+                                              response + totalRead, 
+                                              34 - totalRead, 
+                                              readNow);
+        if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
+        {
+            LogMessage("Serial read error on data", true);
+            return false;
+        }
+
+        if (readNow > 0)
+        {
+            std::ostringstream msg;
+            msg << "Received additional " << readNow << " bytes: ";
+            for (unsigned long i = 0; i < readNow; i++)
+                msg << std::hex << (int)response[totalRead + i] << " ";
+            LogMessage(msg.str().c_str(), true);
             totalRead += readNow;
 
-            // If we have at least 22 bytes (6 + 16), we can check busy status
-            if (totalRead >= 22)
+            // If we have enough bytes to check status, do it
+            if (totalRead >= 22)  // 6 + 16 bytes
             {
-                // Check byte 16 (after 6-byte header) for busy status
                 bool isMoving = (response[22] & 0x30) != 0;
                 LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
                 return isMoving;
@@ -209,13 +237,9 @@ bool myFocusController::Busy()
         }
     }
 
-    // If we get here without enough bytes for status, log and return error
     std::ostringstream msg;
-    msg << "Incomplete response. Got " << totalRead << " bytes: ";
-    for (unsigned long i = 0; i < totalRead; i++)
-        msg << std::hex << (int)response[i] << " ";
+    msg << "Got " << totalRead << " bytes total";
     LogMessage(msg.str().c_str(), true);
-
     return false;
 }
 
