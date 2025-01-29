@@ -1,0 +1,646 @@
+2025-01-29T14:40:06.049874 tid11396 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250129T144006_pid1800.txt
+2025-01-29T14:40:06.049958 tid11396 [IFO,App] User: admin
+2025-01-29T14:40:06.050324 tid11396 [IFO,App] Host: FLEXOPC
+2025-01-29T14:40:06.050335 tid11396 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-01-29T14:40:06.050365 tid11396 [IFO,App] MMCore version 11.3.0
+2025-01-29T14:40:06.050381 tid11396 [IFO,App] Device API version 71, Module API version 10
+2025-01-29T14:40:06.050389 tid11396 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-01-29T14:40:06.050395 tid11396 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-01-29T14:40:06.439386 tid2220 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@3da0c0d2
+2025-01-29T14:40:06.440430 tid2220 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@22028329
+2025-01-29T14:40:06.440523 tid2220 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@63f9669b
+2025-01-29T14:40:06.440598 tid2220 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@320edc05
+2025-01-29T14:40:06.441055 tid2220 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@29358010
+2025-01-29T14:40:06.441150 tid2220 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@6d1f9fc7
+2025-01-29T14:40:06.441215 tid2220 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@3394f243
+2025-01-29T14:40:06.441269 tid2220 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@35daa735
+2025-01-29T14:40:06.441321 tid2220 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@306a949e
+2025-01-29T14:40:06.441375 tid2220 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@219ac4f3
+2025-01-29T14:40:06.441508 tid2220 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@35083c69
+2025-01-29T14:40:06.441611 tid2220 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@550bd6f2
+2025-01-29T14:40:06.441818 tid2220 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@312166a9
+2025-01-29T14:40:06.441891 tid2220 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@46eb8122
+2025-01-29T14:40:06.441964 tid2220 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@327416e2
+2025-01-29T14:40:06.442949 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@2d714af5
+2025-01-29T14:40:06.443280 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@744e220f
+2025-01-29T14:40:06.443867 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@585d973f
+2025-01-29T14:40:06.446474 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@7452beda
+2025-01-29T14:40:06.447658 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@5cfa15e0
+2025-01-29T14:40:06.448226 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@498a4b28
+2025-01-29T14:40:06.448606 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@455302ec
+2025-01-29T14:40:06.449258 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@4e04aaa7
+2025-01-29T14:40:06.449747 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@6d8c8af7
+2025-01-29T14:40:06.449957 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@6b65473
+2025-01-29T14:40:06.450552 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@139ce472
+2025-01-29T14:40:06.450647 tid2220 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@27bd2fbe
+2025-01-29T14:40:06.451010 tid2220 [IFO,App] Plugin loading took 773ms
+2025-01-29T14:40:06.451187 tid11396 [IFO,App] Finished waiting for plugins to load
+2025-01-29T14:40:15.288316 tid11396 [dbg,App] [UI]  clicked in IntroDlg.
+2025-01-29T14:40:16.097440 tid11396 [dbg,Core] Will unload all devices
+2025-01-29T14:40:16.097448 tid11396 [IFO,Core] Did unload all devices
+2025-01-29T14:40:16.097831 tid11396 [dbg,Core] Will set Core property: Initialize = 0
+2025-01-29T14:40:16.097834 tid11396 [dbg,Core] Will unload all devices
+2025-01-29T14:40:16.097835 tid11396 [IFO,Core] Did unload all devices
+2025-01-29T14:40:16.097883 tid11396 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-01-29T14:40:16.097886 tid11396 [dbg,App] Notification from MMCore ignored
+2025-01-29T14:40:16.097895 tid11396 [dbg,Core] Did set Core property: Initialize = 0
+2025-01-29T14:40:16.097906 tid11396 [dbg,Core] Will load device COM5 from SerialManager
+2025-01-29T14:40:16.099116 tid11396 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-01-29T14:40:16.099124 tid11396 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-01-29T14:40:16.100069 tid11396 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-01-29T14:40:16.100077 tid11396 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-01-29T14:40:16.100083 tid11396 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-01-29T14:40:16.100089 tid11396 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-01-29T14:40:16.100094 tid11396 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-01-29T14:40:16.100098 tid11396 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-01-29T14:40:16.100100 tid11396 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-01-29T14:40:16.100104 tid11396 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-01-29T14:40:16.100106 tid11396 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-01-29T14:40:16.100109 tid11396 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-01-29T14:40:16.100112 tid11396 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-01-29T14:40:16.100115 tid11396 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-29T14:40:16.100117 tid11396 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-29T14:40:16.100122 tid11396 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-01-29T14:40:16.100124 tid11396 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-01-29T14:40:16.100127 tid11396 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-01-29T14:40:16.100129 tid11396 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-01-29T14:40:16.100131 tid11396 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-01-29T14:40:16.100133 tid11396 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-01-29T14:40:16.100137 tid11396 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-01-29T14:40:16.100147 tid11396 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-01-29T14:40:16.100150 tid11396 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-01-29T14:40:16.100151 tid11396 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-01-29T14:40:16.100156 tid11396 [dbg,Core] Will set Core property: Initialize = 1
+2025-01-29T14:40:16.100165 tid11396 [IFO,Core] Will initialize 2 devices
+2025-01-29T14:40:16.100170 tid11396 [IFO,Core] Will initialize device COM5
+2025-01-29T14:40:16.101658 tid11396 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-01-29T14:40:16.103052 tid11396 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-01-29T14:40:16.104251 tid11396 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-01-29T14:40:16.105517 tid11396 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-01-29T14:40:16.106717 tid11396 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-01-29T14:40:16.108104 tid11396 [IFO,Core] Did initialize device COM5
+2025-01-29T14:40:16.108135 tid12052 [IFO,Core] Will initialize device MCM3000
+2025-01-29T14:40:16.108137 tid12052 [IFO,dev:MCM3000] MCM3000 initialization started...
+2025-01-29T14:40:16.108140 tid12052 [IFO,dev:MCM3000] Clearing serial port...
+2025-01-29T14:40:16.118595 tid12052 [IFO,dev:MCM3000] Port cleared
+2025-01-29T14:40:16.118621 tid12052 [IFO,dev:MCM3000] Testing communication...
+2025-01-29T14:40:16.118645 tid12052 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.118680 tid12052 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.146175 tid12052 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.146186 tid12052 [dbg,dev:MCM3000] Received 6 bytes: 81 4 14 0 0 0 
+2025-01-29T14:40:16.146192 tid12052 [dbg,dev:MCM3000] Sending command: 9 4 6 0 0 0 1 0 0 0 0 0 
+2025-01-29T14:40:16.146217 tid12052 [dbg,dev:COM5] Write -> (hex) 09 04 06 00 00 00 01 00 00 00 00 00
+2025-01-29T14:40:16.156575 tid12052 [IFO,dev:MCM3000] MCM3000 initialization completed successfully
+2025-01-29T14:40:16.156591 tid12052 [IFO,Core] Did initialize device MCM3000
+2025-01-29T14:40:16.156671 tid11396 [IFO,Core] Finished initializing 2 devices
+2025-01-29T14:40:16.156755 tid11396 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-01-29T14:40:16.156760 tid11396 [dbg,App] Notification from MMCore ignored
+2025-01-29T14:40:16.156772 tid11396 [dbg,Core] Did set Core property: Initialize = 1
+2025-01-29T14:40:16.156817 tid11396 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-01-29T14:40:16.156828 tid11396 [IFO,Core] Default stage set to MCM3000
+2025-01-29T14:40:16.156847 tid11396 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-01-29T14:40:16.156849 tid11396 [dbg,App] Notification from MMCore ignored
+2025-01-29T14:40:16.156855 tid11396 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-01-29T14:40:16.156863 tid11396 [dbg,Core] Will set Core property: AutoShutter = 0
+2025-01-29T14:40:16.156890 tid11396 [dbg,Core] Autoshutter turned off
+2025-01-29T14:40:16.156898 tid11396 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 0
+2025-01-29T14:40:16.156900 tid11396 [dbg,App] Notification from MMCore ignored
+2025-01-29T14:40:16.156906 tid11396 [dbg,Core] Did set Core property: AutoShutter = 0
+2025-01-29T14:40:16.156956 tid11396 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-01-29T14:40:16.156996 tid11396 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-01-29T14:40:16.157031 tid11396 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-01-29T14:40:16.157084 tid11396 [dbg,Core] Waiting for device COM5...
+2025-01-29T14:40:16.157089 tid11396 [dbg,Core] Finished waiting for device COM5
+2025-01-29T14:40:16.157092 tid11396 [dbg,Core] Waiting for device MCM3000...
+2025-01-29T14:40:16.157107 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.157157 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.176889 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 b4 b6 00 00 02 01 00 00
+2025-01-29T14:40:16.176940 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.197181 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.197478 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.218067 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 b4 b6 00 00 02 01 00 00
+2025-01-29T14:40:16.218096 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.228524 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.228563 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.238884 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.249131 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.259383 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.259415 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.269536 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.279739 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.299863 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.299894 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.310555 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.331218 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.341609 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.341658 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.351842 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.372737 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.393132 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.393184 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.413049 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.413069 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.432750 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.432835 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.452822 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.452869 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.472753 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.472851 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.492903 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:16.512973 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.513069 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.532832 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.532878 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.543272 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.543366 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.554039 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.574954 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.585591 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.585686 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.596206 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.617025 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.627420 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.627512 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.638060 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.659018 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.669458 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.669551 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.680104 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.701152 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.711823 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.711928 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.722475 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.742782 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.762731 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.762826 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.782817 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.782862 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.802742 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.802837 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.822882 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:16.842693 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.842788 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.853150 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.873320 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.883552 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.883577 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.893805 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.904440 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.914947 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.914972 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.925463 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.946470 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.956929 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.956986 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:16.967628 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:16.988527 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:16.998960 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:16.999055 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.009465 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.030641 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.040877 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.040972 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.051653 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.072671 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.092725 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.092834 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.113357 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.113403 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.123938 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.124031 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.134519 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.154943 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.165466 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.165561 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.176034 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.197022 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.207482 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.207597 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.217889 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.238953 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.249355 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.249399 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.259844 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.280551 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.290908 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.291003 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.301545 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.322308 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.332520 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.332602 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.342914 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.362704 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.373157 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.373194 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.392715 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.392735 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.412683 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.412733 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.432861 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.432908 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.452728 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.452821 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.473137 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.473186 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.492735 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.492832 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.512844 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.512891 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.532737 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.532834 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.552852 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.552899 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.572738 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.572837 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.592828 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.592875 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.612739 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.612832 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.633297 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.633350 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.652706 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.652801 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.672849 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.672894 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.693002 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.693105 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.712716 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.712727 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.732665 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.732699 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.752772 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.752795 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.763189 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.763276 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.774029 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.794741 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.804943 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.805041 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.815551 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.836531 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.847001 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.847106 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.857554 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.867956 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.878539 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.878638 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.889036 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.909579 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.920089 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.920184 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.930498 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:17.951474 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:17.961724 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:17.961820 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:17.972084 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.002734 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.022741 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.022837 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.042871 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:18.063126 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.063240 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.082856 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.082904 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.102693 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.102789 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.122845 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.122891 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.143489 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.143585 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.153998 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.174682 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.184946 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.185043 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.195576 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.216533 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.227014 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.227121 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.237631 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.258250 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.268518 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.268612 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.278923 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.299594 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.309925 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.310023 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.320477 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.341841 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.352133 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.352228 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.362939 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.382805 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.403162 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.403259 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.422829 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.422875 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.442718 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.442811 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.462822 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.462868 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.482732 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.482830 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.502880 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:18.522723 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.522819 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.542823 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.542870 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.562726 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.562832 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.582859 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:18.602742 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.602834 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.622880 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:18.642697 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.642794 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.663399 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:18.673876 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.673974 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.684536 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.694718 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.705160 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.705300 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.715615 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.736537 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.747044 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.747171 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.757600 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.778037 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.788474 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.788570 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.798893 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.819532 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.829980 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.830079 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.840429 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.861616 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.871872 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.871967 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.882240 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.902743 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.923422 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.923534 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.934017 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.954719 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:18.964954 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:18.965051 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:18.975552 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:18.996535 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.006979 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.007075 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.017415 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.038525 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.049023 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.049140 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.059422 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.080583 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.090804 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.090904 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.101539 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.122829 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.142744 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.142857 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.162880 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:19.183196 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.183294 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.202846 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.202893 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.213194 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.213298 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.232843 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.232889 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.252737 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.252834 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.272847 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.272893 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.292735 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.292833 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.312881 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.312928 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.332730 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.332829 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.352852 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.352898 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.372741 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.372839 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.392839 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.392885 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.412696 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.412796 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.432867 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.432915 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.443404 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.443506 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.454021 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.474733 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.484942 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.485036 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.495627 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.516538 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.527014 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.527119 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.537449 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.558037 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.568431 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.568525 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.578998 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.599992 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.610662 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.610761 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.621087 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.642285 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.652523 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.652617 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.672879 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:19.692744 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.692842 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.703472 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.713984 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.724448 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.724548 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.744848 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.744860 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.755407 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.755442 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.765989 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.776459 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.786964 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.787044 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.797393 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.818534 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.828986 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.829081 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.839513 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.860584 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.870833 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.870929 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.881516 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.902559 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:19.922691 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.922785 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.942912 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:19.963223 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:19.963322 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:19.973942 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:19.994726 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.004941 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.005038 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.015586 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.036590 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.046980 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.047078 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.057569 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.078538 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.088971 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.089066 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.099634 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.120448 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.130829 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.130922 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.141321 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.151503 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.162038 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.162138 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.182639 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.182689 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.202700 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.202793 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.223304 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.223351 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.243929 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.244025 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.254559 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.264733 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.274961 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.275055 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.285540 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.306591 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.317000 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.317094 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.327559 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.348534 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.358959 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.359053 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.369608 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.379867 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.390486 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.390573 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.400904 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.422082 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.432324 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.432419 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.442885 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.462801 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.483273 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.483374 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.493973 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.504113 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.514674 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.514705 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.524951 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.546013 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.556482 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.556601 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.567044 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.588029 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.598479 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.598575 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.609206 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.619527 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.629969 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.630067 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.640394 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.661650 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.671883 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.671979 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.682416 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.692658 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.712701 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.712732 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.733130 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:20.743607 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.743669 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.753982 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.774728 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.795432 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.795530 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.806067 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.827050 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.837460 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.837556 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.848243 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.858527 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.868929 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.869028 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.879628 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.900747 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.910961 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.911053 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.921396 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:20.942553 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:20.962731 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:20.962837 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:20.982885 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00 81 04 14 00 00 00
+2025-01-29T14:40:21.003225 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:21.003323 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:21.014028 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:21.034741 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:21.044945 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:21.045049 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:21.055674 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:21.076526 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:21.087118 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:21.087234 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:21.097534 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:21.118085 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:21.128489 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:21.128584 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:21.138902 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:21.149079 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:21.159486 tid11396 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T14:40:21.159578 tid11396 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T14:40:21.169904 tid11396 [dbg,dev:COM5] Read <- (hex) 01 00 14 6b 1b 00 00 00 00 00 02 01 00 00
+2025-01-29T14:40:21.190528 tid11396 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T14:40:21.190568 tid11396 [ERR,Core] Error occurred in device MCM3000: wait timed out after 5000 ms. 
+2025-01-29T14:40:21.191369 tid11396 [IFO,Core] Unloading all devices after failure to load system configuration
+2025-01-29T14:40:21.191387 tid11396 [dbg,Core] Will unload all devices
+2025-01-29T14:40:21.492781 tid11396 [IFO,Core] Did unload all devices
+2025-01-29T14:40:21.492829 tid11396 [IFO,Core] Now rethrowing original error from system configuration loading
+2025-01-29T14:40:21.507301 tid11396 [IFO,App] Failed to load hardware configuration
+                                    [       ] java.lang.Exception: Wait for device "MCM3000" timed out after 5000ms in Thread[AWT-EventQueue-0,6,main]
+                                    [       ]   at mmcorej.MMCoreJJNI.CMMCore_loadSystemConfiguration(Native Method)
+                                    [       ]   at mmcorej.CMMCore.loadSystemConfiguration(CMMCore.java:408)
+                                    [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadConfigImpl(HardwareConfigurationManager.java:164)
+                                    [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadHardwareConfiguration(HardwareConfigurationManager.java:128)
+                                    [       ]   at org.micromanager.internal.MMStudio.loadSystemConfiguration(MMStudio.java:913)
+                                    [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:404)
+                                    [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                    [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                    [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                    [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                    [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                    [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                    [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                    [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                    [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                    [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                    [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                    [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                    [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                    [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                    [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-01-29T14:40:24.955963 tid11396 [dbg,Core] Will set circular buffer size to 50000 MB
+2025-01-29T14:40:24.956082 tid11396 [dbg,Core] Did set circular buffer size to 50000 MB
+2025-01-29T14:40:24.959122 tid11396 [IFO,App] EDTHangLogger: Started monitoring of EDT hangs
+                                    [       ] [heartbeat timeout = 4500 ms, hang check interval = 1000 ms]
+2025-01-29T14:40:25.274086 tid11396 [IFO,App] Rebuilding config group table
+2025-01-29T14:40:25.274140 tid11396 [IFO,App] Finished rebuilding config group table
+2025-01-29T14:40:25.307539 tid11396 [IFO,App] Startup script (C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\MMStartup.bsh) not present
+2025-01-29T14:40:25.307568 tid11396 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-01-29T14:40:25.309110 tid11396 [IFO,App] Rebuilding config group table
+2025-01-29T14:40:25.309118 tid11396 [IFO,App] Finished rebuilding config group table
+2025-01-29T14:40:25.309352 tid11396 [IFO,App] Finished updating GUI
+2025-01-29T14:40:27.495829 tid11396 [IFO,App] EDTHangLogger: Stopping monitoring of EDT hangs
+2025-01-29T14:40:27.495875 tid11396 [dbg,Core] Will unload all devices
+2025-01-29T14:40:27.495877 tid11396 [IFO,Core] Did unload all devices
+2025-01-29T14:40:27.495886 tid11396 [IFO,Core] System reset
+2025-01-29T14:40:27.496319 tid11396 [IFO,Core] Core session ended
