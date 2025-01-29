@@ -175,14 +175,18 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Log the header
-    std::ostringstream headerMsg;
-    headerMsg << "Status header: ";
-    for (int i = 0; i < 6; i++)
-        headerMsg << std::hex << (int)header[i] << " ";
-    LogMessage(headerMsg.str().c_str(), true);
+    // Verify header format (81 04 14 00 00 00)
+    if (header[0] != 0x81 || header[1] != 0x04 || header[2] != 0x14)
+    {
+        std::ostringstream msg;
+        msg << "Invalid status header: ";
+        for (int i = 0; i < 6; i++)
+            msg << std::hex << (int)header[i] << " ";
+        LogMessage(msg.str().c_str(), true);
+        return false;
+    }
 
-    // Get 28-byte data packet
+    // Get 28-byte data packet as per documentation
     unsigned char data[28];
     ret = GetResponse(data, 28);
     if (ret != DEVICE_OK)
@@ -191,14 +195,17 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Log the data packet
-    std::ostringstream dataMsg;
-    dataMsg << "Status data: ";
+    // Log the complete response
+    std::ostringstream msg;
+    msg << "Status response - Header: ";
+    for (int i = 0; i < 6; i++)
+        msg << std::hex << (int)header[i] << " ";
+    msg << " Data: ";
     for (int i = 0; i < 28; i++)
-        dataMsg << std::hex << (int)data[i] << " ";
-    LogMessage(dataMsg.str().c_str(), true);
+        msg << std::hex << (int)data[i] << " ";
+    LogMessage(msg.str().c_str(), true);
 
-    // Check byte 16 for busy status
+    // Check byte 16 for busy status (bits 4-5)
     bool isMoving = (data[16] & 0x30) != 0;
     LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
     return isMoving;
@@ -213,6 +220,10 @@ int myFocusController::GetPositionSteps(long& steps)
         return ret;
 
     // Get response (12 bytes total)
+    // Format: 
+    // Header (6 bytes):    0B 04 06 00 00 00
+    // Chan Ident (2 bytes): [Channel ID word]
+    // Position (4 bytes):   [Encoder count, little-endian]
     unsigned char response[12];
     memset(response, 0, sizeof(response));
     ret = GetResponse(response, 12);
@@ -226,9 +237,26 @@ int myFocusController::GetPositionSteps(long& steps)
         msg << std::hex << (int)response[i] << " ";
     LogMessage(msg.str().c_str(), true);
 
-    // Position data is in the first 4 bytes (little-endian)
+    // Verify response header (0B 04 06 00 00 00)
+    if (response[0] != 0x0B || response[1] != 0x04 || response[2] != 0x06 ||
+        response[3] != 0x00 || response[4] != 0x00 || response[5] != 0x00)
+    {
+        LogMessage("Invalid position response header", true);
+        return ERR_UNRECOGNIZED_ANSWER;
+    }
+
+    // Verify channel ID (2 bytes starting at position 6)
+    uint16_t channelId;
+    memcpy(&channelId, &response[6], 2);
+    if (channelId != 1)  // We're using channel 1
+    {
+        LogMessage("Unexpected channel ID in response", true);
+        return ERR_UNRECOGNIZED_ANSWER;
+    }
+
+    // Get position from last 4 bytes (little-endian)
     int32_t position;
-    memcpy(&position, response, 4);
+    memcpy(&position, &response[8], 4);
     steps = position;
     curSteps_ = steps;
 
@@ -375,33 +403,44 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
     MM::MMTime startTime = GetCurrentMMTime();
     unsigned long bytesRead = 0;
     
+    // Keep reading until we get all expected bytes or timeout
     while ((bytesRead < length) && ((GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_))
     {
         unsigned long readNow = 0;
-        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), response + bytesRead, length - bytesRead, readNow);
+        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
+                                                  response + bytesRead, 
+                                                  length - bytesRead, 
+                                                  readNow);
         if (ret != DEVICE_OK)
+        {
+            LogMessage("Serial read error", true);
             return ret;
+        }
         
         if (readNow > 0)
         {
-            bytesRead += readNow;
-            
-            // Log partial response
-            std::stringstream msg;
+            std::ostringstream msg;
             msg << "Received " << readNow << " bytes: ";
             for (unsigned long i = 0; i < readNow; i++)
-                msg << std::hex << (int)response[bytesRead - readNow + i] << " ";
+                msg << std::hex << (int)response[bytesRead + i] << " ";
             LogMessage(msg.str().c_str(), true);
+            
+            bytesRead += readNow;
+            
+            // Reset timeout on successful read
+            startTime = GetCurrentMMTime();
         }
         else
         {
-            CDeviceUtils::SleepMs(5);
+            CDeviceUtils::SleepMs(2);
         }
     }
     
     if (bytesRead != length)
     {
-        LogMessage("Response timeout", true);
+        std::ostringstream msg;
+        msg << "Response timeout. Expected " << length << " bytes, got " << bytesRead;
+        LogMessage(msg.str().c_str(), true);
         return DEVICE_SERIAL_TIMEOUT;
     }
     
