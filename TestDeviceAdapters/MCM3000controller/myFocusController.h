@@ -74,7 +74,8 @@ private:
     double stepSizeUm_;
     double answerTimeoutMs_;
     bool home_;
-    long curSteps_;  // Cached position
+    long curSteps_;          // Cached position
+    bool positionValid_;     // Cache validity flag
     MM::MMTime lastMoveTime_;
 };
 

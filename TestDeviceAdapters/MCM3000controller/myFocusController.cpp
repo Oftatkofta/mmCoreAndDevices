@@ -42,6 +42,7 @@ myFocusController::myFocusController() :
     stepSizeUm_(0.2116667), // um per count from documentation
     home_(false),
     curSteps_(INVALID_POSITION),  // Initialize to invalid
+    positionValid_(false),
     lastMoveTime_(0.0)
 {
     InitializeDefaultErrorMessages();
@@ -164,19 +165,19 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Buffer for response (6 + 28 bytes)
-    unsigned char response[34];
+    // Buffer for response (6 + 14 bytes observed)
+    unsigned char response[20];
     memset(response, 0, sizeof(response));
     unsigned long totalRead = 0;
     MM::MMTime startTime = GetCurrentMMTime();
 
     // Keep reading until we get enough data or timeout
-    while (totalRead < 34 && (GetCurrentMMTime() - startTime).getMsec() < 100)
+    while (totalRead < 20 && (GetCurrentMMTime() - startTime).getMsec() < 100)
     {
         unsigned long readNow = 0;
         ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
                                               response + totalRead, 
-                                              34 - totalRead, 
+                                              20 - totalRead, 
                                               readNow);
         if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
         {
@@ -186,22 +187,7 @@ bool myFocusController::Busy()
 
         if (readNow > 0)
         {
-            std::ostringstream msg;
-            msg << "Received " << (totalRead == 0 ? "" : "additional ") 
-                << readNow << " bytes: ";
-            for (unsigned long i = 0; i < readNow; i++)
-                msg << std::hex << (int)response[totalRead + i] << " ";
-            LogMessage(msg.str().c_str(), true);
-            
             totalRead += readNow;
-
-            // Check byte 16 for busy status as per documentation
-            if (totalRead >= 22)  // 6 header + 16 bytes
-            {
-                bool isMoving = (response[22] & 0x30) != 0;  // byte 16 + 6 header bytes
-                LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
-                return isMoving;
-            }
         }
         else
         {
@@ -209,14 +195,23 @@ bool myFocusController::Busy()
         }
     }
 
-    std::ostringstream msg;
-    msg << "Got " << totalRead << " bytes total";
-    LogMessage(msg.str().c_str(), true);
-    return false;
+    // If device is moving, invalidate position cache
+    bool isMoving = (response[16] & 0x30) != 0;
+    if (isMoving)
+        positionValid_ = false;
+
+    return isMoving;
 }
 
 int myFocusController::GetPositionSteps(long& steps)
 {
+    // If we're not moving and have a valid cached position, return it
+    if (!Busy() && positionValid_)
+    {
+        steps = curSteps_;
+        return DEVICE_OK;
+    }
+
     // Query Position command with channel 1
     unsigned char cmd[] = {0x0A, 0x04, 0x01, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, QUERY_POS_LENGTH);
@@ -224,15 +219,14 @@ int myFocusController::GetPositionSteps(long& steps)
         return ret;
 
     // Get response (12 bytes total)
-    // Format: 
-    // Header (6 bytes):    0B 04 06 00 00 00
-    // Chan Ident (2 bytes): [Channel ID word]
-    // Position (4 bytes):   [Encoder count, little-endian]
     unsigned char response[12];
     memset(response, 0, sizeof(response));
     ret = GetResponse(response, 12);
     if (ret != DEVICE_OK)
+    {
+        positionValid_ = false;
         return ret;
+    }
 
     // Log the full response for debugging
     std::ostringstream msg;
@@ -241,28 +235,14 @@ int myFocusController::GetPositionSteps(long& steps)
         msg << std::hex << (int)response[i] << " ";
     LogMessage(msg.str().c_str(), true);
 
-    // Verify response header (0B 04 06 00 00 00)
-    if (response[0] != 0x0B || response[1] != 0x04 || response[2] != 0x06 ||
-        response[3] != 0x00 || response[4] != 0x00 || response[5] != 0x00)
-    {
-        LogMessage("Invalid position response header", true);
-        return ERR_UNRECOGNIZED_ANSWER;
-    }
-
-    // Verify channel ID (2 bytes starting at position 6)
-    uint16_t channelId;
-    memcpy(&channelId, &response[6], 2);
-    if (channelId != 1)  // We're using channel 1
-    {
-        LogMessage("Unexpected channel ID in response", true);
-        return ERR_UNRECOGNIZED_ANSWER;
-    }
-
-    // Get position from last 4 bytes (little-endian)
+    // Position is in bytes 8-11 (after channel ID)
     int32_t position;
     memcpy(&position, &response[8], 4);
     steps = position;
+    
+    // Cache the position
     curSteps_ = steps;
+    positionValid_ = true;
 
     std::ostringstream posMsg;
     posMsg << "Current position: " << steps << " steps (0x" << std::hex << steps << ")";
@@ -306,6 +286,9 @@ int myFocusController::SetPositionSteps(long steps)
     std::ostringstream msg;
     msg << "Moving to position: " << steps << " steps";
     LogMessage(msg.str().c_str(), true);
+
+    // Invalidate position cache before move
+    positionValid_ = false;
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
