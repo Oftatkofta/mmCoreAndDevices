@@ -157,8 +157,8 @@ bool myFocusController::Busy()
     if (!initialized_)
         return false;
 
-    // Send status request command
-    unsigned char cmd[] = {0x80, 0x04, 0x00, 0x00, 0x00, 0x00};
+    // Send status request command with channel 1
+    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};  // Changed channel to 0x01
     int ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
         return false;
@@ -175,18 +175,14 @@ bool myFocusController::Busy()
 
 int myFocusController::GetPositionSteps(long& steps)
 {
-    if (!initialized_)
-        return DEVICE_ERR;
-
-    // Query Position command
-    unsigned char cmd[] = {0x0A, 0x04, 0x00, 0x00, 0x00, 0x00};
+    // Query Position command with channel 1
+    unsigned char cmd[] = {0x0A, 0x04, 0x01, 0x00, 0x00, 0x00};  // Changed channel to 0x01
     int ret = SendCommand(cmd, QUERY_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
     // Get response (12 bytes total)
     unsigned char response[12];
-    memset(response, 0, sizeof(response));  // Initialize buffer
     ret = GetResponse(response, 12);
     if (ret != DEVICE_OK)
         return ret;
@@ -209,15 +205,39 @@ int myFocusController::GetPositionUm(double& pos)
     return DEVICE_OK;
 }
 
+int myFocusController::SetPositionSteps(long steps)
+{
+    // Absolute move
+    return MoveBlocking(steps, false);
+}
+
+int myFocusController::SetRelativePositionSteps(long steps)
+{
+    // Get current position
+    long currentPos;
+    int ret = GetPositionSteps(currentPos);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Calculate target position
+    long targetPos = currentPos + steps;
+
+    // Move to new absolute position
+    return MoveBlocking(targetPos, false);
+}
+
 int myFocusController::SetPositionUm(double pos)
 {
+    // Convert microns to steps
     long steps = (long)(pos / stepSizeUm_);
     return SetPositionSteps(steps);
 }
 
-int myFocusController::SetPositionSteps(long steps)
+int myFocusController::SetRelativePositionUm(double d)
 {
-    return MoveBlocking(steps, false);
+    // Convert microns to steps
+    long steps = (long)(d / stepSizeUm_);
+    return SetRelativePositionSteps(steps);
 }
 
 int myFocusController::GetLimits(double& lower, double& upper)
@@ -233,9 +253,10 @@ int myFocusController::SetOrigin()
     if (!initialized_)
         return DEVICE_ERR;
 
-    // Set encoder counter to 0
+    // Set encoder counter to 0 with channel 1
     unsigned char cmd[] = {0x09, 0x04, 0x06, 0x00, 0x00, 0x00, 
-                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+                          0x01, 0x00,  // Channel 1
+                          0x00, 0x00, 0x00, 0x00};  // Position 0
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
@@ -249,8 +270,8 @@ int myFocusController::Stop()
     if (!initialized_)
         return DEVICE_ERR;
 
-    // Stop command
-    unsigned char cmd[] = {0x65, 0x04, 0x00, 0x01, 0x00, 0x00};
+    // Stop command with channel 1
+    unsigned char cmd[] = {0x65, 0x04, 0x01, 0x01, 0x00, 0x00};  // Changed channel to 0x01
     return SendCommand(cmd, 6);
 }
 
@@ -380,17 +401,30 @@ int myFocusController::MoveBlocking(long steps, bool relative)
     if (Busy())
         return ERR_BUSY;
 
-    // Format move command
+    // Format move command with channel 1
     unsigned char cmd[SET_POS_LENGTH];
-    cmd[0] = relative ? 0x48 : 0x53;  // 0x48 for relative, 0x53 for absolute
+    cmd[0] = 0x53;  // Go to absolute position command
     cmd[1] = 0x04;
     cmd[2] = 0x06;
     cmd[3] = 0x00;
     cmd[4] = 0x00;
     cmd[5] = 0x00;
+    cmd[6] = 0x01;  // Channel 1
+    cmd[7] = 0x00;  // Channel high byte
     
+    // If relative move, convert to absolute position
+    if (relative) {
+        long currentPos;
+        int ret = GetPositionSteps(currentPos);
+        if (ret != DEVICE_OK)
+            return ret;
+        steps += currentPos;
+    }
+
     // Convert steps to little-endian bytes
-    memcpy(cmd + 6, &steps, 4);
+    memcpy(cmd + 8, &steps, 4);
+
+    LogMessage(std::string("Moving to position: ") + std::to_string(steps) + " steps");
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)

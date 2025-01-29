@@ -38,13 +38,14 @@ public:
     int GetPositionUm(double& pos);
     int SetPositionSteps(long steps);
     int GetPositionSteps(long& steps);
+    int SetRelativePositionUm(double d);
+    int SetRelativePositionSteps(long steps);
     int GetLimits(double& lower, double& upper);
     int Home();
     int Stop();
     int SetOrigin();
     int Move(double velocity);
     int SetAdapterOriginUm(double d);
-    int MoveBlocking(long steps, bool relative = false);
 
     // Focus-specific functions
     int GetFocusDirection(MM::FocusDirection& direction);
@@ -64,6 +65,7 @@ private:
     int SendCommand(const unsigned char* command, unsigned length);
     int GetResponse(unsigned char* response, unsigned length);
     int ClearPort();
+    int MoveBlocking(long steps, bool relative);
 
     bool initialized_;
     std::string port_;
