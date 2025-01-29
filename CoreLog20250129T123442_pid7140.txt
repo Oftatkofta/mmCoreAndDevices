@@ -1,0 +1,277 @@
+2025-01-29T12:34:42.427841 tid6216 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250129T123442_pid7140.txt
+2025-01-29T12:34:42.427924 tid6216 [IFO,App] User: admin
+2025-01-29T12:34:42.428273 tid6216 [IFO,App] Host: FLEXOPC
+2025-01-29T12:34:42.428286 tid6216 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-01-29T12:34:42.428313 tid6216 [IFO,App] MMCore version 11.3.0
+2025-01-29T12:34:42.428329 tid6216 [IFO,App] Device API version 71, Module API version 10
+2025-01-29T12:34:42.428337 tid6216 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-01-29T12:34:42.428344 tid6216 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-01-29T12:34:42.848743 tid6588 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@36ebc913
+2025-01-29T12:34:42.851172 tid6588 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@64662ff1
+2025-01-29T12:34:42.851271 tid6588 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@44011782
+2025-01-29T12:34:42.851347 tid6588 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@637d20f4
+2025-01-29T12:34:42.851782 tid6588 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@6a8a8d5b
+2025-01-29T12:34:42.851866 tid6588 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@607a6a7e
+2025-01-29T12:34:42.851938 tid6588 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@2f9b535b
+2025-01-29T12:34:42.851994 tid6588 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@50878e12
+2025-01-29T12:34:42.852048 tid6588 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@6ed9210c
+2025-01-29T12:34:42.852106 tid6588 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@5d439f33
+2025-01-29T12:34:42.852248 tid6588 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@28370e4b
+2025-01-29T12:34:42.852328 tid6588 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@442cf241
+2025-01-29T12:34:42.852949 tid6588 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@635a6a89
+2025-01-29T12:34:42.853054 tid6588 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@2221cbd6
+2025-01-29T12:34:42.853132 tid6588 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@3274dc8f
+2025-01-29T12:34:42.854584 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@44c7c2e4
+2025-01-29T12:34:42.856223 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@70243e52
+2025-01-29T12:34:42.856784 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@15e7b46a
+2025-01-29T12:34:42.857726 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@6f9c9d32
+2025-01-29T12:34:42.858521 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@546adda
+2025-01-29T12:34:42.859455 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@65cadaad
+2025-01-29T12:34:42.859814 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@55d283b3
+2025-01-29T12:34:42.860401 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@52f4ffc6
+2025-01-29T12:34:42.861173 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@324c4269
+2025-01-29T12:34:42.861384 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@47339129
+2025-01-29T12:34:42.861790 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@41560a82
+2025-01-29T12:34:42.861878 tid6588 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@1ab76158
+2025-01-29T12:34:42.862504 tid6588 [IFO,App] Plugin loading took 1027ms
+2025-01-29T12:34:42.862731 tid6216 [IFO,App] Finished waiting for plugins to load
+2025-01-29T12:34:57.696471 tid6216 [dbg,Core] Will unload all devices
+2025-01-29T12:34:57.696479 tid6216 [IFO,Core] Did unload all devices
+2025-01-29T12:34:57.696859 tid6216 [dbg,Core] Will set Core property: Initialize = 0
+2025-01-29T12:34:57.696862 tid6216 [dbg,Core] Will unload all devices
+2025-01-29T12:34:57.696863 tid6216 [IFO,Core] Did unload all devices
+2025-01-29T12:34:57.696918 tid6216 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-01-29T12:34:57.696922 tid6216 [dbg,App] Notification from MMCore ignored
+2025-01-29T12:34:57.696931 tid6216 [dbg,Core] Did set Core property: Initialize = 0
+2025-01-29T12:34:57.696942 tid6216 [dbg,Core] Will load device COM5 from SerialManager
+2025-01-29T12:34:57.698546 tid6216 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-01-29T12:34:57.698553 tid6216 [dbg,Core] Will load device HamamatsuHam_DCAM from HamamatsuHam
+2025-01-29T12:34:59.743601 tid6216 [IFO,Core] Did load device HamamatsuHam_DCAM from HamamatsuHam; label = ORCA-Fusion
+2025-01-29T12:34:59.743615 tid6216 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-01-29T12:34:59.744498 tid6216 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-01-29T12:34:59.744505 tid6216 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-01-29T12:34:59.744512 tid6216 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-01-29T12:34:59.744518 tid6216 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-01-29T12:34:59.744525 tid6216 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-01-29T12:34:59.744529 tid6216 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-01-29T12:34:59.744532 tid6216 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-01-29T12:34:59.744536 tid6216 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-01-29T12:34:59.744538 tid6216 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-01-29T12:34:59.744541 tid6216 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-01-29T12:34:59.744545 tid6216 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-01-29T12:34:59.744548 tid6216 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-29T12:34:59.744550 tid6216 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-29T12:34:59.744554 tid6216 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-01-29T12:34:59.744557 tid6216 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-01-29T12:34:59.744560 tid6216 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-01-29T12:34:59.744561 tid6216 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-01-29T12:34:59.744564 tid6216 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-01-29T12:34:59.744566 tid6216 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-01-29T12:34:59.744570 tid6216 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-01-29T12:34:59.744572 tid6216 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-01-29T12:34:59.744574 tid6216 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-01-29T12:34:59.744576 tid6216 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-01-29T12:34:59.744581 tid6216 [dbg,Core] Will set Core property: Initialize = 1
+2025-01-29T12:34:59.744589 tid6216 [IFO,Core] Will initialize 3 devices
+2025-01-29T12:34:59.744595 tid6216 [IFO,Core] Will initialize device COM5
+2025-01-29T12:34:59.746261 tid6216 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-01-29T12:34:59.747792 tid6216 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-01-29T12:34:59.748992 tid6216 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-01-29T12:34:59.750170 tid6216 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-01-29T12:34:59.751492 tid6216 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-01-29T12:34:59.752773 tid6216 [IFO,Core] Did initialize device COM5
+2025-01-29T12:34:59.752837 tid6828 [IFO,Core] Will initialize device MCM3000
+2025-01-29T12:34:59.752839 tid6828 [IFO,dev:MCM3000] MCM3000 initialization started...
+2025-01-29T12:34:59.752839 tid6828 [IFO,dev:MCM3000] Clearing serial port...
+2025-01-29T12:34:59.752870 tid10316 [IFO,Core] Will initialize device ORCA-Fusion
+2025-01-29T12:34:59.758422 tid6828 [IFO,dev:MCM3000] Port cleared
+2025-01-29T12:34:59.758446 tid6828 [IFO,dev:MCM3000] Testing communication...
+2025-01-29T12:34:59.758466 tid6828 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T12:34:59.758501 tid6828 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T12:34:59.789159 tid6828 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00
+2025-01-29T12:34:59.789169 tid6828 [dbg,dev:MCM3000] Received 6 bytes: 81 4 14 0 0 0 
+2025-01-29T12:34:59.789174 tid6828 [dbg,dev:MCM3000] Sending command: 9 4 6 0 0 0 1 0 0 0 0 0 
+2025-01-29T12:34:59.789193 tid6828 [dbg,dev:COM5] Write -> (hex) 09 04 06 00 00 00 01 00 00 00 00 00
+2025-01-29T12:34:59.799334 tid6828 [IFO,dev:MCM3000] MCM3000 initialization completed successfully
+2025-01-29T12:34:59.799340 tid6828 [IFO,Core] Did initialize device MCM3000
+2025-01-29T12:35:02.192889 tid10316 [IFO,Core] Did initialize device ORCA-Fusion
+2025-01-29T12:35:02.192966 tid6216 [IFO,Core] Default camera set to ORCA-Fusion
+2025-01-29T12:35:02.192971 tid6216 [IFO,Core] Finished initializing 3 devices
+2025-01-29T12:35:02.193013 tid6216 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-01-29T12:35:02.193016 tid6216 [dbg,App] Notification from MMCore ignored
+2025-01-29T12:35:02.193022 tid6216 [dbg,Core] Did set Core property: Initialize = 1
+2025-01-29T12:35:02.193043 tid6216 [dbg,Core] Will set Core property: Camera = ORCA-Fusion
+2025-01-29T12:35:02.193048 tid6216 [IFO,Core] Default camera set to ORCA-Fusion
+2025-01-29T12:35:02.193057 tid6216 [dbg,App] Notification for Device: Core Property: Camera changed to value: ORCA-Fusion
+2025-01-29T12:35:02.193058 tid6216 [dbg,App] Notification from MMCore ignored
+2025-01-29T12:35:02.193060 tid6216 [dbg,Core] Did set Core property: Camera = ORCA-Fusion
+2025-01-29T12:35:02.193063 tid6216 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-01-29T12:35:02.193068 tid6216 [IFO,Core] Default stage set to MCM3000
+2025-01-29T12:35:02.193085 tid6216 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-01-29T12:35:02.193086 tid6216 [dbg,App] Notification from MMCore ignored
+2025-01-29T12:35:02.193088 tid6216 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-01-29T12:35:02.193091 tid6216 [dbg,Core] Will set Core property: AutoShutter = 1
+2025-01-29T12:35:02.193098 tid6216 [dbg,Core] Autoshutter turned on
+2025-01-29T12:35:02.193100 tid6216 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 1
+2025-01-29T12:35:02.193101 tid6216 [dbg,App] Notification from MMCore ignored
+2025-01-29T12:35:02.193103 tid6216 [dbg,Core] Did set Core property: AutoShutter = 1
+2025-01-29T12:35:02.193118 tid6216 [dbg,Core] Config group Camera scan mode: preset Standard: added setting ORCA-Fusion-ScanMode = 2
+2025-01-29T12:35:02.193125 tid6216 [dbg,Core] Config group Camera scan mode: preset Ultra quiet: added setting ORCA-Fusion-ScanMode = 1
+2025-01-29T12:35:02.193130 tid6216 [dbg,Core] Config group Camera scan mode: preset Fast: added setting ORCA-Fusion-ScanMode = 3
+2025-01-29T12:35:02.193138 tid6216 [dbg,Core] Config group Camera bit depth: preset 8bit: added setting ORCA-Fusion-PixelType = 8bit
+2025-01-29T12:35:02.193145 tid6216 [dbg,Core] Config group Camera bit depth: preset 16bit: added setting ORCA-Fusion-PixelType = 16bit
+2025-01-29T12:35:02.193151 tid6216 [dbg,Core] Config group Camera bit depth: preset 12bit: added setting ORCA-Fusion-PixelType = 12bit
+2025-01-29T12:35:02.193162 tid6216 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-01-29T12:35:02.193178 tid6216 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-01-29T12:35:02.193189 tid6216 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-01-29T12:35:02.193214 tid6216 [dbg,Core] Waiting for device COM5...
+2025-01-29T12:35:02.193217 tid6216 [dbg,Core] Finished waiting for device COM5
+2025-01-29T12:35:02.193218 tid6216 [dbg,Core] Waiting for device ORCA-Fusion...
+2025-01-29T12:35:02.193219 tid6216 [dbg,Core] Finished waiting for device ORCA-Fusion
+2025-01-29T12:35:02.193220 tid6216 [dbg,Core] Waiting for device MCM3000...
+2025-01-29T12:35:02.193227 tid6216 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T12:35:02.193254 tid6216 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T12:35:02.203892 tid6216 [dbg,dev:COM5] Read <- (hex) 01 00 1f 2c 02 00
+2025-01-29T12:35:02.203905 tid6216 [dbg,dev:MCM3000] Received 6 bytes: 1 0 1f 2c 2 0 
+2025-01-29T12:35:02.203913 tid6216 [dbg,dev:MCM3000] Invalid status header: 1 0 1f 2c 2 0 
+2025-01-29T12:35:02.203917 tid6216 [dbg,Core] Finished waiting for device MCM3000
+2025-01-29T12:35:02.203920 tid6216 [dbg,Core] Will update system state cache
+2025-01-29T12:35:02.204724 tid6216 [IFO,Core] Did update system state cache
+2025-01-29T12:35:02.204772 tid6216 [dbg,App] Notification from MMCore ignored
+2025-01-29T12:35:02.206951 tid6216 [dbg,dev:MCM3000] Sending command: a 4 1 0 0 0 
+2025-01-29T12:35:02.206985 tid6216 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-01-29T12:35:02.217989 tid6216 [dbg,dev:COM5] Read <- (hex) 06 04 06 00 02 01 00 00
+2025-01-29T12:35:02.218000 tid6216 [dbg,dev:MCM3000] Received 8 bytes: 6 4 6 0 2 1 0 0 
+2025-01-29T12:35:02.227414 tid6216 [dbg,dev:COM5] Read <- (hex) 81 04 14 00
+2025-01-29T12:35:02.227421 tid6216 [dbg,dev:MCM3000] Received 4 bytes: 81 4 14 0 
+2025-01-29T12:35:02.227429 tid6216 [dbg,dev:MCM3000] Position response: 6 4 6 0 2 1 0 0 81 4 14 0 
+2025-01-29T12:35:02.227430 tid6216 [dbg,dev:MCM3000] Invalid position response header
+2025-01-29T12:35:02.227450 tid6216 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Unrecognized answer received from the device. (10009)
+2025-01-29T12:35:02.227901 tid6216 [IFO,App] Failed to get position from core
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Unrecognized answer received from the device. (10009) in Thread[AWT-EventQueue-0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_getPosition__SWIG_1(Native Method)
+                                   [       ]   at mmcorej.CMMCore.getPosition(CMMCore.java:1192)
+                                   [       ]   at org.micromanager.internal.dialogs.AcqControlDlg.onConfigurationLoaded(AcqControlDlg.java:1518)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                                   [       ]   at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                                   [       ]   at java.lang.reflect.Method.invoke(Method.java:498)
+                                   [       ]   at com.google.common.eventbus.EventSubscriber.handleEvent(EventSubscriber.java:74)
+                                   [       ]   at com.google.common.eventbus.SynchronizedEventSubscriber.handleEvent(SynchronizedEventSubscriber.java:47)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatch(EventBus.java:322)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatchQueuedEvents(EventBus.java:304)
+                                   [       ]   at com.google.common.eventbus.EventBus.post(EventBus.java:275)
+                                   [       ]   at org.micromanager.events.internal.DefaultEventManager.post(DefaultEventManager.java:47)
+                                   [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadConfigImpl(HardwareConfigurationManager.java:165)
+                                   [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadHardwareConfiguration(HardwareConfigurationManager.java:128)
+                                   [       ]   at org.micromanager.internal.MMStudio.loadSystemConfiguration(MMStudio.java:913)
+                                   [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:404)
+                                   [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                   [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                   [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                   [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                   [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                   [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                   [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                   [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                   [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-01-29T12:35:02.258472 tid6216 [dbg,Core] Will set circular buffer size to 50000 MB
+2025-01-29T12:35:11.251049 tid6216 [dbg,Core] Did set circular buffer size to 50000 MB
+2025-01-29T12:35:11.254300 tid6216 [IFO,App] EDTHangLogger: Started monitoring of EDT hangs
+                                   [       ] [heartbeat timeout = 4500 ms, hang check interval = 1000 ms]
+2025-01-29T12:35:11.603446 tid6216 [IFO,App] Rebuilding config group table
+2025-01-29T12:35:11.604081 tid6216 [IFO,App] Finished rebuilding config group table
+2025-01-29T12:35:11.621986 tid6216 [dbg,dev:MCM3000] Sending command: a 4 1 0 0 0 
+2025-01-29T12:35:11.622023 tid6216 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-01-29T12:35:11.632124 tid6216 [dbg,dev:COM5] Read <- (hex) 00 00 01 00 1f 2c 02 00 00 00 00 00
+2025-01-29T12:35:11.632135 tid6216 [dbg,dev:MCM3000] Received 12 bytes: 0 0 1 0 1f 2c 2 0 0 0 0 0 
+2025-01-29T12:35:11.632140 tid6216 [dbg,dev:MCM3000] Position response: 0 0 1 0 1f 2c 2 0 0 0 0 0 
+2025-01-29T12:35:11.632140 tid6216 [dbg,dev:MCM3000] Invalid position response header
+2025-01-29T12:35:11.632151 tid6216 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Unrecognized answer received from the device. (10009)
+2025-01-29T12:35:11.632455 tid6216 [IFO,App] Failed to get position from core
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Unrecognized answer received from the device. (10009) in Thread[AWT-EventQueue-0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_getPosition__SWIG_1(Native Method)
+                                   [       ]   at mmcorej.CMMCore.getPosition(CMMCore.java:1192)
+                                   [       ]   at org.micromanager.internal.dialogs.AcqControlDlg.onConfigurationLoaded(AcqControlDlg.java:1518)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                                   [       ]   at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                                   [       ]   at java.lang.reflect.Method.invoke(Method.java:498)
+                                   [       ]   at com.google.common.eventbus.EventSubscriber.handleEvent(EventSubscriber.java:74)
+                                   [       ]   at com.google.common.eventbus.SynchronizedEventSubscriber.handleEvent(SynchronizedEventSubscriber.java:47)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatch(EventBus.java:322)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatchQueuedEvents(EventBus.java:304)
+                                   [       ]   at com.google.common.eventbus.EventBus.post(EventBus.java:275)
+                                   [       ]   at org.micromanager.events.internal.DefaultEventManager.post(DefaultEventManager.java:47)
+                                   [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:445)
+                                   [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                   [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                   [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                   [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                   [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                   [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                   [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                   [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                   [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-01-29T12:35:11.636672 tid6216 [IFO,App] Startup script (C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\MMStartup.bsh) not present
+2025-01-29T12:35:11.636694 tid6216 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-01-29T12:35:11.636757 tid6216 [dbg,dev:MCM3000] Sending command: a 4 1 0 0 0 
+2025-01-29T12:35:11.636786 tid6216 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-01-29T12:35:11.647829 tid6216 [dbg,dev:COM5] Read <- (hex) 02 01 00 00 0b 04 06 00 00 00 01 00
+2025-01-29T12:35:11.647838 tid6216 [dbg,dev:MCM3000] Received 12 bytes: 2 1 0 0 b 4 6 0 0 0 1 0 
+2025-01-29T12:35:11.647843 tid6216 [dbg,dev:MCM3000] Position response: 2 1 0 0 b 4 6 0 0 0 1 0 
+2025-01-29T12:35:11.647843 tid6216 [dbg,dev:MCM3000] Invalid position response header
+2025-01-29T12:35:11.647853 tid6216 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Unrecognized answer received from the device. (10009)
+2025-01-29T12:35:11.648068 tid6216 [IFO,App] Failed to get stage position
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Unrecognized answer received from the device. (10009) in Thread[AWT-EventQueue-0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_getPosition__SWIG_0(Native Method)
+                                   [       ]   at mmcorej.CMMCore.getPosition(CMMCore.java:1188)
+                                   [       ]   at org.micromanager.internal.MMCache.refreshValues(MMCache.java:173)
+                                   [       ]   at org.micromanager.internal.MMUIManager.updateGUI(MMUIManager.java:273)
+                                   [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:449)
+                                   [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                   [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                   [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                   [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                   [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                   [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                   [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                   [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                   [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-01-29T12:35:17.842127 tid6216 [IFO,App] Rebuilding config group table
+2025-01-29T12:35:17.842221 tid6216 [IFO,App] Finished rebuilding config group table
+2025-01-29T12:35:17.842559 tid6216 [IFO,App] Finished updating GUI
+2025-01-29T12:35:20.041627 tid6216 [IFO,App] EDTHangLogger: Stopping monitoring of EDT hangs
+2025-01-29T12:35:20.041676 tid6216 [dbg,Core] Waiting for device COM5...
+2025-01-29T12:35:20.041680 tid6216 [dbg,Core] Finished waiting for device COM5
+2025-01-29T12:35:20.041681 tid6216 [dbg,Core] Waiting for device ORCA-Fusion...
+2025-01-29T12:35:20.041683 tid6216 [dbg,Core] Finished waiting for device ORCA-Fusion
+2025-01-29T12:35:20.041684 tid6216 [dbg,Core] Waiting for device MCM3000...
+2025-01-29T12:35:20.041695 tid6216 [dbg,dev:MCM3000] Sending command: 80 4 1 0 0 0 
+2025-01-29T12:35:20.041722 tid6216 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-29T12:35:20.052751 tid6216 [dbg,dev:COM5] Read <- (hex) 00 00 00 00 0b 04
+2025-01-29T12:35:20.052757 tid6216 [dbg,dev:MCM3000] Received 6 bytes: 0 0 0 0 b 4 
+2025-01-29T12:35:20.052761 tid6216 [dbg,dev:MCM3000] Invalid status header: 0 0 0 0 b 4 
+2025-01-29T12:35:20.052763 tid6216 [dbg,Core] Finished waiting for device MCM3000
+2025-01-29T12:35:20.052773 tid6216 [dbg,Core] Will unload all devices
+2025-01-29T12:35:20.462877 tid6216 [IFO,Core] Did unload all devices
+2025-01-29T12:35:20.462893 tid6216 [IFO,Core] System reset
+2025-01-29T12:35:23.291533 tid6216 [IFO,Core] Core session ended
