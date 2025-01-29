@@ -115,16 +115,16 @@ int myFocusController::Initialize()
 
     // Test communication with simple status query using channel 1
     LogMessage("Testing communication...");
-    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};  // Changed channel to 0x01
+    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};
     ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK) {
         LogMessage("Failed to send status command");
         return ret;
     }
 
-    // Get response (6 bytes)
-    unsigned char response[6];
-    ret = GetResponse(response, 6);
+    // Get complete 34-byte response (6 + 28 bytes)
+    unsigned char response[34];
+    ret = GetResponse(response, 34);
     if (ret != DEVICE_OK) {
         LogMessage("Failed to get status response");
         return ret;
@@ -166,47 +166,24 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Get 6-byte header
-    unsigned char header[6];
-    ret = GetResponse(header, 6);
+    // Get complete 34-byte response (6 + 28 bytes)
+    unsigned char response[34];
+    ret = GetResponse(response, 34);
     if (ret != DEVICE_OK)
     {
-        LogMessage("Failed to get status header", true);
-        return false;
-    }
-
-    // Verify header format (81 04 14 00 00 00)
-    if (header[0] != 0x81 || header[1] != 0x04 || header[2] != 0x14)
-    {
-        std::ostringstream msg;
-        msg << "Invalid status header: ";
-        for (int i = 0; i < 6; i++)
-            msg << std::hex << (int)header[i] << " ";
-        LogMessage(msg.str().c_str(), true);
-        return false;
-    }
-
-    // Get 28-byte data packet as per documentation
-    unsigned char data[28];
-    ret = GetResponse(data, 28);
-    if (ret != DEVICE_OK)
-    {
-        LogMessage("Failed to get status data", true);
+        LogMessage("Failed to get status response", true);
         return false;
     }
 
     // Log the complete response
     std::ostringstream msg;
-    msg << "Status response - Header: ";
-    for (int i = 0; i < 6; i++)
-        msg << std::hex << (int)header[i] << " ";
-    msg << " Data: ";
-    for (int i = 0; i < 28; i++)
-        msg << std::hex << (int)data[i] << " ";
+    msg << "Status response: ";
+    for (int i = 0; i < 34; i++)
+        msg << std::hex << (int)response[i] << " ";
     LogMessage(msg.str().c_str(), true);
 
-    // Check byte 16 for busy status (bits 4-5)
-    bool isMoving = (data[16] & 0x30) != 0;
+    // Check byte 16 (after 6-byte header) for busy status
+    bool isMoving = (response[22] & 0x30) != 0;  // byte 16 + 6 header bytes = 22
     LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
     return isMoving;
 }
