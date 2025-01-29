@@ -113,9 +113,9 @@ int myFocusController::Initialize()
         return ret;
     }
 
-    // Test communication with simple status query
+    // Test communication with simple status query using channel 1
     LogMessage("Testing communication...");
-    unsigned char cmd[] = {0x80, 0x04, 0x00, 0x00, 0x00, 0x00};
+    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};  // Changed channel to 0x01
     ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK) {
         LogMessage("Failed to send status command");
@@ -133,7 +133,7 @@ int myFocusController::Initialize()
     // Set initialized flag before setting origin
     initialized_ = true;
 
-    // Set origin
+    // Set origin with channel 1
     ret = SetOrigin();
     if (ret != DEVICE_OK) {
         initialized_ = false;
@@ -158,39 +158,83 @@ bool myFocusController::Busy()
         return false;
 
     // Send status request command with channel 1
-    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};  // Changed channel to 0x01
+    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
+    {
+        LogMessage("Failed to send status command", true);
         return false;
+    }
 
-    // Get response (6 bytes)
-    unsigned char response[6];
-    ret = GetResponse(response, 6);
+    // Get 6-byte header
+    unsigned char header[6];
+    ret = GetResponse(header, 6);
     if (ret != DEVICE_OK)
+    {
+        LogMessage("Failed to get status header", true);
         return false;
+    }
 
-    // Check if moving (byte 5)
-    return (response[5] & 0x01) != 0;
+    // Log the header
+    std::ostringstream headerMsg;
+    headerMsg << "Status header: ";
+    for (int i = 0; i < 6; i++)
+        headerMsg << std::hex << (int)header[i] << " ";
+    LogMessage(headerMsg.str().c_str(), true);
+
+    // Get 28-byte data packet
+    unsigned char data[28];
+    ret = GetResponse(data, 28);
+    if (ret != DEVICE_OK)
+    {
+        LogMessage("Failed to get status data", true);
+        return false;
+    }
+
+    // Log the data packet
+    std::ostringstream dataMsg;
+    dataMsg << "Status data: ";
+    for (int i = 0; i < 28; i++)
+        dataMsg << std::hex << (int)data[i] << " ";
+    LogMessage(dataMsg.str().c_str(), true);
+
+    // Check byte 16 for busy status
+    bool isMoving = (data[16] & 0x30) != 0;
+    LogMessage(isMoving ? "Device reports busy" : "Device reports not busy", true);
+    return isMoving;
 }
 
 int myFocusController::GetPositionSteps(long& steps)
 {
     // Query Position command with channel 1
-    unsigned char cmd[] = {0x0A, 0x04, 0x01, 0x00, 0x00, 0x00};  // Changed channel to 0x01
+    unsigned char cmd[] = {0x0A, 0x04, 0x01, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, QUERY_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
     // Get response (12 bytes total)
     unsigned char response[12];
+    memset(response, 0, sizeof(response));
     ret = GetResponse(response, 12);
     if (ret != DEVICE_OK)
         return ret;
 
-    // Position is a 4-byte signed integer in little-endian format
-    memcpy(&steps, response, 4);
+    // Log the full response for debugging
+    std::ostringstream msg;
+    msg << "Position response: ";
+    for (int i = 0; i < 12; i++)
+        msg << std::hex << (int)response[i] << " ";
+    LogMessage(msg.str().c_str(), true);
+
+    // Position data is in the first 4 bytes (little-endian)
+    int32_t position;
+    memcpy(&position, response, 4);
+    steps = position;
     curSteps_ = steps;
 
+    std::ostringstream posMsg;
+    posMsg << "Current position: " << steps << " steps (0x" << std::hex << steps << ")";
+    LogMessage(posMsg.str().c_str(), true);
     return DEVICE_OK;
 }
 
@@ -207,8 +251,36 @@ int myFocusController::GetPositionUm(double& pos)
 
 int myFocusController::SetPositionSteps(long steps)
 {
-    // Absolute move
-    return MoveBlocking(steps, false);
+    if (!initialized_)
+        return DEVICE_ERR;
+
+    if (Busy())
+        return ERR_BUSY;
+
+    // Format move command with channel 1
+    unsigned char cmd[SET_POS_LENGTH];
+    cmd[0] = 0x53;  // Go to absolute position command
+    cmd[1] = 0x04;
+    cmd[2] = 0x06;
+    cmd[3] = 0x00;
+    cmd[4] = 0x00;
+    cmd[5] = 0x00;
+    cmd[6] = 0x01;  // Channel 1
+    cmd[7] = 0x00;  // Channel high byte
+    
+    // Convert steps to little-endian bytes
+    memcpy(cmd + 8, &steps, 4);
+
+    std::ostringstream msg;
+    msg << "Moving to position: " << steps << " steps";
+    LogMessage(msg.str().c_str(), true);
+
+    int ret = SendCommand(cmd, SET_POS_LENGTH);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    lastMoveTime_ = GetCurrentMMTime();
+    return DEVICE_OK;
 }
 
 int myFocusController::SetRelativePositionSteps(long steps)
