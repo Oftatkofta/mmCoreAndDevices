@@ -94,62 +94,66 @@ int myFocusController::Initialize()
         return DEVICE_OK;
 
     // Clear port
-    LogMessage("MCM3000 initialization started...");
-    LogMessage("Clearing serial port...");
-    MM::Core* core = GetCoreCallback();
-    if (!core)
-        return DEVICE_ERR;
-    int ret = core->PurgeSerial(this, port_.c_str());
+    LogMessage("MCM3000 initialization started...", true);
+    int ret = GetCoreCallback()->PurgeSerial(this, port_.c_str());
     if (ret != DEVICE_OK)
         return ret;
-    LogMessage("Port cleared");
 
     // Test communication with simple status query
-    LogMessage("Testing communication...");
     unsigned char cmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
     ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
     {
-        LogMessage("Failed to send status command");
-        return ret;
+        LogMessage(g_Msg_SERIAL_COMMAND_FAILED, true);
+        return DEVICE_SERIAL_COMMAND_FAILED;
     }
 
-    // Get first response (up to 20 bytes buffer)
-    unsigned char response1[20];
-    ret = GetResponse(response1, sizeof(response1));
+    // Get response (20 bytes for status)
+    unsigned char response[20];
+    ret = GetResponse(response, 20);
     if (ret != DEVICE_OK)
     {
-        LogMessage("Failed to get first response");
-        return ret;
+        LogMessage(g_Msg_SERIAL_INVALID_RESPONSE, true);
+        return DEVICE_SERIAL_INVALID_RESPONSE;
     }
-
-    // Get second response (up to 20 bytes buffer)
-    unsigned char response2[20];
-    ret = GetResponse(response2, sizeof(response2));
-    if (ret != DEVICE_OK)
-    {
-        LogMessage("Failed to get second response");
-        return ret;
-    }
-
-    // Set initialized flag before setting origin
-    initialized_ = true;
 
     // Set current position as origin (0 µm)
-    ret = SetOrigin();
+    unsigned char setOriginCmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
+                                  (unsigned char)(AXIS_ID_WORD & 0xFF),
+                                  (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF),
+                                  0x00, 0x00, 0x00, 0x00};
+    ret = SendCommand(setOriginCmd, 12);
     if (ret != DEVICE_OK)
     {
-        initialized_ = false;
-        LogMessage("Failed to set origin");
-        return ret;
+        LogMessage(g_Msg_SERIAL_COMMAND_FAILED, true);
+        return DEVICE_SERIAL_COMMAND_FAILED;
     }
 
-    // Initialize position cache
+    // Wait for command completion with timeout
+    const MM::MMTime startTime = GetCurrentMMTime();
+    const MM::MMTime timeout = MM::MMTime::fromMs(1000.0);
+    
+    while ((GetCurrentMMTime() - startTime) < timeout)
+    {
+        ret = GetResponse(response, 20);
+        if (ret == DEVICE_OK && (response[16] & 0x30) == 0)
+            break;
+        CDeviceUtils::SleepMs(10);
+    }
+
+    if ((GetCurrentMMTime() - startTime) >= timeout)
+    {
+        LogMessage(g_Msg_SERIAL_TIMEOUT, true);
+        return DEVICE_SERIAL_TIMEOUT;
+    }
+
+    // Initialize state
     curSteps_ = 0;
     positionValid_ = true;
     home_ = true;
+    initialized_ = true;
 
-    LogMessage("MCM3000 initialization completed successfully");
+    LogMessage("MCM3000 initialization completed successfully", true);
     return DEVICE_OK;
 }
 
