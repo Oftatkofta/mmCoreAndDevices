@@ -404,9 +404,8 @@ int myFocusController::GetResponse(unsigned char* response, unsigned maxLength)
 
     unsigned long totalRead = 0;
     MM::MMTime startTime = GetCurrentMMTime();
-    bool responseComplete = false;
 
-    while (!responseComplete && totalRead < maxLength)
+    while (totalRead < maxLength)
     {
         // Check for timeout
         if ((GetCurrentMMTime() - startTime).getMsec() > 500)
@@ -439,14 +438,9 @@ int myFocusController::GetResponse(unsigned char* response, unsigned maxLength)
                 msg << std::hex << (int)response[totalRead - bytesRead + i] << " ";
             LogMessage(msg.str().c_str(), true);
 
-            // Check if we have a complete response
-            // For status query (0x80), we expect either:
-            // - Response starting with 0x01 (14 bytes)
-            // - Response starting with 0x81 (6 bytes)
-            if (response[0] == 0x01 && totalRead >= 14)
-                responseComplete = true;
-            else if (response[0] == 0x81 && totalRead >= 6)
-                responseComplete = true;
+            // For status query (0x80), if we get 20 bytes starting with 0x81, we're done
+            if (response[0] == 0x81 && totalRead >= 20)
+                return DEVICE_OK;
         }
         else
         {
@@ -454,7 +448,7 @@ int myFocusController::GetResponse(unsigned char* response, unsigned maxLength)
         }
     }
 
-    return responseComplete ? DEVICE_OK : ERR_INVALID_PACKET_LENGTH;
+    return ERR_INVALID_PACKET_LENGTH;
 }
 
 int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
