@@ -117,6 +117,21 @@ int myFocusController::Initialize()
         return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
+    std::ostringstream os;
+    os << "Received " << 20 << " bytes:";
+    for (int i = 0; i < 20; i++)
+        os << " " << (int)response[i];
+    LogMessage(os.str().c_str(), true);
+
+    // Check if device is ready from status response
+    if ((response[16] & 0x30) != 0)
+    {
+        LogMessage("Device not ready in status response", true);
+        return DEVICE_SERIAL_INVALID_RESPONSE;
+    }
+
+    CDeviceUtils::SleepMs(100); // Wait before next command
+
     // Set current position as origin (0 µm)
     unsigned char setOriginCmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
                                   (unsigned char)(AXIS_ID_WORD & 0xFF),
@@ -131,14 +146,23 @@ int myFocusController::Initialize()
 
     // Wait for command completion with timeout
     const MM::MMTime startTime = GetCurrentMMTime();
-    const MM::MMTime timeout = MM::MMTime::fromMs(1000.0);
+    const MM::MMTime timeout = MM::MMTime::fromMs(2000.0); // Increased timeout
     
     while ((GetCurrentMMTime() - startTime) < timeout)
     {
         ret = GetResponse(response, 20);
-        if (ret == DEVICE_OK && (response[16] & 0x30) == 0)
-            break;
-        CDeviceUtils::SleepMs(10);
+        if (ret == DEVICE_OK)
+        {
+            os.str("");
+            os << "Response:";
+            for (int i = 0; i < 20; i++)
+                os << " " << (int)response[i];
+            LogMessage(os.str().c_str(), true);
+
+            if ((response[16] & 0x30) == 0)
+                break;
+        }
+        CDeviceUtils::SleepMs(50); // Increased polling interval
     }
 
     if ((GetCurrentMMTime() - startTime) >= timeout)
