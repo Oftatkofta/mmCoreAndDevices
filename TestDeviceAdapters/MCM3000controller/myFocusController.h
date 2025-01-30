@@ -61,13 +61,24 @@ public:
     static const char* DeviceName;
     static const char* Description;
 
-private:
+    // Declare SendCommand in header
     int SendCommand(const unsigned char* command, unsigned length);
+
+private:
     int GetResponse(unsigned char* response, unsigned length);
     int ClearPort();
     int MoveBlocking(long steps, bool relative);
 
     static const long INVALID_POSITION = 0x80000000;  // Invalid position marker
+    static const unsigned char AXIS_ID_BYTE = 0x01;     // For Stop, Query Position, Query Status
+    static const uint16_t AXIS_ID_WORD = 0x0001;       // For Set encoder, Go to Position
+    
+    // Command codes
+    static const unsigned char CMD_STOP = 0x01;         // 1 byte ID
+    static const unsigned char CMD_QUERY_POS = 0x0A;    // 1 byte ID
+    static const unsigned char CMD_QUERY_STATUS = 0x80; // 1 byte ID
+    static const unsigned char CMD_SET_ENCODER = 0x09;  // 2 byte ID
+    static const unsigned char CMD_GOTO_POS = 0x53;     // 2 byte ID
     
     bool initialized_;
     std::string port_;

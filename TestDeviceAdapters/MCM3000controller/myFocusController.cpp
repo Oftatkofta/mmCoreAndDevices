@@ -13,6 +13,10 @@
 const char* myFocusController::DeviceName = "MCM3000";
 const char* myFocusController::Description = "MCM3000 Focus Controller";
 
+// Constants for axis/channel IDs
+const unsigned char AXIS_ID_BYTE = 0x01;  // 8-bit axis ID
+const unsigned short AXIS_ID_WORD = 0x0001;  // 16-bit axis ID
+
 // Module interface
 MODULE_API void InitializeModuleData()
 {
@@ -86,37 +90,26 @@ void myFocusController::GetName(char* name) const
 
 int myFocusController::Initialize()
 {
-    LogMessage("MCM3000 initialization started...");
-
     if (initialized_)
         return DEVICE_OK;
 
-    // Check if port is set
-    if (port_ == "Undefined") {
-        LogMessage("Port not set");
+    // Clear port
+    LogMessage("MCM3000 initialization started...");
+    LogMessage("Clearing serial port...");
+    MM::Core* core = GetCoreCallback();
+    if (!core)
         return DEVICE_ERR;
-    }
-
-    // Clear port before starting
-    int ret = ClearPort();
-    if (ret != DEVICE_OK) {
-        LogMessage("Failed to clear port");
+    int ret = core->PurgeSerial(this, port_.c_str());
+    if (ret != DEVICE_OK)
         return ret;
-    }
+    LogMessage("Port cleared");
 
-    // Add step size property before attempting communication
-    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnStepSizeUm);
-    ret = CreateProperty("StepSizeUm", CDeviceUtils::ConvertToString(stepSizeUm_), MM::Float, false, pAct);
-    if (ret != DEVICE_OK) {
-        LogMessage("Failed to create StepSizeUm property");
-        return ret;
-    }
-
-    // Test communication with simple status query using channel 1
+    // Test communication with simple status query (uses 8-bit axis ID)
     LogMessage("Testing communication...");
-    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};
+    unsigned char cmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
     ret = SendCommand(cmd, STATUS_LENGTH);
-    if (ret != DEVICE_OK) {
+    if (ret != DEVICE_OK)
+    {
         LogMessage("Failed to send status command");
         return ret;
     }
@@ -124,7 +117,8 @@ int myFocusController::Initialize()
     // Try to read at least 6 bytes first
     unsigned char response[6];
     ret = GetResponse(response, 6);
-    if (ret != DEVICE_OK) {
+    if (ret != DEVICE_OK)
+    {
         LogMessage("Failed to get initial response");
         return ret;
     }
@@ -132,15 +126,31 @@ int myFocusController::Initialize()
     // Set initialized flag before setting origin
     initialized_ = true;
 
-    // Set origin with channel 1
-    ret = SetOrigin();
-    if (ret != DEVICE_OK) {
+    // Set current position as origin (0 µm) - uses 16-bit axis ID
+    unsigned char setOriginCmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
+                                  (unsigned char)(AXIS_ID_WORD & 0xFF),        // Channel ID low byte
+                                  (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF), // Channel ID high byte
+                                  0x00, 0x00, 0x00, 0x00};
+    ret = SendCommand(setOriginCmd, 12);
+    if (ret != DEVICE_OK)
+    {
         initialized_ = false;
         LogMessage("Failed to set origin");
         return ret;
     }
 
+    // Wait for the command to complete
+    MM::MMTime startTime = GetCurrentMMTime();
+    while (Busy() && (GetCurrentMMTime() - startTime).getMsec() < 1000)
+    {
+        CDeviceUtils::SleepMs(10);
+    }
+
+    // Initialize position cache
+    curSteps_ = 0;
+    positionValid_ = true;
     home_ = true;
+
     LogMessage("MCM3000 initialization completed successfully");
     return DEVICE_OK;
 }
@@ -156,8 +166,8 @@ bool myFocusController::Busy()
     if (!initialized_)
         return false;
 
-    // Send status request command with channel 1
-    unsigned char cmd[] = {0x80, 0x04, 0x01, 0x00, 0x00, 0x00};
+    // Query Status uses 1 byte ID
+    unsigned char cmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
     {
@@ -165,13 +175,13 @@ bool myFocusController::Busy()
         return false;
     }
 
-    // Buffer for response (we get two parts)
+    // Buffer for response (20 bytes total)
     unsigned char response[20];
     memset(response, 0, sizeof(response));
     unsigned long totalRead = 0;
     MM::MMTime startTime = GetCurrentMMTime();
 
-    // Keep reading until we get both parts or timeout
+    // Keep reading until we get complete response or timeout
     while (totalRead < 20 && (GetCurrentMMTime() - startTime).getMsec() < 100)
     {
         unsigned long readNow = 0;
@@ -194,16 +204,6 @@ bool myFocusController::Busy()
             LogMessage(msg.str().c_str(), true);
             
             totalRead += readNow;
-
-            // Check if we have a complete first part (14 bytes)
-            if (totalRead >= 14 && !positionValid_)
-            {
-                // First part contains status info
-                bool isMoving = (response[10] & 0x02) != 0;  // Status bit in first part
-                if (isMoving)
-                    positionValid_ = false;
-                return isMoving;
-            }
         }
         else
         {
@@ -211,21 +211,24 @@ bool myFocusController::Busy()
         }
     }
 
-    LogMessage("Incomplete status response", true);
-    return false;
+    if (totalRead < 20)
+    {
+        LogMessage("Incomplete status response", true);
+        return false;
+    }
+
+    // Check status bits in byte 17 (index 16)
+    bool isMoving = (response[16] & 0x30) != 0;
+    if (isMoving)
+        positionValid_ = false;
+
+    return isMoving;
 }
 
 int myFocusController::GetPositionSteps(long& steps)
 {
-    // If we're not moving and have a valid cached position, return it
-    if (!Busy() && positionValid_)
-    {
-        steps = curSteps_;
-        return DEVICE_OK;
-    }
-
-    // Query Position command with channel 1
-    unsigned char cmd[] = {0x0A, 0x04, 0x01, 0x00, 0x00, 0x00};
+    // Query Position uses 1 byte ID
+    unsigned char cmd[] = {CMD_QUERY_POS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, QUERY_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
@@ -281,18 +284,16 @@ int myFocusController::SetPositionSteps(long steps)
     if (Busy())
         return ERR_BUSY;
 
-    // Format move command with channel 1
+    // Go to Position uses 2 byte ID
     unsigned char cmd[SET_POS_LENGTH];
-    cmd[0] = 0x53;  // Go to absolute position command
+    cmd[0] = CMD_GOTO_POS;
     cmd[1] = 0x04;
     cmd[2] = 0x06;
     cmd[3] = 0x00;
     cmd[4] = 0x00;
     cmd[5] = 0x00;
-    cmd[6] = 0x01;  // Channel 1
-    cmd[7] = 0x00;  // Channel high byte
-    
-    // Convert steps to little-endian bytes
+    cmd[6] = (unsigned char)(AXIS_ID_WORD & 0xFF);        // Low byte
+    cmd[7] = (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF); // High byte
     memcpy(cmd + 8, &steps, 4);
 
     std::ostringstream msg;
@@ -313,16 +314,16 @@ int myFocusController::SetPositionSteps(long steps)
 int myFocusController::SetRelativePositionSteps(long steps)
 {
     // Get current position
-    long currentPos;
-    int ret = GetPositionSteps(currentPos);
+    long curPos;
+    int ret = GetPositionSteps(curPos);
     if (ret != DEVICE_OK)
         return ret;
 
     // Calculate target position
-    long targetPos = currentPos + steps;
+    long targetPos = curPos + steps;
 
-    // Move to new absolute position
-    return MoveBlocking(targetPos, false);
+    // Use SetPositionSteps to move
+    return SetPositionSteps(targetPos);
 }
 
 int myFocusController::SetPositionUm(double pos)
@@ -334,7 +335,7 @@ int myFocusController::SetPositionUm(double pos)
 
 int myFocusController::SetRelativePositionUm(double d)
 {
-    // Convert microns to steps
+    // Convert um to steps
     long steps = (long)(d / stepSizeUm_);
     return SetRelativePositionSteps(steps);
 }
@@ -353,9 +354,10 @@ int myFocusController::SetOrigin()
         return DEVICE_ERR;
 
     // Set encoder counter to 0 with channel 1
-    unsigned char cmd[] = {0x09, 0x04, 0x06, 0x00, 0x00, 0x00, 
-                          0x01, 0x00,  // Channel 1
-                          0x00, 0x00, 0x00, 0x00};  // Position 0
+    unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
+                           (unsigned char)(AXIS_ID_WORD & 0xFF),        // Channel ID low byte
+                           (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF), // Channel ID high byte
+                           0x00, 0x00, 0x00, 0x00};  // Position 0
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
@@ -370,27 +372,26 @@ int myFocusController::Stop()
         return DEVICE_ERR;
 
     // Stop command with channel 1
-    unsigned char cmd[] = {0x65, 0x04, 0x01, 0x01, 0x00, 0x00};  // Changed channel to 0x01
+    unsigned char cmd[] = {CMD_STOP, 0x04, 0x01, AXIS_ID_BYTE, 0x00, 0x00};  // Changed channel to 0x01
     return SendCommand(cmd, 6);
 }
 
 int myFocusController::SendCommand(const unsigned char* command, unsigned length)
 {
-    if (!command)
+    // Get core callback
+    MM::Core* core = GetCoreCallback();
+    if (core == NULL)
         return DEVICE_ERR;
 
-    std::stringstream msg;
-    msg << "Sending command: ";
-    for (unsigned i = 0; i < length; i++)
-        msg << std::hex << (int)command[i] << " ";
-    LogMessage(msg.str().c_str(), true);
-
-    int ret = GetCoreCallback()->WriteToSerial(this, port_.c_str(), command, length);
+    // Write command to serial port - cast command to const unsigned char* to match expected type
+    int ret = core->WriteToSerial(this, port_.c_str(), command, length);
     if (ret != DEVICE_OK)
+    {
+        std::ostringstream os;
+        os << "Serial write error: " << ret;
+        LogMessage(os.str().c_str(), true);
         return ret;
-
-    // Add small delay after sending command
-    CDeviceUtils::SleepMs(10);
+    }
     return DEVICE_OK;
 }
 
@@ -399,67 +400,41 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
     if (!response)
         return DEVICE_ERR;
 
+    MM::Device* device = this;
+    MM::Core* core = GetCoreCallback();
+    if (core == NULL)
+        return DEVICE_ERR;
+
     unsigned long bytesRead = 0;
     unsigned long totalRead = 0;
     MM::MMTime startTime = GetCurrentMMTime();
 
     while (totalRead < length)
     {
-        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
-                                              response + totalRead, 
-                                              length - totalRead, 
-                                              bytesRead);
-        
-        if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
-            return ret;
-
-        if (bytesRead > 0)
+        if ((GetCurrentMMTime() - startTime).getMsec() > 500)
         {
-            std::ostringstream msg;
-            msg << "Received " << bytesRead << " bytes: ";
-            for (unsigned long i = 0; i < bytesRead; i++)
-                msg << std::hex << (int)response[totalRead + i] << " ";
-            LogMessage(msg.str().c_str(), true);
-            
-            totalRead += bytesRead;
-        }
-        else if ((GetCurrentMMTime() - startTime).getMsec() > 500)  // 500ms timeout
-        {
-            std::ostringstream msg;
-            msg << "Response timeout. Expected " << length << " bytes, got " << totalRead;
-            LogMessage(msg.str().c_str(), true);
+            core->LogMessage(device, "Serial read timed out", true);
             return DEVICE_SERIAL_TIMEOUT;
         }
-        else
-        {
-            CDeviceUtils::SleepMs(2);
-        }
-    }
 
-    return DEVICE_OK;
-}
-
-int myFocusController::ClearPort()
-{
-    LogMessage("Clearing serial port...");
-    
-    unsigned char clear[100];
-    unsigned long read = 100;
-    int ret;
-    
-    MM::MMTime startTime = GetCurrentMMTime();
-    do {
-        read = 100;
-        ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), clear, read, read);
-        if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
+        int ret = core->ReadFromSerial(device, port_.c_str(), 
+                                     response + totalRead,
+                                     length - totalRead, 
+                                     bytesRead);
+        if (ret != DEVICE_OK)
         {
-            LogMessage("Error clearing port");
+            std::ostringstream os;
+            os << "Serial read error: " << ret;
+            core->LogMessage(device, os.str().c_str(), true);
             return ret;
         }
-        CDeviceUtils::SleepMs(5);
-    } while (read == 100 && (GetCurrentMMTime() - startTime).getMsec() < answerTimeoutMs_);
-    
-    LogMessage("Port cleared");
+
+        if (bytesRead > 0)
+            totalRead += bytesRead;
+        else
+            CDeviceUtils::SleepMs(2);
+    }
+
     return DEVICE_OK;
 }
 
@@ -504,16 +479,16 @@ int myFocusController::MoveBlocking(long steps, bool relative)
     if (Busy())
         return ERR_BUSY;
 
-    // Format move command with channel 1
+    // Format move command with axis 1
     unsigned char cmd[SET_POS_LENGTH];
-    cmd[0] = 0x53;  // Go to absolute position command
+    cmd[0] = CMD_GOTO_POS;
     cmd[1] = 0x04;
     cmd[2] = 0x06;
     cmd[3] = 0x00;
     cmd[4] = 0x00;
     cmd[5] = 0x00;
-    cmd[6] = 0x01;  // Channel 1
-    cmd[7] = 0x00;  // Channel high byte
+    cmd[6] = (unsigned char)(AXIS_ID_WORD & 0xFF);        // Channel ID low byte
+    cmd[7] = (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF); // Channel ID high byte
     
     // If relative move, convert to absolute position
     if (relative) {
@@ -543,7 +518,7 @@ int myFocusController::Home()
         return DEVICE_ERR;
 
     // Set encoder counter to 0
-    unsigned char cmd[] = {0x09, 0x04, 0x06, 0x00, 0x00, 0x00, 
+    unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
                           0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
