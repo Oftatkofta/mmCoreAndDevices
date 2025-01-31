@@ -400,29 +400,55 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
         return DEVICE_ERR;
 
     unsigned char buf[256];
-    unsigned long read = 0;
-    int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), buf, expectedLength, read);
+    unsigned long bytesRead = 0;
+    unsigned long totalRead = 0;
+    MM::MMTime startTime = GetCurrentMMTime();
     
-    if (ret != DEVICE_OK)
-        return ret;
+    // Read with timeout
+    while (totalRead < expectedLength)
+    {
+        if ((GetCurrentMMTime() - startTime).getMsec() > 500)
+        {
+            LogMessage("Serial read timed out", true);
+            return DEVICE_SERIAL_TIMEOUT;
+        }
 
-    if (read < 3) // Minimum packet size
+        int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
+                                                  buf + totalRead,
+                                                  expectedLength - totalRead, 
+                                                  bytesRead);
+        if (ret != DEVICE_OK)
+            return ret;
+
+        if (bytesRead > 0)
+        {
+            totalRead += bytesRead;
+        }
+        else
+        {
+            CDeviceUtils::SleepMs(2);
+        }
+    }
+
+    // Verify response format
+    if (totalRead < 3)  // Need at least command, length bytes
     {
         LogMessage("Response too short", true);
-        return ERR_INVALID_PACKET_LENGTH;
+        return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
-    // Get actual packet length from response
-    unsigned packetLength = buf[2];  // Length is in 3rd byte
-    if (packetLength > read)
+    // Check packet length from response
+    unsigned packetLength = buf[2];
+    if (packetLength > totalRead)
     {
         LogMessage("Incomplete packet received", true);
-        return ERR_INVALID_PACKET_LENGTH;
+        return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
-    // Copy only the actual packet
+    // Copy valid packet
     memcpy(response, buf, packetLength);
 
+    // Log received data
     std::ostringstream os;
     os << "Received " << packetLength << " bytes:";
     for (unsigned i = 0; i < packetLength; i++)
