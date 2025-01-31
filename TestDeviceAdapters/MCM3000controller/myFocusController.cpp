@@ -138,7 +138,14 @@ int myFocusController::Initialize()
     }
 
     // Initialize state using current position from status response
-    curSteps_ = *((long*)(&response[8]));  // Position is at offset 8
+    // Position is at offset 8, little-endian 32-bit signed integer
+    long pos = 0;
+    pos |= response[8];
+    pos |= (response[9] << 8);
+    pos |= (response[10] << 16);
+    pos |= (response[11] << 24);
+    curSteps_ = pos;
+
     positionValid_ = true;
     home_ = true;
     initialized_ = true;
@@ -387,62 +394,42 @@ int myFocusController::SendCommand(const unsigned char* command, unsigned length
     return DEVICE_OK;
 }
 
-int myFocusController::GetResponse(unsigned char* response, unsigned maxLength)
+int myFocusController::GetResponse(unsigned char* response, unsigned expectedLength)
 {
     if (!response)
         return DEVICE_ERR;
 
-    MM::Core* core = GetCoreCallback();
-    if (core == NULL)
-        return DEVICE_ERR;
+    unsigned char buf[256];
+    unsigned long read = 0;
+    int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), buf, expectedLength, read);
+    
+    if (ret != DEVICE_OK)
+        return ret;
 
-    unsigned long totalRead = 0;
-    MM::MMTime startTime = GetCurrentMMTime();
-
-    while (totalRead < maxLength)
+    if (read < 3) // Minimum packet size
     {
-        // Check for timeout
-        if ((GetCurrentMMTime() - startTime).getMsec() > 500)
-        {
-            LogMessage("Serial read timed out", true);
-            return DEVICE_SERIAL_TIMEOUT;
-        }
-
-        unsigned long bytesRead = 0;
-        int ret = core->ReadFromSerial(this, port_.c_str(), 
-                                     response + totalRead,
-                                     maxLength - totalRead, 
-                                     bytesRead);
-        if (ret != DEVICE_OK)
-        {
-            std::ostringstream os;
-            os << "Serial read error: " << ret;
-            LogMessage(os.str().c_str(), true);
-            return ret;
-        }
-
-        if (bytesRead > 0)
-        {
-            totalRead += bytesRead;
-            
-            // Log received bytes
-            std::ostringstream msg;
-            msg << "Received " << bytesRead << " bytes: ";
-            for (unsigned long i = 0; i < bytesRead; i++)
-                msg << std::hex << (int)response[totalRead - bytesRead + i] << " ";
-            LogMessage(msg.str().c_str(), true);
-
-            // For status query (0x80), if we get 20 bytes starting with 0x81, we're done
-            if (response[0] == 0x81 && totalRead >= 20)
-                return DEVICE_OK;
-        }
-        else
-        {
-            CDeviceUtils::SleepMs(2);
-        }
+        LogMessage("Response too short", true);
+        return ERR_INVALID_PACKET_LENGTH;
     }
 
-    return ERR_INVALID_PACKET_LENGTH;
+    // Get actual packet length from response
+    unsigned packetLength = buf[2];  // Length is in 3rd byte
+    if (packetLength > read)
+    {
+        LogMessage("Incomplete packet received", true);
+        return ERR_INVALID_PACKET_LENGTH;
+    }
+
+    // Copy only the actual packet
+    memcpy(response, buf, packetLength);
+
+    std::ostringstream os;
+    os << "Received " << packetLength << " bytes:";
+    for (unsigned i = 0; i < packetLength; i++)
+        os << " " << (int)response[i];
+    LogMessage(os.str().c_str(), true);
+
+    return DEVICE_OK;
 }
 
 int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
