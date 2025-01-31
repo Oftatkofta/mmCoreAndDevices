@@ -9,6 +9,7 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
+#include <iomanip>
 
 const char* myFocusController::DeviceName = "MCM3000";
 const char* myFocusController::Description = "MCM3000 Focus Controller";
@@ -117,17 +118,11 @@ int myFocusController::Initialize()
         return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
-    // Log response in both hex and decimal for debugging
+    // Log response in hex for debugging
     std::ostringstream os;
-    os << "Received " << 20 << " bytes:";
+    os << "Status response (hex):";
     for (int i = 0; i < 20; i++)
-        os << " " << (int)response[i];
-    LogMessage(os.str().c_str(), true);
-
-    os.str("");
-    os << "Received " << 20 << " bytes (hex):";
-    for (int i = 0; i < 20; i++)
-        os << " " << std::hex << (int)response[i];
+        os << " " << std::hex << std::setw(2) << std::setfill('0') << (int)response[i];
     LogMessage(os.str().c_str(), true);
 
     // Check if device is ready from status response
@@ -226,41 +221,41 @@ bool myFocusController::Busy()
 
 int myFocusController::GetPositionSteps(long& steps)
 {
-    // Query Position uses 1 byte ID
+    // Query current position
     unsigned char cmd[] = {CMD_QUERY_POS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, QUERY_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
-    // Get response (12 bytes total)
-    unsigned char response[12];
-    memset(response, 0, sizeof(response));
+    // Get response
+    unsigned char response[12];  // Position response is 12 bytes
     ret = GetResponse(response, 12);
     if (ret != DEVICE_OK)
-    {
-        positionValid_ = false;
         return ret;
-    }
 
-    // Log the full response for debugging
-    std::ostringstream msg;
-    msg << "Position response: ";
+    // Log response
+    std::ostringstream os;
+    os << "Position response:";
     for (int i = 0; i < 12; i++)
-        msg << std::hex << (int)response[i] << " ";
-    LogMessage(msg.str().c_str(), true);
+        os << " " << std::hex << std::setw(2) << std::setfill('0') << (int)response[i];
+    LogMessage(os.str().c_str(), true);
 
-    // Position is in bytes 8-11 (after channel ID)
-    int32_t position;
-    memcpy(&position, &response[8], 4);
-    steps = position;
-    
-    // Cache the position
-    curSteps_ = steps;
-    positionValid_ = true;
+    // Extract position value (bytes 8-11, little endian)
+    long pos = 0;
+    pos |= response[8];
+    pos |= (response[9] << 8);
+    pos |= (response[10] << 16);
+    pos |= (response[11] << 24);
 
-    std::ostringstream posMsg;
-    posMsg << "Current position: " << steps << " steps (0x" << std::hex << steps << ")";
-    LogMessage(posMsg.str().c_str(), true);
+    // Update cache and return
+    curSteps_ = pos;
+    steps = pos;
+
+    os.str("");
+    os << "Current position: " << std::dec << pos << " steps (0x" 
+       << std::hex << std::setw(8) << std::setfill('0') << pos << ")";
+    LogMessage(os.str().c_str(), true);
+
     return DEVICE_OK;
 }
 
@@ -270,44 +265,41 @@ int myFocusController::GetPositionUm(double& pos)
     int ret = GetPositionSteps(steps);
     if (ret != DEVICE_OK)
         return ret;
-    
+
     pos = steps * stepSizeUm_;
     return DEVICE_OK;
 }
 
 int myFocusController::SetPositionSteps(long steps)
 {
-    if (!initialized_)
-        return DEVICE_ERR;
-
-    if (Busy())
-        return ERR_BUSY;
-
-    // Go to Position uses 2 byte ID
-    unsigned char cmd[SET_POS_LENGTH];
-    cmd[0] = CMD_GOTO_POS;
-    cmd[1] = 0x04;
-    cmd[2] = 0x06;
-    cmd[3] = 0x00;
-    cmd[4] = 0x00;
-    cmd[5] = 0x00;
-    cmd[6] = (unsigned char)(AXIS_ID_WORD & 0xFF);        // Low byte
-    cmd[7] = (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF); // High byte
-    memcpy(cmd + 8, &steps, 4);
-
-    std::ostringstream msg;
-    msg << "Moving to position: " << steps << " steps";
-    LogMessage(msg.str().c_str(), true);
-
-    // Invalidate position cache before move
-    positionValid_ = false;
+    // Set position command
+    unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
+                          (unsigned char)(AXIS_ID_WORD & 0xFF),
+                          (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF),
+                          (unsigned char)(steps & 0xFF),
+                          (unsigned char)((steps >> 8) & 0xFF),
+                          (unsigned char)((steps >> 16) & 0xFF),
+                          (unsigned char)((steps >> 24) & 0xFF)};
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
-    lastMoveTime_ = GetCurrentMMTime();
+    // Get response
+    unsigned char response[20];
+    ret = GetResponse(response, 20);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Update cache
+    curSteps_ = steps;
     return DEVICE_OK;
+}
+
+int myFocusController::SetPositionUm(double pos)
+{
+    long steps = (long)(pos / stepSizeUm_);
+    return SetPositionSteps(steps);
 }
 
 int myFocusController::SetRelativePositionSteps(long steps)
@@ -323,13 +315,6 @@ int myFocusController::SetRelativePositionSteps(long steps)
 
     // Use SetPositionSteps to move
     return SetPositionSteps(targetPos);
-}
-
-int myFocusController::SetPositionUm(double pos)
-{
-    // Convert microns to steps
-    long steps = (long)(pos / stepSizeUm_);
-    return SetPositionSteps(steps);
 }
 
 int myFocusController::SetRelativePositionUm(double d)
@@ -447,13 +432,6 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
 
     // Copy valid packet
     memcpy(response, buf, packetLength);
-
-    // Log received data
-    std::ostringstream os;
-    os << "Received " << packetLength << " bytes:";
-    for (unsigned i = 0; i < packetLength; i++)
-        os << " " << (int)response[i];
-    LogMessage(os.str().c_str(), true);
 
     return DEVICE_OK;
 }
