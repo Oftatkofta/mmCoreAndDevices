@@ -117,10 +117,17 @@ int myFocusController::Initialize()
         return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
+    // Log response in both hex and decimal for debugging
     std::ostringstream os;
     os << "Received " << 20 << " bytes:";
     for (int i = 0; i < 20; i++)
         os << " " << (int)response[i];
+    LogMessage(os.str().c_str(), true);
+
+    os.str("");
+    os << "Received " << 20 << " bytes (hex):";
+    for (int i = 0; i < 20; i++)
+        os << " " << std::hex << (int)response[i];
     LogMessage(os.str().c_str(), true);
 
     // Check if device is ready from status response
@@ -130,49 +137,8 @@ int myFocusController::Initialize()
         return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
-    CDeviceUtils::SleepMs(100); // Wait before next command
-
-    // Set current position as origin (0 µm)
-    unsigned char setOriginCmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
-                                  (unsigned char)(AXIS_ID_WORD & 0xFF),
-                                  (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF),
-                                  0x00, 0x00, 0x00, 0x00};
-    ret = SendCommand(setOriginCmd, 12);
-    if (ret != DEVICE_OK)
-    {
-        LogMessage(g_Msg_SERIAL_COMMAND_FAILED, true);
-        return DEVICE_SERIAL_COMMAND_FAILED;
-    }
-
-    // Wait for command completion with timeout
-    const MM::MMTime startTime = GetCurrentMMTime();
-    const MM::MMTime timeout = MM::MMTime::fromMs(2000.0); // Increased timeout
-    
-    while ((GetCurrentMMTime() - startTime) < timeout)
-    {
-        ret = GetResponse(response, 20);
-        if (ret == DEVICE_OK)
-        {
-            os.str("");
-            os << "Response:";
-            for (int i = 0; i < 20; i++)
-                os << " " << (int)response[i];
-            LogMessage(os.str().c_str(), true);
-
-            if ((response[16] & 0x30) == 0)
-                break;
-        }
-        CDeviceUtils::SleepMs(50); // Increased polling interval
-    }
-
-    if ((GetCurrentMMTime() - startTime) >= timeout)
-    {
-        LogMessage(g_Msg_SERIAL_TIMEOUT, true);
-        return DEVICE_SERIAL_TIMEOUT;
-    }
-
-    // Initialize state
-    curSteps_ = 0;
+    // Initialize state using current position from status response
+    curSteps_ = *((long*)(&response[8]));  // Position is at offset 8
     positionValid_ = true;
     home_ = true;
     initialized_ = true;
