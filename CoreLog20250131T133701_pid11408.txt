@@ -1,0 +1,238 @@
+2025-01-31T13:37:01.138020 tid8388 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250131T133701_pid11408.txt
+2025-01-31T13:37:01.138104 tid8388 [IFO,App] User: admin
+2025-01-31T13:37:01.138847 tid8388 [IFO,App] Host: FLEXOPC
+2025-01-31T13:37:01.138860 tid8388 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-01-31T13:37:01.138889 tid8388 [IFO,App] MMCore version 11.3.0
+2025-01-31T13:37:01.138904 tid8388 [IFO,App] Device API version 71, Module API version 10
+2025-01-31T13:37:01.138912 tid8388 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-01-31T13:37:01.138918 tid8388 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-01-31T13:37:01.511191 tid7772 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@2c29613f
+2025-01-31T13:37:01.512166 tid7772 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@393dd4d9
+2025-01-31T13:37:01.512246 tid7772 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@535688c
+2025-01-31T13:37:01.512321 tid7772 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@50fcb4ed
+2025-01-31T13:37:01.513039 tid7772 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@26c4e927
+2025-01-31T13:37:01.513127 tid7772 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@13aa6ace
+2025-01-31T13:37:01.513448 tid7772 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@74f6b6c1
+2025-01-31T13:37:01.513519 tid7772 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@20b42f7e
+2025-01-31T13:37:01.513574 tid7772 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@2138779e
+2025-01-31T13:37:01.513796 tid7772 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@6184956d
+2025-01-31T13:37:01.515172 tid7772 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@20056722
+2025-01-31T13:37:01.515328 tid7772 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@214b6383
+2025-01-31T13:37:01.516073 tid7772 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@432d64b3
+2025-01-31T13:37:01.516169 tid7772 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@647ae46
+2025-01-31T13:37:01.516242 tid7772 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@df0f5db
+2025-01-31T13:37:01.517159 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@77a7d91f
+2025-01-31T13:37:01.518112 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@3966d8eb
+2025-01-31T13:37:01.518673 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@e0278cf
+2025-01-31T13:37:01.519624 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@7a682ad9
+2025-01-31T13:37:01.520867 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@572d177e
+2025-01-31T13:37:01.522169 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@29db90ca
+2025-01-31T13:37:01.523332 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@16f2f468
+2025-01-31T13:37:01.524397 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@260db0f1
+2025-01-31T13:37:01.524828 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@7696fc1d
+2025-01-31T13:37:01.525028 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@3dd74006
+2025-01-31T13:37:01.525838 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@1075caa9
+2025-01-31T13:37:01.525927 tid7772 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@17a57fd1
+2025-01-31T13:37:01.526562 tid7772 [IFO,App] Plugin loading took 1001ms
+2025-01-31T13:37:01.526756 tid8388 [IFO,App] Finished waiting for plugins to load
+2025-01-31T13:37:07.057798 tid8388 [dbg,Core] Will unload all devices
+2025-01-31T13:37:07.057806 tid8388 [IFO,Core] Did unload all devices
+2025-01-31T13:37:07.058255 tid8388 [dbg,Core] Will set Core property: Initialize = 0
+2025-01-31T13:37:07.058258 tid8388 [dbg,Core] Will unload all devices
+2025-01-31T13:37:07.058260 tid8388 [IFO,Core] Did unload all devices
+2025-01-31T13:37:07.058326 tid8388 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-01-31T13:37:07.058329 tid8388 [dbg,App] Notification from MMCore ignored
+2025-01-31T13:37:07.058339 tid8388 [dbg,Core] Did set Core property: Initialize = 0
+2025-01-31T13:37:07.058350 tid8388 [dbg,Core] Will load device COM5 from SerialManager
+2025-01-31T13:37:07.060021 tid8388 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-01-31T13:37:07.060028 tid8388 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-01-31T13:37:07.060920 tid8388 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-01-31T13:37:07.060927 tid8388 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-01-31T13:37:07.060937 tid8388 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-01-31T13:37:07.060943 tid8388 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-01-31T13:37:07.060949 tid8388 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-01-31T13:37:07.060959 tid8388 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-01-31T13:37:07.060961 tid8388 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-01-31T13:37:07.060965 tid8388 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-01-31T13:37:07.060966 tid8388 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-01-31T13:37:07.060970 tid8388 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-01-31T13:37:07.060973 tid8388 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-01-31T13:37:07.060976 tid8388 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-31T13:37:07.060978 tid8388 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-01-31T13:37:07.060982 tid8388 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-01-31T13:37:07.060984 tid8388 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-01-31T13:37:07.060987 tid8388 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-01-31T13:37:07.060989 tid8388 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-01-31T13:37:07.060992 tid8388 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-01-31T13:37:07.060993 tid8388 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-01-31T13:37:07.060997 tid8388 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-01-31T13:37:07.061004 tid8388 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-01-31T13:37:07.061006 tid8388 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-01-31T13:37:07.061008 tid8388 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-01-31T13:37:07.061012 tid8388 [dbg,Core] Will set Core property: Initialize = 1
+2025-01-31T13:37:07.061020 tid8388 [IFO,Core] Will initialize 2 devices
+2025-01-31T13:37:07.061025 tid8388 [IFO,Core] Will initialize device COM5
+2025-01-31T13:37:07.062328 tid8388 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-01-31T13:37:07.063685 tid8388 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-01-31T13:37:07.064933 tid8388 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-01-31T13:37:07.066162 tid8388 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-01-31T13:37:07.067441 tid8388 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-01-31T13:37:07.068735 tid8388 [IFO,Core] Did initialize device COM5
+2025-01-31T13:37:07.068796 tid2176 [IFO,Core] Will initialize device MCM3000
+2025-01-31T13:37:07.068797 tid2176 [dbg,dev:MCM3000] MCM3000 initialization started...
+2025-01-31T13:37:07.068845 tid2176 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-31T13:37:07.083748 tid2176 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00 01 00 b0 fc ff ff 00 00 00 00 00 01 00 00
+2025-01-31T13:37:07.083808 tid2176 [dbg,dev:MCM3000] Received 20 bytes: 81 4 14 0 0 0 1 0 b0 fc ff ff 0 0 0 0 0 1 0 0 
+2025-01-31T13:37:07.083841 tid2176 [dbg,dev:MCM3000] Received 20 bytes: 129 4 20 0 0 0 1 0 176 252 255 255 0 0 0 0 0 1 0 0
+2025-01-31T13:37:07.083875 tid2176 [dbg,dev:MCM3000] Received 20 bytes (hex): 81 4 14 0 0 0 1 0 b0 fc ff ff 0 0 0 0 0 1 0 0
+2025-01-31T13:37:07.083879 tid2176 [dbg,dev:MCM3000] MCM3000 initialization completed successfully
+2025-01-31T13:37:07.083888 tid2176 [IFO,Core] Did initialize device MCM3000
+2025-01-31T13:37:07.083975 tid8388 [IFO,Core] Finished initializing 2 devices
+2025-01-31T13:37:07.084070 tid8388 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-01-31T13:37:07.084076 tid8388 [dbg,App] Notification from MMCore ignored
+2025-01-31T13:37:07.084091 tid8388 [dbg,Core] Did set Core property: Initialize = 1
+2025-01-31T13:37:07.084685 tid8388 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-01-31T13:37:07.084702 tid8388 [IFO,Core] Default stage set to MCM3000
+2025-01-31T13:37:07.084749 tid8388 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-01-31T13:37:07.084754 tid8388 [dbg,App] Notification from MMCore ignored
+2025-01-31T13:37:07.084771 tid8388 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-01-31T13:37:07.084782 tid8388 [dbg,Core] Will set Core property: AutoShutter = 0
+2025-01-31T13:37:07.084814 tid8388 [dbg,Core] Autoshutter turned off
+2025-01-31T13:37:07.084826 tid8388 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 0
+2025-01-31T13:37:07.084830 tid8388 [dbg,App] Notification from MMCore ignored
+2025-01-31T13:37:07.084838 tid8388 [dbg,Core] Did set Core property: AutoShutter = 0
+2025-01-31T13:37:07.084932 tid8388 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-01-31T13:37:07.085420 tid8388 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-01-31T13:37:07.085480 tid8388 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-01-31T13:37:07.085541 tid8388 [dbg,Core] Waiting for device COM5...
+2025-01-31T13:37:07.085548 tid8388 [dbg,Core] Finished waiting for device COM5
+2025-01-31T13:37:07.085552 tid8388 [dbg,Core] Waiting for device MCM3000...
+2025-01-31T13:37:07.085620 tid8388 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-31T13:37:07.124786 tid8388 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00 01 00 b0 fc ff ff 00 00 00 00 00 01 00 00
+2025-01-31T13:37:07.124838 tid8388 [dbg,dev:MCM3000] Received 20 bytes: 81 4 14 0 0 0 1 0 b0 fc ff ff 0 0 0 0 0 1 0 0 
+2025-01-31T13:37:07.124847 tid8388 [dbg,Core] Finished waiting for device MCM3000
+2025-01-31T13:37:07.124852 tid8388 [dbg,Core] Will update system state cache
+2025-01-31T13:37:07.125114 tid8388 [IFO,Core] Did update system state cache
+2025-01-31T13:37:07.125173 tid8388 [dbg,App] Notification from MMCore ignored
+2025-01-31T13:37:07.129812 tid8388 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-01-31T13:37:07.145353 tid8388 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 00 00 00 00
+2025-01-31T13:37:07.145392 tid8388 [dbg,dev:MCM3000] Received 12 bytes: b 4 6 0 0 0 1 0 0 0 0 0 
+2025-01-31T13:37:07.145446 tid8388 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Invalid packet length. (10012)
+2025-01-31T13:37:07.146631 tid8388 [IFO,App] Failed to get position from core
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Invalid packet length. (10012) in Thread[AWT-EventQueue-0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_getPosition__SWIG_1(Native Method)
+                                   [       ]   at mmcorej.CMMCore.getPosition(CMMCore.java:1192)
+                                   [       ]   at org.micromanager.internal.dialogs.AcqControlDlg.onConfigurationLoaded(AcqControlDlg.java:1518)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                                   [       ]   at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                                   [       ]   at java.lang.reflect.Method.invoke(Method.java:498)
+                                   [       ]   at com.google.common.eventbus.EventSubscriber.handleEvent(EventSubscriber.java:74)
+                                   [       ]   at com.google.common.eventbus.SynchronizedEventSubscriber.handleEvent(SynchronizedEventSubscriber.java:47)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatch(EventBus.java:322)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatchQueuedEvents(EventBus.java:304)
+                                   [       ]   at com.google.common.eventbus.EventBus.post(EventBus.java:275)
+                                   [       ]   at org.micromanager.events.internal.DefaultEventManager.post(DefaultEventManager.java:47)
+                                   [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadConfigImpl(HardwareConfigurationManager.java:165)
+                                   [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadHardwareConfiguration(HardwareConfigurationManager.java:128)
+                                   [       ]   at org.micromanager.internal.MMStudio.loadSystemConfiguration(MMStudio.java:913)
+                                   [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:404)
+                                   [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                   [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                   [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                   [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                   [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                   [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                   [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                   [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                   [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-01-31T13:37:07.204049 tid8388 [dbg,Core] Will set circular buffer size to 50000 MB
+2025-01-31T13:37:07.204148 tid8388 [dbg,Core] Did set circular buffer size to 50000 MB
+2025-01-31T13:37:07.206627 tid8388 [IFO,App] EDTHangLogger: Started monitoring of EDT hangs
+                                   [       ] [heartbeat timeout = 4500 ms, hang check interval = 1000 ms]
+2025-01-31T13:37:07.517467 tid8388 [IFO,App] Rebuilding config group table
+2025-01-31T13:37:07.517517 tid8388 [IFO,App] Finished rebuilding config group table
+2025-01-31T13:37:07.529276 tid8388 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-01-31T13:37:07.552202 tid8388 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 00 00 00 00
+2025-01-31T13:37:07.552239 tid8388 [dbg,dev:MCM3000] Received 12 bytes: b 4 6 0 0 0 1 0 0 0 0 0 
+2025-01-31T13:37:07.552264 tid8388 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Invalid packet length. (10012)
+2025-01-31T13:37:07.552705 tid8388 [IFO,App] Failed to get position from core
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Invalid packet length. (10012) in Thread[AWT-EventQueue-0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_getPosition__SWIG_1(Native Method)
+                                   [       ]   at mmcorej.CMMCore.getPosition(CMMCore.java:1192)
+                                   [       ]   at org.micromanager.internal.dialogs.AcqControlDlg.onConfigurationLoaded(AcqControlDlg.java:1518)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                                   [       ]   at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                                   [       ]   at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                                   [       ]   at java.lang.reflect.Method.invoke(Method.java:498)
+                                   [       ]   at com.google.common.eventbus.EventSubscriber.handleEvent(EventSubscriber.java:74)
+                                   [       ]   at com.google.common.eventbus.SynchronizedEventSubscriber.handleEvent(SynchronizedEventSubscriber.java:47)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatch(EventBus.java:322)
+                                   [       ]   at com.google.common.eventbus.EventBus.dispatchQueuedEvents(EventBus.java:304)
+                                   [       ]   at com.google.common.eventbus.EventBus.post(EventBus.java:275)
+                                   [       ]   at org.micromanager.events.internal.DefaultEventManager.post(DefaultEventManager.java:47)
+                                   [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:445)
+                                   [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                   [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                   [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                   [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                   [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                   [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                   [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                   [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                   [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-01-31T13:37:07.567341 tid8388 [IFO,App] Startup script (C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\MMStartup.bsh) not present
+2025-01-31T13:37:07.567372 tid8388 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-01-31T13:37:07.567487 tid8388 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-01-31T13:37:07.593161 tid8388 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 00 00 00 00
+2025-01-31T13:37:07.593188 tid8388 [dbg,dev:MCM3000] Received 12 bytes: b 4 6 0 0 0 1 0 0 0 0 0 
+2025-01-31T13:37:07.593209 tid8388 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Invalid packet length. (10012)
+2025-01-31T13:37:07.593637 tid8388 [IFO,App] Failed to get stage position
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Invalid packet length. (10012) in Thread[AWT-EventQueue-0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_getPosition__SWIG_0(Native Method)
+                                   [       ]   at mmcorej.CMMCore.getPosition(CMMCore.java:1188)
+                                   [       ]   at org.micromanager.internal.MMCache.refreshValues(MMCache.java:173)
+                                   [       ]   at org.micromanager.internal.MMUIManager.updateGUI(MMUIManager.java:273)
+                                   [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:449)
+                                   [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                   [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                   [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                   [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                   [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                   [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                   [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                   [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                   [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                   [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                   [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-01-31T13:37:10.846556 tid8388 [IFO,App] Rebuilding config group table
+2025-01-31T13:37:10.846570 tid8388 [IFO,App] Finished rebuilding config group table
+2025-01-31T13:37:10.846801 tid8388 [IFO,App] Finished updating GUI
+2025-01-31T13:37:12.427575 tid8388 [IFO,App] EDTHangLogger: Stopping monitoring of EDT hangs
+2025-01-31T13:37:12.427621 tid8388 [dbg,Core] Waiting for device COM5...
+2025-01-31T13:37:12.427624 tid8388 [dbg,Core] Finished waiting for device COM5
+2025-01-31T13:37:12.427625 tid8388 [dbg,Core] Waiting for device MCM3000...
+2025-01-31T13:37:12.427653 tid8388 [dbg,dev:COM5] Write -> (hex) 80 04 01 00 00 00
+2025-01-31T13:37:12.453925 tid8388 [dbg,dev:COM5] Read <- (hex) 81 04 14 00 00 00 01 00 b0 fc ff ff 00 00 00 00 00 01 00 00
+2025-01-31T13:37:12.453940 tid8388 [dbg,dev:MCM3000] Received 20 bytes: 81 4 14 0 0 0 1 0 b0 fc ff ff 0 0 0 0 0 1 0 0 
+2025-01-31T13:37:12.453944 tid8388 [dbg,Core] Finished waiting for device MCM3000
+2025-01-31T13:37:12.453949 tid8388 [dbg,Core] Will unload all devices
+2025-01-31T13:37:12.755511 tid8388 [IFO,Core] Did unload all devices
+2025-01-31T13:37:12.755525 tid8388 [IFO,Core] System reset
+2025-01-31T13:37:12.755786 tid8388 [IFO,Core] Core session ended
