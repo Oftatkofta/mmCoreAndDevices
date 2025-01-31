@@ -44,11 +44,11 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
 myFocusController::myFocusController() :
     initialized_(false),
     port_("Undefined"),
-    stepSizeUm_(0.2116667), // um per count from documentation
-    home_(false),
-    curSteps_(INVALID_POSITION),  // Initialize to invalid
+    stepSizeUm_(0.2116667), // From documentation: 0.2116667 um per step
+    answerTimeoutMs_(500),
+    curSteps_(0),
     positionValid_(false),
-    lastMoveTime_(0.0)
+    home_(false)
 {
     InitializeDefaultErrorMessages();
 
@@ -266,6 +266,7 @@ int myFocusController::GetPositionUm(double& pos)
     if (ret != DEVICE_OK)
         return ret;
 
+    // Convert steps to microns using documented conversion factor
     pos = steps * stepSizeUm_;
     return DEVICE_OK;
 }
@@ -281,15 +282,27 @@ int myFocusController::SetPositionSteps(long steps)
                           (unsigned char)((steps >> 16) & 0xFF),
                           (unsigned char)((steps >> 24) & 0xFF)};
 
+    std::ostringstream os;
+    os << "Setting position to " << steps << " steps (0x" 
+       << std::hex << std::setw(8) << std::setfill('0') << steps << ")";
+    LogMessage(os.str().c_str(), true);
+
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
-    // Get response
-    unsigned char response[20];
-    ret = GetResponse(response, 20);
-    if (ret != DEVICE_OK)
-        return ret;
+    // Wait for move to complete
+    MM::MMTime startTime = GetCurrentMMTime();
+    const MM::MMTime timeout = MM::MMTime::fromMs(2000.0);
+
+    while ((GetCurrentMMTime() - startTime) < timeout)
+    {
+        unsigned char response[20];
+        ret = GetResponse(response, 20);
+        if (ret == DEVICE_OK && (response[16] & 0x30) == 0)
+            break;
+        CDeviceUtils::SleepMs(10);
+    }
 
     // Update cache
     curSteps_ = steps;
@@ -298,7 +311,8 @@ int myFocusController::SetPositionSteps(long steps)
 
 int myFocusController::SetPositionUm(double pos)
 {
-    long steps = (long)(pos / stepSizeUm_);
+    // Convert microns to steps using documented conversion factor
+    long steps = (long)(pos / stepSizeUm_ + 0.5); // Round to nearest step
     return SetPositionSteps(steps);
 }
 
