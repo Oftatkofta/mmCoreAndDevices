@@ -259,11 +259,9 @@ int myFocusController::SetPositionSteps(long steps)
     if (Busy())
         return ERR_BUSY;
 
-    // Don't send move command if already at position
-    if (steps == curSteps_ && positionValid_)
-    {
-        return DEVICE_OK;
-    }
+    std::ostringstream os;  // Single stringstream for all logging
+    os << "Move command to position: " << steps;
+    LogMessage(os.str().c_str(), true);
 
     // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
@@ -277,7 +275,9 @@ int myFocusController::SetPositionSteps(long steps)
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
     {
-        LogMessage("Failed to send move command", true);
+        os.str("");  // Clear stringstream
+        os << "Failed to send move command, error: " << ret;
+        LogMessage(os.str().c_str(), true);
         return ret;
     }
 
@@ -360,8 +360,8 @@ int myFocusController::SetPositionSteps(long steps)
 
 int myFocusController::SetPositionUm(double pos)
 {
-    // Convert microns to steps using documented conversion factor
-    long steps = (long)(pos / stepSizeUm_ + 0.5); // Round to nearest step
+    // Convert um to steps with proper rounding
+    long steps = (long)(pos / stepSizeUm_ + (pos >= 0 ? 0.5 : -0.5));
     return SetPositionSteps(steps);
 }
 
@@ -376,11 +376,9 @@ int myFocusController::SetRelativePositionSteps(long steps)
     // Calculate target position
     long targetPos = curPos + steps;
 
-    // Skip move if target equals current position
-    if (targetPos == curPos)
-    {
-        return DEVICE_OK;
-    }
+    std::ostringstream moveLog;
+    moveLog << "Relative move: current=" << curPos << " steps=" << steps << " target=" << targetPos;
+    LogMessage(moveLog.str().c_str(), true);
 
     // Use SetPositionSteps to move
     return SetPositionSteps(targetPos);
@@ -388,8 +386,8 @@ int myFocusController::SetRelativePositionSteps(long steps)
 
 int myFocusController::SetRelativePositionUm(double d)
 {
-    // Convert um to steps
-    long steps = (long)(d / stepSizeUm_);
+    // Convert um to steps with proper rounding
+    long steps = (long)(d / stepSizeUm_ + (d >= 0 ? 0.5 : -0.5));
     return SetRelativePositionSteps(steps);
 }
 
