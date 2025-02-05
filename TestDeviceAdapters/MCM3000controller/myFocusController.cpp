@@ -46,7 +46,7 @@ myFocusController::myFocusController() :
     curSteps_(0),
     positionValid_(false),
     home_(false),
-    lastCommand_(0)
+    lastCommand_(0)  // Initialize error counter
 {
     InitializeDefaultErrorMessages();
 
@@ -254,21 +254,21 @@ int myFocusController::GetPositionUm(double& pos)
 int myFocusController::SetPositionSteps(long steps)
 {
     if (!initialized_)
-    {
-        GetCoreCallback()->LogMessage(this, g_Msg_NOT_INITIALIZED, false);
         return DEVICE_ERR;
-    }
 
     if (Busy())
-    {
-        GetCoreCallback()->LogMessage(this, g_Msg_DEVICE_BUSY, false);
         return ERR_BUSY;
+
+    // Don't send move command if already at position
+    if (steps == curSteps_ && positionValid_)
+    {
+        return DEVICE_OK;
     }
 
     // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
-                          (unsigned char)AXIS_ID_WORD,        // Channel ID (LSB)
-                          (unsigned char)(AXIS_ID_WORD >> 8), // Channel ID (MSB)
+                          (unsigned char)AXIS_ID_WORD,
+                          (unsigned char)(AXIS_ID_WORD >> 8),
                           (unsigned char)(steps & 0xFF),
                           (unsigned char)((steps >> 8) & 0xFF),
                           (unsigned char)((steps >> 16) & 0xFF),
@@ -285,8 +285,6 @@ int myFocusController::SetPositionSteps(long steps)
     const MM::MMTime startTime = GetCurrentMMTime();
     const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
     bool moveComplete = false;
-    int errorCount = 0;
-    const int MAX_ERRORS = 3;
     
     while (!moveComplete && ((GetCurrentMMTime() - startTime) <= timeout))
     {
@@ -294,17 +292,7 @@ int myFocusController::SetPositionSteps(long steps)
         unsigned char statCmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
         ret = SendCommand(statCmd, STATUS_LENGTH);
         if (ret != DEVICE_OK)
-        {
-            std::ostringstream os;
-            os << "Status query failed with error: " << ret;
-            LogMessage(os.str().c_str(), true);
-            if (++errorCount >= MAX_ERRORS)
-            {
-                LogMessage("Too many consecutive errors, aborting move", true);
-                return ret;
-            }
-            continue;
-        }
+            return ret;
 
         unsigned char response[20];
         ret = GetResponse(response, 20);
@@ -313,15 +301,8 @@ int myFocusController::SetPositionSteps(long steps)
             std::ostringstream os;
             os << "Status response failed with error: " << ret;
             LogMessage(os.str().c_str(), true);
-            if (++errorCount >= MAX_ERRORS)
-            {
-                LogMessage("Too many consecutive errors, aborting move", true);
-                return ret;
-            }
-            continue;
+            return ret;
         }
-
-        errorCount = 0; // Reset error count on successful communication
 
         // Check if move complete (not busy)
         if ((response[16] & 0x30) == 0)
@@ -394,6 +375,12 @@ int myFocusController::SetRelativePositionSteps(long steps)
 
     // Calculate target position
     long targetPos = curPos + steps;
+
+    // Skip move if target equals current position
+    if (targetPos == curPos)
+    {
+        return DEVICE_OK;
+    }
 
     // Use SetPositionSteps to move
     return SetPositionSteps(targetPos);
