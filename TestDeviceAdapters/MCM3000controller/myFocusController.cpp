@@ -11,9 +11,6 @@
 #include <sstream>
 #include <iomanip>
 
-const char* myFocusController::DeviceName = "MCM3000";
-const char* myFocusController::Description = "MCM3000 Focus Controller";
-
 // Constants for axis/channel IDs
 const unsigned char AXIS_ID_BYTE = 0x01;  // 8-bit axis ID
 const unsigned short AXIS_ID_WORD = 0x0001;  // 16-bit axis ID
@@ -21,7 +18,7 @@ const unsigned short AXIS_ID_WORD = 0x0001;  // 16-bit axis ID
 // Module interface
 MODULE_API void InitializeModuleData()
 {
-    RegisterDevice(myFocusController::DeviceName, MM::StageDevice, "MCM3000 Focus Controller");
+    RegisterDevice(myFocusController::DeviceName(), MM::StageDevice, "MCM3000 Focus Controller");
 }
 
 MODULE_API MM::Device* CreateDevice(const char* deviceName)
@@ -29,7 +26,7 @@ MODULE_API MM::Device* CreateDevice(const char* deviceName)
     if (deviceName == 0)
         return 0;
 
-    if (strcmp(deviceName, myFocusController::DeviceName) == 0)
+    if (strcmp(deviceName, myFocusController::DeviceName()) == 0)
     {
         return new myFocusController();
     }
@@ -48,7 +45,8 @@ myFocusController::myFocusController() :
     answerTimeoutMs_(500),
     curSteps_(0),
     positionValid_(false),
-    home_(false)
+    home_(false),
+    lastCommand_(0)
 {
     InitializeDefaultErrorMessages();
 
@@ -63,9 +61,9 @@ myFocusController::myFocusController() :
     SetErrorText(ERR_STAGE_NOT_ZEROED, "Stage must be zeroed before use.");
 
     // Create pre-initialization properties
-    CreateProperty(MM::g_Keyword_Name, DeviceName, MM::String, true);
+    CreateProperty(MM::g_Keyword_Name, DeviceName(), MM::String, true);
     
-    std::string description = Description;
+    std::string description = Description();
     description += "\n\nSerial port settings:\n";
     description += "  Baud Rate: 460800\n";
     description += "  Data Bits: 8\n";
@@ -86,7 +84,7 @@ myFocusController::~myFocusController()
 
 void myFocusController::GetName(char* name) const
 {
-    CDeviceUtils::CopyLimitedString(name, DeviceName);
+    CDeviceUtils::CopyLimitedString(name, g_DeviceName);
 }
 
 int myFocusController::Initialize()
@@ -94,58 +92,40 @@ int myFocusController::Initialize()
     if (initialized_)
         return DEVICE_OK;
 
-    // Clear port
-    LogMessage("MCM3000 initialization started...", true);
+    GetCoreCallback()->LogMessage(this, "MCM3000: Initializing...", true);
+    
+    // Use standard error messages from MMDeviceConstants.h
     int ret = GetCoreCallback()->PurgeSerial(this, port_.c_str());
     if (ret != DEVICE_OK)
         return ret;
 
-    // Test communication with simple status query
+    // Test communication
     unsigned char cmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
     ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
     {
-        LogMessage(g_Msg_SERIAL_COMMAND_FAILED, true);
-        return DEVICE_SERIAL_COMMAND_FAILED;
+        GetCoreCallback()->LogMessage(this, g_Msg_SERIAL_COMMAND_FAILED, false);
+        return ret;
     }
 
-    // Get response (20 bytes for status)
+    // Get response
     unsigned char response[20];
     ret = GetResponse(response, 20);
     if (ret != DEVICE_OK)
-    {
-        LogMessage(g_Msg_SERIAL_INVALID_RESPONSE, true);
-        return DEVICE_SERIAL_INVALID_RESPONSE;
-    }
+        return ret;
 
-    // Log response in hex for debugging
-    std::ostringstream os;
-    os << "Status response (hex):";
-    for (int i = 0; i < 20; i++)
-        os << " " << std::hex << std::setw(2) << std::setfill('0') << (int)response[i];
-    LogMessage(os.str().c_str(), true);
-
-    // Check if device is ready from status response
-    if ((response[16] & 0x30) != 0)
-    {
-        LogMessage("Device not ready in status response", true);
-        return DEVICE_SERIAL_INVALID_RESPONSE;
-    }
-
-    // Initialize state using current position from status response
-    // Position is at offset 8, little-endian 32-bit signed integer
-    long pos = 0;
-    pos |= response[8];
-    pos |= (response[9] << 8);
-    pos |= (response[10] << 16);
-    pos |= (response[11] << 24);
-    curSteps_ = pos;
-
-    positionValid_ = true;
-    home_ = true;
     initialized_ = true;
+    return DEVICE_OK;
+}
 
-    LogMessage("MCM3000 initialization completed successfully", true);
+int myFocusController::ClearPort()
+{
+    int ret = GetCoreCallback()->PurgeSerial(this, port_.c_str());
+    if (ret != DEVICE_OK)
+    {
+        GetCoreCallback()->LogMessage(this, "Failed to purge serial port", true);
+        return ret;
+    }
     return DEVICE_OK;
 }
 
@@ -273,39 +253,127 @@ int myFocusController::GetPositionUm(double& pos)
 
 int myFocusController::SetPositionSteps(long steps)
 {
-    // Set position command
+    if (!initialized_)
+    {
+        GetCoreCallback()->LogMessage(this, g_Msg_NOT_INITIALIZED, false);
+        return DEVICE_ERR;
+    }
+
+    if (Busy())
+    {
+        GetCoreCallback()->LogMessage(this, g_Msg_DEVICE_BUSY, false);
+        return ERR_BUSY;
+    }
+
+    // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
-                          (unsigned char)(AXIS_ID_WORD & 0xFF),
-                          (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF),
+                          (unsigned char)AXIS_ID_WORD,        // Channel ID (LSB)
+                          (unsigned char)(AXIS_ID_WORD >> 8), // Channel ID (MSB)
                           (unsigned char)(steps & 0xFF),
                           (unsigned char)((steps >> 8) & 0xFF),
                           (unsigned char)((steps >> 16) & 0xFF),
                           (unsigned char)((steps >> 24) & 0xFF)};
 
-    std::ostringstream os;
-    os << "Setting position to " << steps << " steps (0x" 
-       << std::hex << std::setw(8) << std::setfill('0') << steps << ")";
-    LogMessage(os.str().c_str(), true);
-
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
-        return ret;
-
-    // Wait for move to complete
-    MM::MMTime startTime = GetCurrentMMTime();
-    const MM::MMTime timeout = MM::MMTime::fromMs(2000.0);
-
-    while ((GetCurrentMMTime() - startTime) < timeout)
     {
-        unsigned char response[20];
-        ret = GetResponse(response, 20);
-        if (ret == DEVICE_OK && (response[16] & 0x30) == 0)
-            break;
-        CDeviceUtils::SleepMs(10);
+        LogMessage("Failed to send move command", true);
+        return ret;
     }
 
-    // Update cache
-    curSteps_ = steps;
+    // Wait for move completion using MM time
+    const MM::MMTime startTime = GetCurrentMMTime();
+    const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
+    bool moveComplete = false;
+    int errorCount = 0;
+    const int MAX_ERRORS = 3;
+    
+    while (!moveComplete && ((GetCurrentMMTime() - startTime) <= timeout))
+    {
+        // Query status
+        unsigned char statCmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
+        ret = SendCommand(statCmd, STATUS_LENGTH);
+        if (ret != DEVICE_OK)
+        {
+            std::ostringstream os;
+            os << "Status query failed with error: " << ret;
+            LogMessage(os.str().c_str(), true);
+            if (++errorCount >= MAX_ERRORS)
+            {
+                LogMessage("Too many consecutive errors, aborting move", true);
+                return ret;
+            }
+            continue;
+        }
+
+        unsigned char response[20];
+        ret = GetResponse(response, 20);
+        if (ret != DEVICE_OK)
+        {
+            std::ostringstream os;
+            os << "Status response failed with error: " << ret;
+            LogMessage(os.str().c_str(), true);
+            if (++errorCount >= MAX_ERRORS)
+            {
+                LogMessage("Too many consecutive errors, aborting move", true);
+                return ret;
+            }
+            continue;
+        }
+
+        errorCount = 0; // Reset error count on successful communication
+
+        // Check if move complete (not busy)
+        if ((response[16] & 0x30) == 0)
+        {
+            moveComplete = true;
+            
+            // Verify final position
+            unsigned char posCmd[] = {CMD_QUERY_POS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
+            ret = SendCommand(posCmd, QUERY_POS_LENGTH);
+            if (ret != DEVICE_OK)
+            {
+                LogMessage("Failed to query final position", true);
+                return ret;
+            }
+
+            unsigned char posResponse[12];
+            ret = GetResponse(posResponse, 12);
+            if (ret != DEVICE_OK)
+            {
+                LogMessage("Failed to get position response", true);
+                return ret;
+            }
+
+            // Extract position from response (bytes 8-11, little endian)
+            long actualPos = 0;
+            actualPos |= posResponse[8];
+            actualPos |= (posResponse[9] << 8);
+            actualPos |= (posResponse[10] << 16);
+            actualPos |= (posResponse[11] << 24);
+
+            if (actualPos != steps)
+            {
+                std::ostringstream os;
+                os << "Move completed but position mismatch. Requested: " << steps 
+                   << " Actual: " << actualPos;
+                LogMessage(os.str().c_str(), true);
+                return ERR_INVALID_PACKET_LENGTH;  // Or a more specific error code
+            }
+
+            curSteps_ = actualPos;
+            break;
+        }
+
+        CDeviceUtils::SleepMs(10); // Use MM's sleep utility
+    }
+
+    if (!moveComplete)
+    {
+        LogMessage("Move did not complete within timeout", true);
+        return ERR_RESPONSE_TIMEOUT;
+    }
+
     return DEVICE_OK;
 }
 
@@ -376,20 +444,29 @@ int myFocusController::Stop()
 
 int myFocusController::SendCommand(const unsigned char* command, unsigned length)
 {
-    // Get core callback
-    MM::Core* core = GetCoreCallback();
-    if (core == NULL)
-        return DEVICE_ERR;
+    // Log command in MM format
+    std::ostringstream os;
+    os << "Write -> (hex)";
+    for (unsigned i = 0; i < length; i++)
+        os << " " << std::hex << std::setw(2) << std::setfill('0') << (int)command[i];
+    GetCoreCallback()->LogMessage(this, os.str().c_str(), true);
 
-    // Write command to serial port - cast command to const unsigned char* to match expected type
-    int ret = core->WriteToSerial(this, port_.c_str(), command, length);
+    // Store command for response validation
+    lastCommand_ = command[0];
+
+    // Clear any pending data
+    int ret = ClearPort();
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Send command using MM serial interface
+    ret = GetCoreCallback()->WriteToSerial(this, port_.c_str(), command, length);
     if (ret != DEVICE_OK)
     {
-        std::ostringstream os;
-        os << "Serial write error: " << ret;
-        LogMessage(os.str().c_str(), true);
+        GetCoreCallback()->LogMessage(this, g_Msg_SERIAL_COMMAND_FAILED, true);
         return ret;
     }
+
     return DEVICE_OK;
 }
 
@@ -401,14 +478,16 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
     unsigned char buf[256];
     unsigned long bytesRead = 0;
     unsigned long totalRead = 0;
-    MM::MMTime startTime = GetCurrentMMTime();
     
-    // Read with timeout
+    const MM::MMTime startTime = GetCurrentMMTime();
+    const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
+    
+    // Read response using MM serial interface
     while (totalRead < expectedLength)
     {
-        if ((GetCurrentMMTime() - startTime).getMsec() > 500)
+        if ((GetCurrentMMTime() - startTime) > timeout)
         {
-            LogMessage("Serial read timed out", true);
+            GetCoreCallback()->LogMessage(this, g_Msg_SERIAL_TIMEOUT, true);
             return DEVICE_SERIAL_TIMEOUT;
         }
 
@@ -417,7 +496,10 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
                                                   expectedLength - totalRead, 
                                                   bytesRead);
         if (ret != DEVICE_OK)
+        {
+            GetCoreCallback()->LogMessage(this, g_Msg_SERIAL_COMMAND_FAILED, true);
             return ret;
+        }
 
         if (bytesRead > 0)
         {
@@ -429,23 +511,29 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
         }
     }
 
-    // Verify response format
-    if (totalRead < 3)  // Need at least command, length bytes
+    // Log response in MM format
+    std::ostringstream os;
+    os << "Read <- (hex)";
+    for (unsigned i = 0; i < totalRead; i++)
+        os << " " << std::hex << std::setw(2) << std::setfill('0') << (int)buf[i];
+    GetCoreCallback()->LogMessage(this, os.str().c_str(), true);
+
+    // Validate response
+    if (totalRead < 3)
     {
-        LogMessage("Response too short", true);
+        GetCoreCallback()->LogMessage(this, g_Msg_SERIAL_INVALID_RESPONSE, true);
         return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
-    // Check packet length from response
-    unsigned packetLength = buf[2];
-    if (packetLength > totalRead)
+    // Check response code
+    if ((buf[0] & 0x7F) != ((lastCommand_ + 1) & 0x7F))
     {
-        LogMessage("Incomplete packet received", true);
+        GetCoreCallback()->LogMessage(this, g_Msg_SERIAL_INVALID_RESPONSE, true);
         return DEVICE_SERIAL_INVALID_RESPONSE;
     }
 
     // Copy valid packet
-    memcpy(response, buf, packetLength);
+    memcpy(response, buf, expectedLength);
 
     return DEVICE_OK;
 }
@@ -460,8 +548,8 @@ int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
     {
         if (initialized_)
         {
-            pProp->Set(port_.c_str());
-            return DEVICE_ERR;
+            GetCoreCallback()->LogMessage(this, g_Msg_PORT_CHANGE_FORBIDDEN, false);
+            return ERR_PORT_CHANGE_FORBIDDEN;
         }
         pProp->Get(port_);
     }
@@ -485,59 +573,97 @@ int myFocusController::OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct
 
 int myFocusController::MoveBlocking(long steps, bool relative)
 {
-    if (!initialized_)
-        return DEVICE_ERR;
-
     if (Busy())
         return ERR_BUSY;
 
-    // Format move command with axis 1
-    unsigned char cmd[SET_POS_LENGTH];
-    cmd[0] = CMD_GOTO_POS;
-    cmd[1] = 0x04;
-    cmd[2] = 0x06;
-    cmd[3] = 0x00;
-    cmd[4] = 0x00;
-    cmd[5] = 0x00;
-    cmd[6] = (unsigned char)(AXIS_ID_WORD & 0xFF);        // Channel ID low byte
-    cmd[7] = (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF); // Channel ID high byte
-    
-    // If relative move, convert to absolute position
-    if (relative) {
-        long currentPos;
-        int ret = GetPositionSteps(currentPos);
-        if (ret != DEVICE_OK)
-            return ret;
-        steps += currentPos;
+    long target = steps;
+    if (relative)
+    {
+        if (!positionValid_)
+        {
+            LogMessage("Cannot do relative move without valid position", true);
+            return ERR_STAGE_NOT_ZEROED;
+        }
+        target = curSteps_ + steps;
     }
 
-    // Convert steps to little-endian bytes
-    memcpy(cmd + 8, &steps, 4);
-
-    LogMessage(std::string("Moving to position: ") + std::to_string(steps) + " steps");
+    // Send move command
+    unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
+                          (unsigned char)AXIS_ID_WORD,        // Channel ID (LSB)
+                          (unsigned char)(AXIS_ID_WORD >> 8), // Channel ID (MSB)
+                          (unsigned char)(target & 0xFF),
+                          (unsigned char)((target >> 8) & 0xFF),
+                          (unsigned char)((target >> 16) & 0xFF),
+                          (unsigned char)((target >> 24) & 0xFF)};
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
-    lastMoveTime_ = GetCurrentMMTime();
+    // Wait for move completion using MM time
+    const MM::MMTime startTime = GetCurrentMMTime();
+    const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
+    bool moveComplete = false;
+    
+    while (!moveComplete && ((GetCurrentMMTime() - startTime) <= timeout))
+    {
+        // Query status
+        unsigned char statCmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
+        ret = SendCommand(statCmd, STATUS_LENGTH);
+        if (ret != DEVICE_OK)
+            return ret;
+
+        unsigned char response[20];
+        ret = GetResponse(response, 20);
+        if (ret != DEVICE_OK)
+            return ret;
+
+        // Check if move complete (not busy)
+        if ((response[16] & 0x30) == 0)
+        {
+            moveComplete = true;
+            curSteps_ = target;
+            break;
+        }
+
+        CDeviceUtils::SleepMs(10); // Use MM's sleep utility
+    }
+
+    if (!moveComplete)
+    {
+        LogMessage("Move did not complete within timeout", true);
+        return ERR_RESPONSE_TIMEOUT;
+    }
+
     return DEVICE_OK;
 }
 
 int myFocusController::Home()
 {
-    if (!initialized_)
-        return DEVICE_ERR;
+    if (Busy())
+        return ERR_BUSY;
 
-    // Set encoder counter to 0
-    unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
-                          0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+    // Set encoder to 0 at current position
+    unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00,
+                          (unsigned char)AXIS_ID_WORD,        // Channel ID (LSB)
+                          (unsigned char)(AXIS_ID_WORD >> 8), // Channel ID (MSB)
+                          0x00, 0x00, 0x00, 0x00};  // Position 0
+
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
 
+    // Wait for response
+    unsigned char response[20];
+    ret = GetResponse(response, 20);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Update cached position
     curSteps_ = 0;
     home_ = true;
+    positionValid_ = true;
+
     return DEVICE_OK;
 }
 

@@ -5,7 +5,7 @@
 #include "ModuleInterface.h"
 #include <string>
 
-// Error codes
+// Error codes should be in range 10000-10999 for device adapters
 #define ERR_PORT_CHANGE_FORBIDDEN    10004
 #define ERR_UNRECOGNIZED_ANSWER      10009
 #define ERR_UNSPECIFIED_ERROR        10010
@@ -16,10 +16,21 @@
 #define ERR_STEPS_OUT_OF_RANGE       10015
 #define ERR_STAGE_NOT_ZEROED         10016
 
-// Command lengths
-const int SET_POS_LENGTH = 12;
-const int QUERY_POS_LENGTH = 6;
-const int STATUS_LENGTH = 6;
+// Command lengths - make const for type safety
+static const int SET_POS_LENGTH = 12;
+static const int QUERY_POS_LENGTH = 6;
+static const int STATUS_LENGTH = 6;
+
+// Device specific constants - for external use
+static const char* const g_DeviceName = "MCM3000";
+static const char* const g_Description = "MCM3000 Focus Controller";
+
+// Add standard error messages
+static const char* const g_Msg_PORT_CHANGE_FORBIDDEN = "Port change is not allowed after device has been initialized.";
+static const char* const g_Msg_INVALID_STEP_SIZE = "Invalid step size";
+static const char* const g_Msg_DEVICE_BUSY = "Device is busy";
+static const char* const g_Msg_STEPS_OUT_OF_RANGE = "Position out of range";
+static const char* const g_Msg_NOT_INITIALIZED = "Device not initialized";
 
 class myFocusController : public CStageBase<myFocusController>
 {
@@ -57,12 +68,12 @@ public:
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct);
 
-    // Device specific constants
-    static const char* DeviceName;
-    static const char* Description;
-
     // Declare SendCommand in header
     int SendCommand(const unsigned char* command, unsigned length);
+
+    // Device specific constants - for internal use
+    static const char* DeviceName() { return g_DeviceName; }
+    static const char* Description() { return g_Description; }
 
 private:
     int GetResponse(unsigned char* response, unsigned length);
@@ -88,5 +99,6 @@ private:
     long curSteps_;          // Cached position
     bool positionValid_;     // Cache validity flag
     MM::MMTime lastMoveTime_;
+    unsigned char lastCommand_;  // Tracks last command sent for response validation
 };
 
