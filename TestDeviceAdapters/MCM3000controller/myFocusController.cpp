@@ -259,9 +259,9 @@ int myFocusController::SetPositionSteps(long steps)
     if (Busy())
         return ERR_BUSY;
 
-    std::ostringstream os;  // Single stringstream for all logging
-    os << "Move command to position: " << steps;
-    LogMessage(os.str().c_str(), true);
+    std::ostringstream cmdLog;  // Unique name for command logging
+    cmdLog << "Move command to position: " << steps;
+    LogMessage(cmdLog.str().c_str(), true);
 
     // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
@@ -275,9 +275,9 @@ int myFocusController::SetPositionSteps(long steps)
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
     {
-        os.str("");  // Clear stringstream
-        os << "Failed to send move command, error: " << ret;
-        LogMessage(os.str().c_str(), true);
+        std::ostringstream errLog;  // Unique name for error logging
+        errLog << "Failed to send move command, error: " << ret;
+        LogMessage(errLog.str().c_str(), true);
         return ret;
     }
 
@@ -376,7 +376,7 @@ int myFocusController::SetRelativePositionSteps(long steps)
     // Calculate target position
     long targetPos = curPos + steps;
 
-    std::ostringstream moveLog;
+    std::ostringstream moveLog;  // Unique name for move logging
     moveLog << "Relative move: current=" << curPos << " steps=" << steps << " target=" << targetPos;
     LogMessage(moveLog.str().c_str(), true);
 
