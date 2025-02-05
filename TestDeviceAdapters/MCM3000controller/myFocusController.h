@@ -80,11 +80,13 @@ private:
     int ClearPort();
     int MoveBlocking(long steps, bool relative);
 
+    // Timing constants
+    static const int MOTOR_STATUS_POLL_MS = 50;  // Poll interval for motor status
     static const long INVALID_POSITION = 0x80000000;  // Invalid position marker
-    static const unsigned char AXIS_ID_BYTE = 0x01;     // For Stop, Query Position, Query Status
-    static const uint16_t AXIS_ID_WORD = 0x0001;       // For Set encoder, Go to Position
     
     // Command codes
+    static const unsigned char AXIS_ID_BYTE = 0x01;     // For Stop, Query Position, Query Status
+    static const uint16_t AXIS_ID_WORD = 0x0001;       // For Set encoder, Go to Position
     static const unsigned char CMD_STOP = 0x01;         // 1 byte ID
     static const unsigned char CMD_QUERY_POS = 0x0A;    // 1 byte ID
     static const unsigned char CMD_QUERY_STATUS = 0x80; // 1 byte ID

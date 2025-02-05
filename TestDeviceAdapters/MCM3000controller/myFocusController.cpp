@@ -275,13 +275,13 @@ int myFocusController::SetPositionSteps(long steps)
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
     {
-        std::ostringstream errLog;  // Unique name for error logging
+        std::ostringstream errLog;
         errLog << "Failed to send move command, error: " << ret;
         LogMessage(errLog.str().c_str(), true);
         return ret;
     }
 
-    // Wait for move completion using MM time
+    // Wait for move completion
     const MM::MMTime startTime = GetCurrentMMTime();
     const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
     bool moveComplete = false;
@@ -294,15 +294,17 @@ int myFocusController::SetPositionSteps(long steps)
         if (ret != DEVICE_OK)
             return ret;
 
-        unsigned char response[20];
-        ret = GetResponse(response, 20);
+        unsigned char response[20];  // Status response is 20 bytes
+        ret = GetResponse(response, 20);  // Changed from STATUS_LENGTH to actual response size
         if (ret != DEVICE_OK)
-        {
-            std::ostringstream os;
-            os << "Status response failed with error: " << ret;
-            LogMessage(os.str().c_str(), true);
             return ret;
-        }
+
+        // Log status response for debugging
+        std::ostringstream statLog;
+        statLog << "Status response:";
+        for (unsigned i = 0; i < 20; i++)
+            statLog << " " << std::hex << std::setw(2) << std::setfill('0') << (int)response[i];
+        LogMessage(statLog.str().c_str(), true);
 
         // Check if move complete (not busy)
         if ((response[16] & 0x30) == 0)
@@ -346,7 +348,7 @@ int myFocusController::SetPositionSteps(long steps)
             break;
         }
 
-        CDeviceUtils::SleepMs(10); // Use MM's sleep utility
+        CDeviceUtils::SleepMs(MOTOR_STATUS_POLL_MS);  // Use constant for consistency
     }
 
     if (!moveComplete)
@@ -611,7 +613,7 @@ int myFocusController::MoveBlocking(long steps, bool relative)
             break;
         }
 
-        CDeviceUtils::SleepMs(10); // Use MM's sleep utility
+        CDeviceUtils::SleepMs(MOTOR_STATUS_POLL_MS);  // Use constant for consistency
     }
 
     if (!moveComplete)
