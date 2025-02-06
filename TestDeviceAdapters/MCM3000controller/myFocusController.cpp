@@ -96,11 +96,11 @@ int myFocusController::Initialize()
     if (initialized_)
         return DEVICE_OK;
 
-    // Set property limits
+    // Set up properties
     int ret = CreateProperty("StepSize", 
-                           std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), 
-                           MM::Float, 
-                           true);  // Read-only
+                         std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), 
+                         MM::Float, 
+                         true);  // Read-only
     if (ret != DEVICE_OK)
         return ret;
 
@@ -110,7 +110,7 @@ int myFocusController::Initialize()
     if (ret != DEVICE_OK)
         return ret;
 
-    // Query device to verify connection
+    // Test communication
     unsigned char cmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
     ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
@@ -120,13 +120,6 @@ int myFocusController::Initialize()
     ret = GetResponse(response, 20);
     if (ret != DEVICE_OK)
         return ret;
-
-    // Device should respond with status
-    if (response[0] != (CMD_QUERY_STATUS + 1))
-    {
-        LogMessage("Failed to get valid response from device", false);
-        return ERR_UNRECOGNIZED_ANSWER;
-    }
 
     initialized_ = true;
     return DEVICE_OK;
