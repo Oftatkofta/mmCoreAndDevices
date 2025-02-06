@@ -37,15 +37,6 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
     delete pDevice;
 }
 
-// Define the static vector of valid step sizes
-const std::vector<std::string> myFocusController::VALID_STEP_SIZES = {
-    "0.0390625",  // Fine step size
-    "0.2116667",  // ZFM2020/2030 stage
-    "0.001",      // 1 nm step size
-    "0.5",        // 500 nm step size
-    "0.1"         // 100 nm step size
-};
-
 // Define the step size map with exact values
 const std::map<std::string, double> myFocusController::STEP_SIZE_MAP = {
     {"0.0390625", 0.0390625},  // Fine step size
@@ -53,6 +44,15 @@ const std::map<std::string, double> myFocusController::STEP_SIZE_MAP = {
     {"0.001",     0.001},      // 1 nm step size
     {"0.5",       0.5},        // 500 nm step size
     {"0.1",       0.1}         // 100 nm step size
+};
+
+// We can probably remove this since we have the map now
+const std::vector<std::string> myFocusController::VALID_STEP_SIZES = {
+    "0.0390625",  // Fine step size
+    "0.2116667",  // ZFM2020/2030 stage
+    "0.001",      // 1 nm step size
+    "0.5",        // 500 nm step size
+    "0.1"         // 100 nm step size
 };
 
 myFocusController::myFocusController() :
@@ -103,7 +103,7 @@ myFocusController::myFocusController() :
 
     // Step size (um/step)
     pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
-    CreateProperty("StepSize", std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), MM::Float, false, pAct, true);
+    CreateProperty("StepSize", "0.2116667", MM::String, false, pAct, true);
     
     // Add allowed step sizes from map
     for (const auto& pair : STEP_SIZE_MAP) {
@@ -265,19 +265,11 @@ int myFocusController::GetPositionSteps(long& steps)
 
 int myFocusController::GetPositionUm(double& pos)
 {
-    // Always get fresh position from device
     long steps;
     int ret = GetPositionSteps(steps);
     if (ret != DEVICE_OK)
         return ret;
-
-    // Convert to microns
-    pos = steps * stepSizeUm_;
-
-    // Cache the position
-    curSteps_ = steps;
-    positionValid_ = true;
-
+    pos = steps * stepSizeUm_;  // Uses stepSizeUm_ (double)
     return DEVICE_OK;
 }
 
@@ -375,7 +367,7 @@ int myFocusController::SetPositionUm(double pos)
     }
 
     // Convert um to steps with proper rounding
-    long steps = (long)(pos / stepSizeUm_ + (pos >= 0 ? 0.5 : -0.5));
+    long steps = (long)(pos / stepSizeUm_ + 0.5);  // Uses stepSizeUm_ (double)
     
     // Log requested and actual positions
     std::ostringstream os;
@@ -596,10 +588,23 @@ int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
         std::string stepStr;
         pProp->Get(stepStr);
 
+        // Debug logging
+        std::ostringstream oss;
+        oss << "Trying to set step size to: " << stepStr;
+        LogMessage(oss.str().c_str(), true);
+        
+        oss.str("");
+        oss << "Available step sizes:";
+        for (const auto& pair : STEP_SIZE_MAP) {
+            oss << " " << pair.first;
+        }
+        LogMessage(oss.str().c_str(), true);
+
         // Look up exact value from map
         auto it = STEP_SIZE_MAP.find(stepStr);
         if (it != STEP_SIZE_MAP.end()) {
             stepSizeUm_ = it->second;  // Use exact value from map
+            LogMessage("Step size set successfully", true);
             return DEVICE_OK;
         }
         
