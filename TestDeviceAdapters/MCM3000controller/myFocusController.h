@@ -5,6 +5,7 @@
 #include "ModuleInterface.h"
 #include <string>
 #include <vector>
+#include <map>
 
 // Error codes should be in range 10000-10999 for device adapters
 #define ERR_PORT_CHANGE_FORBIDDEN    10004
@@ -103,6 +104,9 @@ private:
 
     // Valid step sizes
     static const std::vector<std::string> VALID_STEP_SIZES;
+
+    // Step size lookup table (UI string -> exact value)
+    static const std::map<std::string, double> STEP_SIZE_MAP;
 
     // Member variables
     bool initialized_;

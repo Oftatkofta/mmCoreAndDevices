@@ -10,6 +10,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <map>
 
 // Module interface
 MODULE_API void InitializeModuleData()
@@ -43,6 +44,15 @@ const std::vector<std::string> myFocusController::VALID_STEP_SIZES = {
     "0.001",      // 1 nm step size
     "0.5",        // 500 nm step size
     "0.1"         // 100 nm step size
+};
+
+// Define the step size map with exact values
+const std::map<std::string, double> myFocusController::STEP_SIZE_MAP = {
+    {"0.0390625", 0.0390625},  // Fine step size
+    {"0.2116667", 0.2116667},  // ZFM2020/2030 stage
+    {"0.001",     0.001},      // 1 nm step size
+    {"0.5",       0.5},        // 500 nm step size
+    {"0.1",       0.1}         // 100 nm step size
 };
 
 myFocusController::myFocusController() :
@@ -95,9 +105,9 @@ myFocusController::myFocusController() :
     pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
     CreateProperty("StepSize", std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), MM::Float, false, pAct, true);
     
-    // Add allowed step sizes from list
-    for (const auto& stepSize : VALID_STEP_SIZES) {
-        AddAllowedValue("StepSize", stepSize.c_str());
+    // Add allowed step sizes from map
+    for (const auto& pair : STEP_SIZE_MAP) {
+        AddAllowedValue("StepSize", pair.first.c_str());
     }
 }
 
@@ -583,10 +593,18 @@ int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
             LogMessage("Can't change step size after initialization", false);
             return ERR_PORT_CHANGE_FORBIDDEN;
         }
-        double stepSize;
-        pProp->Get(stepSize);
-        // Value validation handled by MM's property system via AddAllowedValue
-        stepSizeUm_ = stepSize;
+        std::string stepStr;
+        pProp->Get(stepStr);
+
+        // Look up exact value from map
+        auto it = STEP_SIZE_MAP.find(stepStr);
+        if (it != STEP_SIZE_MAP.end()) {
+            stepSizeUm_ = it->second;  // Use exact value from map
+            return DEVICE_OK;
+        }
+        
+        LogMessage("Invalid step size", false);
+        return ERR_INVALID_VALUE;
     }
     return DEVICE_OK;
 }
