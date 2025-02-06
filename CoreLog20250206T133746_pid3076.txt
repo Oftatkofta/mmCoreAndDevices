@@ -1,0 +1,130 @@
+2025-02-06T13:37:46.062373 tid724 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250206T133746_pid3076.txt
+2025-02-06T13:37:46.062462 tid724 [IFO,App] User: admin
+2025-02-06T13:37:46.063026 tid724 [IFO,App] Host: FLEXOPC
+2025-02-06T13:37:46.063038 tid724 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-02-06T13:37:46.063068 tid724 [IFO,App] MMCore version 11.3.0
+2025-02-06T13:37:46.063083 tid724 [IFO,App] Device API version 71, Module API version 10
+2025-02-06T13:37:46.063092 tid724 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-02-06T13:37:46.063098 tid724 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-02-06T13:37:46.458044 tid10372 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@6dc12eac
+2025-02-06T13:37:46.459116 tid10372 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@6e5183fa
+2025-02-06T13:37:46.459401 tid10372 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@3a811c14
+2025-02-06T13:37:46.459477 tid10372 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@77acd7b3
+2025-02-06T13:37:46.459984 tid10372 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@94421ee
+2025-02-06T13:37:46.460070 tid10372 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@18447e3a
+2025-02-06T13:37:46.460381 tid10372 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@1e949625
+2025-02-06T13:37:46.460453 tid10372 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@1ade9008
+2025-02-06T13:37:46.460509 tid10372 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@32bd89ec
+2025-02-06T13:37:46.460803 tid10372 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@933942f
+2025-02-06T13:37:46.461598 tid10372 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@332c0e92
+2025-02-06T13:37:46.461694 tid10372 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@5d9c862f
+2025-02-06T13:37:46.462221 tid10372 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@3b08699
+2025-02-06T13:37:46.462309 tid10372 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@16b7f82c
+2025-02-06T13:37:46.462393 tid10372 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@45bc2cf6
+2025-02-06T13:37:46.463563 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@4920e391
+2025-02-06T13:37:46.464332 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@1fa7dffa
+2025-02-06T13:37:46.464959 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@4fa49623
+2025-02-06T13:37:46.466201 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@32fdc0bc
+2025-02-06T13:37:46.467083 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@1f1ff378
+2025-02-06T13:37:46.469562 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@402b10fc
+2025-02-06T13:37:46.469978 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@204fbfb2
+2025-02-06T13:37:46.470596 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@61c90323
+2025-02-06T13:37:46.471254 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@d5c6cd
+2025-02-06T13:37:46.471466 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@29ac0def
+2025-02-06T13:37:46.472051 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@47e30dd0
+2025-02-06T13:37:46.472148 tid10372 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@ee9a3b6
+2025-02-06T13:37:46.472500 tid10372 [IFO,App] Plugin loading took 1015ms
+2025-02-06T13:37:46.472671 tid724 [IFO,App] Finished waiting for plugins to load
+2025-02-06T13:37:49.677851 tid724 [dbg,Core] Will unload all devices
+2025-02-06T13:37:49.677859 tid724 [IFO,Core] Did unload all devices
+2025-02-06T13:37:49.678244 tid724 [dbg,Core] Will set Core property: Initialize = 0
+2025-02-06T13:37:49.678246 tid724 [dbg,Core] Will unload all devices
+2025-02-06T13:37:49.678247 tid724 [IFO,Core] Did unload all devices
+2025-02-06T13:37:49.678301 tid724 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-02-06T13:37:49.678304 tid724 [dbg,App] Notification from MMCore ignored
+2025-02-06T13:37:49.678315 tid724 [dbg,Core] Did set Core property: Initialize = 0
+2025-02-06T13:37:49.678327 tid724 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T13:37:49.680182 tid724 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T13:37:49.680192 tid724 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T13:37:49.681147 tid724 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T13:37:49.681157 tid724 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T13:37:49.681167 tid724 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T13:37:49.681173 tid724 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T13:37:49.681179 tid724 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T13:37:49.681184 tid724 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T13:37:49.681187 tid724 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T13:37:49.681190 tid724 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T13:37:49.681192 tid724 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T13:37:49.681195 tid724 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T13:37:49.681198 tid724 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T13:37:49.681202 tid724 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T13:37:49.681204 tid724 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T13:37:49.681208 tid724 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T13:37:49.681210 tid724 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T13:37:49.681213 tid724 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T13:37:49.681215 tid724 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T13:37:49.681218 tid724 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T13:37:49.681219 tid724 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T13:37:49.681223 tid724 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T13:37:49.681225 tid724 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T13:37:49.681228 tid724 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T13:37:49.681229 tid724 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T13:37:49.681234 tid724 [dbg,Core] Will set Core property: Initialize = 1
+2025-02-06T13:37:49.681244 tid724 [IFO,Core] Will initialize 2 devices
+2025-02-06T13:37:49.681245 tid724 [IFO,Core] Will initialize device COM5
+2025-02-06T13:37:49.682358 tid724 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T13:37:49.683562 tid724 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T13:37:49.684759 tid724 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T13:37:49.685988 tid724 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T13:37:49.687265 tid724 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T13:37:49.688614 tid724 [IFO,Core] Did initialize device COM5
+2025-02-06T13:37:49.688621 tid724 [IFO,Core] Will initialize device MCM3000
+2025-02-06T13:37:49.688646 tid724 [IFO,dev:MCM3000] Failed to send position query
+2025-02-06T13:37:49.688657 tid724 [ERR,Core:dev:MCM3000] Error in device "MCM3000": Unknown error in the device (1)
+2025-02-06T13:37:49.688739 tid724 [dbg,App] Notification from MMCore ignored
+2025-02-06T13:37:49.688777 tid724 [IFO,Core] Unloading all devices after failure to load system configuration
+2025-02-06T13:37:49.688779 tid724 [dbg,Core] Will unload all devices
+2025-02-06T13:37:49.995980 tid724 [IFO,Core] Did unload all devices
+2025-02-06T13:37:49.996022 tid724 [IFO,Core] Now rethrowing original error from system configuration loading
+2025-02-06T13:37:50.009768 tid724 [IFO,App] Failed to load hardware configuration
+                                  [       ] java.lang.Exception: Line 28: Property,Core,Initialize,1
+                                  [       ] Error in device "MCM3000": Unknown error in the device (1)
+                                  [       ] 
+                                  [       ]  in Thread[AWT-EventQueue-0,6,main]
+                                  [       ]   at mmcorej.MMCoreJJNI.CMMCore_loadSystemConfiguration(Native Method)
+                                  [       ]   at mmcorej.CMMCore.loadSystemConfiguration(CMMCore.java:408)
+                                  [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadConfigImpl(HardwareConfigurationManager.java:164)
+                                  [       ]   at org.micromanager.profile.internal.gui.HardwareConfigurationManager.loadHardwareConfiguration(HardwareConfigurationManager.java:128)
+                                  [       ]   at org.micromanager.internal.MMStudio.loadSystemConfiguration(MMStudio.java:913)
+                                  [       ]   at org.micromanager.internal.MMStudio.<init>(MMStudio.java:404)
+                                  [       ]   at MMStudioPlugin$1.run(MMStudioPlugin.java:84)
+                                  [       ]   at java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:311)
+                                  [       ]   at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:756)
+                                  [       ]   at java.awt.EventQueue.access$500(EventQueue.java:97)
+                                  [       ]   at java.awt.EventQueue$3.run(EventQueue.java:709)
+                                  [       ]   at java.awt.EventQueue$3.run(EventQueue.java:703)
+                                  [       ]   at java.security.AccessController.doPrivileged(Native Method)
+                                  [       ]   at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:80)
+                                  [       ]   at java.awt.EventQueue.dispatchEvent(EventQueue.java:726)
+                                  [       ]   at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+                                  [       ]   at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+                                  [       ]   at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+                                  [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+                                  [       ]   at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+                                  [       ]   at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+2025-02-06T13:37:51.424684 tid724 [dbg,Core] Will set circular buffer size to 50000 MB
+2025-02-06T13:37:51.424788 tid724 [dbg,Core] Did set circular buffer size to 50000 MB
+2025-02-06T13:37:51.427567 tid724 [IFO,App] EDTHangLogger: Started monitoring of EDT hangs
+                                  [       ] [heartbeat timeout = 4500 ms, hang check interval = 1000 ms]
+2025-02-06T13:37:51.752053 tid724 [IFO,App] Rebuilding config group table
+2025-02-06T13:37:51.752108 tid724 [IFO,App] Finished rebuilding config group table
+2025-02-06T13:37:51.787323 tid724 [IFO,App] Startup script (C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\MMStartup.bsh) not present
+2025-02-06T13:37:51.787344 tid724 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-02-06T13:37:51.788906 tid724 [IFO,App] Rebuilding config group table
+2025-02-06T13:37:51.788915 tid724 [IFO,App] Finished rebuilding config group table
+2025-02-06T13:37:51.789164 tid724 [IFO,App] Finished updating GUI
+2025-02-06T13:37:55.858962 tid724 [IFO,App] EDTHangLogger: Stopping monitoring of EDT hangs
+2025-02-06T13:37:55.859007 tid724 [dbg,Core] Will unload all devices
+2025-02-06T13:37:55.859009 tid724 [IFO,Core] Did unload all devices
+2025-02-06T13:37:55.859017 tid724 [IFO,Core] System reset
+2025-02-06T13:37:55.859268 tid724 [IFO,Core] Core session ended
