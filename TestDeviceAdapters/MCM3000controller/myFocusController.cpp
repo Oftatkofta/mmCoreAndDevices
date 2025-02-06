@@ -96,17 +96,29 @@ int myFocusController::Initialize()
     if (initialized_)
         return DEVICE_OK;
 
+    // Check if we have a valid port
+    if (port_ == "Undefined")
+    {
+        LogMessage("Port not specified", false);
+        return DEVICE_ERR;
+    }
+
     // Set up properties
     int ret = CreateProperty("StepSize", 
                          std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), 
                          MM::Float, 
-                         true);  // Read-only
+                         true);
     if (ret != DEVICE_OK)
         return ret;
 
     // Set travel range
     ret = CreateProperty(MM::g_Keyword_Position, "0", MM::Float, false);
     SetPropertyLimits(MM::g_Keyword_Position, -POSITION_LIMIT_UM, POSITION_LIMIT_UM);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Clear any leftover data
+    ret = ClearPort();
     if (ret != DEVICE_OK)
         return ret;
 
