@@ -1,0 +1,735 @@
+2025-02-06T13:44:04.896058 tid6868 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250206T134404_pid5956.txt
+2025-02-06T13:44:04.896163 tid6868 [IFO,App] User: admin
+2025-02-06T13:44:04.897143 tid6868 [IFO,App] Host: FLEXOPC
+2025-02-06T13:44:04.897155 tid6868 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-02-06T13:44:04.897190 tid6868 [IFO,App] MMCore version 11.3.0
+2025-02-06T13:44:04.897205 tid6868 [IFO,App] Device API version 71, Module API version 10
+2025-02-06T13:44:04.897213 tid6868 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-02-06T13:44:04.897220 tid6868 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-02-06T13:44:05.290600 tid5712 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@22c40b8b
+2025-02-06T13:44:05.291610 tid5712 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@56f54a22
+2025-02-06T13:44:05.291690 tid5712 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@11126c35
+2025-02-06T13:44:05.291973 tid5712 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@31e05ddb
+2025-02-06T13:44:05.292998 tid5712 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@3bf7beea
+2025-02-06T13:44:05.293085 tid5712 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@8ca22ca
+2025-02-06T13:44:05.293395 tid5712 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@3a619213
+2025-02-06T13:44:05.293464 tid5712 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@339fb432
+2025-02-06T13:44:05.293518 tid5712 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@35995c45
+2025-02-06T13:44:05.293717 tid5712 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@6c9cf44e
+2025-02-06T13:44:05.294257 tid5712 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@5adb12c4
+2025-02-06T13:44:05.294617 tid5712 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@142b0389
+2025-02-06T13:44:05.294911 tid5712 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@6baf1e3d
+2025-02-06T13:44:05.294981 tid5712 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@609aa982
+2025-02-06T13:44:05.295053 tid5712 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@6255da67
+2025-02-06T13:44:05.296307 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@1f68a947
+2025-02-06T13:44:05.297482 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@31e1da3f
+2025-02-06T13:44:05.298213 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@4e7efde6
+2025-02-06T13:44:05.298848 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@6ead4652
+2025-02-06T13:44:05.299653 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@6a5f8c6a
+2025-02-06T13:44:05.300759 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@4554b410
+2025-02-06T13:44:05.300900 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@53fe5c0c
+2025-02-06T13:44:05.301609 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@61986455
+2025-02-06T13:44:05.302289 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@7bb5d5ef
+2025-02-06T13:44:05.302526 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@59adbc00
+2025-02-06T13:44:05.302966 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@1390e77c
+2025-02-06T13:44:05.303061 tid5712 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@27e904b2
+2025-02-06T13:44:05.303788 tid5712 [IFO,App] Plugin loading took 810ms
+2025-02-06T13:44:05.303984 tid6868 [IFO,App] Finished waiting for plugins to load
+2025-02-06T13:44:06.915853 tid6868 [dbg,App] [UI] JCheckBox "Use fast initialization (uncheck when problematic)" toggled on in IntroDlg.
+2025-02-06T13:44:09.042916 tid6868 [dbg,Core] Will unload all devices
+2025-02-06T13:44:09.042924 tid6868 [IFO,Core] Did unload all devices
+2025-02-06T13:44:09.043272 tid6868 [dbg,Core] Will set Core property: Initialize = 0
+2025-02-06T13:44:09.043275 tid6868 [dbg,Core] Will unload all devices
+2025-02-06T13:44:09.043276 tid6868 [IFO,Core] Did unload all devices
+2025-02-06T13:44:09.043318 tid6868 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-02-06T13:44:09.043324 tid6868 [dbg,App] Notification from MMCore ignored
+2025-02-06T13:44:09.043334 tid6868 [dbg,Core] Did set Core property: Initialize = 0
+2025-02-06T13:44:09.043345 tid6868 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T13:44:09.044863 tid6868 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T13:44:09.044870 tid6868 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T13:44:09.045751 tid6868 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T13:44:09.045760 tid6868 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T13:44:09.045765 tid6868 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to COM5
+2025-02-06T13:44:09.045768 tid6868 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T13:44:09.045775 tid6868 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T13:44:09.045781 tid6868 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T13:44:09.045785 tid6868 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T13:44:09.045787 tid6868 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T13:44:09.045790 tid6868 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T13:44:09.045792 tid6868 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T13:44:09.045795 tid6868 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T13:44:09.045803 tid6868 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T13:44:09.045806 tid6868 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T13:44:09.045808 tid6868 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T13:44:09.045813 tid6868 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T13:44:09.045814 tid6868 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T13:44:09.045817 tid6868 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T13:44:09.045819 tid6868 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T13:44:09.045822 tid6868 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T13:44:09.045823 tid6868 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T13:44:09.045836 tid6868 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T13:44:09.045838 tid6868 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T13:44:09.045840 tid6868 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T13:44:09.045842 tid6868 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T13:44:09.045847 tid6868 [dbg,Core] Will set Core property: Initialize = 1
+2025-02-06T13:44:09.045854 tid6868 [IFO,Core] Will initialize 2 devices
+2025-02-06T13:44:09.045859 tid6868 [IFO,Core] Will initialize device COM5
+2025-02-06T13:44:09.047113 tid6868 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T13:44:09.048406 tid6868 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T13:44:09.049645 tid6868 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T13:44:09.050826 tid6868 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T13:44:09.052081 tid6868 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T13:44:09.053429 tid6868 [IFO,Core] Did initialize device COM5
+2025-02-06T13:44:09.053459 tid3584 [IFO,Core] Will initialize device MCM3000
+2025-02-06T13:44:09.053596 tid3584 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:09.069721 tid3584 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.069769 tid3584 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.069776 tid3584 [IFO,Core] Did initialize device MCM3000
+2025-02-06T13:44:09.069858 tid6868 [IFO,Core] Finished initializing 2 devices
+2025-02-06T13:44:09.069949 tid6868 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-02-06T13:44:09.069965 tid6868 [dbg,App] Notification from MMCore ignored
+2025-02-06T13:44:09.069982 tid6868 [dbg,Core] Did set Core property: Initialize = 1
+2025-02-06T13:44:09.070038 tid6868 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-02-06T13:44:09.070053 tid6868 [IFO,Core] Default stage set to MCM3000
+2025-02-06T13:44:09.070079 tid6868 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-02-06T13:44:09.070089 tid6868 [dbg,App] Notification from MMCore ignored
+2025-02-06T13:44:09.070098 tid6868 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-02-06T13:44:09.070108 tid6868 [dbg,Core] Will set Core property: AutoShutter = 0
+2025-02-06T13:44:09.070142 tid6868 [dbg,Core] Autoshutter turned off
+2025-02-06T13:44:09.070154 tid6868 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 0
+2025-02-06T13:44:09.070162 tid6868 [dbg,App] Notification from MMCore ignored
+2025-02-06T13:44:09.070171 tid6868 [dbg,Core] Did set Core property: AutoShutter = 0
+2025-02-06T13:44:09.070234 tid6868 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-02-06T13:44:09.070669 tid6868 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-02-06T13:44:09.070724 tid6868 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-02-06T13:44:09.070783 tid6868 [dbg,Core] Waiting for device COM5...
+2025-02-06T13:44:09.070789 tid6868 [dbg,Core] Finished waiting for device COM5
+2025-02-06T13:44:09.070793 tid6868 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T13:44:09.070857 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:09.111375 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.111422 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.111491 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.111501 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:09.111510 tid6868 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T13:44:09.111515 tid6868 [dbg,Core] Will update system state cache
+2025-02-06T13:44:09.111686 tid6868 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T13:44:09.111845 tid6868 [IFO,Core] Did update system state cache
+2025-02-06T13:44:09.111924 tid6868 [dbg,App] Notification from MMCore ignored
+2025-02-06T13:44:09.116342 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:09.141950 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.141984 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.142008 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.142017 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:09.201191 tid6868 [dbg,Core] Will set circular buffer size to 50000 MB
+2025-02-06T13:44:09.201289 tid6868 [dbg,Core] Did set circular buffer size to 50000 MB
+2025-02-06T13:44:09.204668 tid6868 [IFO,App] EDTHangLogger: Started monitoring of EDT hangs
+                                   [       ] [heartbeat timeout = 4500 ms, hang check interval = 1000 ms]
+2025-02-06T13:44:09.514343 tid6868 [IFO,App] Rebuilding config group table
+2025-02-06T13:44:09.514397 tid6868 [IFO,App] Finished rebuilding config group table
+2025-02-06T13:44:09.528693 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:09.558064 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.558184 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.558245 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.558265 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:09.577696 tid6868 [IFO,App] Startup script (C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\MMStartup.bsh) not present
+2025-02-06T13:44:09.577774 tid6868 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-02-06T13:44:09.578037 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:09.598694 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.598740 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.598765 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:09.598774 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:09.604954 tid6868 [IFO,App] Rebuilding config group table
+2025-02-06T13:44:09.604985 tid6868 [IFO,App] Finished rebuilding config group table
+2025-02-06T13:44:09.605722 tid6868 [IFO,App] Finished updating GUI
+2025-02-06T13:44:09.619177 tid6868 [dbg,App] [UI] JButton "OK" clicked in IntroDlg.
+2025-02-06T13:44:12.333038 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:12.357587 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.357600 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.357606 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.357609 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:12.361174 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:12.388435 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.388449 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.388454 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.388456 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:12.393730 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:12.418377 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.418386 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.418391 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.418393 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:12.420453 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:12.448790 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.448803 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.448809 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.448811 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:12.450646 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:12.469429 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.469441 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.469447 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.469449 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:12.472106 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:12.509952 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.509965 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.509970 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:12.509972 tid6868 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:12.527060 tid6868 [dbg,App] [UI] JButton clicked in MainFrame.
+2025-02-06T13:44:17.663079 tid2208 [IFO,App] Initialized ZMQ Server on port: 4827
+2025-02-06T13:44:17.886072 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:17.886196 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset 0.60000 um
+2025-02-06T13:44:17.886226 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:17.916818 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.916831 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.916836 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.916839 tid3176 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:17.916847 tid3176 [dbg,dev:MCM3000] Relative move: current=2392.26 offset=0.6 target=2392.86
+2025-02-06T13:44:17.916851 tid3176 [dbg,dev:MCM3000] Requested: 2392.86 um, Actual: 2392.89 um
+2025-02-06T13:44:17.916866 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:17.946939 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.946949 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.946954 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.946956 tid3176 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:17.946978 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:17.947014 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:17.977043 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.977057 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.977063 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:17.977065 tid3176 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:18.029335 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:18.050132 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:18.050150 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:18.050157 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 26 2c 00 00
+2025-02-06T13:44:18.050159 tid3176 [dbg,dev:MCM3000] Current position: 11302 steps (0x00002c26)
+2025-02-06T13:44:18.102467 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:18.134191 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 27 2c 00 00
+2025-02-06T13:44:18.134238 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 27 2c 00 00
+2025-02-06T13:44:18.134262 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 27 2c 00 00
+2025-02-06T13:44:18.134271 tid3176 [dbg,dev:MCM3000] Current position: 11303 steps (0x00002c27)
+2025-02-06T13:44:18.185965 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:18.215917 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.215965 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.215991 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.216002 tid3176 [dbg,dev:MCM3000] Current position: 11304 steps (0x00002c28)
+2025-02-06T13:44:18.216136 tid3176 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T13:44:18.216209 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:18.245922 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.245953 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.245974 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.245982 tid3176 [dbg,dev:MCM3000] Current position: 11304 steps (0x00002c28)
+2025-02-06T13:44:18.245991 tid3176 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T13:44:18.246103 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:18.275957 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.276001 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.276026 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 28 2c 00 00
+2025-02-06T13:44:18.276035 tid3176 [dbg,dev:MCM3000] Current position: 11304 steps (0x00002c28)
+2025-02-06T13:44:20.227202 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset 0.60000 um
+2025-02-06T13:44:20.227228 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:20.227241 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.255786 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.255800 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.255805 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.255807 tid3176 [dbg,dev:MCM3000] Current position: 11305 steps (0x00002c29)
+2025-02-06T13:44:20.255815 tid3176 [dbg,dev:MCM3000] Relative move: current=2392.89 offset=0.6 target=2393.49
+2025-02-06T13:44:20.255818 tid3176 [dbg,dev:MCM3000] Requested: 2393.49 um, Actual: 2393.53 um
+2025-02-06T13:44:20.255834 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.285881 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.285893 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.285901 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.285904 tid3176 [dbg,dev:MCM3000] Current position: 11305 steps (0x00002c29)
+2025-02-06T13:44:20.285935 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:20.285948 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.317654 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.317687 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.317702 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.317708 tid3176 [dbg,dev:MCM3000] Current position: 11305 steps (0x00002c29)
+2025-02-06T13:44:20.369705 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.401265 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.401312 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.401334 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 29 2c 00 00
+2025-02-06T13:44:20.401342 tid3176 [dbg,dev:MCM3000] Current position: 11305 steps (0x00002c29)
+2025-02-06T13:44:20.453667 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.485130 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2a 2c 00 00
+2025-02-06T13:44:20.485192 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2a 2c 00 00
+2025-02-06T13:44:20.485215 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2a 2c 00 00
+2025-02-06T13:44:20.485227 tid3176 [dbg,dev:MCM3000] Current position: 11306 steps (0x00002c2a)
+2025-02-06T13:44:20.535931 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.565981 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.566032 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.566056 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.566065 tid3176 [dbg,dev:MCM3000] Current position: 11307 steps (0x00002c2b)
+2025-02-06T13:44:20.566101 tid3176 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T13:44:20.566172 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.595911 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.595945 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.595967 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.595976 tid3176 [dbg,dev:MCM3000] Current position: 11307 steps (0x00002c2b)
+2025-02-06T13:44:20.595986 tid3176 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T13:44:20.596075 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:20.615979 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.616013 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.616035 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2b 2c 00 00
+2025-02-06T13:44:20.616044 tid3176 [dbg,dev:MCM3000] Current position: 11307 steps (0x00002c2b)
+2025-02-06T13:44:21.387265 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset 0.60000 um
+2025-02-06T13:44:21.387303 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.387328 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:21.415830 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.415843 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.415848 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.415851 tid3176 [dbg,dev:MCM3000] Current position: 11308 steps (0x00002c2c)
+2025-02-06T13:44:21.415860 tid3176 [dbg,dev:MCM3000] Relative move: current=2393.53 offset=0.6 target=2394.13
+2025-02-06T13:44:21.415864 tid3176 [dbg,dev:MCM3000] Requested: 2394.13 um, Actual: 2394.16 um
+2025-02-06T13:44:21.415881 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.445884 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.445894 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.445900 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.445902 tid3176 [dbg,dev:MCM3000] Current position: 11308 steps (0x00002c2c)
+2025-02-06T13:44:21.445928 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:21.445940 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.465943 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.465958 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.465965 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.465968 tid3176 [dbg,dev:MCM3000] Current position: 11308 steps (0x00002c2c)
+2025-02-06T13:44:21.525895 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.555645 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.555695 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.555718 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2c 2c 00 00
+2025-02-06T13:44:21.555727 tid3176 [dbg,dev:MCM3000] Current position: 11308 steps (0x00002c2c)
+2025-02-06T13:44:21.616093 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.645974 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2d 2c 00 00
+2025-02-06T13:44:21.646026 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2d 2c 00 00
+2025-02-06T13:44:21.646051 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2d 2c 00 00
+2025-02-06T13:44:21.646061 tid3176 [dbg,dev:MCM3000] Current position: 11309 steps (0x00002c2d)
+2025-02-06T13:44:21.705946 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.736172 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.736221 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.736246 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.736255 tid3176 [dbg,dev:MCM3000] Current position: 11310 steps (0x00002c2e)
+2025-02-06T13:44:21.736292 tid3176 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T13:44:21.736360 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.755982 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.756020 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.756044 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.756053 tid3176 [dbg,dev:MCM3000] Current position: 11310 steps (0x00002c2e)
+2025-02-06T13:44:21.756062 tid3176 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T13:44:21.756149 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:21.787196 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.787247 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.787270 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2e 2c 00 00
+2025-02-06T13:44:21.787290 tid3176 [dbg,dev:MCM3000] Current position: 11310 steps (0x00002c2e)
+2025-02-06T13:44:25.011237 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset 21.00000 um
+2025-02-06T13:44:25.011276 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.011381 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:25.042809 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.042824 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.042830 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.042834 tid3176 [dbg,dev:MCM3000] Current position: 11311 steps (0x00002c2f)
+2025-02-06T13:44:25.042844 tid3176 [dbg,dev:MCM3000] Relative move: current=2394.16 offset=21 target=2415.16
+2025-02-06T13:44:25.042848 tid3176 [dbg,dev:MCM3000] Requested: 2415.16 um, Actual: 2415.12 um
+2025-02-06T13:44:25.042869 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.073986 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.074009 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.074020 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.074024 tid3176 [dbg,dev:MCM3000] Current position: 11311 steps (0x00002c2f)
+2025-02-06T13:44:25.074064 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:25.074084 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.095467 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.095508 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.095527 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.095534 tid3176 [dbg,dev:MCM3000] Current position: 11311 steps (0x00002c2f)
+2025-02-06T13:44:25.147174 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.167921 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.167970 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.167993 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 2f 2c 00 00
+2025-02-06T13:44:25.168002 tid3176 [dbg,dev:MCM3000] Current position: 11311 steps (0x00002c2f)
+2025-02-06T13:44:25.219774 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.249867 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 44 2c 00 00
+2025-02-06T13:44:25.249880 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 44 2c 00 00
+2025-02-06T13:44:25.249886 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 44 2c 00 00
+2025-02-06T13:44:25.249888 tid3176 [dbg,dev:MCM3000] Current position: 11332 steps (0x00002c44)
+2025-02-06T13:44:25.301884 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.333733 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 61 2c 00 00
+2025-02-06T13:44:25.333784 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 61 2c 00 00
+2025-02-06T13:44:25.333808 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 61 2c 00 00
+2025-02-06T13:44:25.333817 tid3176 [dbg,dev:MCM3000] Current position: 11361 steps (0x00002c61)
+2025-02-06T13:44:25.385795 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.417945 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 74 2c 00 00
+2025-02-06T13:44:25.417996 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 74 2c 00 00
+2025-02-06T13:44:25.418019 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 74 2c 00 00
+2025-02-06T13:44:25.418028 tid3176 [dbg,dev:MCM3000] Current position: 11380 steps (0x00002c74)
+2025-02-06T13:44:25.469808 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.500842 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 7e 2c 00 00
+2025-02-06T13:44:25.500892 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 7e 2c 00 00
+2025-02-06T13:44:25.500916 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 7e 2c 00 00
+2025-02-06T13:44:25.500936 tid3176 [dbg,dev:MCM3000] Current position: 11390 steps (0x00002c7e)
+2025-02-06T13:44:25.553189 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:25.584414 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 87 2c 00 00
+2025-02-06T13:44:25.584463 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 87 2c 00 00
+2025-02-06T13:44:25.584487 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 87 2c 00 00
+2025-02-06T13:44:25.584496 tid3176 [dbg,dev:MCM3000] Current position: 11399 steps (0x00002c87)
+2025-02-06T13:44:25.636272 tid3176 [dbg,dev:MCM3000] Move did not complete within timeout
+2025-02-06T13:44:25.636344 tid3176 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Device response timeout. (10013)
+2025-02-06T13:44:25.637442 tid3176 [IFO,App] 
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Device response timeout. (10013) in Thread[ZNavigator-MCM3000 Pool Thread 0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_setRelativePosition__SWIG_0(Native Method)
+                                   [       ]   at mmcorej.CMMCore.setRelativePosition(CMMCore.java:1196)
+                                   [       ]   at org.micromanager.internal.navigation.ZNavigator$ZStageTask.run(ZNavigator.java:108)
+                                   [       ]   at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+                                   [       ]   at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+                                   [       ]   at java.lang.Thread.run(Thread.java:748)
+2025-02-06T13:44:33.394765 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset 21.00000 um
+2025-02-06T13:44:33.394795 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:33.394800 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.426458 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.426471 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.426476 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.426478 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:33.426486 tid3176 [dbg,dev:MCM3000] Relative move: current=2415.12 offset=21 target=2436.12
+2025-02-06T13:44:33.426489 tid3176 [dbg,dev:MCM3000] Requested: 2436.12 um, Actual: 2436.07 um
+2025-02-06T13:44:33.426504 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.457884 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.457900 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.457906 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.457909 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:33.457938 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:33.457955 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.489686 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.489713 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.489725 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.489730 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:33.541679 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.562740 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.562792 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.562818 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:33.562837 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:33.614744 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.645735 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 ad 2c 00 00
+2025-02-06T13:44:33.645782 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 ad 2c 00 00
+2025-02-06T13:44:33.645805 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 ad 2c 00 00
+2025-02-06T13:44:33.645814 tid3176 [dbg,dev:MCM3000] Current position: 11437 steps (0x00002cad)
+2025-02-06T13:44:33.705959 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.735975 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 ca 2c 00 00
+2025-02-06T13:44:33.736026 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 ca 2c 00 00
+2025-02-06T13:44:33.736049 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 ca 2c 00 00
+2025-02-06T13:44:33.736058 tid3176 [dbg,dev:MCM3000] Current position: 11466 steps (0x00002cca)
+2025-02-06T13:44:33.795884 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.826475 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 db 2c 00 00
+2025-02-06T13:44:33.826523 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 db 2c 00 00
+2025-02-06T13:44:33.826546 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 db 2c 00 00
+2025-02-06T13:44:33.826555 tid3176 [dbg,dev:MCM3000] Current position: 11483 steps (0x00002cdb)
+2025-02-06T13:44:33.878975 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.900300 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 e5 2c 00 00
+2025-02-06T13:44:33.900355 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 e5 2c 00 00
+2025-02-06T13:44:33.900380 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 e5 2c 00 00
+2025-02-06T13:44:33.900399 tid3176 [dbg,dev:MCM3000] Current position: 11493 steps (0x00002ce5)
+2025-02-06T13:44:33.952722 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:33.973734 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 ea 2c 00 00
+2025-02-06T13:44:33.973784 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 ea 2c 00 00
+2025-02-06T13:44:33.973807 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 ea 2c 00 00
+2025-02-06T13:44:33.973816 tid3176 [dbg,dev:MCM3000] Current position: 11498 steps (0x00002cea)
+2025-02-06T13:44:34.025926 tid3176 [dbg,dev:MCM3000] Move did not complete within timeout
+2025-02-06T13:44:34.026001 tid3176 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Device response timeout. (10013)
+2025-02-06T13:44:34.026385 tid3176 [IFO,App] 
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Device response timeout. (10013) in Thread[ZNavigator-MCM3000 Pool Thread 0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_setRelativePosition__SWIG_0(Native Method)
+                                   [       ]   at mmcorej.CMMCore.setRelativePosition(CMMCore.java:1196)
+                                   [       ]   at org.micromanager.internal.navigation.ZNavigator$ZStageTask.run(ZNavigator.java:108)
+                                   [       ]   at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+                                   [       ]   at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+                                   [       ]   at java.lang.Thread.run(Thread.java:748)
+2025-02-06T13:44:38.715287 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset -21.00000 um
+2025-02-06T13:44:38.715326 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:38.715328 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:38.747868 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.747882 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.747887 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.747889 tid3176 [dbg,dev:MCM3000] Current position: 11509 steps (0x00002cf5)
+2025-02-06T13:44:38.747898 tid3176 [dbg,dev:MCM3000] Relative move: current=2436.07 offset=-21 target=2415.07
+2025-02-06T13:44:38.747901 tid3176 [dbg,dev:MCM3000] Requested: 2415.07 um, Actual: 2415.12 um
+2025-02-06T13:44:38.747917 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:38.768635 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.768649 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.768656 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.768659 tid3176 [dbg,dev:MCM3000] Current position: 11509 steps (0x00002cf5)
+2025-02-06T13:44:38.768685 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:38.768699 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:38.800199 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.800227 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.800238 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.800243 tid3176 [dbg,dev:MCM3000] Current position: 11509 steps (0x00002cf5)
+2025-02-06T13:44:38.852786 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:38.884045 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.884093 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.884116 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 f5 2c 00 00
+2025-02-06T13:44:38.884126 tid3176 [dbg,dev:MCM3000] Current position: 11509 steps (0x00002cf5)
+2025-02-06T13:44:38.936249 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:38.967641 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 d9 2c 00 00
+2025-02-06T13:44:38.967689 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 d9 2c 00 00
+2025-02-06T13:44:38.967714 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 d9 2c 00 00
+2025-02-06T13:44:38.967725 tid3176 [dbg,dev:MCM3000] Current position: 11481 steps (0x00002cd9)
+2025-02-06T13:44:39.019500 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:39.050749 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 be 2c 00 00
+2025-02-06T13:44:39.050808 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 be 2c 00 00
+2025-02-06T13:44:39.050836 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 be 2c 00 00
+2025-02-06T13:44:39.050847 tid3176 [dbg,dev:MCM3000] Current position: 11454 steps (0x00002cbe)
+2025-02-06T13:44:39.102915 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:39.134806 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 ae 2c 00 00
+2025-02-06T13:44:39.134858 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 ae 2c 00 00
+2025-02-06T13:44:39.134882 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 ae 2c 00 00
+2025-02-06T13:44:39.134891 tid3176 [dbg,dev:MCM3000] Current position: 11438 steps (0x00002cae)
+2025-02-06T13:44:39.185954 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:39.215971 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 a4 2c 00 00
+2025-02-06T13:44:39.216023 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 a4 2c 00 00
+2025-02-06T13:44:39.216049 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 a4 2c 00 00
+2025-02-06T13:44:39.216060 tid3176 [dbg,dev:MCM3000] Current position: 11428 steps (0x00002ca4)
+2025-02-06T13:44:39.267457 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:39.298802 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 9d 2c 00 00
+2025-02-06T13:44:39.298854 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 9d 2c 00 00
+2025-02-06T13:44:39.298877 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 9d 2c 00 00
+2025-02-06T13:44:39.298887 tid3176 [dbg,dev:MCM3000] Current position: 11421 steps (0x00002c9d)
+2025-02-06T13:44:39.351116 tid3176 [dbg,dev:MCM3000] Move did not complete within timeout
+2025-02-06T13:44:39.351190 tid3176 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Device response timeout. (10013)
+2025-02-06T13:44:39.351622 tid3176 [IFO,App] 
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Device response timeout. (10013) in Thread[ZNavigator-MCM3000 Pool Thread 0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_setRelativePosition__SWIG_0(Native Method)
+                                   [       ]   at mmcorej.CMMCore.setRelativePosition(CMMCore.java:1196)
+                                   [       ]   at org.micromanager.internal.navigation.ZNavigator$ZStageTask.run(ZNavigator.java:108)
+                                   [       ]   at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+                                   [       ]   at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+                                   [       ]   at java.lang.Thread.run(Thread.java:748)
+2025-02-06T13:44:44.083281 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset -0.60000 um
+2025-02-06T13:44:44.083331 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.083359 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:44.118657 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.118672 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.118677 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.118680 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:44.118689 tid3176 [dbg,dev:MCM3000] Relative move: current=2415.12 offset=-0.6 target=2414.52
+2025-02-06T13:44:44.118692 tid3176 [dbg,dev:MCM3000] Requested: 2414.52 um, Actual: 2414.48 um
+2025-02-06T13:44:44.118711 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.139658 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.139672 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.139678 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.139681 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:44.139707 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:44.139722 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.181985 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.182036 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.182059 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.182068 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:44.233828 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.265261 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.265308 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.265331 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 92 2c 00 00
+2025-02-06T13:44:44.265340 tid3176 [dbg,dev:MCM3000] Current position: 11410 steps (0x00002c92)
+2025-02-06T13:44:44.316344 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.335974 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 91 2c 00 00
+2025-02-06T13:44:44.336023 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 91 2c 00 00
+2025-02-06T13:44:44.336046 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 91 2c 00 00
+2025-02-06T13:44:44.336056 tid3176 [dbg,dev:MCM3000] Current position: 11409 steps (0x00002c91)
+2025-02-06T13:44:44.396013 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.415959 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 91 2c 00 00
+2025-02-06T13:44:44.416006 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 91 2c 00 00
+2025-02-06T13:44:44.416029 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 91 2c 00 00
+2025-02-06T13:44:44.416038 tid3176 [dbg,dev:MCM3000] Current position: 11409 steps (0x00002c91)
+2025-02-06T13:44:44.475918 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.505863 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.505878 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.505884 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.505886 tid3176 [dbg,dev:MCM3000] Current position: 11408 steps (0x00002c90)
+2025-02-06T13:44:44.505901 tid3176 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T13:44:44.505918 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.535871 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.535885 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.535893 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.535897 tid3176 [dbg,dev:MCM3000] Current position: 11408 steps (0x00002c90)
+2025-02-06T13:44:44.535901 tid3176 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T13:44:44.535940 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:44.555930 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.555953 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.555969 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 90 2c 00 00
+2025-02-06T13:44:44.555975 tid3176 [dbg,dev:MCM3000] Current position: 11408 steps (0x00002c90)
+2025-02-06T13:44:45.443604 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset -0.60000 um
+2025-02-06T13:44:45.443637 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:45.465861 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.465876 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.465881 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.465883 tid3176 [dbg,dev:MCM3000] Current position: 11407 steps (0x00002c8f)
+2025-02-06T13:44:45.465892 tid3176 [dbg,dev:MCM3000] Relative move: current=2414.48 offset=-0.6 target=2413.88
+2025-02-06T13:44:45.465895 tid3176 [dbg,dev:MCM3000] Requested: 2413.88 um, Actual: 2413.85 um
+2025-02-06T13:44:45.465916 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:45.496890 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.496909 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.496916 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.496919 tid3176 [dbg,dev:MCM3000] Current position: 11407 steps (0x00002c8f)
+2025-02-06T13:44:45.496952 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:45.496971 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:45.528771 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.528787 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.528793 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.528796 tid3176 [dbg,dev:MCM3000] Current position: 11407 steps (0x00002c8f)
+2025-02-06T13:44:45.581231 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:45.601800 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.601812 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.601817 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8f 2c 00 00
+2025-02-06T13:44:45.601820 tid3176 [dbg,dev:MCM3000] Current position: 11407 steps (0x00002c8f)
+2025-02-06T13:44:45.653652 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:45.674407 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.674431 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.674441 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.674445 tid3176 [dbg,dev:MCM3000] Current position: 11405 steps (0x00002c8d)
+2025-02-06T13:44:45.674465 tid3176 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T13:44:45.674499 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:45.715958 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.716005 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.716029 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.716038 tid3176 [dbg,dev:MCM3000] Current position: 11405 steps (0x00002c8d)
+2025-02-06T13:44:45.716049 tid3176 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T13:44:45.716166 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:45.746644 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.746695 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.746720 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8d 2c 00 00
+2025-02-06T13:44:45.746732 tid3176 [dbg,dev:MCM3000] Current position: 11405 steps (0x00002c8d)
+2025-02-06T13:44:52.195146 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset -10.00000 um
+2025-02-06T13:44:52.195192 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.195221 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:52.222160 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.222173 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.222179 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.222181 tid3176 [dbg,dev:MCM3000] Current position: 11404 steps (0x00002c8c)
+2025-02-06T13:44:52.222189 tid3176 [dbg,dev:MCM3000] Relative move: current=2413.85 offset=-10 target=2403.85
+2025-02-06T13:44:52.222192 tid3176 [dbg,dev:MCM3000] Requested: 2403.85 um, Actual: 2403.9 um
+2025-02-06T13:44:52.222210 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.254105 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.254128 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.254137 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.254141 tid3176 [dbg,dev:MCM3000] Current position: 11404 steps (0x00002c8c)
+2025-02-06T13:44:52.254180 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:52.254201 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.275415 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.275448 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.275464 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:52.275470 tid3176 [dbg,dev:MCM3000] Current position: 11404 steps (0x00002c8c)
+2025-02-06T13:44:52.325965 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.346856 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 80 2c 00 00
+2025-02-06T13:44:52.346908 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 80 2c 00 00
+2025-02-06T13:44:52.346934 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 80 2c 00 00
+2025-02-06T13:44:52.346947 tid3176 [dbg,dev:MCM3000] Current position: 11392 steps (0x00002c80)
+2025-02-06T13:44:52.399174 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.430555 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 75 2c 00 00
+2025-02-06T13:44:52.430609 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 75 2c 00 00
+2025-02-06T13:44:52.430635 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 75 2c 00 00
+2025-02-06T13:44:52.430652 tid3176 [dbg,dev:MCM3000] Current position: 11381 steps (0x00002c75)
+2025-02-06T13:44:52.483503 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.514407 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 6d 2c 00 00
+2025-02-06T13:44:52.514424 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 6d 2c 00 00
+2025-02-06T13:44:52.514431 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 6d 2c 00 00
+2025-02-06T13:44:52.514434 tid3176 [dbg,dev:MCM3000] Current position: 11373 steps (0x00002c6d)
+2025-02-06T13:44:52.565954 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.595983 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 66 2c 00 00
+2025-02-06T13:44:52.596038 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 66 2c 00 00
+2025-02-06T13:44:52.596066 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 66 2c 00 00
+2025-02-06T13:44:52.596082 tid3176 [dbg,dev:MCM3000] Current position: 11366 steps (0x00002c66)
+2025-02-06T13:44:52.655956 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.675981 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 62 2c 00 00
+2025-02-06T13:44:52.676035 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 62 2c 00 00
+2025-02-06T13:44:52.676061 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 62 2c 00 00
+2025-02-06T13:44:52.676074 tid3176 [dbg,dev:MCM3000] Current position: 11362 steps (0x00002c62)
+2025-02-06T13:44:52.735939 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:52.766190 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 60 2c 00 00
+2025-02-06T13:44:52.766244 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 60 2c 00 00
+2025-02-06T13:44:52.766269 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 60 2c 00 00
+2025-02-06T13:44:52.766287 tid3176 [dbg,dev:MCM3000] Current position: 11360 steps (0x00002c60)
+2025-02-06T13:44:52.825862 tid3176 [dbg,dev:MCM3000] Move did not complete within timeout
+2025-02-06T13:44:52.825937 tid3176 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Device response timeout. (10013)
+2025-02-06T13:44:52.826321 tid3176 [IFO,App] 
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Device response timeout. (10013) in Thread[ZNavigator-MCM3000 Pool Thread 0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_setRelativePosition__SWIG_0(Native Method)
+                                   [       ]   at mmcorej.CMMCore.setRelativePosition(CMMCore.java:1196)
+                                   [       ]   at org.micromanager.internal.navigation.ZNavigator$ZStageTask.run(ZNavigator.java:108)
+                                   [       ]   at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+                                   [       ]   at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+                                   [       ]   at java.lang.Thread.run(Thread.java:748)
+2025-02-06T13:44:55.818764 tid3176 [dbg,Core] Will start relative move of MCM3000 by offset 10.00000 um
+2025-02-06T13:44:55.818766 tid6868 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T13:44:55.818800 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:55.849100 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.849112 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.849118 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.849120 tid3176 [dbg,dev:MCM3000] Current position: 11357 steps (0x00002c5d)
+2025-02-06T13:44:55.849128 tid3176 [dbg,dev:MCM3000] Relative move: current=2403.9 offset=10 target=2413.9
+2025-02-06T13:44:55.849131 tid3176 [dbg,dev:MCM3000] Requested: 2413.9 um, Actual: 2413.85 um
+2025-02-06T13:44:55.849149 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:55.870133 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.870150 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.870158 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.870161 tid3176 [dbg,dev:MCM3000] Current position: 11357 steps (0x00002c5d)
+2025-02-06T13:44:55.870194 tid3176 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:44:55.870213 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:55.901871 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.901913 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.901931 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.901939 tid3176 [dbg,dev:MCM3000] Current position: 11357 steps (0x00002c5d)
+2025-02-06T13:44:55.954086 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:55.985266 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.985316 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.985339 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 5d 2c 00 00
+2025-02-06T13:44:55.985348 tid3176 [dbg,dev:MCM3000] Current position: 11357 steps (0x00002c5d)
+2025-02-06T13:44:56.035986 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:56.065941 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 6d 2c 00 00
+2025-02-06T13:44:56.065988 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 6d 2c 00 00
+2025-02-06T13:44:56.066010 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 6d 2c 00 00
+2025-02-06T13:44:56.066019 tid3176 [dbg,dev:MCM3000] Current position: 11373 steps (0x00002c6d)
+2025-02-06T13:44:56.117176 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:56.148712 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 78 2c 00 00
+2025-02-06T13:44:56.148762 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 78 2c 00 00
+2025-02-06T13:44:56.148785 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 78 2c 00 00
+2025-02-06T13:44:56.148794 tid3176 [dbg,dev:MCM3000] Current position: 11384 steps (0x00002c78)
+2025-02-06T13:44:56.201001 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:56.222313 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 7f 2c 00 00
+2025-02-06T13:44:56.222366 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 7f 2c 00 00
+2025-02-06T13:44:56.222391 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 7f 2c 00 00
+2025-02-06T13:44:56.222400 tid3176 [dbg,dev:MCM3000] Current position: 11391 steps (0x00002c7f)
+2025-02-06T13:44:56.274482 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:56.306030 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 83 2c 00 00
+2025-02-06T13:44:56.306082 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 83 2c 00 00
+2025-02-06T13:44:56.306109 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 83 2c 00 00
+2025-02-06T13:44:56.306119 tid3176 [dbg,dev:MCM3000] Current position: 11395 steps (0x00002c83)
+2025-02-06T13:44:56.365977 tid3176 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:44:56.395975 tid3176 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 88 2c 00 00
+2025-02-06T13:44:56.396027 tid3176 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 88 2c 00 00
+2025-02-06T13:44:56.396059 tid3176 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 88 2c 00 00
+2025-02-06T13:44:56.396069 tid3176 [dbg,dev:MCM3000] Current position: 11400 steps (0x00002c88)
+2025-02-06T13:44:56.455844 tid3176 [dbg,dev:MCM3000] Move did not complete within timeout
+2025-02-06T13:44:56.455920 tid3176 [ERR,Core] Error occurred in device MCM3000: Error in device "MCM3000": Device response timeout. (10013)
+2025-02-06T13:44:56.456324 tid3176 [IFO,App] 
+                                   [       ] java.lang.Exception: Error in device "MCM3000": Device response timeout. (10013) in Thread[ZNavigator-MCM3000 Pool Thread 0,6,main]
+                                   [       ]   at mmcorej.MMCoreJJNI.CMMCore_setRelativePosition__SWIG_0(Native Method)
+                                   [       ]   at mmcorej.CMMCore.setRelativePosition(CMMCore.java:1196)
+                                   [       ]   at org.micromanager.internal.navigation.ZNavigator$ZStageTask.run(ZNavigator.java:108)
+                                   [       ]   at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)
+                                   [       ]   at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)
+                                   [       ]   at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+                                   [       ]   at java.lang.Thread.run(Thread.java:748)
+2025-02-06T13:45:01.072674 tid6868 [IFO,App] EDTHangLogger: Stopping monitoring of EDT hangs
+2025-02-06T13:45:01.072719 tid6868 [dbg,Core] Waiting for device COM5...
+2025-02-06T13:45:01.072723 tid6868 [dbg,Core] Finished waiting for device COM5
+2025-02-06T13:45:01.072725 tid6868 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T13:45:01.072752 tid6868 [dbg,dev:COM5] Write -> (hex) 0a 04 01 00 00 00
+2025-02-06T13:45:01.095823 tid6868 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:45:01.095833 tid6868 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:45:01.095838 tid6868 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 01 00 8c 2c 00 00
+2025-02-06T13:45:01.095841 tid6868 [dbg,dev:MCM3000] Current position: 11404 steps (0x00002c8c)
+2025-02-06T13:45:01.095844 tid6868 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T13:45:01.095848 tid6868 [dbg,Core] Will unload all devices
+2025-02-06T13:45:01.095849 tid6868 [dbg,dev:MCM3000] Shutting down...
+2025-02-06T13:45:01.385767 tid6868 [IFO,Core] Did unload all devices
+2025-02-06T13:45:01.385817 tid6868 [IFO,Core] System reset
+2025-02-06T13:45:01.386903 tid6868 [IFO,Core] Core session ended
