@@ -1,0 +1,1017 @@
+2025-02-06T15:43:34.077824 tid5244 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250206T154334_pid9920.txt
+2025-02-06T15:43:34.077915 tid5244 [IFO,App] User: admin
+2025-02-06T15:43:34.078280 tid5244 [IFO,App] Host: FLEXOPC
+2025-02-06T15:43:34.078293 tid5244 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-02-06T15:43:34.078321 tid5244 [IFO,App] MMCore version 11.3.0
+2025-02-06T15:43:34.078337 tid5244 [IFO,App] Device API version 71, Module API version 10
+2025-02-06T15:43:34.078344 tid5244 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-02-06T15:43:34.078351 tid5244 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-02-06T15:43:34.466555 tid5648 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@25d47ef8
+2025-02-06T15:43:34.467896 tid5648 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@6f6e1bf5
+2025-02-06T15:43:34.467990 tid5648 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@5390343c
+2025-02-06T15:43:34.468063 tid5648 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@6884c196
+2025-02-06T15:43:34.468776 tid5648 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@345b62af
+2025-02-06T15:43:34.468865 tid5648 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@7a1d9dc3
+2025-02-06T15:43:34.468942 tid5648 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@37f115d2
+2025-02-06T15:43:34.468998 tid5648 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@15b76ca7
+2025-02-06T15:43:34.469050 tid5648 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@7a163aa4
+2025-02-06T15:43:34.469103 tid5648 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@6cf353a0
+2025-02-06T15:43:34.469234 tid5648 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@53139469
+2025-02-06T15:43:34.469338 tid5648 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@7d6f18f8
+2025-02-06T15:43:34.470609 tid5648 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@36e7deeb
+2025-02-06T15:43:34.470723 tid5648 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@40fff5c4
+2025-02-06T15:43:34.470805 tid5648 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@f80816e
+2025-02-06T15:43:34.471983 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@5316a080
+2025-02-06T15:43:34.472713 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@1811c5cf
+2025-02-06T15:43:34.473358 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@5d7d992f
+2025-02-06T15:43:34.474103 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@80062fb
+2025-02-06T15:43:34.475082 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@16c436d5
+2025-02-06T15:43:34.475953 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@45c2ea90
+2025-02-06T15:43:34.476347 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@72870e63
+2025-02-06T15:43:34.476801 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@5977373a
+2025-02-06T15:43:34.477466 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@618f0612
+2025-02-06T15:43:34.477701 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@1a133fe
+2025-02-06T15:43:34.478129 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@552e263d
+2025-02-06T15:43:34.478216 tid5648 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@5d18d1a5
+2025-02-06T15:43:34.478571 tid5648 [IFO,App] Plugin loading took 793ms
+2025-02-06T15:43:34.478745 tid5244 [IFO,App] Finished waiting for plugins to load
+2025-02-06T15:43:36.997267 tid5244 [dbg,Core] Will unload all devices
+2025-02-06T15:43:36.997274 tid5244 [IFO,Core] Did unload all devices
+2025-02-06T15:43:36.997612 tid5244 [dbg,Core] Will set Core property: Initialize = 0
+2025-02-06T15:43:36.997615 tid5244 [dbg,Core] Will unload all devices
+2025-02-06T15:43:36.997616 tid5244 [IFO,Core] Did unload all devices
+2025-02-06T15:43:36.997671 tid5244 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-02-06T15:43:36.997674 tid5244 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:43:36.997684 tid5244 [dbg,Core] Did set Core property: Initialize = 0
+2025-02-06T15:43:36.997695 tid5244 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T15:43:36.999235 tid5244 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T15:43:36.999243 tid5244 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:43:37.000154 tid5244 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:43:37.000161 tid5244 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T15:43:37.000170 tid5244 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to COM5
+2025-02-06T15:43:37.000174 tid5244 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T15:43:37.000181 tid5244 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:43:37.000187 tid5244 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:43:37.000191 tid5244 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T15:43:37.000193 tid5244 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T15:43:37.000197 tid5244 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T15:43:37.000199 tid5244 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T15:43:37.000202 tid5244 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T15:43:37.000205 tid5244 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T15:43:37.000208 tid5244 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:43:37.000210 tid5244 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:43:37.000214 tid5244 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:43:37.000216 tid5244 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:43:37.000220 tid5244 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T15:43:37.000221 tid5244 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T15:43:37.000224 tid5244 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T15:43:37.000226 tid5244 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T15:43:37.000235 tid5244 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T15:43:37.000237 tid5244 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T15:43:37.000239 tid5244 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T15:43:37.000241 tid5244 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T15:43:37.000245 tid5244 [dbg,Core] Will set Core property: Initialize = 1
+2025-02-06T15:43:37.000254 tid5244 [IFO,Core] Will initialize 2 devices
+2025-02-06T15:43:37.000258 tid5244 [IFO,Core] Will initialize device COM5
+2025-02-06T15:43:37.001609 tid5244 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T15:43:37.002862 tid5244 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T15:43:37.004075 tid5244 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T15:43:37.005303 tid5244 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T15:43:37.006564 tid5244 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T15:43:37.007856 tid5244 [IFO,Core] Did initialize device COM5
+2025-02-06T15:43:37.007886 tid8684 [IFO,Core] Will initialize device MCM3000
+2025-02-06T15:43:37.007928 tid8684 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:37.041146 tid8684 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.041205 tid8684 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.041241 tid8684 [IFO,Core] Did initialize device MCM3000
+2025-02-06T15:43:37.041329 tid5244 [IFO,Core] Finished initializing 2 devices
+2025-02-06T15:43:37.041424 tid5244 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-02-06T15:43:37.041430 tid5244 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:43:37.041445 tid5244 [dbg,Core] Did set Core property: Initialize = 1
+2025-02-06T15:43:37.041502 tid5244 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-02-06T15:43:37.041516 tid5244 [IFO,Core] Default stage set to MCM3000
+2025-02-06T15:43:37.041542 tid5244 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-02-06T15:43:37.041546 tid5244 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:43:37.041570 tid5244 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-02-06T15:43:37.041581 tid5244 [dbg,Core] Will set Core property: AutoShutter = 0
+2025-02-06T15:43:37.041617 tid5244 [dbg,Core] Autoshutter turned off
+2025-02-06T15:43:37.041631 tid5244 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 0
+2025-02-06T15:43:37.041634 tid5244 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:43:37.041641 tid5244 [dbg,Core] Did set Core property: AutoShutter = 0
+2025-02-06T15:43:37.041704 tid5244 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-02-06T15:43:37.041753 tid5244 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-02-06T15:43:37.041791 tid5244 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-02-06T15:43:37.041853 tid5244 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:43:37.041859 tid5244 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:43:37.041863 tid5244 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:43:37.041932 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:37.061804 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.061834 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.061855 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.061868 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:37.061881 tid5244 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:43:37.061888 tid5244 [dbg,Core] Will update system state cache
+2025-02-06T15:43:37.062080 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:43:37.062188 tid5244 [IFO,Core] Did update system state cache
+2025-02-06T15:43:37.062260 tid5244 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:43:37.066679 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:37.103163 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.103220 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.103246 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.103256 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:37.174133 tid5244 [dbg,Core] Will set circular buffer size to 50000 MB
+2025-02-06T15:43:37.174236 tid5244 [dbg,Core] Did set circular buffer size to 50000 MB
+2025-02-06T15:43:37.176632 tid5244 [IFO,App] EDTHangLogger: Started monitoring of EDT hangs
+                                   [       ] [heartbeat timeout = 4500 ms, hang check interval = 1000 ms]
+2025-02-06T15:43:37.484413 tid5244 [IFO,App] Rebuilding config group table
+2025-02-06T15:43:37.484466 tid5244 [IFO,App] Finished rebuilding config group table
+2025-02-06T15:43:37.494541 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:37.522005 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.522052 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.522080 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.522089 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:37.539826 tid5244 [IFO,App] Startup script (C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\MMStartup.bsh) not present
+2025-02-06T15:43:37.539904 tid5244 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-02-06T15:43:37.540165 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:37.573149 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.573190 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.573210 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:37.573219 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:37.579229 tid5244 [IFO,App] Rebuilding config group table
+2025-02-06T15:43:37.579259 tid5244 [IFO,App] Finished rebuilding config group table
+2025-02-06T15:43:37.579833 tid5244 [IFO,App] Finished updating GUI
+2025-02-06T15:43:37.589323 tid5244 [dbg,App] [UI] JButton "OK" clicked in IntroDlg.
+2025-02-06T15:43:39.843747 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:39.864468 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.864482 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.864487 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.864490 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:39.867114 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:39.904841 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.904854 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.904860 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.904862 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:39.907430 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:39.935610 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.935623 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.935628 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.935630 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:39.938354 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:39.966430 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.966443 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.966448 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.966450 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:39.968498 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:39.996952 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.996965 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.996970 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:39.996972 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:39.999841 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:40.017421 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:40.017429 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:40.017434 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:40.017436 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:40.032150 tid5244 [dbg,App] [UI] JButton clicked in MainFrame.
+2025-02-06T15:43:41.022519 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.042758 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.042770 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.042775 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.042777 tid14060 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:41.319567 tid5244 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T15:43:41.323162 tid5108 [dbg,Core] Will start relative move of MCM3000 by offset 1000.00000 um
+2025-02-06T15:43:41.323190 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.346614 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.346623 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.346629 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.346631 tid5108 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:41.346639 tid5108 [dbg,dev:MCM3000] Relative move: current=2200.91 offset=1000 target=3200.91
+2025-02-06T15:43:41.346642 tid5108 [dbg,dev:MCM3000] Requested: 3200.91 um, Actual: 3200.82 um
+2025-02-06T15:43:41.346660 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.376932 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.376945 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.376951 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.376954 tid5108 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:41.376956 tid5108 [dbg,dev:MCM3000] Move command: current=10398 target=15122 delta=4724 steps
+2025-02-06T15:43:41.376983 tid5108 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:41.377006 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.407879 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.407892 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.407898 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:41.407900 tid5108 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:41.458120 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.478185 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 68 29 00 00
+2025-02-06T15:43:41.478197 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 68 29 00 00
+2025-02-06T15:43:41.478203 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 68 29 00 00
+2025-02-06T15:43:41.478205 tid5108 [dbg,dev:MCM3000] Current position: 10600 steps (0x00002968)
+2025-02-06T15:43:41.528384 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.558496 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 50 2c 00 00
+2025-02-06T15:43:41.558509 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 50 2c 00 00
+2025-02-06T15:43:41.558515 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 50 2c 00 00
+2025-02-06T15:43:41.558517 tid5108 [dbg,dev:MCM3000] Current position: 11344 steps (0x00002c50)
+2025-02-06T15:43:41.609055 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.629118 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 4b 31 00 00
+2025-02-06T15:43:41.629130 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 4b 31 00 00
+2025-02-06T15:43:41.629136 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 4b 31 00 00
+2025-02-06T15:43:41.629139 tid5108 [dbg,dev:MCM3000] Current position: 12619 steps (0x0000314b)
+2025-02-06T15:43:41.679327 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.699994 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 68 34 00 00
+2025-02-06T15:43:41.700005 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 68 34 00 00
+2025-02-06T15:43:41.700011 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 68 34 00 00
+2025-02-06T15:43:41.700013 tid5108 [dbg,dev:MCM3000] Current position: 13416 steps (0x00003468)
+2025-02-06T15:43:41.750460 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.780810 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 a9 36 00 00
+2025-02-06T15:43:41.780821 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 a9 36 00 00
+2025-02-06T15:43:41.780826 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 a9 36 00 00
+2025-02-06T15:43:41.780829 tid5108 [dbg,dev:MCM3000] Current position: 13993 steps (0x000036a9)
+2025-02-06T15:43:41.831479 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.861538 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 3b 38 00 00
+2025-02-06T15:43:41.861548 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 3b 38 00 00
+2025-02-06T15:43:41.861553 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 3b 38 00 00
+2025-02-06T15:43:41.861555 tid5108 [dbg,dev:MCM3000] Current position: 14395 steps (0x0000383b)
+2025-02-06T15:43:41.911814 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:41.931876 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 3d 39 00 00
+2025-02-06T15:43:41.931887 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 3d 39 00 00
+2025-02-06T15:43:41.931892 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 3d 39 00 00
+2025-02-06T15:43:41.931894 tid5108 [dbg,dev:MCM3000] Current position: 14653 steps (0x0000393d)
+2025-02-06T15:43:41.982547 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.002810 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 d2 39 00 00
+2025-02-06T15:43:42.002820 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 d2 39 00 00
+2025-02-06T15:43:42.002825 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 d2 39 00 00
+2025-02-06T15:43:42.002827 tid5108 [dbg,dev:MCM3000] Current position: 14802 steps (0x000039d2)
+2025-02-06T15:43:42.053248 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.083792 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 38 3a 00 00
+2025-02-06T15:43:42.083806 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 38 3a 00 00
+2025-02-06T15:43:42.083812 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 38 3a 00 00
+2025-02-06T15:43:42.083814 tid5108 [dbg,dev:MCM3000] Current position: 14904 steps (0x00003a38)
+2025-02-06T15:43:42.134829 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.164592 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 86 3a 00 00
+2025-02-06T15:43:42.164606 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 86 3a 00 00
+2025-02-06T15:43:42.164612 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 86 3a 00 00
+2025-02-06T15:43:42.164614 tid5108 [dbg,dev:MCM3000] Current position: 14982 steps (0x00003a86)
+2025-02-06T15:43:42.215679 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.246043 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 b9 3a 00 00
+2025-02-06T15:43:42.246055 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 b9 3a 00 00
+2025-02-06T15:43:42.246061 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 b9 3a 00 00
+2025-02-06T15:43:42.246063 tid5108 [dbg,dev:MCM3000] Current position: 15033 steps (0x00003ab9)
+2025-02-06T15:43:42.296580 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.316889 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 d8 3a 00 00
+2025-02-06T15:43:42.316901 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 d8 3a 00 00
+2025-02-06T15:43:42.316906 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 d8 3a 00 00
+2025-02-06T15:43:42.316908 tid5108 [dbg,dev:MCM3000] Current position: 15064 steps (0x00003ad8)
+2025-02-06T15:43:42.367422 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.397695 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 ec 3a 00 00
+2025-02-06T15:43:42.397708 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 ec 3a 00 00
+2025-02-06T15:43:42.397715 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 ec 3a 00 00
+2025-02-06T15:43:42.397718 tid5108 [dbg,dev:MCM3000] Current position: 15084 steps (0x00003aec)
+2025-02-06T15:43:42.448360 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.468636 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 fa 3a 00 00
+2025-02-06T15:43:42.468649 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 fa 3a 00 00
+2025-02-06T15:43:42.468654 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 fa 3a 00 00
+2025-02-06T15:43:42.468656 tid5108 [dbg,dev:MCM3000] Current position: 15098 steps (0x00003afa)
+2025-02-06T15:43:42.519199 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.550125 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 01 3b 00 00
+2025-02-06T15:43:42.550138 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 01 3b 00 00
+2025-02-06T15:43:42.550143 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 01 3b 00 00
+2025-02-06T15:43:42.550145 tid5108 [dbg,dev:MCM3000] Current position: 15105 steps (0x00003b01)
+2025-02-06T15:43:42.600855 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.621135 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 08 3b 00 00
+2025-02-06T15:43:42.621147 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 08 3b 00 00
+2025-02-06T15:43:42.621152 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 08 3b 00 00
+2025-02-06T15:43:42.621155 tid5108 [dbg,dev:MCM3000] Current position: 15112 steps (0x00003b08)
+2025-02-06T15:43:42.671379 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.691447 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 0a 3b 00 00
+2025-02-06T15:43:42.691458 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 0a 3b 00 00
+2025-02-06T15:43:42.691463 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 0a 3b 00 00
+2025-02-06T15:43:42.691466 tid5108 [dbg,dev:MCM3000] Current position: 15114 steps (0x00003b0a)
+2025-02-06T15:43:42.742737 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.773039 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 0d 3b 00 00
+2025-02-06T15:43:42.773053 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 0d 3b 00 00
+2025-02-06T15:43:42.773058 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 0d 3b 00 00
+2025-02-06T15:43:42.773061 tid5108 [dbg,dev:MCM3000] Current position: 15117 steps (0x00003b0d)
+2025-02-06T15:43:42.823830 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.844324 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 0f 3b 00 00
+2025-02-06T15:43:42.844337 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 0f 3b 00 00
+2025-02-06T15:43:42.844343 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 0f 3b 00 00
+2025-02-06T15:43:42.844345 tid5108 [dbg,dev:MCM3000] Current position: 15119 steps (0x00003b0f)
+2025-02-06T15:43:42.894776 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.925086 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 10 3b 00 00
+2025-02-06T15:43:42.925100 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 10 3b 00 00
+2025-02-06T15:43:42.925106 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 10 3b 00 00
+2025-02-06T15:43:42.925108 tid5108 [dbg,dev:MCM3000] Current position: 15120 steps (0x00003b10)
+2025-02-06T15:43:42.976306 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:42.996901 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 10 3b 00 00
+2025-02-06T15:43:42.996915 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 10 3b 00 00
+2025-02-06T15:43:42.996920 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 10 3b 00 00
+2025-02-06T15:43:42.996922 tid5108 [dbg,dev:MCM3000] Current position: 15120 steps (0x00003b10)
+2025-02-06T15:43:43.047935 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:43.078653 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.078668 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.078674 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.078677 tid5108 [dbg,dev:MCM3000] Current position: 15121 steps (0x00003b11)
+2025-02-06T15:43:43.078710 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:43.078720 tid5108 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:43:43.108981 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.108993 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.108999 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.109002 tid14060 [dbg,dev:MCM3000] Current position: 15121 steps (0x00003b11)
+2025-02-06T15:43:43.109036 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:43.129456 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.129468 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.129473 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.129475 tid5108 [dbg,dev:MCM3000] Current position: 15121 steps (0x00003b11)
+2025-02-06T15:43:43.129485 tid5108 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:43:43.129505 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:43.170434 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.170447 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.170452 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.170454 tid14060 [dbg,dev:MCM3000] Current position: 15121 steps (0x00003b11)
+2025-02-06T15:43:43.170564 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:43.201357 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.201370 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.201375 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 11 3b 00 00
+2025-02-06T15:43:43.201377 tid5108 [dbg,dev:MCM3000] Current position: 15121 steps (0x00003b11)
+2025-02-06T15:43:44.023152 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:44.053436 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:44.053449 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:44.053454 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:44.053457 tid14060 [dbg,dev:MCM3000] Current position: 15122 steps (0x00003b12)
+2025-02-06T15:43:45.026813 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:45.047097 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:45.047110 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:45.047115 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:45.047117 tid14060 [dbg,dev:MCM3000] Current position: 15122 steps (0x00003b12)
+2025-02-06T15:43:45.554762 tid3024 [IFO,App] Initialized ZMQ Server on port: 4827
+2025-02-06T15:43:46.022747 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:46.043713 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:46.043754 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:46.043772 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:46.043780 tid14060 [dbg,dev:MCM3000] Current position: 15122 steps (0x00003b12)
+2025-02-06T15:43:47.025948 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:47.045726 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.045776 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.045803 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.045813 tid14060 [dbg,dev:MCM3000] Current position: 15122 steps (0x00003b12)
+2025-02-06T15:43:47.772762 tid5108 [dbg,Core] Will start relative move of MCM3000 by offset -1000.00000 um
+2025-02-06T15:43:47.772805 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:47.772810 tid5244 [dbg,App] [UI] JButton clicked in StageControlFrame.
+2025-02-06T15:43:47.796151 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.796164 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.796171 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.796174 tid5108 [dbg,dev:MCM3000] Current position: 15122 steps (0x00003b12)
+2025-02-06T15:43:47.796183 tid5108 [dbg,dev:MCM3000] Relative move: current=3200.82 offset=-1000 target=2200.82
+2025-02-06T15:43:47.796187 tid5108 [dbg,dev:MCM3000] Requested: 2200.82 um, Actual: 2200.91 um
+2025-02-06T15:43:47.796207 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:47.827122 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.827137 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.827143 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.827145 tid5108 [dbg,dev:MCM3000] Current position: 15122 steps (0x00003b12)
+2025-02-06T15:43:47.827148 tid5108 [dbg,dev:MCM3000] Move command: current=15122 target=10398 delta=-4724 steps
+2025-02-06T15:43:47.827176 tid5108 [dbg,dev:COM5] Write -> (hex) 53 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:47.827191 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:47.859136 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.859160 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.859170 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 12 3b 00 00
+2025-02-06T15:43:47.859174 tid5108 [dbg,dev:MCM3000] Current position: 15122 steps (0x00003b12)
+2025-02-06T15:43:47.911540 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:47.943132 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 e8 39 00 00
+2025-02-06T15:43:47.943177 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 e8 39 00 00
+2025-02-06T15:43:47.943197 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 e8 39 00 00
+2025-02-06T15:43:47.943206 tid5108 [dbg,dev:MCM3000] Current position: 14824 steps (0x000039e8)
+2025-02-06T15:43:47.995303 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.015968 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 a2 35 00 00
+2025-02-06T15:43:48.016014 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 a2 35 00 00
+2025-02-06T15:43:48.016034 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 a2 35 00 00
+2025-02-06T15:43:48.016043 tid5108 [dbg,dev:MCM3000] Current position: 13730 steps (0x000035a2)
+2025-02-06T15:43:48.075903 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.096247 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 03 31 00 00
+2025-02-06T15:43:48.096298 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 03 31 00 00
+2025-02-06T15:43:48.096325 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 03 31 00 00
+2025-02-06T15:43:48.096335 tid5108 [dbg,dev:MCM3000] Current position: 12547 steps (0x00003103)
+2025-02-06T15:43:48.148202 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.179822 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 55 2e 00 00
+2025-02-06T15:43:48.179873 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 55 2e 00 00
+2025-02-06T15:43:48.179905 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 55 2e 00 00
+2025-02-06T15:43:48.179917 tid5108 [dbg,dev:MCM3000] Current position: 11861 steps (0x00002e55)
+2025-02-06T15:43:48.232243 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.263712 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 35 2c 00 00
+2025-02-06T15:43:48.263769 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 35 2c 00 00
+2025-02-06T15:43:48.263795 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 35 2c 00 00
+2025-02-06T15:43:48.263805 tid5108 [dbg,dev:MCM3000] Current position: 11317 steps (0x00002c35)
+2025-02-06T15:43:48.315899 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.345961 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 dd 2a 00 00
+2025-02-06T15:43:48.346008 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 dd 2a 00 00
+2025-02-06T15:43:48.346028 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 dd 2a 00 00
+2025-02-06T15:43:48.346037 tid5108 [dbg,dev:MCM3000] Current position: 10973 steps (0x00002add)
+2025-02-06T15:43:48.405946 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.435972 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 fe 29 00 00
+2025-02-06T15:43:48.436021 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 fe 29 00 00
+2025-02-06T15:43:48.436045 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 fe 29 00 00
+2025-02-06T15:43:48.436055 tid5108 [dbg,dev:MCM3000] Current position: 10750 steps (0x000029fe)
+2025-02-06T15:43:48.495929 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.525744 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 75 29 00 00
+2025-02-06T15:43:48.525936 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 75 29 00 00
+2025-02-06T15:43:48.526023 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 75 29 00 00
+2025-02-06T15:43:48.526032 tid5108 [dbg,dev:MCM3000] Current position: 10613 steps (0x00002975)
+2025-02-06T15:43:48.585829 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.616343 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 20 29 00 00
+2025-02-06T15:43:48.616378 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 20 29 00 00
+2025-02-06T15:43:48.616392 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 20 29 00 00
+2025-02-06T15:43:48.616398 tid5108 [dbg,dev:MCM3000] Current position: 10528 steps (0x00002920)
+2025-02-06T15:43:48.666620 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.697675 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 f3 28 00 00
+2025-02-06T15:43:48.697695 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 f3 28 00 00
+2025-02-06T15:43:48.697703 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 f3 28 00 00
+2025-02-06T15:43:48.697706 tid5108 [dbg,dev:MCM3000] Current position: 10483 steps (0x000028f3)
+2025-02-06T15:43:48.748893 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.769629 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 d3 28 00 00
+2025-02-06T15:43:48.769651 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 d3 28 00 00
+2025-02-06T15:43:48.769661 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 d3 28 00 00
+2025-02-06T15:43:48.769665 tid5108 [dbg,dev:MCM3000] Current position: 10451 steps (0x000028d3)
+2025-02-06T15:43:48.821407 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.842178 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 c2 28 00 00
+2025-02-06T15:43:48.842205 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 c2 28 00 00
+2025-02-06T15:43:48.842216 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 c2 28 00 00
+2025-02-06T15:43:48.842221 tid5108 [dbg,dev:MCM3000] Current position: 10434 steps (0x000028c2)
+2025-02-06T15:43:48.893686 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.914425 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 b6 28 00 00
+2025-02-06T15:43:48.914452 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 b6 28 00 00
+2025-02-06T15:43:48.914464 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 b6 28 00 00
+2025-02-06T15:43:48.914470 tid5108 [dbg,dev:MCM3000] Current position: 10422 steps (0x000028b6)
+2025-02-06T15:43:48.966849 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:48.998267 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 ae 28 00 00
+2025-02-06T15:43:48.998311 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 ae 28 00 00
+2025-02-06T15:43:48.998332 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 ae 28 00 00
+2025-02-06T15:43:48.998341 tid5108 [dbg,dev:MCM3000] Current position: 10414 steps (0x000028ae)
+2025-02-06T15:43:49.049358 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.070156 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 a8 28 00 00
+2025-02-06T15:43:49.070169 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 a8 28 00 00
+2025-02-06T15:43:49.070174 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 a8 28 00 00
+2025-02-06T15:43:49.070176 tid5108 [dbg,dev:MCM3000] Current position: 10408 steps (0x000028a8)
+2025-02-06T15:43:49.121931 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.152854 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 a5 28 00 00
+2025-02-06T15:43:49.152884 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 a5 28 00 00
+2025-02-06T15:43:49.152898 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 a5 28 00 00
+2025-02-06T15:43:49.152903 tid5108 [dbg,dev:MCM3000] Current position: 10405 steps (0x000028a5)
+2025-02-06T15:43:49.203333 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.234121 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 a2 28 00 00
+2025-02-06T15:43:49.234138 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 a2 28 00 00
+2025-02-06T15:43:49.234144 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 a2 28 00 00
+2025-02-06T15:43:49.234147 tid5108 [dbg,dev:MCM3000] Current position: 10402 steps (0x000028a2)
+2025-02-06T15:43:49.285665 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.305837 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 a0 28 00 00
+2025-02-06T15:43:49.305859 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 a0 28 00 00
+2025-02-06T15:43:49.305868 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 a0 28 00 00
+2025-02-06T15:43:49.305871 tid5108 [dbg,dev:MCM3000] Current position: 10400 steps (0x000028a0)
+2025-02-06T15:43:49.366609 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.387654 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.387668 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.387674 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.387676 tid5108 [dbg,dev:MCM3000] Current position: 10399 steps (0x0000289f)
+2025-02-06T15:43:49.387699 tid5108 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:43:49.387717 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.429237 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.429284 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.429305 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.429313 tid5108 [dbg,dev:MCM3000] Current position: 10399 steps (0x0000289f)
+2025-02-06T15:43:49.429350 tid5108 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:43:49.429439 tid5108 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.460084 tid5108 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.460124 tid5108 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.460147 tid5108 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.460157 tid5108 [dbg,dev:MCM3000] Current position: 10399 steps (0x0000289f)
+2025-02-06T15:43:49.460396 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.490996 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.491008 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.491013 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.491016 tid14060 [dbg,dev:MCM3000] Current position: 10399 steps (0x0000289f)
+2025-02-06T15:43:49.491101 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:49.522024 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.522068 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.522091 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9f 28 00 00
+2025-02-06T15:43:49.522100 tid14060 [dbg,dev:MCM3000] Current position: 10399 steps (0x0000289f)
+2025-02-06T15:43:50.022678 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:50.054433 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:50.054481 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:50.054504 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:50.054513 tid14060 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:51.020173 tid14060 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:51.051461 tid14060 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:51.051497 tid14060 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:51.051512 tid14060 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:51.051519 tid14060 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:52.485162 tid5244 [dbg,App] [UI] JMenu "Tools" clicked in MainFrame.
+2025-02-06T15:43:56.517371 tid5620 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:43:56.517379 tid5620 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:43:56.517381 tid5620 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:43:56.517410 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:43:56.560416 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:56.560429 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:56.560435 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:43:56.560437 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:43:56.560440 tid5620 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:43:56.560444 tid5620 [dbg,Core] Will unload all devices
+2025-02-06T15:43:56.560446 tid5620 [dbg,dev:MCM3000] Shutting down...
+2025-02-06T15:43:56.847200 tid5620 [IFO,Core] Did unload all devices
+2025-02-06T15:43:56.847251 tid5620 [IFO,Core] System reset
+2025-02-06T15:43:56.912111 tid5620 [IFO,App] Arduino
+2025-02-06T15:43:56.914012 tid5620 [IFO,App]    Arduino-Hub, Hub (required)
+2025-02-06T15:43:56.914019 tid5620 [IFO,App]    Arduino-Switch, Digital out 8-bit
+2025-02-06T15:43:56.914021 tid5620 [IFO,App]    Arduino-Shutter, Shutter
+2025-02-06T15:43:56.914022 tid5620 [IFO,App]    Arduino-DAC1, DAC channel 1
+2025-02-06T15:43:56.914023 tid5620 [IFO,App]    Arduino-DAC2, DAC channel 2
+2025-02-06T15:43:56.914023 tid5620 [IFO,App]    Arduino-Input, ADC
+2025-02-06T15:43:56.914025 tid5620 [IFO,App]    Arduino-Magnifier, Magnifier(needs ADC)
+2025-02-06T15:43:56.914027 tid5620 [IFO,App] Arduino32bitBoards
+2025-02-06T15:43:56.915597 tid5620 [IFO,App]    Arduino32-Hub, Hub (required)
+2025-02-06T15:43:56.915601 tid5620 [IFO,App]    Arduino32-Switch, Switch on/off channels 1 to 8
+2025-02-06T15:43:56.915603 tid5620 [IFO,App]    Arduino32-Shutter, Shutter
+2025-02-06T15:43:56.915604 tid5620 [IFO,App]    Arduino32-Input, ADC
+2025-02-06T15:43:56.915605 tid5620 [IFO,App]    Arduino32-DAC/PWM-1, DAC/PWM channel 1
+2025-02-06T15:43:56.915606 tid5620 [IFO,App]    Arduino32-DAC/PWM-2, DAC/PWM channel 2
+2025-02-06T15:43:56.915607 tid5620 [IFO,App]    Arduino32-DAC/PWM-3, DAC/PWM channel 3
+2025-02-06T15:43:56.915608 tid5620 [IFO,App]    Arduino32-DAC/PWM-4, DAC/PWM channel 4
+2025-02-06T15:43:56.915609 tid5620 [IFO,App]    Arduino32-DAC/PWM-5, DAC/PWM channel 5
+2025-02-06T15:43:56.915610 tid5620 [IFO,App]    Arduino32-DAC/PWM-6, DAC/PWM channel 6
+2025-02-06T15:43:56.915610 tid5620 [IFO,App]    Arduino32-DAC/PWM-7, DAC/PWM channel 7
+2025-02-06T15:43:56.915611 tid5620 [IFO,App]    Arduino32-DAC/PWM-8, DAC/PWM channel 8
+2025-02-06T15:43:56.915613 tid5620 [IFO,App] ArduinoCounter
+2025-02-06T15:43:56.917023 tid5620 [IFO,App]    ArduinoCounterCamera, ArduinoCounterCamera
+2025-02-06T15:43:56.917029 tid5620 [IFO,App] ArduinoNeoPixel
+2025-02-06T15:43:56.918172 tid5620 [IFO,App]    ArduinoNeoPixel-Hub, Hub (required)
+2025-02-06T15:43:56.918177 tid5620 [IFO,App]    ArduinoNeoPixel-Shutter, Shutter
+2025-02-06T15:43:56.918179 tid5620 [IFO,App] FreeSerialPort
+2025-02-06T15:43:56.919306 tid5620 [IFO,App]    FreeSerialPort, Free-form communication Serial Port.
+2025-02-06T15:43:56.919311 tid5620 [IFO,App] HamamatsuHam
+2025-02-06T15:43:56.922898 tid5620 [IFO,App]    HamamatsuHam_DCAM, Universal adapter using Hamamatsu DCAM interface
+2025-02-06T15:43:56.922903 tid5620 [IFO,App] MCM3000controller
+2025-02-06T15:43:56.922916 tid5620 [IFO,App]    MCM3000, MCM3000 Focus Controller (Axis ID: 0-2, Default step size: 0.2116667 µm)
+2025-02-06T15:43:56.922918 tid5620 [IFO,App] NotificationTester
+2025-02-06T15:43:56.924209 tid5620 [IFO,App]    NTSyncProperty, Test synchronous property notifications
+2025-02-06T15:43:56.924214 tid5620 [IFO,App]    NTAsyncProperty, Test asynchronous property busy state and notifications
+2025-02-06T15:43:56.924216 tid5620 [IFO,App]    NTSyncStage, Test synchronous stage position notifications
+2025-02-06T15:43:56.924217 tid5620 [IFO,App]    NTAsyncStage, Test asynchronous stage busy state and position notifications
+2025-02-06T15:43:56.924223 tid5620 [IFO,App]    NTSyncXYStage, Test synchronous XY stage position notifications
+2025-02-06T15:43:56.924224 tid5620 [IFO,App]    NTAsyncXYStage, Test asynchronous XY stage busy state and position notifications
+2025-02-06T15:43:56.924226 tid5620 [IFO,App] OpenCVgrabber
+2025-02-06T15:43:56.927179 tid5620 [IFO,App]    OpenCVgrabber, OpenCVgrabber video input
+2025-02-06T15:43:56.927185 tid5620 [IFO,App] ParallelPort
+2025-02-06T15:43:56.930890 tid5620 [IFO,App]    LPT1, Printer port TTL digital output
+2025-02-06T15:43:56.930894 tid5620 [IFO,App]    LPT-Shutter, Printer port TTLs used as shutters
+2025-02-06T15:43:56.930896 tid5620 [IFO,App] PVCAM
+2025-02-06T15:43:56.933157 tid5620 [IFO,App] Error: Unable to load PVCAM library: Failed to load device adapter "PVCAM" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_PVCAM.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:43:56.933177 tid5620 [IFO,App] PyDevice
+2025-02-06T15:43:56.935050 tid5620 [IFO,App]    PyHub, Runs a Python script that constructs one or more device objects
+2025-02-06T15:43:56.935056 tid5620 [IFO,App] RAMPS
+2025-02-06T15:43:56.936288 tid5620 [IFO,App]    RAMPSXYStage, RAMPS XY stage
+2025-02-06T15:43:56.936291 tid5620 [IFO,App]    RAMPSZStage, RAMPS Z stage
+2025-02-06T15:43:56.936292 tid5620 [IFO,App]    RAMPSHub, RAMPS hub
+2025-02-06T15:43:56.936293 tid5620 [IFO,App] SequenceTester
+2025-02-06T15:43:56.937512 tid5620 [IFO,App]    THub, Fake devices for automated and interactive testing
+2025-02-06T15:43:56.937516 tid5620 [IFO,App] SerialManager
+2025-02-06T15:43:56.937536 tid5620 [IFO,App]    COM5, Serial communication port
+2025-02-06T15:43:56.937559 tid5620 [IFO,App]    COM6, Serial communication port
+2025-02-06T15:43:56.937560 tid5620 [IFO,App]    COM3, Serial communication port
+2025-02-06T15:43:56.937561 tid5620 [IFO,App]    COM4, Serial communication port
+2025-02-06T15:43:56.937563 tid5620 [IFO,App] TCPIPPort
+2025-02-06T15:43:56.938672 tid5620 [IFO,App]    TCP/IP serial port adapter (1), TCP/IP serial port adapter
+2025-02-06T15:43:56.938676 tid5620 [IFO,App] Thorlabs
+2025-02-06T15:43:56.939591 tid5620 [IFO,App]    XYStage, Thorlabs BD102 XY Stage
+2025-02-06T15:43:56.939593 tid5620 [IFO,App]    PiezoZStage, Thorlabs piezo Z Stage
+2025-02-06T15:43:56.939594 tid5620 [IFO,App]    MotorZStage, Thorlabs Motor Z Stage
+2025-02-06T15:43:56.939595 tid5620 [IFO,App]    FilterWheel, Integrated filter wheel
+2025-02-06T15:43:56.939597 tid5620 [IFO,App] ThorlabsAPTStage
+2025-02-06T15:43:56.941239 tid5620 [IFO,App] Error: Unable to load ThorlabsAPTStage library: Failed to load device adapter "ThorlabsAPTStage" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_ThorlabsAPTStage.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:43:56.941250 tid5620 [IFO,App] ThorlabsCHROLIS
+2025-02-06T15:43:56.942746 tid5620 [IFO,App] Error: Unable to load ThorlabsCHROLIS library: Failed to load device adapter "ThorlabsCHROLIS" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_ThorlabsCHROLIS.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:43:56.942752 tid5620 [IFO,App] ThorlabsDCxxxx
+2025-02-06T15:43:56.978602 tid5620 [IFO,App]    Thorlabs DC2010/DC2100, DC2010/DC2100 High Power LED Driver
+2025-02-06T15:43:56.978610 tid5620 [IFO,App]    Thorlabs DC3100, DC3100 FLIM LED Driver
+2025-02-06T15:43:56.978611 tid5620 [IFO,App]    Thorlabs DC4100, DC4100 Four channel LED Driver
+2025-02-06T15:43:56.978614 tid5620 [IFO,App]    Thorlabs DC2200, DC2200 High Power LED Driver
+2025-02-06T15:43:56.978616 tid5620 [IFO,App] ThorlabsElliptecSlider
+2025-02-06T15:43:56.979716 tid5620 [IFO,App]    Thorlabs ELL17/ELL20, Thorlabs ELL17/ELL20
+2025-02-06T15:43:56.979719 tid5620 [IFO,App]    Thorlabs ELL9, Thorlabs ELL9
+2025-02-06T15:43:56.979720 tid5620 [IFO,App]    Thorlabs ELL6, Thorlabs ELL6
+2025-02-06T15:43:56.979721 tid5620 [IFO,App]    Thorlabs ELL6 shutter, Thorlabs ELL6 shutter
+2025-02-06T15:43:56.979723 tid5620 [IFO,App] ThorlabsFilterWheel
+2025-02-06T15:43:56.980519 tid5620 [IFO,App]    Thorlabs Filter Wheel, Thorlabs filter wheel
+2025-02-06T15:43:56.980527 tid5620 [IFO,App] ThorlabsPM100x
+2025-02-06T15:43:56.982003 tid5620 [IFO,App] Error: Unable to load ThorlabsPM100x library: Failed to load device adapter "ThorlabsPM100x" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_ThorlabsPM100x.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:43:56.982010 tid5620 [IFO,App] ThorlabsSC10
+2025-02-06T15:43:56.982849 tid5620 [IFO,App]    SC10, ThorLabs SC10 shutter controller
+2025-02-06T15:43:56.982852 tid5620 [IFO,App] Thorlabs_ELL14
+2025-02-06T15:43:56.983604 tid5620 [IFO,App]     ELL14,  ELL14
+2025-02-06T15:43:56.983608 tid5620 [IFO,App] UniversalMMHubSerial
+2025-02-06T15:43:56.984401 tid5620 [IFO,App]    UniversalMMHubSerial, Universal hardware hub (serial)
+2025-02-06T15:43:56.984405 tid5620 [IFO,App] UniversalMMHubUsb
+2025-02-06T15:43:56.985234 tid5620 [IFO,App]    UniversalMMHubUsb, Universal hardware hub (USB communication)
+2025-02-06T15:43:56.985238 tid5620 [IFO,App] USBManager
+2025-02-06T15:43:56.986773 tid5620 [IFO,App] UserDefinedSerial
+2025-02-06T15:43:56.987606 tid5620 [IFO,App]    UserDefinedGenericDevice, Generic device using user-defined serial commands
+2025-02-06T15:43:56.987609 tid5620 [IFO,App]    UserDefinedShutter, Generic shutter using user-defined serial commands
+2025-02-06T15:43:56.987610 tid5620 [IFO,App]    UserDefinedStateDevice, Generic switcher using user-defined serial commands
+2025-02-06T15:43:56.987612 tid5620 [IFO,App] Utilities
+2025-02-06T15:43:56.988534 tid5620 [IFO,App]    Multi Shutter, Combine multiple physical shutters into a single logical shutter
+2025-02-06T15:43:56.988537 tid5620 [IFO,App]    Multi Camera, Combine multiple physical cameras into a single logical camera
+2025-02-06T15:43:56.988538 tid5620 [IFO,App]    Multi Stage, Combine multiple physical 1D stages into a single logical 1D stage
+2025-02-06T15:43:56.988540 tid5620 [IFO,App]    Combo XY Stage, Combine two single-axis stages into an XY stage
+2025-02-06T15:43:56.988541 tid5620 [IFO,App]    Single Axis Stage, Use single axis of XY stage as a logical 1D stage
+2025-02-06T15:43:56.988542 tid5620 [IFO,App]    DA Shutter, DA used as a shutter
+2025-02-06T15:43:56.988543 tid5620 [IFO,App]    DA Monochromator, DA used to control a monochromator
+2025-02-06T15:43:56.988544 tid5620 [IFO,App]    DA Z Stage, DA-controlled Z-stage
+2025-02-06T15:43:56.988545 tid5620 [IFO,App]    DA XY Stage, DA-controlled XY-stage
+2025-02-06T15:43:56.988546 tid5620 [IFO,App]    DA TTL State Device, Several DAs as a TTL state device
+2025-02-06T15:43:56.988547 tid5620 [IFO,App]    DA Galvo, Two DAs operating a Galvo pair
+2025-02-06T15:43:56.988548 tid5620 [IFO,App]    Multi DA State Device, Several DAs as a single state device allowing digital masking
+2025-02-06T15:43:56.988549 tid5620 [IFO,App]    AutoFocus Stage, AutoFocus offset acting as a Z-stage
+2025-02-06T15:43:56.988550 tid5620 [IFO,App]    State Device Shutter, State device used as a shutter
+2025-02-06T15:43:56.988551 tid5620 [IFO,App]    Serial port DTR Shutter, Serial port DTR used as a shutter
+2025-02-06T15:44:00.068896 tid5244 [dbg,App] [UI] JButton "Next >" clicked in ConfigWizard.
+2025-02-06T15:44:00.078713 tid7836 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T15:44:00.078770 tid7836 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T15:44:00.078775 tid7836 [dbg,Core] Will load device COM6 from SerialManager
+2025-02-06T15:44:00.078813 tid7836 [IFO,Core] Did load device COM6 from SerialManager; label = COM6
+2025-02-06T15:44:00.078816 tid7836 [dbg,Core] Will load device COM3 from SerialManager
+2025-02-06T15:44:00.078855 tid7836 [IFO,Core] Did load device COM3 from SerialManager; label = COM3
+2025-02-06T15:44:00.078858 tid7836 [dbg,Core] Will load device COM4 from SerialManager
+2025-02-06T15:44:00.078880 tid7836 [IFO,Core] Did load device COM4 from SerialManager; label = COM4
+2025-02-06T15:44:00.078884 tid7836 [dbg,Core] Will load device TCP/IP serial port adapter (1) from TCPIPPort
+2025-02-06T15:44:00.078929 tid7836 [IFO,Core] Did load device TCP/IP serial port adapter (1) from TCPIPPort; label = TCP/IP serial port adapter (1)
+2025-02-06T15:44:00.078948 tid7836 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:44:00.078983 tid7836 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:44:00.079866 tid7836 [dbg,dev:MCM3000] OnPort BeforeGet: Undefined
+2025-02-06T15:44:00.082094 tid7836 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:44:00.082099 tid7836 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:44:00.082103 tid7836 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T15:44:00.082105 tid7836 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T15:44:00.082108 tid7836 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T15:44:00.082110 tid7836 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T15:44:00.082112 tid7836 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T15:44:00.082115 tid7836 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T15:44:00.082117 tid7836 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:44:00.082119 tid7836 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:44:00.082123 tid7836 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:44:00.082124 tid7836 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:44:00.082127 tid7836 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T15:44:00.082129 tid7836 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T15:44:00.082131 tid7836 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T15:44:00.082133 tid7836 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T15:44:00.082135 tid7836 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T15:44:00.082137 tid7836 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T15:44:00.082139 tid7836 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T15:44:00.082141 tid7836 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T15:44:00.082151 tid7836 [IFO,Core] Will initialize device COM5
+2025-02-06T15:44:00.083645 tid7836 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T15:44:00.085181 tid7836 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T15:44:00.086525 tid7836 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T15:44:00.087763 tid7836 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T15:44:00.089036 tid7836 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T15:44:00.090305 tid7836 [IFO,Core] Did initialize device COM5
+2025-02-06T15:44:00.090625 tid7836 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T15:44:00.090628 tid7836 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to COM5
+2025-02-06T15:44:00.090630 tid7836 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T15:44:00.090650 tid7836 [IFO,Core] Will initialize device MCM3000
+2025-02-06T15:44:00.090676 tid7836 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:00.115924 tid7836 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:00.115938 tid7836 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:00.115941 tid7836 [IFO,Core] Did initialize device MCM3000
+2025-02-06T15:44:00.116068 tid7836 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:44:01.292800 tid5244 [dbg,App] [UI] Table clicked in ConfigWizard.
+2025-02-06T15:44:02.036503 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:44:02.038232 tid5244 [dbg,Core] Will unload device MCM3000
+2025-02-06T15:44:02.038235 tid5244 [dbg,dev:MCM3000] Shutting down...
+2025-02-06T15:44:02.038237 tid5244 [dbg,Core] Did unload device MCM3000
+2025-02-06T15:44:02.038257 tid5244 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:44:02.038296 tid5244 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:44:02.053586 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:02.053593 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:02.053600 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:02.053601 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:02.053603 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:02.053604 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:02.053605 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:02.053606 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:02.053608 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:02.053608 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:02.058650 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:02.058654 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:02.058655 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:02.058656 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:02.058657 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:02.058658 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:02.058659 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:02.058660 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:02.058661 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:02.058662 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:05.596527 tid5244 [dbg,App] [UI]  "ComboBox.list" set to "0.2116667" in DeviceSetupDlg.
+2025-02-06T15:44:05.597261 tid5244 [dbg,Core:dev:MCM3000] Will set property "StepSize" to "0.2116667"
+2025-02-06T15:44:05.597269 tid5244 [dbg,Core:dev:MCM3000] Did set property "StepSize" to "0.2116667"
+2025-02-06T15:44:05.597352 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: Undefined
+2025-02-06T15:44:05.597452 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:05.597454 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:05.597455 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:05.597456 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:05.597458 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:05.597459 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:05.597460 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:05.597461 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:05.597462 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:05.597463 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:08.948604 tid5244 [dbg,App] [UI]  "ComboBox.list" set to "0.2116667" in DeviceSetupDlg.
+2025-02-06T15:44:08.949334 tid5244 [dbg,Core:dev:MCM3000] Will set property "StepSize" to "0.2116667"
+2025-02-06T15:44:08.949345 tid5244 [dbg,Core:dev:MCM3000] Did set property "StepSize" to "0.2116667"
+2025-02-06T15:44:08.949429 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: Undefined
+2025-02-06T15:44:08.949495 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:08.949497 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:08.949498 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:08.949499 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:08.949500 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:08.949502 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:08.949503 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:08.949504 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:08.949505 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:08.949505 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:15.322258 tid5244 [dbg,Core:dev:MCM3000] Will set property "Port" to "5"
+2025-02-06T15:44:15.322269 tid5244 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to 5
+2025-02-06T15:44:15.322271 tid5244 [dbg,Core:dev:MCM3000] Did set property "Port" to "5"
+2025-02-06T15:44:15.322355 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: 5
+2025-02-06T15:44:15.322420 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:15.322422 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:15.322423 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:15.322424 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:15.322425 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:15.322427 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:15.322428 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:15.322428 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:15.322429 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:15.322430 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:19.100655 tid5244 [dbg,App] [UI] Table clicked in DeviceSetupDlg.
+2025-02-06T15:44:19.740573 tid5244 [dbg,Core:dev:MCM3000] Will set property "AxisID" to "0"
+2025-02-06T15:44:19.740584 tid5244 [dbg,Core:dev:MCM3000] Did set property "AxisID" to "0"
+2025-02-06T15:44:19.740669 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: 5
+2025-02-06T15:44:19.740736 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:19.740738 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:19.740748 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:19.740749 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:19.740751 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:19.740752 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:19.740753 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:19.740754 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:19.740755 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:19.740756 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:19.844377 tid5244 [dbg,App] [UI] Table clicked in DeviceSetupDlg.
+2025-02-06T15:44:21.644736 tid5244 [dbg,App] [UI] XPComboBoxButton clicked in DeviceSetupDlg.
+2025-02-06T15:44:22.492689 tid5244 [dbg,App] [UI] XPComboBoxButton clicked in DeviceSetupDlg.
+2025-02-06T15:44:23.988581 tid5244 [dbg,App] [UI] JScrollPane clicked in DeviceSetupDlg.
+2025-02-06T15:44:29.014156 tid5244 [dbg,Core:dev:MCM3000] Will set property "AxisID" to "0"
+2025-02-06T15:44:29.014194 tid5244 [dbg,Core:dev:MCM3000] Did set property "AxisID" to "0"
+2025-02-06T15:44:29.014490 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: 5
+2025-02-06T15:44:29.014779 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:29.014788 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:29.014793 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:29.014797 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:29.014801 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:29.014806 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:29.014810 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:29.014814 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:29.014817 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:29.014821 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:29.116671 tid5244 [dbg,Core:dev:MCM3000] Will set property "AxisID" to "0"
+2025-02-06T15:44:29.116684 tid5244 [dbg,Core:dev:MCM3000] Did set property "AxisID" to "0"
+2025-02-06T15:44:29.116692 tid5244 [dbg,Core:dev:MCM3000] Will set property "Port" to "5"
+2025-02-06T15:44:29.116694 tid5244 [dbg,dev:MCM3000] OnPort AfterSet: changed from 5 to 5
+2025-02-06T15:44:29.116696 tid5244 [dbg,Core:dev:MCM3000] Did set property "Port" to "5"
+2025-02-06T15:44:29.116700 tid5244 [dbg,Core:dev:MCM3000] Will set property "StepSize" to "0.2117"
+2025-02-06T15:44:29.116709 tid5244 [ERR,Core:dev:MCM3000] Cannot set property "StepSize" to "0.2117" [ Error in device "MCM3000": Invalid property value: StepSize (3) ]
+2025-02-06T15:44:33.403585 tid5244 [dbg,Core] Will unload device MCM3000
+2025-02-06T15:44:33.403594 tid5244 [dbg,Core] Did unload device MCM3000
+2025-02-06T15:44:33.403613 tid5244 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:44:33.403642 tid5244 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:44:37.636622 tid5244 [dbg,App] [UI]  "ComboBox.list" set to "0.2116667" in DeviceSetupDlg.
+2025-02-06T15:44:37.637286 tid5244 [dbg,Core:dev:MCM3000] Will set property "StepSize" to "0.2116667"
+2025-02-06T15:44:37.637294 tid5244 [dbg,Core:dev:MCM3000] Did set property "StepSize" to "0.2116667"
+2025-02-06T15:44:37.637381 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: Undefined
+2025-02-06T15:44:37.637447 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:37.637449 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:37.637450 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:37.637451 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:37.637453 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:37.637454 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:37.637455 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:37.637456 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:37.637457 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:37.637457 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:41.845604 tid5244 [dbg,Core:dev:MCM3000] Will set property "Port" to "5"
+2025-02-06T15:44:41.845639 tid5244 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to 5
+2025-02-06T15:44:41.845649 tid5244 [dbg,Core:dev:MCM3000] Did set property "Port" to "5"
+2025-02-06T15:44:41.845946 tid5244 [dbg,dev:MCM3000] OnPort BeforeGet: 5
+2025-02-06T15:44:41.846218 tid5244 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:44:41.846225 tid5244 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:44:41.846230 tid5244 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:44:41.846234 tid5244 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:44:41.846239 tid5244 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:44:41.846243 tid5244 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:44:41.846247 tid5244 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:44:41.846251 tid5244 [IFO,App] COM5, property Parity=None
+2025-02-06T15:44:41.846255 tid5244 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:44:41.846258 tid5244 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:44:43.228572 tid5244 [dbg,Core:dev:MCM3000] Will set property "AxisID" to "0"
+2025-02-06T15:44:43.228583 tid5244 [dbg,Core:dev:MCM3000] Did set property "AxisID" to "0"
+2025-02-06T15:44:43.228590 tid5244 [dbg,Core:dev:MCM3000] Will set property "Port" to "5"
+2025-02-06T15:44:43.228593 tid5244 [dbg,dev:MCM3000] OnPort AfterSet: changed from 5 to 5
+2025-02-06T15:44:43.228594 tid5244 [dbg,Core:dev:MCM3000] Did set property "Port" to "5"
+2025-02-06T15:44:43.228598 tid5244 [dbg,Core:dev:MCM3000] Will set property "StepSize" to "0.2117"
+2025-02-06T15:44:43.228608 tid5244 [ERR,Core:dev:MCM3000] Cannot set property "StepSize" to "0.2117" [ Error in device "MCM3000": Invalid property value: StepSize (3) ]
+2025-02-06T15:44:44.747589 tid5244 [dbg,Core] Will unload device MCM3000
+2025-02-06T15:44:44.747598 tid5244 [dbg,Core] Did unload device MCM3000
+2025-02-06T15:44:44.747615 tid5244 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:44:44.747781 tid5244 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:44:47.458470 tid5244 [dbg,Core] Will unload device MCM3000
+2025-02-06T15:44:47.458480 tid5244 [dbg,Core] Did unload device MCM3000
+2025-02-06T15:44:50.378881 tid5620 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:44:50.378890 tid5620 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:44:50.378891 tid5620 [dbg,Core] Waiting for device COM6...
+2025-02-06T15:44:50.378893 tid5620 [WRN,Core:dev:COM6] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:44:50.378895 tid5620 [dbg,Core] Finished waiting for device COM6
+2025-02-06T15:44:50.378896 tid5620 [dbg,Core] Waiting for device COM3...
+2025-02-06T15:44:50.378898 tid5620 [WRN,Core:dev:COM3] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:44:50.378899 tid5620 [dbg,Core] Finished waiting for device COM3
+2025-02-06T15:44:50.378900 tid5620 [dbg,Core] Waiting for device COM4...
+2025-02-06T15:44:50.378902 tid5620 [WRN,Core:dev:COM4] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:44:50.378903 tid5620 [dbg,Core] Finished waiting for device COM4
+2025-02-06T15:44:50.378904 tid5620 [dbg,Core] Waiting for device TCP/IP serial port adapter (1)...
+2025-02-06T15:44:50.378906 tid5620 [WRN,Core:dev:TCP/IP serial port adapter (1)] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:44:50.378907 tid5620 [dbg,Core] Finished waiting for device TCP/IP serial port adapter (1)
+2025-02-06T15:44:50.379660 tid5620 [dbg,Core] Will unload all devices
+2025-02-06T15:44:50.684960 tid5620 [IFO,Core] Did unload all devices
+2025-02-06T15:44:50.686220 tid5620 [dbg,Core] Will set Core property: Initialize = 0
+2025-02-06T15:44:50.686230 tid5620 [dbg,Core] Will unload all devices
+2025-02-06T15:44:50.686234 tid5620 [IFO,Core] Did unload all devices
+2025-02-06T15:44:50.686295 tid5620 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-02-06T15:44:50.686302 tid5620 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:44:50.686317 tid5620 [dbg,Core] Did set Core property: Initialize = 0
+2025-02-06T15:44:50.686339 tid5620 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T15:44:50.686468 tid5620 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T15:44:50.686484 tid5620 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:44:50.686583 tid5620 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:44:50.686603 tid5620 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T15:44:50.686608 tid5620 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to COM5
+2025-02-06T15:44:50.686614 tid5620 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T15:44:50.686634 tid5620 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:44:50.686643 tid5620 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:44:50.686658 tid5620 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T15:44:50.686666 tid5620 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T15:44:50.686677 tid5620 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T15:44:50.686684 tid5620 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T15:44:50.686694 tid5620 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T15:44:50.686703 tid5620 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T15:44:50.686716 tid5620 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:44:50.686724 tid5620 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:44:50.686738 tid5620 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:44:50.686745 tid5620 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:44:50.686757 tid5620 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T15:44:50.686764 tid5620 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T15:44:50.686775 tid5620 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T15:44:50.686781 tid5620 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T15:44:50.686792 tid5620 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T15:44:50.686798 tid5620 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T15:44:50.686808 tid5620 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T15:44:50.686814 tid5620 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T15:44:50.686833 tid5620 [dbg,Core] Will set Core property: Initialize = 1
+2025-02-06T15:44:50.686846 tid5620 [IFO,Core] Will initialize 2 devices
+2025-02-06T15:44:50.686854 tid5620 [IFO,Core] Will initialize device COM5
+2025-02-06T15:44:50.689169 tid5620 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T15:44:50.691341 tid5620 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T15:44:50.693724 tid5620 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T15:44:50.695835 tid5620 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T15:44:50.697802 tid5620 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T15:44:50.699970 tid5620 [IFO,Core] Did initialize device COM5
+2025-02-06T15:44:50.700042 tid8684 [IFO,Core] Will initialize device MCM3000
+2025-02-06T15:44:50.700316 tid8684 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.719519 tid8684 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.719541 tid8684 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.719547 tid8684 [IFO,Core] Did initialize device MCM3000
+2025-02-06T15:44:50.719636 tid5620 [IFO,Core] Finished initializing 2 devices
+2025-02-06T15:44:50.719714 tid5620 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-02-06T15:44:50.719720 tid5620 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:44:50.719732 tid5620 [dbg,Core] Did set Core property: Initialize = 1
+2025-02-06T15:44:50.719758 tid5620 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-02-06T15:44:50.719763 tid5620 [IFO,Core] Default stage set to MCM3000
+2025-02-06T15:44:50.719779 tid5620 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-02-06T15:44:50.719781 tid5620 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:44:50.719786 tid5620 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-02-06T15:44:50.719793 tid5620 [dbg,Core] Will set Core property: AutoShutter = 0
+2025-02-06T15:44:50.719800 tid5620 [dbg,Core] Autoshutter turned off
+2025-02-06T15:44:50.719806 tid5620 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 0
+2025-02-06T15:44:50.719808 tid5620 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:44:50.719813 tid5620 [dbg,Core] Did set Core property: AutoShutter = 0
+2025-02-06T15:44:50.719851 tid5620 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-02-06T15:44:50.719873 tid5620 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-02-06T15:44:50.719897 tid5620 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-02-06T15:44:50.719948 tid5620 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:44:50.719953 tid5620 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:44:50.719955 tid5620 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:44:50.720003 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.750634 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.750666 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.750680 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.750686 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:50.750693 tid5620 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:44:50.750697 tid5620 [dbg,Core] Will update system state cache
+2025-02-06T15:44:50.750809 tid5620 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:44:50.750904 tid5620 [IFO,Core] Did update system state cache
+2025-02-06T15:44:50.750942 tid5620 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:44:50.761889 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.781694 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.781729 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.781744 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.781751 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:50.785601 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.813466 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.813511 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.813531 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.813541 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:50.817740 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.853962 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.853974 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.853981 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.853983 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:50.855140 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.884987 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.885032 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.885053 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.885061 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:50.889765 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.914930 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.914973 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.914994 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.915003 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:50.916270 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.945659 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.945704 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.945726 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.945735 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:50.959666 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:50.986103 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.986145 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.986169 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:50.986177 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.027848 tid5620 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-02-06T15:44:51.027895 tid5620 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.056766 tid5620 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.056784 tid5620 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.056796 tid5620 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.056801 tid5620 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.057403 tid5620 [IFO,App] Rebuilding config group table
+2025-02-06T15:44:51.057416 tid5620 [IFO,App] Finished rebuilding config group table
+2025-02-06T15:44:51.058781 tid5620 [IFO,App] Finished updating GUI
+2025-02-06T15:44:51.105470 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.117569 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.117592 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.117599 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.117601 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.119235 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.158368 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.158409 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.158430 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.158439 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.162167 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.188613 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.188623 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.188628 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.188630 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.189800 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.219379 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.219424 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.219445 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.219454 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.223517 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.250630 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.250676 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.250697 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.250708 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.253527 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.281288 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.281337 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.281360 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.281379 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.292163 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.322266 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.322280 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.322285 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.322288 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.791927 tid5244 [IFO,App] EDTHangLogger: Stopping monitoring of EDT hangs
+2025-02-06T15:44:51.791965 tid5244 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:44:51.791969 tid5244 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:44:51.791970 tid5244 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:44:51.791998 tid5244 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:44:51.816125 tid5244 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.816140 tid5244 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.816146 tid5244 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:44:51.816148 tid5244 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:44:51.816152 tid5244 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:44:51.816157 tid5244 [dbg,Core] Will unload all devices
+2025-02-06T15:44:51.816158 tid5244 [dbg,dev:MCM3000] Shutting down...
+2025-02-06T15:44:52.115225 tid5244 [IFO,Core] Did unload all devices
+2025-02-06T15:44:52.115281 tid5244 [IFO,Core] System reset
+2025-02-06T15:44:52.116646 tid5244 [IFO,Core] Core session ended
