@@ -105,7 +105,6 @@ myFocusController::myFocusController() :
     pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
     CreateProperty("StepSize", "0.2116667", MM::String, false, pAct, true);
     
-    // Add allowed step sizes from map
     for (const auto& pair : STEP_SIZE_MAP) {
         AddAllowedValue("StepSize", pair.first.c_str());
     }
@@ -576,39 +575,27 @@ int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
     {
-        pProp->Set(stepSizeUm_);
+        // Find string for current value
+        for (const auto& pair : STEP_SIZE_MAP) {
+            if (pair.second == stepSizeUm_) {
+                pProp->Set(pair.first.c_str());
+                break;
+            }
+        }
     }
     else if (eAct == MM::AfterSet)
     {
         if (initialized_)
-        {
-            LogMessage("Can't change step size after initialization", false);
             return ERR_PORT_CHANGE_FORBIDDEN;
-        }
+
         std::string stepStr;
         pProp->Get(stepStr);
 
-        // Debug logging
-        std::ostringstream oss;
-        oss << "Trying to set step size to: " << stepStr;
-        LogMessage(oss.str().c_str(), true);
-        
-        oss.str("");
-        oss << "Available step sizes:";
-        for (const auto& pair : STEP_SIZE_MAP) {
-            oss << " " << pair.first;
-        }
-        LogMessage(oss.str().c_str(), true);
-
-        // Look up exact value from map
         auto it = STEP_SIZE_MAP.find(stepStr);
         if (it != STEP_SIZE_MAP.end()) {
-            stepSizeUm_ = it->second;  // Use exact value from map
-            LogMessage("Step size set successfully", true);
+            stepSizeUm_ = it->second;  // This is where the exact value is set
             return DEVICE_OK;
         }
-        
-        LogMessage("Invalid step size", false);
         return ERR_INVALID_VALUE;
     }
     return DEVICE_OK;
