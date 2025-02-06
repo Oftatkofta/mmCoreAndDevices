@@ -267,6 +267,12 @@ int myFocusController::SetPositionSteps(long steps)
     if (Busy())
         return ERR_BUSY;
 
+    // Log move details
+    std::ostringstream os;
+    os << "Move command: current=" << curSteps_ << " target=" << steps 
+       << " delta=" << (steps - curSteps_) << " steps";
+    LogMessage(os.str().c_str(), true);
+
     // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
                           (unsigned char)AXIS_ID_WORD,
@@ -280,10 +286,25 @@ int myFocusController::SetPositionSteps(long steps)
     if (ret != DEVICE_OK)
         return ret;
 
-    // Wait for move completion
-    const MM::MMTime startTime = GetCurrentMMTime();
-    const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
+    // Get response to move command
+    unsigned char response[12];
+    ret = GetResponse(response, 12);
+    if (ret != DEVICE_OK)
+        return ret;
+
+    // Verify move command was accepted
+    if (response[0] != (CMD_GOTO_POS + 1))
+    {
+        LogMessage("Move command not acknowledged", false);
+        return ERR_UNRECOGNIZED_ANSWER;
+    }
+
+    // Wait for move completion with timeout
+    MM::MMTime startTime = GetCurrentMMTime();
+    MM::MMTime timeout = MM::MMTime::fromMs(10000);  // 10 second timeout for longer moves
     bool moveComplete = false;
+    long lastPosition = curSteps_;
+    MM::MMTime lastMoveTime = startTime;
     
     while (!moveComplete && ((GetCurrentMMTime() - startTime) <= timeout))
     {
@@ -293,7 +314,21 @@ int myFocusController::SetPositionSteps(long steps)
         if (ret != DEVICE_OK)
             return ret;
 
-        // Check if within tolerance
+        // Check if position is changing
+        if (currentPos != lastPosition)
+        {
+            lastPosition = currentPos;
+            lastMoveTime = GetCurrentMMTime();
+        }
+        
+        // Check if we're stuck (no position change for 2 seconds)
+        if ((GetCurrentMMTime() - lastMoveTime) > MM::MMTime::fromMs(2000))
+        {
+            LogMessage("Move appears stuck - no position change for 2 seconds", true);
+            return ERR_RESPONSE_TIMEOUT;
+        }
+
+        // Check if within tolerance of target
         if (abs(currentPos - steps) <= ENCODER_COUNT_TOLERANCE)
         {
             moveComplete = true;
