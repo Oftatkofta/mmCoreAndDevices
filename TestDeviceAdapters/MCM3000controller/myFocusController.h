@@ -101,13 +101,6 @@ private:
     static constexpr double POSITION_LIMIT_UM = 12700.0;     // ±12.7mm for ZFM2020/2030
     static constexpr double DEFAULT_STEP_SIZE_UM = ZFM2020_STEP_SIZE_UM;  // Default to ZFM2020/2030 step size
 
-    // Step size options
-    static constexpr double STEP_SIZE_FINE = 0.0390625;  // Fine step size
-    static constexpr double STEP_SIZE_ZFM = 0.2116667;   // ZFM2020/2030 stage
-    static constexpr double STEP_SIZE_1UM = 0.001;       // 1 nm step size
-    static constexpr double STEP_SIZE_500NM = 0.5;       // 500 nm step size
-    static constexpr double STEP_SIZE_100NM = 0.1;       // 100 nm step size
-
     // Member variables
     bool initialized_;
     std::string port_;

@@ -456,12 +456,13 @@ int myFocusController::Stop()
 
 int myFocusController::SendCommand(const unsigned char* command, unsigned length)
 {
-    // Don't check initialized_ here - needed for initialization itself
-
     // Clear any leftover bytes
     int ret = ClearPort();
     if (ret != DEVICE_OK)
         return ret;
+
+    // Store command for response validation
+    lastCommand_ = command[0];
 
     // Send command
     ret = GetCoreCallback()->WriteToSerial(this, port_.c_str(), command, length);
@@ -471,7 +472,7 @@ int myFocusController::SendCommand(const unsigned char* command, unsigned length
     return DEVICE_OK;
 }
 
-int myFocusController::GetResponse(unsigned char* response, unsigned expectedLength)
+int myFocusController::GetResponse(unsigned char* response, unsigned length)
 {
     if (!response)
         return DEVICE_ERR;
@@ -484,7 +485,7 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
     const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
     
     // Read response using MM serial interface
-    while (totalRead < expectedLength)
+    while (totalRead < length)
     {
         if ((GetCurrentMMTime() - startTime) > timeout)
         {
@@ -494,7 +495,7 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
 
         int ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
                                                   buf + totalRead,
-                                                  expectedLength - totalRead, 
+                                                  length - totalRead, 
                                                   bytesRead);
         if (ret != DEVICE_OK)
         {
@@ -534,7 +535,7 @@ int myFocusController::GetResponse(unsigned char* response, unsigned expectedLen
     }
 
     // Copy valid packet
-    memcpy(response, buf, expectedLength);
+    memcpy(response, buf, length);
 
     return DEVICE_OK;
 }
