@@ -11,14 +11,6 @@
 #include <sstream>
 #include <iomanip>
 
-// Constants for axis/channel IDs
-const unsigned char AXIS_ID_BYTE = 0x01;  // 8-bit axis ID
-const unsigned short AXIS_ID_WORD = 0x0001;  // 16-bit axis ID
-
-// Define static constants
-const double myFocusController::POSITION_LIMIT_UM = 12700.0;  // ±12.7mm for ZFM2020/2030
-const double myFocusController::DEFAULT_STEP_SIZE_UM = 0.2116667;  // From Python code
-
 // Module interface
 MODULE_API void InitializeModuleData()
 {
@@ -45,12 +37,12 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
 myFocusController::myFocusController() :
     initialized_(false),
     port_("Undefined"),
-    stepSizeUm_(DEFAULT_STEP_SIZE_UM),  // From Python code
-    answerTimeoutMs_(500),
-    curSteps_(0),
-    positionValid_(false),
+    axisID_(0),  // Default to axis 0
+    stepSizeUm_(DEFAULT_STEP_SIZE_UM),
+    answerTimeoutMs_(2000.0),
     home_(false),
-    lastCommand_(0)
+    curSteps_(0),
+    positionValid_(false)
 {
     InitializeDefaultErrorMessages();
 
@@ -76,9 +68,21 @@ myFocusController::myFocusController() :
     description += "  Flow Control: None";
     CreateProperty(MM::g_Keyword_Description, description.c_str(), MM::String, true);
 
-    // Create pre-initialization property for port
+    // Port
     CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnPort);
     CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false, pAct, true);
+
+    // Axis ID (0-2)
+    pAct = new CPropertyAction(this, &myFocusController::OnAxisID);
+    CreateProperty("AxisID", "0", MM::Integer, false, pAct, true);
+    SetPropertyLimits("AxisID", 0, 2);  // Restrict to valid range
+    AddAllowedValue("AxisID", "0");     // Add descriptions
+    AddAllowedValue("AxisID", "1");
+    AddAllowedValue("AxisID", "2");
+
+    // Step size (um/step)
+    pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
+    CreateProperty("StepSize", std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), MM::Float, false, pAct, true);
 }
 
 myFocusController::~myFocusController()
@@ -123,7 +127,7 @@ int myFocusController::Initialize()
         return ret;
 
     // Test communication with position query
-    unsigned char cmd[] = {CMD_QUERY_POS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
+    unsigned char cmd[] = {CMD_QUERY_POS, 0x04, axisID_, 0x00, 0x00, 0x00};
     ret = SendCommand(cmd, QUERY_POS_LENGTH);
     if (ret != DEVICE_OK)
     {
@@ -204,7 +208,7 @@ bool myFocusController::Busy()
 int myFocusController::GetPositionSteps(long& steps)
 {
     // Query current position
-    unsigned char cmd[] = {CMD_QUERY_POS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
+    unsigned char cmd[] = {CMD_QUERY_POS, 0x04, axisID_, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, QUERY_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
@@ -275,12 +279,12 @@ int myFocusController::SetPositionSteps(long steps)
 
     // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
-                          (unsigned char)AXIS_ID_WORD,
-                          (unsigned char)(AXIS_ID_WORD >> 8),
+                          (unsigned char)(axisID_ & 0xFF),        // LSB
+                          (unsigned char)((axisID_ & 0xFF00) >> 8), // MSB
                           (unsigned char)(steps & 0xFF),
-                          (unsigned char)((steps >> 8) & 0xFF),
-                          (unsigned char)((steps >> 16) & 0xFF),
-                          (unsigned char)((steps >> 24) & 0xFF)};
+                          (unsigned char)((steps & 0xFF00) >> 8),
+                          (unsigned char)((steps & 0xFF0000) >> 16),
+                          (unsigned char)((steps & 0xFF000000) >> 24)};
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
@@ -418,8 +422,8 @@ int myFocusController::SetOrigin()
 
     // Set encoder counter to 0 with channel 1
     unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
-                           (unsigned char)(AXIS_ID_WORD & 0xFF),        // Channel ID low byte
-                           (unsigned char)((AXIS_ID_WORD >> 8) & 0xFF), // Channel ID high byte
+                           (unsigned char)(axisID_ & 0xFF),        // Channel ID low byte
+                           (unsigned char)((axisID_ >> 8) & 0xFF), // Channel ID high byte
                            0x00, 0x00, 0x00, 0x00};  // Position 0
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
@@ -435,7 +439,7 @@ int myFocusController::Stop()
         return DEVICE_ERR;
 
     // Send stop command
-    unsigned char cmd[] = {CMD_STOP, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
+    unsigned char cmd[] = {CMD_STOP, 0x04, axisID_, 0x00, 0x00, 0x00};
     int ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
@@ -464,7 +468,6 @@ int myFocusController::SendCommand(const unsigned char* command, unsigned length
     if (ret != DEVICE_OK)
         return ret;
 
-    lastCommand_ = command[0];
     return DEVICE_OK;
 }
 
@@ -557,7 +560,7 @@ int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
     return DEVICE_OK;
 }
 
-int myFocusController::OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct)
+int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
     {
@@ -566,8 +569,43 @@ int myFocusController::OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct
     else if (eAct == MM::AfterSet)
     {
         if (initialized_)
-            return DEVICE_ERR;
-        pProp->Get(stepSizeUm_);
+        {
+            LogMessage("Can't change step size after initialization", false);
+            return ERR_PORT_CHANGE_FORBIDDEN;
+        }
+        double stepSize;
+        pProp->Get(stepSize);
+        if (stepSize <= 0.0)
+        {
+            LogMessage("Step size must be positive", false);
+            return ERR_INVALID_VALUE;
+        }
+        stepSizeUm_ = stepSize;
+    }
+    return DEVICE_OK;
+}
+
+int myFocusController::OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::BeforeGet)
+    {
+        pProp->Set((long)axisID_);
+    }
+    else if (eAct == MM::AfterSet)
+    {
+        if (initialized_)
+        {
+            LogMessage("Can't change axis ID after initialization", false);
+            return ERR_PORT_CHANGE_FORBIDDEN;
+        }
+        long id;
+        pProp->Get(id);
+        if (id < 0 || id > 2)  // Validate range
+        {
+            LogMessage("Axis ID must be between 0 and 2", false);
+            return ERR_INVALID_VALUE;
+        }
+        axisID_ = (unsigned char)id;
     }
     return DEVICE_OK;
 }
@@ -598,8 +636,8 @@ int myFocusController::Home()
 
     // Set encoder to 0 at current position
     unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00,
-                          (unsigned char)AXIS_ID_WORD,        // Channel ID (LSB)
-                          (unsigned char)(AXIS_ID_WORD >> 8), // Channel ID (MSB)
+                          (unsigned char)axisID_,        // Channel ID (LSB)
+                          (unsigned char)(axisID_ >> 8), // Channel ID (MSB)
                           0x00, 0x00, 0x00, 0x00};  // Position 0
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);

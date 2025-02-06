@@ -15,13 +15,14 @@
 #define ERR_BUSY                     10014
 #define ERR_STEPS_OUT_OF_RANGE       10015
 #define ERR_STAGE_NOT_ZEROED         10016
+#define ERR_INVALID_VALUE            10017
 
 // Command lengths - make const for type safety
 static const int SET_POS_LENGTH = 12;
 static const int QUERY_POS_LENGTH = 6;
 static const int STATUS_LENGTH = 6;
 
-// Device specific constants - for external use
+// Device constants - for external use
 static const char* const g_DeviceName = "MCM3000";
 static const char* const g_Description = "MCM3000 Focus Controller";
 
@@ -66,7 +67,8 @@ public:
 
     // Action interface
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
-    int OnStepSizeUm(MM::PropertyBase* pProp, MM::ActionType eAct);
+    int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
+    int OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct);
 
     // Declare SendCommand in header
     int SendCommand(const unsigned char* command, unsigned length);
@@ -94,16 +96,20 @@ private:
     static const unsigned char CMD_SET_ENCODER = 0x09;  // 2 byte ID
     static const unsigned char CMD_GOTO_POS = 0x53;     // 2 byte ID
     
+    // Device constants
+    static constexpr double ZFM2020_STEP_SIZE_UM = 0.2116667;  // ZFM2020/2030 stage step size in microns
+    static constexpr double POSITION_LIMIT_UM = 12700.0;     // ±12.7mm for ZFM2020/2030
+    static constexpr double DEFAULT_STEP_SIZE_UM = ZFM2020_STEP_SIZE_UM;  // Default to ZFM2020/2030 step size
+
     bool initialized_;
     std::string port_;
     double stepSizeUm_;
     double answerTimeoutMs_;
     bool home_;
     long curSteps_;          // Cached position
+
     bool positionValid_;     // Cache validity flag
     MM::MMTime lastMoveTime_;
     unsigned char lastCommand_;  // Tracks last command sent for response validation
-    // Device limits
-    static const double POSITION_LIMIT_UM;  // ±12.7mm for ZFM2020/2030
-    static const double DEFAULT_STEP_SIZE_UM;  // From Python code
+    unsigned char axisID_;  // Configurable axis ID (0-2)
 };
