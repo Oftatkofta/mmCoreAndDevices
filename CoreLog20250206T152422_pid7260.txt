@@ -1,0 +1,516 @@
+2025-02-06T15:24:22.067494 tid12616 [IFO,LogManager] Enabled primary log file C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\CoreLogs\CoreLog20250206T152422_pid7260.txt
+2025-02-06T15:24:22.067582 tid12616 [IFO,App] User: admin
+2025-02-06T15:24:22.067997 tid12616 [IFO,App] Host: FLEXOPC
+2025-02-06T15:24:22.068026 tid12616 [IFO,App] MM Studio version: 2.0.3 20250115
+2025-02-06T15:24:22.068052 tid12616 [IFO,App] MMCore version 11.3.0
+2025-02-06T15:24:22.068081 tid12616 [IFO,App] Device API version 71, Module API version 10
+2025-02-06T15:24:22.068089 tid12616 [IFO,App] Operating System: Windows 10 (amd64) 10.0
+2025-02-06T15:24:22.068095 tid12616 [IFO,App] JVM: Java HotSpot(TM) 64-Bit Server VM, version 1.8.0_152, 64-bit
+2025-02-06T15:24:22.502949 tid7564 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.intensity.IntensityInspectorPanelPlugin@5b6585c0
+2025-02-06T15:24:22.504449 tid7564 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.SummaryMetadataInspectorPanelPlugin@6716c78d
+2025-02-06T15:24:22.504546 tid7564 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.metadata.PlaneMetadataInspectorPanelPlugin@7af5e0b4
+2025-02-06T15:24:22.504621 tid7564 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.comments.CommentsInspectorPanelPlugin@37034570
+2025-02-06T15:24:22.505202 tid7564 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.PatternOverlayPlugin@6f03f750
+2025-02-06T15:24:22.505294 tid7564 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.navigation.NavigationInspectorPanelPlugin@42061705
+2025-02-06T15:24:22.505365 tid7564 [IFO,App] Found plugin org.micromanager.display.inspector.internal.panels.overlays.OverlaysInspectorPanelPlugin@479b17ec
+2025-02-06T15:24:22.505420 tid7564 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.ScaleBarPlugin@4fb2feaf
+2025-02-06T15:24:22.505472 tid7564 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TextOverlayPlugin@3f7b397e
+2025-02-06T15:24:22.505681 tid7564 [IFO,App] Found plugin org.micromanager.display.overlay.internal.overlays.TimestampPlugin@4db7bfab
+2025-02-06T15:24:22.506128 tid7564 [IFO,App] Found plugin org.micromanager.acquisition.internal.DefaultMDAPlugin@528ce586
+2025-02-06T15:24:22.506378 tid7564 [IFO,App] Found plugin org.micromanager.acquisition.internal.acqengjcompat.multimda.MultiMDA@a132efe
+2025-02-06T15:24:22.506593 tid7564 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.CopyToImageJItem@6c45460b
+2025-02-06T15:24:22.506663 tid7564 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.ExportImagesItem@1cffe6cf
+2025-02-06T15:24:22.506738 tid7564 [IFO,App] Found plugin org.micromanager.display.internal.gearmenu.LineProfileItem@296a8003
+2025-02-06T15:24:22.508285 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.AutofocusButtons@3125ccf4
+2025-02-06T15:24:22.509573 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.CloseAllButton@f8d90f
+2025-02-06T15:24:22.510245 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ExposureTime@22abb068
+2025-02-06T15:24:22.511184 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.LiveButton@127fcefb
+2025-02-06T15:24:22.512536 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.MDAButtons@5143568
+2025-02-06T15:24:22.513192 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.PresetButton@b34d494
+2025-02-06T15:24:22.513601 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.RefreshButton@2faf0fef
+2025-02-06T15:24:22.514176 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SavedMDAButton@255c33b
+2025-02-06T15:24:22.514780 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ScriptButton@1eb7189c
+2025-02-06T15:24:22.514966 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.ShutterControl@32d74c6a
+2025-02-06T15:24:22.515380 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.SnapButton@210f46c7
+2025-02-06T15:24:22.515465 tid7564 [IFO,App] Found plugin org.micromanager.quickaccess.internal.controls.TextLabel@2933fa90
+2025-02-06T15:24:22.516202 tid7564 [IFO,App] Plugin loading took 833ms
+2025-02-06T15:24:22.516400 tid12616 [IFO,App] Finished waiting for plugins to load
+2025-02-06T15:24:24.931153 tid12616 [dbg,Core] Will unload all devices
+2025-02-06T15:24:24.931160 tid12616 [IFO,Core] Did unload all devices
+2025-02-06T15:24:24.931531 tid12616 [dbg,Core] Will set Core property: Initialize = 0
+2025-02-06T15:24:24.931534 tid12616 [dbg,Core] Will unload all devices
+2025-02-06T15:24:24.931535 tid12616 [IFO,Core] Did unload all devices
+2025-02-06T15:24:24.931587 tid12616 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-02-06T15:24:24.931590 tid12616 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:24:24.931599 tid12616 [dbg,Core] Did set Core property: Initialize = 0
+2025-02-06T15:24:24.931611 tid12616 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T15:24:24.933181 tid12616 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T15:24:24.933188 tid12616 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:24:24.934086 tid12616 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:24:24.934093 tid12616 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T15:24:24.934102 tid12616 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to COM5
+2025-02-06T15:24:24.934105 tid12616 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T15:24:24.934111 tid12616 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:24:24.934124 tid12616 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:24:24.934128 tid12616 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T15:24:24.934130 tid12616 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T15:24:24.934133 tid12616 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T15:24:24.934135 tid12616 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T15:24:24.934138 tid12616 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T15:24:24.934141 tid12616 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T15:24:24.934144 tid12616 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:24:24.934146 tid12616 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:24:24.934151 tid12616 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:24:24.934152 tid12616 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:24:24.934156 tid12616 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T15:24:24.934157 tid12616 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T15:24:24.934160 tid12616 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T15:24:24.934162 tid12616 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T15:24:24.934173 tid12616 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T15:24:24.934174 tid12616 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T15:24:24.934177 tid12616 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T15:24:24.934178 tid12616 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T15:24:24.934183 tid12616 [dbg,Core] Will set Core property: Initialize = 1
+2025-02-06T15:24:24.934190 tid12616 [IFO,Core] Will initialize 2 devices
+2025-02-06T15:24:24.934195 tid12616 [IFO,Core] Will initialize device COM5
+2025-02-06T15:24:24.935431 tid12616 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T15:24:24.936605 tid12616 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T15:24:24.937917 tid12616 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T15:24:24.939213 tid12616 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T15:24:24.940430 tid12616 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T15:24:24.941723 tid12616 [IFO,Core] Did initialize device COM5
+2025-02-06T15:24:24.941754 tid5288 [IFO,Core] Will initialize device MCM3000
+2025-02-06T15:24:24.941799 tid5288 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:24:24.972222 tid5288 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:24.972271 tid5288 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:24.972279 tid5288 [IFO,Core] Did initialize device MCM3000
+2025-02-06T15:24:24.972404 tid12616 [IFO,Core] Finished initializing 2 devices
+2025-02-06T15:24:24.972494 tid12616 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-02-06T15:24:24.972501 tid12616 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:24:24.972516 tid12616 [dbg,Core] Did set Core property: Initialize = 1
+2025-02-06T15:24:24.972572 tid12616 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-02-06T15:24:24.972586 tid12616 [IFO,Core] Default stage set to MCM3000
+2025-02-06T15:24:24.972610 tid12616 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-02-06T15:24:24.972614 tid12616 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:24:24.972621 tid12616 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-02-06T15:24:24.972631 tid12616 [dbg,Core] Will set Core property: AutoShutter = 0
+2025-02-06T15:24:24.972664 tid12616 [dbg,Core] Autoshutter turned off
+2025-02-06T15:24:24.972674 tid12616 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 0
+2025-02-06T15:24:24.972677 tid12616 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:24:24.972685 tid12616 [dbg,Core] Did set Core property: AutoShutter = 0
+2025-02-06T15:24:24.972747 tid12616 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-02-06T15:24:24.972795 tid12616 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-02-06T15:24:24.972831 tid12616 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-02-06T15:24:24.973021 tid12616 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:24:24.973030 tid12616 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:24:24.973034 tid12616 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:24:24.973141 tid12616 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:24:25.002754 tid12616 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.002797 tid12616 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.002823 tid12616 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.002832 tid12616 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:24:25.002840 tid12616 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:24:25.002845 tid12616 [dbg,Core] Will update system state cache
+2025-02-06T15:24:25.003019 tid12616 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:24:25.003176 tid12616 [IFO,Core] Did update system state cache
+2025-02-06T15:24:25.003235 tid12616 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:24:25.006404 tid12616 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:24:25.033835 tid12616 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.033880 tid12616 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.033905 tid12616 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.033914 tid12616 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:24:25.083796 tid12616 [dbg,Core] Will set circular buffer size to 50000 MB
+2025-02-06T15:24:25.083900 tid12616 [dbg,Core] Did set circular buffer size to 50000 MB
+2025-02-06T15:24:25.086252 tid12616 [IFO,App] EDTHangLogger: Started monitoring of EDT hangs
+                                    [       ] [heartbeat timeout = 4500 ms, hang check interval = 1000 ms]
+2025-02-06T15:24:25.395512 tid12616 [IFO,App] Rebuilding config group table
+2025-02-06T15:24:25.395568 tid12616 [IFO,App] Finished rebuilding config group table
+2025-02-06T15:24:25.406652 tid12616 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:24:25.430737 tid12616 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.430779 tid12616 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.430800 tid12616 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.430808 tid12616 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:24:25.450716 tid12616 [IFO,App] Startup script (C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\MMStartup.bsh) not present
+2025-02-06T15:24:25.450759 tid12616 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-02-06T15:24:25.450903 tid12616 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:24:25.481924 tid12616 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.481964 tid12616 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.481985 tid12616 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:25.481992 tid12616 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:24:25.486875 tid12616 [IFO,App] Rebuilding config group table
+2025-02-06T15:24:25.486899 tid12616 [IFO,App] Finished rebuilding config group table
+2025-02-06T15:24:25.487467 tid12616 [IFO,App] Finished updating GUI
+2025-02-06T15:24:25.499200 tid12616 [dbg,App] [UI] JButton "OK" clicked in IntroDlg.
+2025-02-06T15:24:27.829557 tid12616 [dbg,App] [UI] JMenu "Devices" clicked in MainFrame.
+2025-02-06T15:24:29.197081 tid13888 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:24:29.197096 tid13888 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:24:29.197098 tid13888 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:24:29.197126 tid13888 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:24:29.215155 tid13888 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:29.215166 tid13888 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:29.215172 tid13888 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:29.215174 tid13888 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:24:29.215177 tid13888 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:24:29.215182 tid13888 [dbg,Core] Will unload all devices
+2025-02-06T15:24:29.215183 tid13888 [dbg,dev:MCM3000] Shutting down...
+2025-02-06T15:24:29.500718 tid13888 [IFO,Core] Did unload all devices
+2025-02-06T15:24:29.500732 tid13888 [IFO,Core] System reset
+2025-02-06T15:24:29.551605 tid13888 [IFO,App] Arduino
+2025-02-06T15:24:29.554758 tid13888 [IFO,App]    Arduino-Hub, Hub (required)
+2025-02-06T15:24:29.554765 tid13888 [IFO,App]    Arduino-Switch, Digital out 8-bit
+2025-02-06T15:24:29.554766 tid13888 [IFO,App]    Arduino-Shutter, Shutter
+2025-02-06T15:24:29.554767 tid13888 [IFO,App]    Arduino-DAC1, DAC channel 1
+2025-02-06T15:24:29.554768 tid13888 [IFO,App]    Arduino-DAC2, DAC channel 2
+2025-02-06T15:24:29.554771 tid13888 [IFO,App]    Arduino-Input, ADC
+2025-02-06T15:24:29.554772 tid13888 [IFO,App]    Arduino-Magnifier, Magnifier(needs ADC)
+2025-02-06T15:24:29.554776 tid13888 [IFO,App] Arduino32bitBoards
+2025-02-06T15:24:29.556174 tid13888 [IFO,App]    Arduino32-Hub, Hub (required)
+2025-02-06T15:24:29.556179 tid13888 [IFO,App]    Arduino32-Switch, Switch on/off channels 1 to 8
+2025-02-06T15:24:29.556181 tid13888 [IFO,App]    Arduino32-Shutter, Shutter
+2025-02-06T15:24:29.556182 tid13888 [IFO,App]    Arduino32-Input, ADC
+2025-02-06T15:24:29.556183 tid13888 [IFO,App]    Arduino32-DAC/PWM-1, DAC/PWM channel 1
+2025-02-06T15:24:29.556184 tid13888 [IFO,App]    Arduino32-DAC/PWM-2, DAC/PWM channel 2
+2025-02-06T15:24:29.556188 tid13888 [IFO,App]    Arduino32-DAC/PWM-3, DAC/PWM channel 3
+2025-02-06T15:24:29.556189 tid13888 [IFO,App]    Arduino32-DAC/PWM-4, DAC/PWM channel 4
+2025-02-06T15:24:29.556190 tid13888 [IFO,App]    Arduino32-DAC/PWM-5, DAC/PWM channel 5
+2025-02-06T15:24:29.556191 tid13888 [IFO,App]    Arduino32-DAC/PWM-6, DAC/PWM channel 6
+2025-02-06T15:24:29.556192 tid13888 [IFO,App]    Arduino32-DAC/PWM-7, DAC/PWM channel 7
+2025-02-06T15:24:29.556193 tid13888 [IFO,App]    Arduino32-DAC/PWM-8, DAC/PWM channel 8
+2025-02-06T15:24:29.556197 tid13888 [IFO,App] ArduinoCounter
+2025-02-06T15:24:29.557401 tid13888 [IFO,App]    ArduinoCounterCamera, ArduinoCounterCamera
+2025-02-06T15:24:29.557406 tid13888 [IFO,App] ArduinoNeoPixel
+2025-02-06T15:24:29.558686 tid13888 [IFO,App]    ArduinoNeoPixel-Hub, Hub (required)
+2025-02-06T15:24:29.558690 tid13888 [IFO,App]    ArduinoNeoPixel-Shutter, Shutter
+2025-02-06T15:24:29.558692 tid13888 [IFO,App] FreeSerialPort
+2025-02-06T15:24:29.559737 tid13888 [IFO,App]    FreeSerialPort, Free-form communication Serial Port.
+2025-02-06T15:24:29.559741 tid13888 [IFO,App] HamamatsuHam
+2025-02-06T15:24:29.563120 tid13888 [IFO,App]    HamamatsuHam_DCAM, Universal adapter using Hamamatsu DCAM interface
+2025-02-06T15:24:29.563131 tid13888 [IFO,App] MCM3000controller
+2025-02-06T15:24:29.563143 tid13888 [IFO,App]    MCM3000, MCM3000 Focus Controller
+2025-02-06T15:24:29.563145 tid13888 [IFO,App] NotificationTester
+2025-02-06T15:24:29.564362 tid13888 [IFO,App]    NTSyncProperty, Test synchronous property notifications
+2025-02-06T15:24:29.564366 tid13888 [IFO,App]    NTAsyncProperty, Test asynchronous property busy state and notifications
+2025-02-06T15:24:29.564367 tid13888 [IFO,App]    NTSyncStage, Test synchronous stage position notifications
+2025-02-06T15:24:29.564368 tid13888 [IFO,App]    NTAsyncStage, Test asynchronous stage busy state and position notifications
+2025-02-06T15:24:29.564369 tid13888 [IFO,App]    NTSyncXYStage, Test synchronous XY stage position notifications
+2025-02-06T15:24:29.564375 tid13888 [IFO,App]    NTAsyncXYStage, Test asynchronous XY stage busy state and position notifications
+2025-02-06T15:24:29.564377 tid13888 [IFO,App] OpenCVgrabber
+2025-02-06T15:24:29.567034 tid13888 [IFO,App]    OpenCVgrabber, OpenCVgrabber video input
+2025-02-06T15:24:29.567039 tid13888 [IFO,App] ParallelPort
+2025-02-06T15:24:29.570595 tid13888 [IFO,App]    LPT1, Printer port TTL digital output
+2025-02-06T15:24:29.570599 tid13888 [IFO,App]    LPT-Shutter, Printer port TTLs used as shutters
+2025-02-06T15:24:29.570608 tid13888 [IFO,App] PVCAM
+2025-02-06T15:24:29.572681 tid13888 [IFO,App] Error: Unable to load PVCAM library: Failed to load device adapter "PVCAM" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_PVCAM.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:24:29.572696 tid13888 [IFO,App] PyDevice
+2025-02-06T15:24:29.574576 tid13888 [IFO,App]    PyHub, Runs a Python script that constructs one or more device objects
+2025-02-06T15:24:29.574581 tid13888 [IFO,App] RAMPS
+2025-02-06T15:24:29.575675 tid13888 [IFO,App]    RAMPSXYStage, RAMPS XY stage
+2025-02-06T15:24:29.575679 tid13888 [IFO,App]    RAMPSZStage, RAMPS Z stage
+2025-02-06T15:24:29.575680 tid13888 [IFO,App]    RAMPSHub, RAMPS hub
+2025-02-06T15:24:29.575683 tid13888 [IFO,App] SequenceTester
+2025-02-06T15:24:29.576893 tid13888 [IFO,App]    THub, Fake devices for automated and interactive testing
+2025-02-06T15:24:29.576898 tid13888 [IFO,App] SerialManager
+2025-02-06T15:24:29.576943 tid13888 [IFO,App]    COM5, Serial communication port
+2025-02-06T15:24:29.576960 tid13888 [IFO,App]    COM6, Serial communication port
+2025-02-06T15:24:29.576961 tid13888 [IFO,App]    COM3, Serial communication port
+2025-02-06T15:24:29.576962 tid13888 [IFO,App]    COM4, Serial communication port
+2025-02-06T15:24:29.576964 tid13888 [IFO,App] TCPIPPort
+2025-02-06T15:24:29.578139 tid13888 [IFO,App]    TCP/IP serial port adapter (1), TCP/IP serial port adapter
+2025-02-06T15:24:29.578144 tid13888 [IFO,App] Thorlabs
+2025-02-06T15:24:29.579279 tid13888 [IFO,App]    XYStage, Thorlabs BD102 XY Stage
+2025-02-06T15:24:29.579283 tid13888 [IFO,App]    PiezoZStage, Thorlabs piezo Z Stage
+2025-02-06T15:24:29.579284 tid13888 [IFO,App]    MotorZStage, Thorlabs Motor Z Stage
+2025-02-06T15:24:29.579285 tid13888 [IFO,App]    FilterWheel, Integrated filter wheel
+2025-02-06T15:24:29.579287 tid13888 [IFO,App] ThorlabsAPTStage
+2025-02-06T15:24:29.581036 tid13888 [IFO,App] Error: Unable to load ThorlabsAPTStage library: Failed to load device adapter "ThorlabsAPTStage" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_ThorlabsAPTStage.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:24:29.581045 tid13888 [IFO,App] ThorlabsCHROLIS
+2025-02-06T15:24:29.582909 tid13888 [IFO,App] Error: Unable to load ThorlabsCHROLIS library: Failed to load device adapter "ThorlabsCHROLIS" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_ThorlabsCHROLIS.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:24:29.582917 tid13888 [IFO,App] ThorlabsDCxxxx
+2025-02-06T15:24:29.618206 tid13888 [IFO,App]    Thorlabs DC2010/DC2100, DC2010/DC2100 High Power LED Driver
+2025-02-06T15:24:29.618214 tid13888 [IFO,App]    Thorlabs DC3100, DC3100 FLIM LED Driver
+2025-02-06T15:24:29.618215 tid13888 [IFO,App]    Thorlabs DC4100, DC4100 Four channel LED Driver
+2025-02-06T15:24:29.618216 tid13888 [IFO,App]    Thorlabs DC2200, DC2200 High Power LED Driver
+2025-02-06T15:24:29.618219 tid13888 [IFO,App] ThorlabsElliptecSlider
+2025-02-06T15:24:29.619294 tid13888 [IFO,App]    Thorlabs ELL17/ELL20, Thorlabs ELL17/ELL20
+2025-02-06T15:24:29.619297 tid13888 [IFO,App]    Thorlabs ELL9, Thorlabs ELL9
+2025-02-06T15:24:29.619298 tid13888 [IFO,App]    Thorlabs ELL6, Thorlabs ELL6
+2025-02-06T15:24:29.619299 tid13888 [IFO,App]    Thorlabs ELL6 shutter, Thorlabs ELL6 shutter
+2025-02-06T15:24:29.619302 tid13888 [IFO,App] ThorlabsFilterWheel
+2025-02-06T15:24:29.620285 tid13888 [IFO,App]    Thorlabs Filter Wheel, Thorlabs filter wheel
+2025-02-06T15:24:29.620289 tid13888 [IFO,App] ThorlabsPM100x
+2025-02-06T15:24:29.621915 tid13888 [IFO,App] Error: Unable to load ThorlabsPM100x library: Failed to load device adapter "ThorlabsPM100x" [ Failed to load module "C:\Program Files\Micro-Manager-2.0-3-gamma-nightly\Micro-Manager-2.0\mmgr_dal_ThorlabsPM100x.dll" [ The module, or a module it depends upon, could not be found (Windows error: The specified module could not be found.) ] ]
+2025-02-06T15:24:29.621923 tid13888 [IFO,App] ThorlabsSC10
+2025-02-06T15:24:29.622820 tid13888 [IFO,App]    SC10, ThorLabs SC10 shutter controller
+2025-02-06T15:24:29.622824 tid13888 [IFO,App] Thorlabs_ELL14
+2025-02-06T15:24:29.623678 tid13888 [IFO,App]     ELL14,  ELL14
+2025-02-06T15:24:29.623682 tid13888 [IFO,App] UniversalMMHubSerial
+2025-02-06T15:24:29.624579 tid13888 [IFO,App]    UniversalMMHubSerial, Universal hardware hub (serial)
+2025-02-06T15:24:29.624583 tid13888 [IFO,App] UniversalMMHubUsb
+2025-02-06T15:24:29.625500 tid13888 [IFO,App]    UniversalMMHubUsb, Universal hardware hub (USB communication)
+2025-02-06T15:24:29.625504 tid13888 [IFO,App] USBManager
+2025-02-06T15:24:29.627120 tid13888 [IFO,App] UserDefinedSerial
+2025-02-06T15:24:29.628054 tid13888 [IFO,App]    UserDefinedGenericDevice, Generic device using user-defined serial commands
+2025-02-06T15:24:29.628057 tid13888 [IFO,App]    UserDefinedShutter, Generic shutter using user-defined serial commands
+2025-02-06T15:24:29.628058 tid13888 [IFO,App]    UserDefinedStateDevice, Generic switcher using user-defined serial commands
+2025-02-06T15:24:29.628060 tid13888 [IFO,App] Utilities
+2025-02-06T15:24:29.629070 tid13888 [IFO,App]    Multi Shutter, Combine multiple physical shutters into a single logical shutter
+2025-02-06T15:24:29.629074 tid13888 [IFO,App]    Multi Camera, Combine multiple physical cameras into a single logical camera
+2025-02-06T15:24:29.629075 tid13888 [IFO,App]    Multi Stage, Combine multiple physical 1D stages into a single logical 1D stage
+2025-02-06T15:24:29.629079 tid13888 [IFO,App]    Combo XY Stage, Combine two single-axis stages into an XY stage
+2025-02-06T15:24:29.629088 tid13888 [IFO,App]    Single Axis Stage, Use single axis of XY stage as a logical 1D stage
+2025-02-06T15:24:29.629090 tid13888 [IFO,App]    DA Shutter, DA used as a shutter
+2025-02-06T15:24:29.629091 tid13888 [IFO,App]    DA Monochromator, DA used to control a monochromator
+2025-02-06T15:24:29.629092 tid13888 [IFO,App]    DA Z Stage, DA-controlled Z-stage
+2025-02-06T15:24:29.629093 tid13888 [IFO,App]    DA XY Stage, DA-controlled XY-stage
+2025-02-06T15:24:29.629094 tid13888 [IFO,App]    DA TTL State Device, Several DAs as a TTL state device
+2025-02-06T15:24:29.629095 tid13888 [IFO,App]    DA Galvo, Two DAs operating a Galvo pair
+2025-02-06T15:24:29.629096 tid13888 [IFO,App]    Multi DA State Device, Several DAs as a single state device allowing digital masking
+2025-02-06T15:24:29.629097 tid13888 [IFO,App]    AutoFocus Stage, AutoFocus offset acting as a Z-stage
+2025-02-06T15:24:29.629098 tid13888 [IFO,App]    State Device Shutter, State device used as a shutter
+2025-02-06T15:24:29.629100 tid13888 [IFO,App]    Serial port DTR Shutter, Serial port DTR used as a shutter
+2025-02-06T15:24:33.626697 tid13704 [IFO,App] Initialized ZMQ Server on port: 4827
+2025-02-06T15:24:35.166483 tid12616 [dbg,App] [UI] JButton "Next >" clicked in ConfigWizard.
+2025-02-06T15:24:35.177009 tid10820 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T15:24:35.177052 tid10820 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T15:24:35.177057 tid10820 [dbg,Core] Will load device COM6 from SerialManager
+2025-02-06T15:24:35.177082 tid10820 [IFO,Core] Did load device COM6 from SerialManager; label = COM6
+2025-02-06T15:24:35.177084 tid10820 [dbg,Core] Will load device COM3 from SerialManager
+2025-02-06T15:24:35.177121 tid10820 [IFO,Core] Did load device COM3 from SerialManager; label = COM3
+2025-02-06T15:24:35.177124 tid10820 [dbg,Core] Will load device COM4 from SerialManager
+2025-02-06T15:24:35.177155 tid10820 [IFO,Core] Did load device COM4 from SerialManager; label = COM4
+2025-02-06T15:24:35.177159 tid10820 [dbg,Core] Will load device TCP/IP serial port adapter (1) from TCPIPPort
+2025-02-06T15:24:35.177201 tid10820 [IFO,Core] Did load device TCP/IP serial port adapter (1) from TCPIPPort; label = TCP/IP serial port adapter (1)
+2025-02-06T15:24:35.177221 tid10820 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:24:35.177262 tid10820 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:24:35.178503 tid10820 [dbg,dev:MCM3000] OnPort BeforeGet: Undefined
+2025-02-06T15:24:35.180756 tid10820 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:24:35.180760 tid10820 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:24:35.180765 tid10820 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T15:24:35.180767 tid10820 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T15:24:35.180770 tid10820 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T15:24:35.180772 tid10820 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T15:24:35.180774 tid10820 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T15:24:35.180777 tid10820 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T15:24:35.180780 tid10820 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:24:35.180782 tid10820 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:24:35.180785 tid10820 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:24:35.180787 tid10820 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:24:35.180789 tid10820 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T15:24:35.180791 tid10820 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T15:24:35.180794 tid10820 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T15:24:35.180795 tid10820 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T15:24:35.180798 tid10820 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T15:24:35.180799 tid10820 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T15:24:35.180801 tid10820 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T15:24:35.180803 tid10820 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T15:24:35.180813 tid10820 [IFO,Core] Will initialize device COM5
+2025-02-06T15:24:35.182233 tid10820 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T15:24:35.183708 tid10820 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T15:24:35.184949 tid10820 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T15:24:35.186233 tid10820 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T15:24:35.187640 tid10820 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T15:24:35.188875 tid10820 [IFO,Core] Did initialize device COM5
+2025-02-06T15:24:35.189187 tid10820 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T15:24:35.189190 tid10820 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to COM5
+2025-02-06T15:24:35.189191 tid10820 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T15:24:35.189210 tid10820 [IFO,Core] Will initialize device MCM3000
+2025-02-06T15:24:35.189235 tid10820 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:24:35.215851 tid10820 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:35.215861 tid10820 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:24:35.215865 tid10820 [IFO,Core] Did initialize device MCM3000
+2025-02-06T15:24:35.215985 tid10820 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:24:36.517729 tid12616 [dbg,App] [UI] Table clicked in ConfigWizard.
+2025-02-06T15:24:38.278020 tid12616 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:24:38.279809 tid12616 [dbg,Core] Will unload device MCM3000
+2025-02-06T15:24:38.279811 tid12616 [dbg,dev:MCM3000] Shutting down...
+2025-02-06T15:24:38.279812 tid12616 [dbg,Core] Did unload device MCM3000
+2025-02-06T15:24:38.279830 tid12616 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:24:38.279855 tid12616 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:24:38.295009 tid12616 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:24:38.295016 tid12616 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:24:38.295018 tid12616 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:24:38.295019 tid12616 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:24:38.295020 tid12616 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:24:38.295022 tid12616 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:24:38.295023 tid12616 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:24:38.295023 tid12616 [IFO,App] COM5, property Parity=None
+2025-02-06T15:24:38.295024 tid12616 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:24:38.295025 tid12616 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:24:38.299875 tid12616 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:24:38.299879 tid12616 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:24:38.299880 tid12616 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:24:38.299881 tid12616 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:24:38.299883 tid12616 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:24:38.299884 tid12616 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:24:38.299885 tid12616 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:24:38.299886 tid12616 [IFO,App] COM5, property Parity=None
+2025-02-06T15:24:38.299887 tid12616 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:24:38.299888 tid12616 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:24:43.421518 tid12616 [dbg,App] [UI] JComboBox clicked in DeviceSetupDlg.
+2025-02-06T15:24:44.153178 tid12616 [dbg,Core:dev:MCM3000] Will set property "AxisID" to "0"
+2025-02-06T15:24:44.153216 tid12616 [dbg,Core:dev:MCM3000] Did set property "AxisID" to "0"
+2025-02-06T15:24:44.153533 tid12616 [dbg,dev:MCM3000] OnPort BeforeGet: Undefined
+2025-02-06T15:24:44.153845 tid12616 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:24:44.153854 tid12616 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:24:44.153859 tid12616 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:24:44.153863 tid12616 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:24:44.153868 tid12616 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:24:44.153873 tid12616 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:24:44.153876 tid12616 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:24:44.153880 tid12616 [IFO,App] COM5, property Parity=None
+2025-02-06T15:24:44.153884 tid12616 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:24:44.153888 tid12616 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:24:46.397543 tid12616 [dbg,App] [UI]  "ComboBox.list" set to "0.2116667" in DeviceSetupDlg.
+2025-02-06T15:24:46.398268 tid12616 [dbg,Core:dev:MCM3000] Will set property "StepSize" to "0.2116667"
+2025-02-06T15:24:46.398277 tid12616 [dbg,Core:dev:MCM3000] Did set property "StepSize" to "0.2116667"
+2025-02-06T15:24:46.398360 tid12616 [dbg,dev:MCM3000] OnPort BeforeGet: Undefined
+2025-02-06T15:24:46.398434 tid12616 [IFO,App] COM5, property AnswerTimeout=500.0000
+2025-02-06T15:24:46.398435 tid12616 [IFO,App] COM5, property BaudRate=460800
+2025-02-06T15:24:46.398437 tid12616 [IFO,App] COM5, property DTR=Disable
+2025-02-06T15:24:46.398438 tid12616 [IFO,App] COM5, property DataBits=8
+2025-02-06T15:24:46.398439 tid12616 [IFO,App] COM5, property DelayBetweenCharsMs=0.0000
+2025-02-06T15:24:46.398440 tid12616 [IFO,App] COM5, property Fast USB to Serial=Disable
+2025-02-06T15:24:46.398441 tid12616 [IFO,App] COM5, property Handshaking=Off
+2025-02-06T15:24:46.398442 tid12616 [IFO,App] COM5, property Parity=None
+2025-02-06T15:24:46.398443 tid12616 [IFO,App] COM5, property StopBits=1
+2025-02-06T15:24:46.398444 tid12616 [IFO,App] COM5, property Verbose=1
+2025-02-06T15:24:53.693841 tid12616 [dbg,Core:dev:MCM3000] Will set property "AxisID" to "0"
+2025-02-06T15:24:53.693855 tid12616 [dbg,Core:dev:MCM3000] Did set property "AxisID" to "0"
+2025-02-06T15:24:53.693863 tid12616 [dbg,Core:dev:MCM3000] Will set property "Port" to "Undefined"
+2025-02-06T15:24:53.693866 tid12616 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to Undefined
+2025-02-06T15:24:53.693867 tid12616 [dbg,Core:dev:MCM3000] Did set property "Port" to "Undefined"
+2025-02-06T15:24:53.693871 tid12616 [dbg,Core:dev:MCM3000] Will set property "StepSize" to "0.2117"
+2025-02-06T15:24:53.693882 tid12616 [ERR,Core:dev:MCM3000] Cannot set property "StepSize" to "0.2117" [ Error in device "MCM3000": Invalid property value: StepSize (3) ]
+2025-02-06T15:25:00.876397 tid12616 [dbg,Core] Will unload device MCM3000
+2025-02-06T15:25:00.876405 tid12616 [dbg,Core] Did unload device MCM3000
+2025-02-06T15:25:00.876422 tid12616 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:25:00.876454 tid12616 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:25:04.972521 tid12616 [dbg,Core] Will unload device MCM3000
+2025-02-06T15:25:04.972530 tid12616 [dbg,Core] Did unload device MCM3000
+2025-02-06T15:25:07.455992 tid13888 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:25:07.456001 tid13888 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:25:07.456002 tid13888 [dbg,Core] Waiting for device COM6...
+2025-02-06T15:25:07.456005 tid13888 [WRN,Core:dev:COM6] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:25:07.456007 tid13888 [dbg,Core] Finished waiting for device COM6
+2025-02-06T15:25:07.456008 tid13888 [dbg,Core] Waiting for device COM3...
+2025-02-06T15:25:07.456009 tid13888 [WRN,Core:dev:COM3] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:25:07.456010 tid13888 [dbg,Core] Finished waiting for device COM3
+2025-02-06T15:25:07.456011 tid13888 [dbg,Core] Waiting for device COM4...
+2025-02-06T15:25:07.456013 tid13888 [WRN,Core:dev:COM4] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:25:07.456014 tid13888 [dbg,Core] Finished waiting for device COM4
+2025-02-06T15:25:07.456016 tid13888 [dbg,Core] Waiting for device TCP/IP serial port adapter (1)...
+2025-02-06T15:25:07.456017 tid13888 [WRN,Core:dev:TCP/IP serial port adapter (1)] Operation (Busy) not permitted on uninitialized device (this will be an error in a future version of MMCore; for now we continue with the operation anyway, even though it might not be safe)
+2025-02-06T15:25:07.456019 tid13888 [dbg,Core] Finished waiting for device TCP/IP serial port adapter (1)
+2025-02-06T15:25:07.457415 tid13888 [dbg,Core] Will unload all devices
+2025-02-06T15:25:07.756028 tid13888 [IFO,Core] Did unload all devices
+2025-02-06T15:25:07.757425 tid13888 [dbg,Core] Will set Core property: Initialize = 0
+2025-02-06T15:25:07.757436 tid13888 [dbg,Core] Will unload all devices
+2025-02-06T15:25:07.757440 tid13888 [IFO,Core] Did unload all devices
+2025-02-06T15:25:07.757509 tid13888 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 0
+2025-02-06T15:25:07.757517 tid13888 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:25:07.757533 tid13888 [dbg,Core] Did set Core property: Initialize = 0
+2025-02-06T15:25:07.757554 tid13888 [dbg,Core] Will load device COM5 from SerialManager
+2025-02-06T15:25:07.757691 tid13888 [IFO,Core] Did load device COM5 from SerialManager; label = COM5
+2025-02-06T15:25:07.757707 tid13888 [dbg,Core] Will load device MCM3000 from MCM3000controller
+2025-02-06T15:25:07.757795 tid13888 [IFO,Core] Did load device MCM3000 from MCM3000controller; label = MCM3000
+2025-02-06T15:25:07.757814 tid13888 [dbg,Core:dev:MCM3000] Will set property "Port" to "COM5"
+2025-02-06T15:25:07.757819 tid13888 [dbg,dev:MCM3000] OnPort AfterSet: changed from Undefined to COM5
+2025-02-06T15:25:07.757825 tid13888 [dbg,Core:dev:MCM3000] Did set property "Port" to "COM5"
+2025-02-06T15:25:07.757844 tid13888 [dbg,Core:dev:COM5] Will set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:25:07.757853 tid13888 [dbg,Core:dev:COM5] Did set property "AnswerTimeout" to "500.0000"
+2025-02-06T15:25:07.757867 tid13888 [dbg,Core:dev:COM5] Will set property "BaudRate" to "460800"
+2025-02-06T15:25:07.757874 tid13888 [dbg,Core:dev:COM5] Did set property "BaudRate" to "460800"
+2025-02-06T15:25:07.757885 tid13888 [dbg,Core:dev:COM5] Will set property "DTR" to "Disable"
+2025-02-06T15:25:07.757892 tid13888 [dbg,Core:dev:COM5] Did set property "DTR" to "Disable"
+2025-02-06T15:25:07.757902 tid13888 [dbg,Core:dev:COM5] Will set property "DataBits" to "8"
+2025-02-06T15:25:07.757910 tid13888 [dbg,Core:dev:COM5] Did set property "DataBits" to "8"
+2025-02-06T15:25:07.757924 tid13888 [dbg,Core:dev:COM5] Will set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:25:07.757932 tid13888 [dbg,Core:dev:COM5] Did set property "DelayBetweenCharsMs" to "0.0000"
+2025-02-06T15:25:07.757946 tid13888 [dbg,Core:dev:COM5] Will set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:25:07.757952 tid13888 [dbg,Core:dev:COM5] Did set property "Fast USB to Serial" to "Disable"
+2025-02-06T15:25:07.757964 tid13888 [dbg,Core:dev:COM5] Will set property "Handshaking" to "Off"
+2025-02-06T15:25:07.757970 tid13888 [dbg,Core:dev:COM5] Did set property "Handshaking" to "Off"
+2025-02-06T15:25:07.757981 tid13888 [dbg,Core:dev:COM5] Will set property "Parity" to "None"
+2025-02-06T15:25:07.757987 tid13888 [dbg,Core:dev:COM5] Did set property "Parity" to "None"
+2025-02-06T15:25:07.757998 tid13888 [dbg,Core:dev:COM5] Will set property "StopBits" to "1"
+2025-02-06T15:25:07.758003 tid13888 [dbg,Core:dev:COM5] Did set property "StopBits" to "1"
+2025-02-06T15:25:07.758013 tid13888 [dbg,Core:dev:COM5] Will set property "Verbose" to "1"
+2025-02-06T15:25:07.758019 tid13888 [dbg,Core:dev:COM5] Did set property "Verbose" to "1"
+2025-02-06T15:25:07.758037 tid13888 [dbg,Core] Will set Core property: Initialize = 1
+2025-02-06T15:25:07.758050 tid13888 [IFO,Core] Will initialize 2 devices
+2025-02-06T15:25:07.758058 tid13888 [IFO,Core] Will initialize device COM5
+2025-02-06T15:25:07.760674 tid13888 [IFO,dev:COM5] Setting standard USB to Serial settings
+2025-02-06T15:25:07.763300 tid13888 [dbg,dev:COM5] Attempting to set flow of COM5 to none
+2025-02-06T15:25:07.765711 tid13888 [dbg,dev:COM5] Attempting to set parity of COM5 to none
+2025-02-06T15:25:07.768106 tid13888 [dbg,dev:COM5] Attempting to set stopBits of COM5 to 1
+2025-02-06T15:25:07.769887 tid13888 [dbg,dev:COM5] Attempting to set dataBits of COM5 to 8
+2025-02-06T15:25:07.771209 tid13888 [IFO,Core] Did initialize device COM5
+2025-02-06T15:25:07.771258 tid5288 [IFO,Core] Will initialize device MCM3000
+2025-02-06T15:25:07.771284 tid5288 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:25:07.787173 tid5288 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.787207 tid5288 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.787216 tid5288 [IFO,Core] Did initialize device MCM3000
+2025-02-06T15:25:07.787331 tid13888 [IFO,Core] Finished initializing 2 devices
+2025-02-06T15:25:07.787437 tid13888 [dbg,App] Notification for Device: Core Property: Initialize changed to value: 1
+2025-02-06T15:25:07.787445 tid13888 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:25:07.787462 tid13888 [dbg,Core] Did set Core property: Initialize = 1
+2025-02-06T15:25:07.787505 tid13888 [dbg,Core] Will set Core property: Focus = MCM3000
+2025-02-06T15:25:07.787512 tid13888 [IFO,Core] Default stage set to MCM3000
+2025-02-06T15:25:07.787537 tid13888 [dbg,App] Notification for Device: Core Property: Focus changed to value: MCM3000
+2025-02-06T15:25:07.787540 tid13888 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:25:07.787548 tid13888 [dbg,Core] Did set Core property: Focus = MCM3000
+2025-02-06T15:25:07.787560 tid13888 [dbg,Core] Will set Core property: AutoShutter = 0
+2025-02-06T15:25:07.787570 tid13888 [dbg,Core] Autoshutter turned off
+2025-02-06T15:25:07.787580 tid13888 [dbg,App] Notification for Device: Core Property: AutoShutter changed to value: 0
+2025-02-06T15:25:07.787582 tid13888 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:25:07.787590 tid13888 [dbg,Core] Did set Core property: AutoShutter = 0
+2025-02-06T15:25:07.787649 tid13888 [dbg,Core] Pixel size config: preset 60X W: added setting : Core-XYStage = XYStage
+2025-02-06T15:25:07.787683 tid13888 [dbg,Core] Pixel size config: preset 60X W: set resolution to 0.10910 um/px
+2025-02-06T15:25:07.787721 tid13888 [dbg,Core] Pixel size config: preset 60X W: set affine matrix to 0.10910, 0.00000, 0.00000, 0.00000, 0.10910, 0.00000
+2025-02-06T15:25:07.787803 tid13888 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:25:07.787810 tid13888 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:25:07.787814 tid13888 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:25:07.787885 tid13888 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:25:07.829099 tid13888 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.829153 tid13888 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.829324 tid13888 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.829338 tid13888 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:25:07.829349 tid13888 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:25:07.829356 tid13888 [dbg,Core] Will update system state cache
+2025-02-06T15:25:07.829551 tid13888 [dbg,dev:MCM3000] OnPort BeforeGet: COM5
+2025-02-06T15:25:07.829702 tid13888 [IFO,Core] Did update system state cache
+2025-02-06T15:25:07.829750 tid13888 [dbg,App] Notification from MMCore ignored
+2025-02-06T15:25:07.831449 tid13888 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:25:07.860261 tid13888 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.860313 tid13888 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.861053 tid13888 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.861069 tid13888 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:25:07.927821 tid13888 [IFO,App] Updating GUI; config pad = true; from cache = true
+2025-02-06T15:25:07.927869 tid13888 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:25:07.951391 tid13888 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.951403 tid13888 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.951409 tid13888 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.951412 tid13888 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:25:07.952067 tid13888 [IFO,App] Rebuilding config group table
+2025-02-06T15:25:07.952076 tid13888 [IFO,App] Finished rebuilding config group table
+2025-02-06T15:25:07.952850 tid13888 [IFO,App] Finished updating GUI
+2025-02-06T15:25:07.957403 tid12616 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:25:07.991897 tid12616 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.991910 tid12616 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.991915 tid12616 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:07.991917 tid12616 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:25:08.874129 tid12616 [IFO,App] EDTHangLogger: Stopping monitoring of EDT hangs
+2025-02-06T15:25:08.874168 tid12616 [dbg,Core] Waiting for device COM5...
+2025-02-06T15:25:08.874171 tid12616 [dbg,Core] Finished waiting for device COM5
+2025-02-06T15:25:08.874172 tid12616 [dbg,Core] Waiting for device MCM3000...
+2025-02-06T15:25:08.874202 tid12616 [dbg,dev:COM5] Write -> (hex) 0a 04 00 00 00 00
+2025-02-06T15:25:08.895858 tid12616 [dbg,dev:COM5] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:08.895868 tid12616 [dbg,dev:MCM3000] Read <- (hex) 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:08.895874 tid12616 [dbg,dev:MCM3000] Position response: 0b 04 06 00 00 00 00 00 9e 28 00 00
+2025-02-06T15:25:08.895877 tid12616 [dbg,dev:MCM3000] Current position: 10398 steps (0x0000289e)
+2025-02-06T15:25:08.895880 tid12616 [dbg,Core] Finished waiting for device MCM3000
+2025-02-06T15:25:08.895884 tid12616 [dbg,Core] Will unload all devices
+2025-02-06T15:25:08.895886 tid12616 [dbg,dev:MCM3000] Shutting down...
+2025-02-06T15:25:09.192388 tid12616 [IFO,Core] Did unload all devices
+2025-02-06T15:25:09.192403 tid12616 [IFO,Core] System reset
+2025-02-06T15:25:09.192739 tid12616 [IFO,Core] Core session ended
