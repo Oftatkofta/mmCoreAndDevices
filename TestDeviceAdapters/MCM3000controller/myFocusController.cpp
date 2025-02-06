@@ -286,22 +286,11 @@ int myFocusController::SetPositionSteps(long steps)
     if (ret != DEVICE_OK)
         return ret;
 
-    // Get response to move command
-    unsigned char response[12];
-    ret = GetResponse(response, 12);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    // Verify move command was accepted
-    if (response[0] != (CMD_GOTO_POS + 1))
-    {
-        LogMessage("Move command not acknowledged", false);
-        return ERR_UNRECOGNIZED_ANSWER;
-    }
-
+    // Don't wait for response to move command - start monitoring position immediately
+    
     // Wait for move completion with timeout
     MM::MMTime startTime = GetCurrentMMTime();
-    MM::MMTime timeout = MM::MMTime::fromMs(10000);  // 10 second timeout for longer moves
+    MM::MMTime timeout = MM::MMTime::fromMs(10000);
     bool moveComplete = false;
     long lastPosition = curSteps_;
     MM::MMTime lastMoveTime = startTime;
