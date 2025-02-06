@@ -110,16 +110,35 @@ int myFocusController::Initialize()
     if (ret != DEVICE_OK)
         return ret;
 
-    // Test communication
-    unsigned char cmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
-    ret = SendCommand(cmd, STATUS_LENGTH);
+    // Test communication with position query
+    unsigned char cmd[] = {CMD_QUERY_POS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
+    ret = SendCommand(cmd, QUERY_POS_LENGTH);
     if (ret != DEVICE_OK)
+    {
+        LogMessage("Failed to send position query", false);
         return ret;
+    }
 
-    unsigned char response[20];
-    ret = GetResponse(response, 20);
+    // Get 12-byte position response
+    unsigned char response[12];
+    ret = GetResponse(response, 12);
     if (ret != DEVICE_OK)
+    {
+        LogMessage("Failed to get position response", false);
         return ret;
+    }
+
+    // Verify response format (first byte should be command + 1)
+    if (response[0] != (CMD_QUERY_POS + 1))
+    {
+        LogMessage("Invalid position response", false);
+        return ERR_UNRECOGNIZED_ANSWER;
+    }
+
+    // Extract initial position
+    curSteps_ = (long)response[8] | ((long)response[9] << 8) | 
+                ((long)response[10] << 16) | ((long)response[11] << 24);
+    positionValid_ = true;
 
     initialized_ = true;
     return DEVICE_OK;
@@ -151,63 +170,23 @@ bool myFocusController::Busy()
     if (!initialized_)
         return false;
 
-    // Query Status uses 1 byte ID
-    unsigned char cmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
-    int ret = SendCommand(cmd, STATUS_LENGTH);
+    // Get current position and compare with target
+    long currentPos;
+    int ret = GetPositionSteps(currentPos);
     if (ret != DEVICE_OK)
     {
-        LogMessage("Failed to send status command", true);
+        LogMessage("Failed to get position in Busy check", true);
         return false;
     }
 
-    // Buffer for response (20 bytes total)
-    unsigned char response[20];
-    memset(response, 0, sizeof(response));
-    unsigned long totalRead = 0;
-    MM::MMTime startTime = GetCurrentMMTime();
-
-    // Keep reading until we get complete response or timeout
-    while (totalRead < 20 && (GetCurrentMMTime() - startTime).getMsec() < 100)
+    // If position is changing, we're busy
+    if (currentPos != curSteps_)
     {
-        unsigned long readNow = 0;
-        ret = GetCoreCallback()->ReadFromSerial(this, port_.c_str(), 
-                                              response + totalRead, 
-                                              20 - totalRead, 
-                                              readNow);
-        if (ret != DEVICE_OK && ret != DEVICE_SERIAL_TIMEOUT)
-        {
-            LogMessage("Serial read error", true);
-            return false;
-        }
-
-        if (readNow > 0)
-        {
-            std::ostringstream msg;
-            msg << "Received " << readNow << " bytes: ";
-            for (unsigned long i = 0; i < readNow; i++)
-                msg << std::hex << (int)response[totalRead + i] << " ";
-            LogMessage(msg.str().c_str(), true);
-            
-            totalRead += readNow;
-        }
-        else
-        {
-            CDeviceUtils::SleepMs(2);
-        }
-    }
-
-    if (totalRead < 20)
-    {
-        LogMessage("Incomplete status response", true);
-        return false;
-    }
-
-    // Check status bits in byte 17 (index 16)
-    bool isMoving = (response[16] & 0x30) != 0;
-    if (isMoving)
         positionValid_ = false;
+        return true;
+    }
 
-    return isMoving;
+    return false;
 }
 
 int myFocusController::GetPositionSteps(long& steps)
@@ -276,10 +255,6 @@ int myFocusController::SetPositionSteps(long steps)
     if (Busy())
         return ERR_BUSY;
 
-    std::ostringstream cmdLog;  // Unique name for command logging
-    cmdLog << "Move command to position: " << steps;
-    LogMessage(cmdLog.str().c_str(), true);
-
     // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
                           (unsigned char)AXIS_ID_WORD,
@@ -291,12 +266,7 @@ int myFocusController::SetPositionSteps(long steps)
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
-    {
-        std::ostringstream errLog;
-        errLog << "Failed to send move command, error: " << ret;
-        LogMessage(errLog.str().c_str(), true);
         return ret;
-    }
 
     // Wait for move completion
     const MM::MMTime startTime = GetCurrentMMTime();
@@ -315,24 +285,8 @@ int myFocusController::SetPositionSteps(long steps)
         if (abs(currentPos - steps) <= ENCODER_COUNT_TOLERANCE)
         {
             moveComplete = true;
-            break;
-        }
-
-        // Check busy status
-        unsigned char statCmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
-        ret = SendCommand(statCmd, STATUS_LENGTH);
-        if (ret != DEVICE_OK)
-            return ret;
-
-        unsigned char response[20];
-        ret = GetResponse(response, 20);
-        if (ret != DEVICE_OK)
-            return ret;
-
-        // Only consider move complete if both position matches and not busy
-        if ((response[16] & 0x30) == 0 && abs(currentPos - steps) <= ENCODER_COUNT_TOLERANCE)
-        {
-            moveComplete = true;
+            curSteps_ = currentPos;
+            positionValid_ = true;
             break;
         }
 
@@ -596,55 +550,7 @@ int myFocusController::MoveBlocking(long steps, bool relative)
         target = curSteps_ + steps;
     }
 
-    // Send move command
-    unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
-                          (unsigned char)AXIS_ID_WORD,        // Channel ID (LSB)
-                          (unsigned char)(AXIS_ID_WORD >> 8), // Channel ID (MSB)
-                          (unsigned char)(target & 0xFF),
-                          (unsigned char)((target >> 8) & 0xFF),
-                          (unsigned char)((target >> 16) & 0xFF),
-                          (unsigned char)((target >> 24) & 0xFF)};
-
-    int ret = SendCommand(cmd, SET_POS_LENGTH);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    // Wait for move completion using MM time
-    const MM::MMTime startTime = GetCurrentMMTime();
-    const MM::MMTime timeout = MM::MMTime::fromMs(answerTimeoutMs_);
-    bool moveComplete = false;
-    
-    while (!moveComplete && ((GetCurrentMMTime() - startTime) <= timeout))
-    {
-        // Query status
-        unsigned char statCmd[] = {CMD_QUERY_STATUS, 0x04, AXIS_ID_BYTE, 0x00, 0x00, 0x00};
-        ret = SendCommand(statCmd, STATUS_LENGTH);
-        if (ret != DEVICE_OK)
-            return ret;
-
-        unsigned char response[20];
-        ret = GetResponse(response, 20);
-        if (ret != DEVICE_OK)
-            return ret;
-
-        // Check if move complete (not busy)
-        if ((response[16] & 0x30) == 0)
-        {
-            moveComplete = true;
-            curSteps_ = target;
-            break;
-        }
-
-        CDeviceUtils::SleepMs(MOTOR_STATUS_POLL_MS);  // Use constant for consistency
-    }
-
-    if (!moveComplete)
-    {
-        LogMessage("Move did not complete within timeout", true);
-        return ERR_RESPONSE_TIMEOUT;
-    }
-
-    return DEVICE_OK;
+    return SetPositionSteps(target);  // Use SetPositionSteps which now handles completion
 }
 
 int myFocusController::Home()
