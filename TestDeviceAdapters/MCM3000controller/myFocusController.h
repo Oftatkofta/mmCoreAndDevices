@@ -82,6 +82,7 @@ private:
 
     // Timing constants
     static const int MOTOR_STATUS_POLL_MS = 50;  // Poll interval for motor status
+    static const int ENCODER_COUNT_TOLERANCE = 1; // Minimum 1 count tolerance to avoid hanging
     static const long INVALID_POSITION = 0x80000000;  // Invalid position marker
     
     // Command codes
@@ -102,5 +103,7 @@ private:
     bool positionValid_;     // Cache validity flag
     MM::MMTime lastMoveTime_;
     unsigned char lastCommand_;  // Tracks last command sent for response validation
+    // Device limits
+    static const double POSITION_LIMIT_UM;  // ±12.7mm for ZFM2020/2030
+    static const double DEFAULT_STEP_SIZE_UM;  // From Python code
 };
-
