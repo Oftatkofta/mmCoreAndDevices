@@ -83,6 +83,13 @@ myFocusController::myFocusController() :
     // Step size (um/step)
     pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
     CreateProperty("StepSize", std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), MM::Float, false, pAct, true);
+    
+    // Add allowed step sizes
+    AddAllowedValue("StepSize", "0.0390625");  // Fine step size
+    AddAllowedValue("StepSize", "0.2116667");  // ZFM2020/2030 stage
+    AddAllowedValue("StepSize", "0.001");      // 1 nm step size
+    AddAllowedValue("StepSize", "0.5");        // 500 nm step size
+    AddAllowedValue("StepSize", "0.1");        // 100 nm step size
 }
 
 myFocusController::~myFocusController()
@@ -107,16 +114,8 @@ int myFocusController::Initialize()
         return DEVICE_ERR;
     }
 
-    // Set up properties
-    int ret = CreateProperty("StepSize", 
-                         std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), 
-                         MM::Float, 
-                         true);
-    if (ret != DEVICE_OK)
-        return ret;
-
     // Set travel range
-    ret = CreateProperty(MM::g_Keyword_Position, "0", MM::Float, false);
+    int ret = CreateProperty(MM::g_Keyword_Position, "0", MM::Float, false);
     SetPropertyLimits(MM::g_Keyword_Position, -POSITION_LIMIT_UM, POSITION_LIMIT_UM);
     if (ret != DEVICE_OK)
         return ret;
@@ -280,11 +279,11 @@ int myFocusController::SetPositionSteps(long steps)
     // Send move command
     unsigned char cmd[] = {CMD_GOTO_POS, 0x04, 0x06, 0x00, 0x00, 0x00,
                           (unsigned char)(axisID_ & 0xFF),        // LSB
-                          (unsigned char)((axisID_ & 0xFF00) >> 8), // MSB
-                          (unsigned char)(steps & 0xFF),
-                          (unsigned char)((steps & 0xFF00) >> 8),
-                          (unsigned char)((steps & 0xFF0000) >> 16),
-                          (unsigned char)((steps & 0xFF000000) >> 24)};
+                          0x00,                                   // MSB (always 0 for axis 0-2)
+                          (unsigned char)(steps & 0xFF),          // Position LSB
+                          (unsigned char)((steps >> 8) & 0xFF),   // Position byte 2
+                          (unsigned char)((steps >> 16) & 0xFF),  // Position byte 3
+                          (unsigned char)((steps >> 24) & 0xFF)}; // Position MSB
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
@@ -420,11 +419,12 @@ int myFocusController::SetOrigin()
     if (!initialized_)
         return DEVICE_ERR;
 
-    // Set encoder counter to 0 with channel 1
-    unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00, 
-                           (unsigned char)(axisID_ & 0xFF),        // Channel ID low byte
-                           (unsigned char)((axisID_ >> 8) & 0xFF), // Channel ID high byte
-                           0x00, 0x00, 0x00, 0x00};  // Position 0
+    // Set encoder to 0 at current position
+    unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00,
+                          (unsigned char)(axisID_ & 0xFF),  // LSB
+                          0x00,                             // MSB (always 0 for axis 0-2)
+                          0x00, 0x00, 0x00, 0x00};         // Position 0
+
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
@@ -575,11 +575,7 @@ int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
         }
         double stepSize;
         pProp->Get(stepSize);
-        if (stepSize <= 0.0)
-        {
-            LogMessage("Step size must be positive", false);
-            return ERR_INVALID_VALUE;
-        }
+        // Value validation handled by MM's property system via AddAllowedValue
         stepSizeUm_ = stepSize;
     }
     return DEVICE_OK;
@@ -636,9 +632,9 @@ int myFocusController::Home()
 
     // Set encoder to 0 at current position
     unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00,
-                          (unsigned char)axisID_,        // Channel ID (LSB)
-                          (unsigned char)(axisID_ >> 8), // Channel ID (MSB)
-                          0x00, 0x00, 0x00, 0x00};  // Position 0
+                          (unsigned char)(axisID_ & 0xFF),        // LSB
+                          0x00,                             // MSB (always 0 for axis 0-2)
+                          0x00, 0x00, 0x00, 0x00};         // Position 0
 
     int ret = SendCommand(cmd, SET_POS_LENGTH);
     if (ret != DEVICE_OK)
