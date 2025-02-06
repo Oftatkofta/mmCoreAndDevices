@@ -4,6 +4,7 @@
 #include "DeviceThreads.h"
 #include "ModuleInterface.h"
 #include <string>
+#include <vector>
 
 // Error codes should be in range 10000-10999 for device adapters
 #define ERR_PORT_CHANGE_FORBIDDEN    10004
@@ -97,9 +98,11 @@ private:
     static const unsigned char CMD_GOTO_POS = 0x53;     // 2 byte ID
     
     // Device constants
-    static constexpr double ZFM2020_STEP_SIZE_UM = 0.2116667;  // ZFM2020/2030 stage step size in microns
+    static constexpr double DEFAULT_STEP_SIZE_UM = 0.2116667;  // Default to ZFM2020/2030 stage (0.2116667 µm/step)
     static constexpr double POSITION_LIMIT_UM = 12700.0;     // ±12.7mm for ZFM2020/2030
-    static constexpr double DEFAULT_STEP_SIZE_UM = ZFM2020_STEP_SIZE_UM;  // Default to ZFM2020/2030 step size
+
+    // Valid step sizes
+    static const std::vector<std::string> VALID_STEP_SIZES;
 
     // Member variables
     bool initialized_;

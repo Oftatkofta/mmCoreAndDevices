@@ -14,7 +14,9 @@
 // Module interface
 MODULE_API void InitializeModuleData()
 {
-    RegisterDevice(myFocusController::DeviceName(), MM::StageDevice, "MCM3000 Focus Controller");
+    RegisterDevice(myFocusController::DeviceName(), 
+                  MM::StageDevice, 
+                  "MCM3000 Focus Controller (Axis ID: 0-2, Default step size: 0.2116667 µm)");
 }
 
 MODULE_API MM::Device* CreateDevice(const char* deviceName)
@@ -33,6 +35,15 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
 {
     delete pDevice;
 }
+
+// Define the static vector of valid step sizes
+const std::vector<std::string> myFocusController::VALID_STEP_SIZES = {
+    "0.0390625",  // Fine step size
+    "0.2116667",  // ZFM2020/2030 stage
+    "0.001",      // 1 nm step size
+    "0.5",        // 500 nm step size
+    "0.1"         // 100 nm step size
+};
 
 myFocusController::myFocusController() :
     initialized_(false),
@@ -84,12 +95,10 @@ myFocusController::myFocusController() :
     pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
     CreateProperty("StepSize", std::to_string(DEFAULT_STEP_SIZE_UM).c_str(), MM::Float, false, pAct, true);
     
-    // Add allowed step sizes
-    AddAllowedValue("StepSize", "0.0390625");  // Fine step size
-    AddAllowedValue("StepSize", "0.2116667");  // ZFM2020/2030 stage
-    AddAllowedValue("StepSize", "0.001");      // 1 nm step size
-    AddAllowedValue("StepSize", "0.5");        // 500 nm step size
-    AddAllowedValue("StepSize", "0.1");        // 100 nm step size
+    // Add allowed step sizes from list
+    for (const auto& stepSize : VALID_STEP_SIZES) {
+        AddAllowedValue("StepSize", stepSize.c_str());
+    }
 }
 
 myFocusController::~myFocusController()
