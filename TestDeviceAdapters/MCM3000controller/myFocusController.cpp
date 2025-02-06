@@ -428,8 +428,7 @@ int myFocusController::Stop()
 
 int myFocusController::SendCommand(const unsigned char* command, unsigned length)
 {
-    if (!initialized_)
-        return DEVICE_ERR;
+    // Don't check initialized_ here - needed for initialization itself
 
     // Clear any leftover bytes
     int ret = ClearPort();
@@ -441,7 +440,7 @@ int myFocusController::SendCommand(const unsigned char* command, unsigned length
     if (ret != DEVICE_OK)
         return ret;
 
-    lastCommand_ = command[0];  // Store for response validation
+    lastCommand_ = command[0];
     return DEVICE_OK;
 }
 
@@ -518,15 +517,18 @@ int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
     if (eAct == MM::BeforeGet)
     {
         pProp->Set(port_.c_str());
+        LogMessage("OnPort BeforeGet: " + port_, true);
     }
     else if (eAct == MM::AfterSet)
     {
         if (initialized_)
         {
-            GetCoreCallback()->LogMessage(this, g_Msg_PORT_CHANGE_FORBIDDEN, false);
+            LogMessage(g_Msg_PORT_CHANGE_FORBIDDEN, false);
             return ERR_PORT_CHANGE_FORBIDDEN;
         }
+        std::string oldPort = port_;
         pProp->Get(port_);
+        LogMessage("OnPort AfterSet: changed from " + oldPort + " to " + port_, true);
     }
     return DEVICE_OK;
 }
