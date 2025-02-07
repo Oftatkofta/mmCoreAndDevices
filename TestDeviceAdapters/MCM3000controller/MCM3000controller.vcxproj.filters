@@ -15,12 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="myFocusController.h">
+    <ClInclude Include="MCM3000Controller.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="myFocusController.cpp">
+    <ClCompile Include="MCM3000Controller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

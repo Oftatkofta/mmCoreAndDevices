@@ -11,10 +11,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="myFocusController.h" />
+    <ClInclude Include="MCM3000Controller.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="myFocusController.cpp" />
+    <ClCompile Include="MCM3000Controller.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\MMDevice\MMDevice-SharedRuntime.vcxproj">
