@@ -1,3 +1,15 @@
+// FILE:          MCM3000Controller.cpp
+// PROJECT:       Micro-Manager
+// SUBSYSTEM:     DeviceAdapters
+//-----------------------------------------------------------------------------
+// DESCRIPTION:   MCM3000/3001 adapter.  Direct serial control of the MCM3000 Focus Controller
+// COPYRIGHT:     Jens Eriksson,  2025
+// LICENSE:       MIT
+// 
+// AUTHOR:        Jens Eriksson, jens.eriksson@imbim.uu.se
+//                
+
+
 #pragma once
 #include "MMDevice.h"
 #include "DeviceBase.h"
@@ -102,8 +114,6 @@ private:
     static constexpr double DEFAULT_STEP_SIZE_UM = 0.2116667;  // Default to ZFM2020/2030 stage (0.2116667 µm/step)
     static constexpr double POSITION_LIMIT_UM = 12700.0;     // ±12.7mm for ZFM2020/2030
 
-    // Valid step sizes
-    static const std::vector<std::string> VALID_STEP_SIZES;
 
     // Step size lookup table (UI string -> exact value)
     static const std::map<std::string, double> STEP_SIZE_MAP;

@@ -1,3 +1,13 @@
+// FILE:          MCM3000Controller.cpp
+// PROJECT:       Micro-Manager
+// SUBSYSTEM:     DeviceAdapters
+//-----------------------------------------------------------------------------
+// DESCRIPTION:   MCM3000/3001 adapter.  Direct serial control of the MCM3000 Focus Controller
+// COPYRIGHT:     Jens Eriksson,  2025
+// LICENSE:       MIT
+// 
+// AUTHOR:        Jens Eriksson, jens.eriksson@imbim.uu.se
+
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -12,14 +22,22 @@
 #include <iomanip>
 #include <map>
 
-// Module interface
+
 MODULE_API void InitializeModuleData()
 {
     RegisterDevice(myFocusController::DeviceName(), 
-                  MM::StageDevice, 
-                  "MCM3000 Focus Controller (Axis ID: 0-2, Default step size: 0.2116667 µm)");
+                   MM::StageDevice, 
+                   "MCM3000 Focus Controller (Axis ID: 0-2, Default step size: 0.2116667 µm)");
 }
 
+/**
+ * CreateDevice()
+ *
+ * Factory function for creating an instance of the Thorlabs MCM3000 device adapter.
+ *
+ * @param deviceName The name of the device to be created.
+ * @return Pointer to the new device instance, or 0 if the name doesn't match.
+ */
 MODULE_API MM::Device* CreateDevice(const char* deviceName)
 {
     if (deviceName == 0)
@@ -32,6 +50,13 @@ MODULE_API MM::Device* CreateDevice(const char* deviceName)
     return 0;
 }
 
+/**
+ * DeleteDevice()
+ *
+ * Deletes the specified device adapter instance.
+ *
+ * @param pDevice Pointer to the device instance to delete.
+ */
 MODULE_API void DeleteDevice(MM::Device* pDevice)
 {
     delete pDevice;
