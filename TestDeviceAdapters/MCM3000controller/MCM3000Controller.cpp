@@ -2,18 +2,26 @@
 // PROJECT:       Micro-Manager
 // SUBSYSTEM:     DeviceAdapters
 //-----------------------------------------------------------------------------
-// DESCRIPTION:   MCM3000/3001 adapter.  Direct serial control of the MCM3000 Focus Controller
-// COPYRIGHT:     Jens Eriksson,  2025
+// DESCRIPTION:   Device adapter implementation for the Thorlabs MCM3000/3001 Focus Controller.
+//                This file implements the serial communication protocol and device control logic.
+//                
+// NOTES:         Serial Communication Settings:
+//                - Baud Rate: 460800
+//                - Data Bits: 8
+//                - Stop Bits: 1
+//                - Parity: None
+//                - Flow Control: None
+//
+// AUTHOR:        Jens Eriksson, first.lastname@imbim.uu.se
+// COPYRIGHT:     Jens Eriksson, 2025
 // LICENSE:       MIT
-// 
-// AUTHOR:        Jens Eriksson, jens.eriksson@imbim.uu.se
 
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
 
-#include "myFocusController.h"
+#include "MCM3000Controller.h"
 #include "ModuleInterface.h"
 #include "DeviceUtils.h"
 #include <cstdio>
@@ -22,21 +30,22 @@
 #include <iomanip>
 #include <map>
 
-
+/**
+ * Module interface implementation - this function registers our device with Micro-Manager.
+ * It tells Micro-Manager what our device is called, what type it is (a stage device),
+ * and provides a description including supported features.
+ */
 MODULE_API void InitializeModuleData()
 {
     RegisterDevice(myFocusController::DeviceName(), 
-                   MM::StageDevice, 
-                   "MCM3000 Focus Controller (Axis ID: 0-2, Default step size: 0.2116667 µm)");
+                  MM::StageDevice, 
+                  "MCM3000 Focus Controller (Axis ID: 0-2, Default step size: 0.2116667 µm)");
 }
 
 /**
- * CreateDevice()
- *
- * Factory function for creating an instance of the Thorlabs MCM3000 device adapter.
- *
- * @param deviceName The name of the device to be created.
- * @return Pointer to the new device instance, or 0 if the name doesn't match.
+ * Factory function that creates an instance of our device.
+ * When Micro-Manager needs a new instance of this device, it calls this function.
+ * Returns NULL if the requested device name doesn't match our device.
  */
 MODULE_API MM::Device* CreateDevice(const char* deviceName)
 {
@@ -51,26 +60,32 @@ MODULE_API MM::Device* CreateDevice(const char* deviceName)
 }
 
 /**
- * DeleteDevice()
- *
- * Deletes the specified device adapter instance.
- *
- * @param pDevice Pointer to the device instance to delete.
+ * Cleanup function that deletes a device instance.
+ * Called by Micro-Manager when it needs to destroy our device.
  */
 MODULE_API void DeleteDevice(MM::Device* pDevice)
 {
     delete pDevice;
 }
 
-// Define the step size map with exact values
+/**
+ * This lookup table maps user-friendly stage descriptions to their exact step sizes.
+ * Each entry shows the stage model(s) and their corresponding step size in microns.
+ * This allows users to select their stage from a dropdown without needing to know
+ * the exact step size value.
+ */
 const std::map<std::string, double> myFocusController::STEP_SIZE_MAP = {
-    {"0.0390625", 0.0390625},  // LNR50S, PHYS24M, MTM-FN1, MTME-FN1, DRV014
-    {"0.2116667", 0.2116667},  // ZFM2020/2030, PLS-X/Y
-    {"0.001",     0.001},      // AScope Z
-    {"0.5",       0.5},        // MMP-2XY, PMP-2XY, Bergamo XY
-    {"0.1",       0.1}         // Bergamo Z
+    {"0.0390625 (LNR50S, PHYS24M, MTM-FN1, MTME-FN1, DRV014)", 0.0390625},  // LNR50S, PHYS24M, MTM-FN1, MTME-FN1, DRV014
+    {"0.2116667 (ZFM2020/2030, PLS-X/Y)",                      0.2116667},  // ZFM2020/2030, PLS-X/Y 
+    {"0.001 (AScope Z)",                                        0.001},      // AScope Z
+    {"0.5 (MMP-2XY, PMP-2XY, Bergamo XY)",                     0.5},        // MMP-2XY, PMP-2XY, Bergamo XY
+    {"0.1 (Bergamo Z)",                                         0.1}         // Bergamo Z
 };
 
+/**
+ * Constructor
+ * Initializes member variables and sets up device properties
+ */
 myFocusController::myFocusController() :
     initialized_(false),
     port_("Undefined"),
@@ -96,6 +111,7 @@ myFocusController::myFocusController() :
     // Create pre-initialization properties
     CreateProperty(MM::g_Keyword_Name, DeviceName(), MM::String, true);
     
+    // Add detailed serial port settings to description
     std::string description = Description();
     description += "\n\nSerial port settings:\n";
     description += "  Baud Rate: 460800\n";
@@ -105,19 +121,19 @@ myFocusController::myFocusController() :
     description += "  Flow Control: None";
     CreateProperty(MM::g_Keyword_Description, description.c_str(), MM::String, true);
 
-    // Port
+    // Create Port property
     CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnPort);
     CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false, pAct, true);
 
-    // Axis ID (0-2)
+    // Create Axis ID property (0-2)
     pAct = new CPropertyAction(this, &myFocusController::OnAxisID);
     CreateProperty("AxisID", "0", MM::Integer, false, pAct, true);
-    SetPropertyLimits("AxisID", 0, 2);  // Restrict to valid range
-    AddAllowedValue("AxisID", "0");     // Add descriptions
+    SetPropertyLimits("AxisID", 0, 2);
+    AddAllowedValue("AxisID", "0");
     AddAllowedValue("AxisID", "1");
     AddAllowedValue("AxisID", "2");
 
-    // Step size (um/step)
+    // Create Step Size property with lookup table values
     pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
     CreateProperty("StepSize", "0.2116667", MM::String, false, pAct, true);
     
@@ -126,16 +142,36 @@ myFocusController::myFocusController() :
     }
 }
 
+/**
+ * Destructor
+ * Ensures device is properly shut down
+ */
 myFocusController::~myFocusController()
 {
     Shutdown();
 }
 
+/**
+ * Returns the device name
+ * Required by MMDevice API
+ */
 void myFocusController::GetName(char* name) const
 {
     CDeviceUtils::CopyLimitedString(name, g_DeviceName);
 }
 
+/**
+ * Initializes the hardware
+ * Required by MMDevice API
+ * 
+ * Initialization sequence:
+ * 1. Verifies valid port is selected
+ * 2. Sets up position limits
+ * 3. Clears communication buffer
+ * 4. Tests communication with position query
+ * 
+ * @return DEVICE_OK on success, error code on failure
+ */
 int myFocusController::Initialize()
 {
     if (initialized_)
@@ -278,6 +314,9 @@ int myFocusController::GetPositionSteps(long& steps)
     return DEVICE_OK;
 }
 
+// Gets the current position in microns
+// Converts from steps to microns using the configured step size
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::GetPositionUm(double& pos)
 {
     long steps;
@@ -288,6 +327,8 @@ int myFocusController::GetPositionUm(double& pos)
     return DEVICE_OK;
 }
 
+// Moves the stage to the specified position in steps
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::SetPositionSteps(long steps)
 {
     if (!initialized_)
@@ -393,6 +434,8 @@ int myFocusController::SetPositionUm(double pos)
     return SetPositionSteps(steps);
 }
 
+// Moves the stage by a relative amount in steps
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::SetRelativePositionSteps(long steps)
 {
     // Get current position
@@ -412,6 +455,8 @@ int myFocusController::SetRelativePositionSteps(long steps)
     return SetPositionSteps(targetPos);
 }
 
+// Moves the stage by a relative amount in microns
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::SetRelativePositionUm(double d)
 {
     // Get current position in case it was changed externally (e.g. joystick)
@@ -432,6 +477,8 @@ int myFocusController::SetRelativePositionUm(double d)
     return SetPositionUm(targetPos);
 }
 
+// Gets the stage travel limits in microns
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::GetLimits(double& lower, double& upper)
 {
     // Return the stage limits from constants
@@ -440,6 +487,9 @@ int myFocusController::GetLimits(double& lower, double& upper)
     return DEVICE_OK;
 }
 
+// Sets the current position as the origin (zero)
+// Updates the encoder count to 0 at the current position
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::SetOrigin()
 {
     if (!initialized_)
@@ -459,6 +509,9 @@ int myFocusController::SetOrigin()
     return DEVICE_OK;
 }
 
+// Immediately stops any ongoing motion
+// Updates position after stopping
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::Stop()
 {
     if (!initialized_)
@@ -587,6 +640,9 @@ int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
     return DEVICE_OK;
 }
 
+// Property action handler for the step size selection
+// Maps UI-friendly descriptions to exact step size values
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
@@ -617,6 +673,9 @@ int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
     return DEVICE_OK;
 }
 
+// Property action handler for the axis ID selection
+// Validates axis ID is in range 0-2
+// Returns DEVICE_OK on success, error code on failure
 int myFocusController::OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
