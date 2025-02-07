@@ -39,20 +39,11 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
 
 // Define the step size map with exact values
 const std::map<std::string, double> myFocusController::STEP_SIZE_MAP = {
-    {"0.0390625", 0.0390625},  // Fine step size
-    {"0.2116667", 0.2116667},  // ZFM2020/2030 stage
-    {"0.001",     0.001},      // 1 nm step size
-    {"0.5",       0.5},        // 500 nm step size
-    {"0.1",       0.1}         // 100 nm step size
-};
-
-// We can probably remove this since we have the map now
-const std::vector<std::string> myFocusController::VALID_STEP_SIZES = {
-    "0.0390625",  // Fine step size
-    "0.2116667",  // ZFM2020/2030 stage
-    "0.001",      // 1 nm step size
-    "0.5",        // 500 nm step size
-    "0.1"         // 100 nm step size
+    {"0.0390625", 0.0390625},  // LNR50S, PHYS24M, MTM-FN1, MTME-FN1, DRV014
+    {"0.2116667", 0.2116667},  // ZFM2020/2030, PLS-X/Y
+    {"0.001",     0.001},      // AScope Z
+    {"0.5",       0.5},        // MMP-2XY, PMP-2XY, Bergamo XY
+    {"0.1",       0.1}         // Bergamo Z
 };
 
 myFocusController::myFocusController() :
