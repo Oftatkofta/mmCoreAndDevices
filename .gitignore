@@ -63,11 +63,12 @@ __pycache__/
 *.class
 *.jar
 *-Tests
-build/Debug
 build/intermediates
-*.lib
-*.pdb
+build/Debug
 test-reports/
+*.pdb
+*.lib
+*.exp
 
 # Generated source
 /MMCoreJ_wrap/gensrc/
