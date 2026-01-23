@@ -184,11 +184,20 @@ int myFocusController::Initialize()
         return DEVICE_ERR;
     }
 
-    // Set travel range
-    int ret = CreateProperty(MM::g_Keyword_Position, "0", MM::Float, false);
+    // Set travel range with action handler for position control
+    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnPosition);
+    int ret = CreateProperty(MM::g_Keyword_Position, "0", MM::Float, false, pAct);
     SetPropertyLimits(MM::g_Keyword_Position, -POSITION_LIMIT_UM, POSITION_LIMIT_UM);
     if (ret != DEVICE_OK)
         return ret;
+
+    // Add "Set Origin" property - sets current position as Z=0
+    pAct = new CPropertyAction(this, &myFocusController::OnSetOrigin);
+    ret = CreateProperty("Set Origin", "No", MM::String, false, pAct);
+    if (ret != DEVICE_OK)
+        return ret;
+    AddAllowedValue("Set Origin", "No");
+    AddAllowedValue("Set Origin", "Yes");
 
     // Clear any leftover data
     ret = ClearPort();
@@ -636,6 +645,50 @@ int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
         std::string oldPort = port_;
         pProp->Get(port_);
         LogMessage("OnPort AfterSet: changed from " + oldPort + " to " + port_, true);
+    }
+    return DEVICE_OK;
+}
+
+// Property action handler for position control
+// Allows setting Z position from µM UI
+// Returns DEVICE_OK on success, error code on failure
+int myFocusController::OnPosition(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::BeforeGet)
+    {
+        double pos;
+        int ret = GetPositionUm(pos);
+        if (ret != DEVICE_OK)
+            return ret;
+        pProp->Set(pos);
+    }
+    else if (eAct == MM::AfterSet)
+    {
+        double pos;
+        pProp->Get(pos);
+        return SetPositionUm(pos);
+    }
+    return DEVICE_OK;
+}
+
+// Property action handler for setting origin (Z=0)
+// When set to "Yes", zeros the stage at current position
+// Returns DEVICE_OK on success, error code on failure
+int myFocusController::OnSetOrigin(MM::PropertyBase* pProp, MM::ActionType eAct)
+{
+    if (eAct == MM::AfterSet)
+    {
+        std::string val;
+        pProp->Get(val);
+        if (val == "Yes")
+        {
+            int ret = SetOrigin();
+            // Reset to "No" after setting origin
+            pProp->Set("No");
+            if (ret != DEVICE_OK)
+                return ret;
+            LogMessage("Origin set - current position is now Z=0", false);
+        }
     }
     return DEVICE_OK;
 }

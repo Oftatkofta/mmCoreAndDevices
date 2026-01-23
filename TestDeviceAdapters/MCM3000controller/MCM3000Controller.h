@@ -100,6 +100,8 @@ public:
 
     // Action interface - Property action handlers
     int OnPort(MM::PropertyBase* pProp, MM::ActionType eAct);
+    int OnPosition(MM::PropertyBase* pProp, MM::ActionType eAct);
+    int OnSetOrigin(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct);
     int OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct);
 
