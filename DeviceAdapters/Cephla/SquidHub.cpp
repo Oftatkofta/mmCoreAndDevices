@@ -1,4 +1,4 @@
-#include "squid.h"
+#include "Squid.h"
 #include "crc8.h"
 
 #ifdef WIN32
@@ -21,6 +21,7 @@ MODULE_API void InitializeModuleData()
 {
    RegisterDevice(g_HubDeviceName, MM::HubDevice, g_HubDeviceName);
    RegisterDevice(g_ShutterName, MM::ShutterDevice, "Light-Control");
+   RegisterDevice(g_AFShutterName, MM::ShutterDevice, "AutofocusLight");
    RegisterDevice(g_XYStageName, MM::XYStageDevice, "XY-Stage");
    RegisterDevice(g_ZStageName, MM::StageDevice, "Z-Stage");
    for (int i = 1; i < 9; i++)
@@ -42,6 +43,10 @@ MODULE_API MM::Device* CreateDevice(const char* deviceName)
    else if (strcmp(deviceName, g_ShutterName) == 0)
    {
       return new SquidShutter();
+   }
+   else if (strcmp(deviceName, g_AFShutterName) == 0)
+   {
+      return new SquidAFShutter();
    }
    else if (strcmp(deviceName, g_XYStageName) == 0)
    {
@@ -73,7 +78,7 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
 
 SquidHub::SquidHub() :
    initialized_(false),
-   autoHome_(false),
+   autoHome_(true),
    monitoringThread_(0),
    xyStageDevice_(0),
    zStageDevice_(0),
@@ -96,7 +101,7 @@ SquidHub::SquidHub() :
    busy_ = false;
 
    pAct = new CPropertyAction(this, &SquidHub::OnAutoHome);
-   CreateProperty(g_AutoHome, g_No, MM::String, false, pAct, true);
+   CreateProperty(g_AutoHome, autoHome_ ? g_Yes : g_No, MM::String, false, pAct, true);
    AddAllowedValue(g_AutoHome, g_Yes);
    AddAllowedValue(g_AutoHome, g_No);
 }
@@ -119,7 +124,7 @@ void SquidHub::GetName(char* name) const
 
 
 int SquidHub::Initialize() {
-   Sleep(200);
+   CDeviceUtils::SleepMs(200);
 
    monitoringThread_ = new SquidMonitoringThread(*this->GetCoreCallback(), *this, true);
    monitoringThread_->Start();
@@ -199,6 +204,7 @@ int SquidHub::DetectInstalledDevices()
       std::vector<std::string> peripherals;
       peripherals.clear();
       peripherals.push_back(g_ShutterName);
+      peripherals.push_back(g_AFShutterName);
       peripherals.push_back(g_XYStageName);
       peripherals.push_back(g_ZStageName);
       for (int i = 1; i < 9; i++)

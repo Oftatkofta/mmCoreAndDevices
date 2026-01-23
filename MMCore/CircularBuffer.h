@@ -28,26 +28,19 @@
 #include "ErrorCodes.h"
 #include "FrameBuffer.h"
 
-#include "../MMDevice/DeviceThreads.h"
-#include "../MMDevice/MMDevice.h"
+#include "DeviceThreads.h"
+#include "MMDevice.h"
 
 #include <chrono>
 #include <memory>
 #include <vector>
 
-#ifdef _MSC_VER
-#pragma warning(push)
-#pragma warning(disable: 4290) // 'C++ exception specification ignored'
-#endif
-
-#if defined(__GNUC__) && !defined(__clang__)
-#pragma GCC diagnostic push
-// 'dynamic exception specifications are deprecated in C++11 [-Wdeprecated]'
-#pragma GCC diagnostic ignored "-Wdeprecated"
-#endif
+namespace mmcore {
+namespace internal {
 
 class ThreadPool;
 class TaskSet_CopyMemory;
+
 
 class CircularBuffer
 {
@@ -55,9 +48,11 @@ public:
    CircularBuffer(unsigned int memorySizeMB);
    ~CircularBuffer();
 
+   int SetOverwriteData(bool overwrite);
+
    unsigned GetMemorySizeMB() const { return memorySizeMB_; }
 
-   bool Initialize(unsigned channels, unsigned int xSize, unsigned int ySize, unsigned int pixDepth);
+   bool Initialize(unsigned int xSize, unsigned int ySize, unsigned int pixDepth);
    unsigned long GetSize() const;
    unsigned long GetFreeSize() const;
    unsigned long GetRemainingImageCount() const;
@@ -66,16 +61,14 @@ public:
    unsigned int Height() const {MMThreadGuard guard(g_bufferLock); return height_;}
    unsigned int Depth() const {MMThreadGuard guard(g_bufferLock); return pixDepth_;}
 
-   bool InsertImage(const unsigned char* pixArray, unsigned int width, unsigned int height, unsigned int byteDepth, const Metadata* pMd) throw (CMMError);
-   bool InsertMultiChannel(const unsigned char* pixArray, unsigned int numChannels, unsigned int width, unsigned int height, unsigned int byteDepth, const Metadata* pMd) throw (CMMError);
-   bool InsertImage(const unsigned char* pixArray, unsigned int width, unsigned int height, unsigned int byteDepth, unsigned int nComponents, const Metadata* pMd) throw (CMMError);
-   bool InsertMultiChannel(const unsigned char* pixArray, unsigned int numChannels, unsigned int width, unsigned int height, unsigned int byteDepth, unsigned int nComponents, const Metadata* pMd) throw (CMMError);
+   bool InsertImage(const unsigned char* pixArray, unsigned int width, unsigned int height, unsigned int byteDepth, const Metadata* pMd) MMCORE_LEGACY_THROW(CMMError);
+   bool InsertImage(const unsigned char* pixArray, unsigned int width, unsigned int height, unsigned int byteDepth, unsigned int nComponents, const Metadata* pMd) MMCORE_LEGACY_THROW(CMMError);
    const unsigned char* GetTopImage() const;
    const unsigned char* GetNextImage();
-   const mm::ImgBuffer* GetTopImageBuffer(unsigned channel) const;
-   const mm::ImgBuffer* GetNthFromTopImageBuffer(unsigned long n) const;
-   const mm::ImgBuffer* GetNthFromTopImageBuffer(long n, unsigned channel) const;
-   const mm::ImgBuffer* GetNextImageBuffer(unsigned channel);
+   const ImgBuffer* GetTopImageBuffer(unsigned channel) const;
+   const ImgBuffer* GetNthFromTopImageBuffer(unsigned long n) const;
+   const ImgBuffer* GetNthFromTopImageBuffer(long n, unsigned channel) const;
+   const ImgBuffer* GetNextImageBuffer(unsigned channel);
    void Clear(); 
 
    bool Overflow() {MMThreadGuard guard(g_bufferLock); return overflow_;}
@@ -98,18 +91,13 @@ private:
    long saveIndex_;
 
    unsigned long memorySizeMB_;
-   unsigned int numChannels_;
    bool overflow_;
-   std::vector<mm::FrameBuffer> frameArray_;
+   bool overwriteData_;
+   std::vector<FrameBuffer> frameArray_;
 
    std::shared_ptr<ThreadPool> threadPool_;
    std::shared_ptr<TaskSet_CopyMemory> tasksMemCopy_;
 };
 
-#if defined(__GNUC__) && !defined(__clang__)
-#pragma GCC diagnostic pop
-#endif
-
-#ifdef _MSC_VER
-#pragma warning(pop)
-#endif
+} // namespace internal
+} // namespace mmcore

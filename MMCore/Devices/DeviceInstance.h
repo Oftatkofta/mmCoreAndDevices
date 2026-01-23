@@ -19,9 +19,10 @@
 
 #pragma once
 
-#include "../../MMDevice/MMDeviceConstants.h"
 #include "../Error.h"
 #include "../Logging/Logger.h"
+
+#include "MMDeviceConstants.h"
 
 #include <cstring>
 #include <functional>
@@ -30,8 +31,7 @@
 #include <vector>
 
 class CMMCore;
-class HubInstance;
-class LoadedDeviceAdapter;
+
 namespace MM
 {
    class Core;
@@ -39,6 +39,13 @@ namespace MM
 }
 
 typedef std::function<void (MM::Device*)> DeleteDeviceFunction;
+
+
+namespace mmcore {
+namespace internal {
+
+class LoadedDeviceAdapter;
+class HubInstance;
 
 
 /// Device instance wrapper class
@@ -69,8 +76,8 @@ private:
    const std::string label_;
    std::string description_;
    DeleteDeviceFunction deleteFunction_;
-   mm::logging::Logger deviceLogger_;
-   mm::logging::Logger coreLogger_;
+   logging::Logger deviceLogger_;
+   logging::Logger coreLogger_;
    bool initializeCalled_ = false;
    bool initialized_ = false;
 
@@ -102,14 +109,14 @@ protected:
          MM::Device* pDevice,
          DeleteDeviceFunction deleteFunction,
          const std::string& label,
-         mm::logging::Logger deviceLogger,
-         mm::logging::Logger coreLogger);
+         logging::Logger deviceLogger,
+         logging::Logger coreLogger);
 
    virtual ~DeviceInstance();
 
    CMMCore* GetCore() const /* final */ { return core_; }
 
-   const mm::logging::Logger& Logger() const
+   const logging::Logger& Logger() const
    { return coreLogger_; }
 
    CMMError MakeException() const;
@@ -221,3 +228,6 @@ public:
    void SetParentID(const char* parentId); // TODO Remove
    std::string GetParentID() const; // TODO Remove
 };
+
+} // namespace internal
+} // namespace mmcore

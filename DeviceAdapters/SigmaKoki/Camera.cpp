@@ -118,7 +118,6 @@ int ClearPort(MM::Device& device, MM::Core& core, std::string port)
 Camera::Camera() :
 	// initialization of parameters
 	SigmaBase(this),
-	CCameraBase<Camera>(),
 	initialized_(false),
 	isMonochrome_(false),
 	enabledROI_(false),
@@ -458,7 +457,7 @@ int Camera::Initialize()
 	if (!ans) { return ERR_CAMERA_GET_FPS_FAILED; }
 
 	char s[256] = { '\0' };
-	sprintf(s, "%.*f", 2, fps_);
+	snprintf(s, sizeof(s), "%.*f", 2, fps_);
 
 	ret = CreateStringProperty(g_CameraFPS, s, false);
 	if (ret != DEVICE_OK)
@@ -968,20 +967,7 @@ int Camera::InsertImage()
 	unsigned int h = GetImageHeight();
 	unsigned int b = GetImageBytesPerPixel();
 	cout << "bytes per pixel    = " << b << endl;
-	int ret = GetCoreCallback()->InsertImage(this, pI, w, h, b, md.Serialize().c_str());
-
-	if (!stopOnOverflow_ && ret == DEVICE_BUFFER_OVERFLOW)
-	{
-		// do not stop on overflow - just reset the buffer
-		GetCoreCallback()->ClearImageBuffer(this);
-		// don't process this same image again...
-		cout << "Stop On overflow   = " << stopOnOverflow_ << endl;
-		return GetCoreCallback()->InsertImage(this, pI, w, h, b, md.Serialize().c_str());
-	}
-	else
-	{
-		return ret;
-	}
+	return GetCoreCallback()->InsertImage(this, pI, w, h, b, md.Serialize().c_str());
 }
 
 /*
@@ -1546,7 +1532,7 @@ int Camera::OnClockSpeed(MM::PropertyBase* pProp, MM::ActionType eAct)
 
 		ClearAllowedValues(g_CameraFPS);
 		char s[256] = { '\0' };
-		sprintf(s, "%.*f", 2, fps_);
+		snprintf(s, sizeof(s), "%.*f", 2, fps_);
 		AddAllowedValue(g_CameraFPS, s);
 
 		// Re-setting of the exposure time range.

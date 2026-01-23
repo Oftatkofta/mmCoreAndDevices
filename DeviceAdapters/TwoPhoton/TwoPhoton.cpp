@@ -101,7 +101,6 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
  * Constructor.
  */
 BitFlowCamera::BitFlowCamera(bool dual) :
-   CCameraBase<BitFlowCamera> (),
    initialized_(false),
    inputChannel_(0),
    expNumFrames_(1),
@@ -1008,7 +1007,7 @@ int BitFlowCamera::LiveThread::svc()
 
       if (ret != DEVICE_OK) {
          char txt[1000];
-         sprintf(txt, "BitFlow live thread: ImageSnap() error %d", ret);
+         snprintf(txt, sizeof(txt), "BitFlow live thread: ImageSnap() error %d", ret);
          cam_->GetCoreCallback()->LogMessage(cam_, txt, false);
          break;
       }
@@ -1050,15 +1049,7 @@ int BitFlowCamera::LiveThread::svc()
 			  cam_->GetImageHeight(),
 			  cam_->GetImageBytesPerPixel(),
 			  md.Serialize().c_str());
-		  if (ret == DEVICE_BUFFER_OVERFLOW) {
-			  cam_->GetCoreCallback()->ClearImageBuffer(cam_);
-			  cam_->GetCoreCallback()->InsertImage(cam_, cam_->GetImageBuffer(i),
-				  cam_->GetImageWidth(),
-				  cam_->GetImageHeight(),
-				  cam_->GetImageBytesPerPixel(),
-				  md.Serialize().c_str());
-		  }
-		  else if (ret != DEVICE_OK) {
+		  if (ret != DEVICE_OK) {
 			  cam_->GetCoreCallback()->LogMessage(cam_, "BitFlow thread: error inserting image", false);
 			  break;
 		  }

@@ -245,7 +245,7 @@ int TsiCam::Initialize()
       uint32_t speedMHz(0);
 
 	  char Msg [80];
-	  sprintf (Msg, "Getting speed - Index (%u)", rateIdx);
+	  snprintf (Msg, sizeof(Msg), "Getting speed - Index (%u)", rateIdx);
 	  LogMessage(Msg);
 
 	  bRet = camHandle_->SetParameter(TSI_PARAM_READOUT_SPEED_INDEX, rateIdx);
@@ -317,7 +317,7 @@ int TsiCam::Initialize()
 		  uint32_t taps(0);
 
 		  char Msg [80];
-		  sprintf (Msg, "Getting taps value - Index (%u)", tapIdx);
+		  snprintf (Msg, sizeof(Msg), "Getting taps value - Index (%u)", tapIdx);
 		  LogMessage(Msg);
 
 		  bRet = camHandle_->SetParameter(TSI_PARAM_TAPS_INDEX, tapIdx);
@@ -854,17 +854,6 @@ int TsiCam::PushImage(unsigned char* imgBuf)
          colorImg.Width(),
          colorImg.Height(),
          colorImg.Depth());
-
-      if (!stopOnOverflow && retCode == DEVICE_BUFFER_OVERFLOW)
-      {
-         // do not stop on overflow - just reset the buffer
-         GetCoreCallback()->ClearImageBuffer(this);
-         retCode = GetCoreCallback()->InsertImage(this,
-            imgBuf,
-            colorImg.Width(),
-            colorImg.Height(),
-            colorImg.Depth());
-      }
    }
    else
    {
@@ -873,17 +862,6 @@ int TsiCam::PushImage(unsigned char* imgBuf)
          img.Width(),
          img.Height(),
          img.Depth());
-
-      if (!stopOnOverflow && retCode == DEVICE_BUFFER_OVERFLOW)
-      {
-         // do not stop on overflow - just reset the buffer
-         GetCoreCallback()->ClearImageBuffer(this);
-         retCode = GetCoreCallback()->InsertImage(this,
-            imgBuf,
-            img.Width(),
-            img.Height(),
-            img.Depth());
-      }
    }
 
    return DEVICE_OK;
@@ -891,30 +869,11 @@ int TsiCam::PushImage(unsigned char* imgBuf)
 
 int TsiCam::InsertImage()
 {
-   int retCode = GetCoreCallback()->InsertImage(this,
+   return GetCoreCallback()->InsertImage(this,
          img.GetPixels(),
          img.Width(),
          img.Height(),
          img.Depth());
-
-   if (!stopOnOverflow)
-   {
-      if (retCode == DEVICE_BUFFER_OVERFLOW)
-      {
-         // do not stop on overflow - just reset the buffer
-         GetCoreCallback()->ClearImageBuffer(this);
-         retCode = GetCoreCallback()->InsertImage(this,
-            img.GetPixels(),
-            img.Width(),
-            img.Height(),
-            img.Depth());
-         return DEVICE_OK;
-      }
-      else
-         return retCode;
-   }
-
-   return retCode;
 }
 
 bool TsiCam::GetAttrValue(TSI_PARAM_ID ParamID, TSI_ATTR_ID AttrID, void *Data, uint32_t DataLength) 

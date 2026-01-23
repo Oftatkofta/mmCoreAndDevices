@@ -63,17 +63,24 @@ public:
 
 private:
 	int OnAcceleration(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int GetAcceleration(long& acceleration);
 	int OnBacklash(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int GetBacklash(double& backlash);
 	int OnFinishError(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int GetFinishError(double& finishError);
 	int OnError(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int GetError(double& error);
 	int OnOverShoot(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int GetOverShoot(double& overShoot);
 	int OnWait(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int GetWait(long& waitCycles);
 	int OnSpeed(MM::PropertyBase* pProp, MM::ActionType eAct);
+	int GetSpeed(double& speed);
 	int GetMaxSpeed(char* maxSpeedStr);
 	int OnMotorCtrl(MM::PropertyBase* pProp, MM::ActionType eAct);
-	bool HasRingBuffer();
+	bool HasRingBuffer() const;
 	int GetControllerInfo();
-	bool HasCommand(std::string command);
+	bool HasCommand(const std::string& command);
 	int OnVector(MM::PropertyBase* pProp, MM::ActionType eAct);
 
 	std::vector<double> sequence_;
@@ -92,6 +99,14 @@ private:
 	double linearSequenceIntervalUm_;
 	long linearSequenceLength_;
 	long linearSequenceTimeoutMs_;
+	// cached properties
+	double speed_;
+	long waitCycles_;
+	double backlash_;
+	double error_;
+	long acceleration_;
+	double finishError_;
+	double overShoot_;
 };
 
 #endif // ASIZSTAGE_H

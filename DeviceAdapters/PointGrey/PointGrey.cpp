@@ -308,44 +308,44 @@ int PointGrey::Initialize()
 	
    // camera identification and other read-only information
 	char buf[FlyCapture2::sk_maxStringLength]="";
-	
-   sprintf(buf, "%d", camInfo.serialNumber);
+
+   snprintf(buf, sizeof(buf), "%d", camInfo.serialNumber);
 	ret = CreateProperty(MM::g_Keyword_CameraID, buf, MM::String, true);
 	assert(ret == DEVICE_OK);
 
-	sprintf(buf, "%s", camInfo.modelName);
+	snprintf(buf, sizeof(buf), "%s", camInfo.modelName);
 	ret = CreateProperty(MM::g_Keyword_CameraName, buf, MM::String, true);
 	assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", camInfo.userDefinedName);
+   snprintf(buf, sizeof(buf), "%s", camInfo.userDefinedName);
 	ret = CreateProperty(MM::g_Keyword_Description, buf, MM::String, true);
 	assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", camInfo.vendorName);
+   snprintf(buf, sizeof(buf), "%s", camInfo.vendorName);
    ret = CreateProperty(g_VendorName, buf, MM::String, true);
 	assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", camInfo.sensorInfo);
+   snprintf(buf, sizeof(buf), "%s", camInfo.sensorInfo);
    ret = CreateProperty(g_SensorInfo, buf, MM::String, true);
 	assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", camInfo.sensorResolution);
+   snprintf(buf, sizeof(buf), "%s", camInfo.sensorResolution);
    ret = CreateProperty(g_SensorResolution, buf, MM::String, true);
-	assert(ret == DEVICE_OK);  
+	assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", camInfo.driverName);
+   snprintf(buf, sizeof(buf), "%s", camInfo.driverName);
    ret = CreateProperty(g_DriverName, buf, MM::String, true);
-	assert(ret == DEVICE_OK); 
+	assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", camInfo.firmwareVersion);
+   snprintf(buf, sizeof(buf), "%s", camInfo.firmwareVersion);
    ret = CreateProperty(g_FirmwareVersion, buf, MM::String, true);
-	assert(ret == DEVICE_OK); 
+	assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", camInfo.firmwareBuildTime);
+   snprintf(buf, sizeof(buf), "%s", camInfo.firmwareBuildTime);
    ret = CreateProperty(g_FirmwareBuildTime, buf, MM::String, true);
-   assert(ret == DEVICE_OK); 
+   assert(ret == DEVICE_OK);
 
-   sprintf(buf, "%s", GetBusSpeedAsString(camInfo.maximumBusSpeed));
+   snprintf(buf, sizeof(buf), "%s", GetBusSpeedAsString(camInfo.maximumBusSpeed));
    ret = CreateProperty(g_MaxBusSpeed, buf, MM::String, true);
    assert (ret == DEVICE_OK);
 
@@ -1349,16 +1349,7 @@ int PointGrey::InsertImage(Image* pImg)
    {
       pData = RGBToBGRA(pImg->GetData());
    }
-   ret = GetCoreCallback()->InsertImage(this, pData, w, h, b, md.Serialize().c_str(), false);
-	if (!stopOnOverflow_ && ret == DEVICE_BUFFER_OVERFLOW)
-	{
-		// do not stop on overflow - just reset the buffer
-		GetCoreCallback()->ClearImageBuffer(this);
-		GetCoreCallback()->InsertImage(this, pData, w, h, b, md.Serialize().c_str(), false);
-      return DEVICE_OK;
-	} 
-
-   return ret;
+   return GetCoreCallback()->InsertImage(this, pData, w, h, b, md.Serialize().c_str(), false);
 }
 
 

@@ -314,8 +314,6 @@ private:
    ROI roi_, customROI_;
    std::vector<ROI> roiList;
 
-   double GetPixelSizeUm() const;
-
    int binSize_;
    double expMs_; //value used by camera
    std::string driverDir_;
@@ -340,7 +338,7 @@ private:
    int UpdateExposureFromCamera();
    int UpdatePreampGains();
    int GetPreAmpGainString(int PreAmpgainIdx, char * PreAmpGainString,int PreAmpGainStringLength );
-   void GetROIPropertyName(int position, int hSize, int vSize, char * buffer, int mode);
+   void GetROIPropertyName(int position, int hSize, int vSize, char * buffer, size_t bufferSize, int mode);
 
    int HSSpeedIdx_;
    int PreAmpGainIdx_;

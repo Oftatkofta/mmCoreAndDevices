@@ -22,6 +22,9 @@
 #include "CameraInstance.h"
 
 
+namespace mmcore {
+namespace internal {
+
 int CameraInstance::SnapImage() { RequireInitialized(__func__); return GetImpl()->SnapImage(); }
 const unsigned char* CameraInstance::GetImageBuffer() { RequireInitialized(__func__); return GetImpl()->GetImageBuffer(); }
 const unsigned char* CameraInstance::GetImageBuffer(unsigned channelNr) { RequireInitialized(__func__); return GetImpl()->GetImageBuffer(channelNr); }
@@ -54,7 +57,6 @@ unsigned CameraInstance::GetImageWidth() const { RequireInitialized(__func__); r
 unsigned CameraInstance::GetImageHeight() const { RequireInitialized(__func__); return GetImpl()->GetImageHeight(); }
 unsigned CameraInstance::GetImageBytesPerPixel() const { RequireInitialized(__func__); return GetImpl()->GetImageBytesPerPixel(); }
 unsigned CameraInstance::GetBitDepth() const { RequireInitialized(__func__); return GetImpl()->GetBitDepth(); }
-double CameraInstance::GetPixelSizeUm() const { RequireInitialized(__func__); return GetImpl()->GetPixelSizeUm(); }
 int CameraInstance::GetBinning() const { RequireInitialized(__func__); return GetImpl()->GetBinning(); }
 int CameraInstance::SetBinning(int binSize) { RequireInitialized(__func__); return GetImpl()->SetBinning(binSize); }
 void CameraInstance::SetExposure(double exp_ms) { RequireInitialized(__func__); return GetImpl()->SetExposure(exp_ms); }
@@ -117,7 +119,7 @@ int CameraInstance::SetMultiROI(const unsigned int* xs, const unsigned int* ys,
  * @param ys (Return value) Y indices of upper-left corner of the ROIs.
  * @param widths (Return value) Widths of the ROIs, in pixels.
  * @param heights (Return value) Heights of the ROIs, in pixels.
- * @param numROIs Length of the input arrays. If there are fewer ROIs than
+ * @param length Length of the input arrays. If there are fewer ROIs than
  *        this, then this value must be updated to reflect the new count.
  */
 int CameraInstance::GetMultiROI(unsigned* xs, unsigned* ys, unsigned* widths,
@@ -154,3 +156,6 @@ int CameraInstance::StopExposureSequence() { RequireInitialized(__func__); retur
 int CameraInstance::ClearExposureSequence() { RequireInitialized(__func__); return GetImpl()->ClearExposureSequence(); }
 int CameraInstance::AddToExposureSequence(double exposureTime_ms) { RequireInitialized(__func__); return GetImpl()->AddToExposureSequence(exposureTime_ms); }
 int CameraInstance::SendExposureSequence() const { RequireInitialized(__func__); return GetImpl()->SendExposureSequence(); }
+
+} // namespace internal
+} // namespace mmcore

@@ -42,9 +42,6 @@ using namespace std;
 CvCapture* capture_;
 IplImage* frame_; // do not modify, do not release!
 
-const double COpenCVgrabber::nominalPixelSizeUm_ = 1.0;
-
-
 // External names used used by the rest of the system
 // to load particular device from the "DemoCamera.dll" library
 const char* g_CameraDeviceName = "OpenCVgrabber";
@@ -138,7 +135,6 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
 * perform most of the initialization in the Initialize() method.
 */
 COpenCVgrabber::COpenCVgrabber() :
-   CCameraBase<COpenCVgrabber> (),
    cameraID_(0),
    initialized_(false),
    readoutUs_(0.0),
@@ -835,16 +831,7 @@ int COpenCVgrabber::InsertImage()
    unsigned int h = GetImageHeight();
    unsigned int b = GetImageBytesPerPixel();
 
-   int ret = GetCoreCallback()->InsertImage(this, pI, w, h, b, md.Serialize().c_str());
-   if (!stopOnOverFlow_ && ret == DEVICE_BUFFER_OVERFLOW)
-   {
-      // do not stop on overflow - just reset the buffer
-      GetCoreCallback()->ClearImageBuffer(this);
-      // don't process this same image again...
-	  return GetCoreCallback()->InsertImage(this, pI, w, h, b, md.Serialize().c_str(), false);
-	  //return GetCoreCallback()->InsertImage(this, pI, w, h, b);
-   } else
-      return ret;
+   return GetCoreCallback()->InsertImage(this, pI, w, h, b, md.Serialize().c_str());
 }
 
 /*

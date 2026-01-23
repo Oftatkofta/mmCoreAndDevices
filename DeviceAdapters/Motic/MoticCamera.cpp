@@ -843,30 +843,14 @@ int CMoticCamera::InsertImage()
      return DEVICE_ERR;
    }
 
-   int ret = GetCoreCallback()->InsertImage(this, img, GetImageWidth(), 
+   return GetCoreCallback()->InsertImage(this, img, GetImageWidth(), 
      GetImageHeight(), GetImageBytesPerPixel());
-
-   if (!stopOnOverflow && ret == DEVICE_BUFFER_OVERFLOW)
-   {
-     // do not stop on overflow - just reset the buffer
-     GetCoreCallback()->ClearImageBuffer(this);
-     return(GetCoreCallback()->InsertImage(this, img, 
-       GetImageWidth(), GetImageHeight(), GetImageBytesPerPixel()));
-   } 
-   else
-   {
-     return ret;
-   }
-#ifdef _LOG_OUT_
-   OutputDebugString("InsertImage OK");
-#endif
-   return DEVICE_OK;
 }
 
 
 bool CMoticCamera::IsCapturing() 
 {
-  if(CCameraBase::IsCapturing())
+  if(CLegacyCameraBase::IsCapturing())
   {
 #ifdef _LOG_OUT_
     OutputDebugString("IsCapturing true");
@@ -1329,10 +1313,10 @@ void CMoticCamera::InitExposure()
 #endif
   MIDP_GetExposureTimeRange(&m_lMinExposure, &m_lMaxExposure);
   long curExp = 0;
-  MIDP_GetExposureTime(&curExp); 
+  MIDP_GetExposureTime(&curExp);
   m_dExposurems = curExp/100.0;
-  char buf[10];
-  sprintf(buf, "%0.1f\0", m_dExposurems);
+  char buf[20];
+  snprintf(buf, sizeof(buf), "%0.1f", m_dExposurems);
   CPropertyAction *pAct = new CPropertyAction (this, &CMoticCamera::OnExposure);
    CreateProperty(MM::g_Keyword_Exposure, buf, MM::Float, false, pAct);
    SetPropertyLimits(MM::g_Keyword_Exposure, (double)m_lMinExposure/100.0, (double)m_lMaxExposure/100.0);
@@ -1411,23 +1395,23 @@ void CMoticCamera::ReAllocalBuffer(int size)
 
 void CMoticCamera::SaveToReg( int pixelsize )
 {
-  TCHAR deviceName[256]; 
-  TCHAR strReg[MAX_PATH];  
-  
+  TCHAR deviceName[256];
+  TCHAR strReg[MAX_PATH];
+
 #ifdef _UNICODE
   MIDP_GetCameraName(MIDP_GetCurCameraIndex(), deviceName, 256);
   swprintf(strReg, TEXT("Software\\Motic China Group Co., Ltd.\\MicroManager\\%s"), deviceName);
 #else
   MIDP_GetCameraNameA(MIDP_GetCurCameraIndex(), deviceName, 256);
-  sprintf(strReg, TEXT("Software\\Motic China Group Co., Ltd.\\MicroManager\\%s"), deviceName);
+  snprintf(strReg, sizeof(strReg), TEXT("Software\\Motic China Group Co., Ltd.\\MicroManager\\%s"), deviceName);
 #endif
 
   HKEY hKey;
-  DWORD dwDisp; 
+  DWORD dwDisp;
   if(::RegCreateKeyEx(HKEY_CURRENT_USER, strReg, 0, NULL, REG_OPTION_NON_VOLATILE, KEY_WRITE, NULL, &hKey, &dwDisp) == ERROR_SUCCESS)
   {
     DWORD val = pixelsize;
-    DWORD size = sizeof(DWORD);   
+    DWORD size = sizeof(DWORD);
     ::RegSetValueEx(hKey, TEXT("pixel"), NULL, REG_DWORD, (BYTE*)&val, size);
     ::RegCloseKey(hKey);
   }
@@ -1435,25 +1419,25 @@ void CMoticCamera::SaveToReg( int pixelsize )
 
 int CMoticCamera::ReadFromReg()
 {
-  TCHAR deviceName[256]; 
-  TCHAR strReg[MAX_PATH];  
+  TCHAR deviceName[256];
+  TCHAR strReg[MAX_PATH];
 
 #ifdef _UNICODE
   MIDP_GetCameraName(MIDP_GetCurCameraIndex(), deviceName, 256);
   swprintf(strReg, TEXT("Software\\Motic China Group Co., Ltd.\\MicroManager\\%s"), deviceName);
 #else
   MIDP_GetCameraNameA(MIDP_GetCurCameraIndex(), deviceName, 256);
-  sprintf(strReg, TEXT("Software\\Motic China Group Co., Ltd.\\MicroManager\\%s"), deviceName);
+  snprintf(strReg, sizeof(strReg), TEXT("Software\\Motic China Group Co., Ltd.\\MicroManager\\%s"), deviceName);
 #endif
   int pixel = -1;
-  HKEY hKey; 
+  HKEY hKey;
   if(::RegOpenKeyEx(HKEY_CURRENT_USER, strReg, 0, KEY_QUERY_VALUE, &hKey) == ERROR_SUCCESS)
   {
     DWORD val;
     DWORD size = sizeof(DWORD);
     if(::RegQueryValueEx(hKey, TEXT("pixel"), NULL, NULL, (BYTE*)&val, &size) == ERROR_SUCCESS)
     {
-      pixel = val;      
+      pixel = val;
     }
     ::RegCloseKey(hKey);
   }

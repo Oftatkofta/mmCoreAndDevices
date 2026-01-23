@@ -28,10 +28,14 @@
 #include "CoreUtils.h"
 #include "MMCore.h"
 #include "Error.h"
-#include "../MMDevice/DeviceUtils.h"
+
+#include "DeviceUtils.h"
 
 #include <cassert>
 #include <cstdlib>
+
+namespace mmcore {
+namespace internal {
 
 std::vector<std::string> CoreProperty::GetAllowedValues() const
 {
@@ -253,6 +257,16 @@ bool CorePropertyCollection::IsReadOnly(const char* propName) const
    return it->second.IsReadOnly();
 }
 
+MM::PropertyType CorePropertyCollection::GetPropertyType(const char* propName) const
+{
+   std::map<std::string, CoreProperty>::const_iterator it = properties_.find(propName);
+   if (it == properties_.end())
+      throw CMMError("Invalid Core property (" + ToString(propName) + ")",
+            MMERR_InvalidCoreProperty);
+
+   return it->second.GetType();
+}
+
 std::vector<std::string> CorePropertyCollection::GetAllowedValues(const char* propName) const
 {
    std::map<std::string, CoreProperty>::const_iterator it = properties_.find(propName);
@@ -283,4 +297,5 @@ void CorePropertyCollection::AddAllowedValue(const char* propName, const char* v
    it->second.AddAllowedValue(value);
 }
 
-
+} // namespace internal
+} // namespace mmcore

@@ -1,4 +1,4 @@
-#include "squid.h"
+#include "Squid.h"
 #define SWAP_INT32(x) (((x) >> 24) | (((x) & 0x00FF0000) >> 8) | (((x) & 0x0000FF00) << 8) | ((x) << 24));
 
 
@@ -59,7 +59,7 @@ SquidMonitoringThread::~SquidMonitoringThread()
 {
    stop_ = true;
    ourThread_->join();
-   //hub_.LogMessage("Destructing MonitoringThread", true);
+   core_.LogMessage(&hub_, "Destructing MonitoringThread", true);
 }
 
 /*
@@ -188,7 +188,8 @@ int SquidMonitoringThread::svc() {
       } while ((charsRead != 0) && (!stop_));
       CDeviceUtils::SleepMs(intervalUs_ / 1000);
    }
-    return 0;
+   core_.LogMessage(&hub_, "Stopping MonitoringThread", true);
+   return 0;
 }
 
 
