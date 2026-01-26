@@ -1,4 +1,4 @@
-// FILE:          MCM3000Controller.cpp
+// FILE:          MCM3000Controller.h
 // PROJECT:       Micro-Manager
 // SUBSYSTEM:     DeviceAdapters
 //-----------------------------------------------------------------------------
@@ -11,9 +11,27 @@
 //                - Status monitoring and position feedback
 //                - Home, Stop and Set Origin functionality
 //
-// AUTHOR:        Jens Eriksson, firs.lastname@imbim.uu.se
-// COPYRIGHT:     Jens Eriksson, 2025
-// LICENSE:       MIT
+// TODO:          Future enhancement - Lock-step mode for condenser control
+//                The MCM3000 can control multiple axes (e.g., objective Z and 
+//                condenser). A lock-step mode could maintain constant distance
+//                between objective and condenser during Z-stacks, improving
+//                transmitted light image quality consistency. Options:
+//                - Dual-axis linked stage device
+//                - Configurable offset between axes
+//                - Hardware gearing if MCM3000 supports it
+//
+// AUTHOR:        Jens Eriksson, jens.eriksson@imbim.uu.se
+// COPYRIGHT:     Jens Eriksson, Uppsala University, 2025
+// LICENSE:       This file is distributed under the BSD license.
+//                License text is included with the source distribution.
+//
+//                This file is distributed in the hope that it will be useful,
+//                but WITHOUT ANY WARRANTY; without even the implied warranty
+//                of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//                IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+//                CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+//                INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES.
 //
 
 #pragma once
@@ -36,6 +54,7 @@
 #define ERR_STEPS_OUT_OF_RANGE       10015  // Requested position exceeds limits
 #define ERR_STAGE_NOT_ZEROED         10016  // Stage must be zeroed before use
 #define ERR_INVALID_VALUE            10017  // Invalid parameter value
+#define ERR_CANNOT_CHANGE_PROPERTY   10018  // Cannot change property after initialization
 
 // Command packet lengths for serial communication
 static const int SET_POS_LENGTH = 12;     // Length of position setting command
@@ -46,7 +65,7 @@ static const int STATUS_LENGTH = 6;       // Length of status query command
 static const char* const g_DeviceName = "MCM3000";
 static const char* const g_Description = "MCM3000 Focus Controller";
 
-// Standard error messages
+// Standard error messages (g_Msg_SERIAL_* are defined in DeviceBase.h)
 static const char* const g_Msg_PORT_CHANGE_FORBIDDEN = "Port change is not allowed after device has been initialized.";
 static const char* const g_Msg_INVALID_STEP_SIZE = "Invalid step size";
 static const char* const g_Msg_DEVICE_BUSY = "Device is busy";
@@ -54,9 +73,9 @@ static const char* const g_Msg_STEPS_OUT_OF_RANGE = "Position out of range";
 static const char* const g_Msg_NOT_INITIALIZED = "Device not initialized";
 
 /**
- * myFocusController class
+ * ThorlabsMCM3000 class
  * 
- * Main device adapter class for the MCM3000 Focus Controller.
+ * Device adapter for the Thorlabs MCM3000/MCM3001 Focus Controller.
  * Implements the CStageBase interface for single-axis stage control.
  * 
  * Key capabilities:
@@ -66,11 +85,11 @@ static const char* const g_Msg_NOT_INITIALIZED = "Device not initialized";
  * - Hardware status monitoring
  * - Origin setting and homing functions
  */
-class myFocusController : public CStageBase<myFocusController>
+class ThorlabsMCM3000 : public CStageBase<ThorlabsMCM3000>
 {
 public:
-    myFocusController();
-    ~myFocusController();
+    ThorlabsMCM3000();
+    ~ThorlabsMCM3000();
 
     // MMDevice API
     int Initialize();
@@ -123,14 +142,13 @@ private:
     static const int ENCODER_COUNT_TOLERANCE = 1;     // Minimum tolerance for position verification
     static const long INVALID_POSITION = 0x80000000;  // Invalid position marker
 
-    // Command codes for serial protocol
-    static const unsigned char AXIS_ID_BYTE = 0x01;     // For Stop, Query Position, Query Status
-    static const uint16_t AXIS_ID_WORD = 0x0001;       // For Set encoder, Go to Position
-    static const unsigned char CMD_STOP = 0x01;         // Stop command
-    static const unsigned char CMD_QUERY_POS = 0x0A;    // Query position command
+    // Command codes for serial protocol (per MCM3000 documentation)
+    static const unsigned char CMD_STOP = 0x65;          // Stop command (65 04 [Chan] [Mode] 00 00)
+    static const unsigned char CMD_QUERY_POS = 0x0A;     // Query position command
     static const unsigned char CMD_QUERY_STATUS = 0x80;  // Query status command
     static const unsigned char CMD_SET_ENCODER = 0x09;   // Set encoder command
     static const unsigned char CMD_GOTO_POS = 0x53;      // Go to position command
+    static const unsigned char STOP_MODE_ABRUPT = 0x01;  // Abrupt stop mode
 
     // Device constants
     static constexpr double DEFAULT_STEP_SIZE_UM = 0.2116667;  // Default step size (ZFM2020/2030)
@@ -144,10 +162,8 @@ private:
     std::string port_;         // Serial port name
     double stepSizeUm_;        // Current step size in microns
     double answerTimeoutMs_;   // Serial timeout
-    bool home_;                // Home state
     long curSteps_;            // Current position in steps
     bool positionValid_;       // Position validity flag
-    MM::MMTime lastMoveTime_;  // Timestamp of last move
     unsigned char lastCommand_; // Last command sent
     unsigned char axisID_;     // Current axis ID (0-2)
 };

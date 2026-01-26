@@ -12,9 +12,18 @@
 //                - Parity: None
 //                - Flow Control: None
 //
-// AUTHOR:        Jens Eriksson, first.lastname@imbim.uu.se
-// COPYRIGHT:     Jens Eriksson, 2025
-// LICENSE:       MIT
+// AUTHOR:        Jens Eriksson, jens.eriksson@imbim.uu.se
+// COPYRIGHT:     Jens Eriksson, Uppsala University, 2025
+// LICENSE:       This file is distributed under the BSD license.
+//                License text is included with the source distribution.
+//
+//                This file is distributed in the hope that it will be useful,
+//                but WITHOUT ANY WARRANTY; without even the implied warranty
+//                of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+//                IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+//                CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+//                INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES.
 
 #ifdef WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -37,7 +46,7 @@
  */
 MODULE_API void InitializeModuleData()
 {
-    RegisterDevice(myFocusController::DeviceName(), 
+    RegisterDevice(ThorlabsMCM3000::DeviceName(), 
                   MM::StageDevice, 
                   "MCM3000 Focus Controller (Axis ID: 0-2, Default step size: 0.2116667 µm)");
 }
@@ -52,9 +61,9 @@ MODULE_API MM::Device* CreateDevice(const char* deviceName)
     if (deviceName == 0)
         return 0;
 
-    if (strcmp(deviceName, myFocusController::DeviceName()) == 0)
+    if (strcmp(deviceName, ThorlabsMCM3000::DeviceName()) == 0)
     {
-        return new myFocusController();
+        return new ThorlabsMCM3000();
     }
     return 0;
 }
@@ -74,7 +83,7 @@ MODULE_API void DeleteDevice(MM::Device* pDevice)
  * This allows users to select their stage from a dropdown without needing to know
  * the exact step size value.
  */
-const std::map<std::string, double> myFocusController::STEP_SIZE_MAP = {
+const std::map<std::string, double> ThorlabsMCM3000::STEP_SIZE_MAP = {
     {"0.0390625 (LNR50S, PHYS24M, MTM-FN1, MTME-FN1, DRV014)", 0.0390625},  // LNR50S, PHYS24M, MTM-FN1, MTME-FN1, DRV014
     {"0.2116667 (ZFM2020/2030, PLS-X/Y)",                      0.2116667},  // ZFM2020/2030, PLS-X/Y 
     {"0.001 (AScope Z)",                                        0.001},      // AScope Z
@@ -86,15 +95,15 @@ const std::map<std::string, double> myFocusController::STEP_SIZE_MAP = {
  * Constructor
  * Initializes member variables and sets up device properties
  */
-myFocusController::myFocusController() :
+ThorlabsMCM3000::ThorlabsMCM3000() :
     initialized_(false),
     port_("Undefined"),
     axisID_(0),  // Default to axis 0
     stepSizeUm_(DEFAULT_STEP_SIZE_UM),
     answerTimeoutMs_(2000.0),
-    home_(false),
     curSteps_(0),
-    positionValid_(false)
+    positionValid_(false),
+    lastCommand_(0)
 {
     InitializeDefaultErrorMessages();
 
@@ -107,6 +116,7 @@ myFocusController::myFocusController() :
     SetErrorText(ERR_BUSY, "Device is busy.");
     SetErrorText(ERR_STEPS_OUT_OF_RANGE, "Position out of range.");
     SetErrorText(ERR_STAGE_NOT_ZEROED, "Stage must be zeroed before use.");
+    SetErrorText(ERR_CANNOT_CHANGE_PROPERTY, "Cannot change this property after device initialization.");
 
     // Create pre-initialization properties
     CreateProperty(MM::g_Keyword_Name, DeviceName(), MM::String, true);
@@ -122,11 +132,11 @@ myFocusController::myFocusController() :
     CreateProperty(MM::g_Keyword_Description, description.c_str(), MM::String, true);
 
     // Create Port property
-    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnPort);
+    CPropertyAction* pAct = new CPropertyAction(this, &ThorlabsMCM3000::OnPort);
     CreateProperty(MM::g_Keyword_Port, "Undefined", MM::String, false, pAct, true);
 
     // Create Axis ID property (0-2)
-    pAct = new CPropertyAction(this, &myFocusController::OnAxisID);
+    pAct = new CPropertyAction(this, &ThorlabsMCM3000::OnAxisID);
     CreateProperty("AxisID", "0", MM::Integer, false, pAct, true);
     SetPropertyLimits("AxisID", 0, 2);
     AddAllowedValue("AxisID", "0");
@@ -134,7 +144,7 @@ myFocusController::myFocusController() :
     AddAllowedValue("AxisID", "2");
 
     // Create Step Size property with lookup table values
-    pAct = new CPropertyAction(this, &myFocusController::OnStepSize);
+    pAct = new CPropertyAction(this, &ThorlabsMCM3000::OnStepSize);
     CreateProperty("StepSize", "0.2116667", MM::String, false, pAct, true);
     
     for (const auto& pair : STEP_SIZE_MAP) {
@@ -146,7 +156,7 @@ myFocusController::myFocusController() :
  * Destructor
  * Ensures device is properly shut down
  */
-myFocusController::~myFocusController()
+ThorlabsMCM3000::~ThorlabsMCM3000()
 {
     Shutdown();
 }
@@ -155,7 +165,7 @@ myFocusController::~myFocusController()
  * Returns the device name
  * Required by MMDevice API
  */
-void myFocusController::GetName(char* name) const
+void ThorlabsMCM3000::GetName(char* name) const
 {
     CDeviceUtils::CopyLimitedString(name, g_DeviceName);
 }
@@ -172,7 +182,7 @@ void myFocusController::GetName(char* name) const
  * 
  * @return DEVICE_OK on success, error code on failure
  */
-int myFocusController::Initialize()
+int ThorlabsMCM3000::Initialize()
 {
     if (initialized_)
         return DEVICE_OK;
@@ -185,14 +195,14 @@ int myFocusController::Initialize()
     }
 
     // Set travel range with action handler for position control
-    CPropertyAction* pAct = new CPropertyAction(this, &myFocusController::OnPosition);
+    CPropertyAction* pAct = new CPropertyAction(this, &ThorlabsMCM3000::OnPosition);
     int ret = CreateProperty(MM::g_Keyword_Position, "0", MM::Float, false, pAct);
     SetPropertyLimits(MM::g_Keyword_Position, -POSITION_LIMIT_UM, POSITION_LIMIT_UM);
     if (ret != DEVICE_OK)
         return ret;
 
     // Add "Set Origin" property - sets current position as Z=0
-    pAct = new CPropertyAction(this, &myFocusController::OnSetOrigin);
+    pAct = new CPropertyAction(this, &ThorlabsMCM3000::OnSetOrigin);
     ret = CreateProperty("Set Origin", "No", MM::String, false, pAct);
     if (ret != DEVICE_OK)
         return ret;
@@ -238,7 +248,7 @@ int myFocusController::Initialize()
     return DEVICE_OK;
 }
 
-int myFocusController::ClearPort()
+int ThorlabsMCM3000::ClearPort()
 {
     int ret = GetCoreCallback()->PurgeSerial(this, port_.c_str());
     if (ret != DEVICE_OK)
@@ -249,7 +259,7 @@ int myFocusController::ClearPort()
     return DEVICE_OK;
 }
 
-int myFocusController::Shutdown()
+int ThorlabsMCM3000::Shutdown()
 {
     if (initialized_)
     {
@@ -259,7 +269,7 @@ int myFocusController::Shutdown()
     return DEVICE_OK;
 }
 
-bool myFocusController::Busy()
+bool ThorlabsMCM3000::Busy()
 {
     if (!initialized_)
         return false;
@@ -283,7 +293,7 @@ bool myFocusController::Busy()
     return false;
 }
 
-int myFocusController::GetPositionSteps(long& steps)
+int ThorlabsMCM3000::GetPositionSteps(long& steps)
 {
     // Query current position
     unsigned char cmd[] = {CMD_QUERY_POS, 0x04, axisID_, 0x00, 0x00, 0x00};
@@ -326,7 +336,7 @@ int myFocusController::GetPositionSteps(long& steps)
 // Gets the current position in microns
 // Converts from steps to microns using the configured step size
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::GetPositionUm(double& pos)
+int ThorlabsMCM3000::GetPositionUm(double& pos)
 {
     long steps;
     int ret = GetPositionSteps(steps);
@@ -338,7 +348,7 @@ int myFocusController::GetPositionUm(double& pos)
 
 // Moves the stage to the specified position in steps
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::SetPositionSteps(long steps)
+int ThorlabsMCM3000::SetPositionSteps(long steps)
 {
     if (!initialized_)
         return DEVICE_ERR;
@@ -417,7 +427,7 @@ int myFocusController::SetPositionSteps(long steps)
     return DEVICE_OK;
 }
 
-int myFocusController::SetPositionUm(double pos)
+int ThorlabsMCM3000::SetPositionUm(double pos)
 {
     if (!initialized_)
         return DEVICE_ERR;
@@ -431,8 +441,9 @@ int myFocusController::SetPositionUm(double pos)
         return ERR_STEPS_OUT_OF_RANGE;
     }
 
-    // Convert um to steps with proper rounding
-    long steps = (long)(pos / stepSizeUm_ + 0.5);  // Uses stepSizeUm_ (double)
+    // Convert um to steps with proper rounding (works for negative values too)
+    double stepsDouble = pos / stepSizeUm_;
+    long steps = (stepsDouble >= 0) ? (long)(stepsDouble + 0.5) : (long)(stepsDouble - 0.5);
     
     // Log requested and actual positions
     std::ostringstream os;
@@ -445,7 +456,7 @@ int myFocusController::SetPositionUm(double pos)
 
 // Moves the stage by a relative amount in steps
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::SetRelativePositionSteps(long steps)
+int ThorlabsMCM3000::SetRelativePositionSteps(long steps)
 {
     // Get current position
     long curPos;
@@ -466,7 +477,7 @@ int myFocusController::SetRelativePositionSteps(long steps)
 
 // Moves the stage by a relative amount in microns
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::SetRelativePositionUm(double d)
+int ThorlabsMCM3000::SetRelativePositionUm(double d)
 {
     // Get current position in case it was changed externally (e.g. joystick)
     double curPos;
@@ -488,7 +499,7 @@ int myFocusController::SetRelativePositionUm(double d)
 
 // Gets the stage travel limits in microns
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::GetLimits(double& lower, double& upper)
+int ThorlabsMCM3000::GetLimits(double& lower, double& upper)
 {
     // Return the stage limits from constants
     lower = -POSITION_LIMIT_UM;
@@ -499,7 +510,7 @@ int myFocusController::GetLimits(double& lower, double& upper)
 // Sets the current position as the origin (zero)
 // Updates the encoder count to 0 at the current position
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::SetOrigin()
+int ThorlabsMCM3000::SetOrigin()
 {
     if (!initialized_)
         return DEVICE_ERR;
@@ -521,13 +532,14 @@ int myFocusController::SetOrigin()
 // Immediately stops any ongoing motion
 // Updates position after stopping
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::Stop()
+int ThorlabsMCM3000::Stop()
 {
     if (!initialized_)
         return DEVICE_ERR;
 
-    // Send stop command
-    unsigned char cmd[] = {CMD_STOP, 0x04, axisID_, 0x00, 0x00, 0x00};
+    // Send stop command: 65 04 [Chan] [Mode] 00 00
+    // Stop mode 0x01 = abrupt stop (immediate)
+    unsigned char cmd[] = {CMD_STOP, 0x04, axisID_, STOP_MODE_ABRUPT, 0x00, 0x00};
     int ret = SendCommand(cmd, STATUS_LENGTH);
     if (ret != DEVICE_OK)
         return ret;
@@ -542,7 +554,7 @@ int myFocusController::Stop()
     return DEVICE_OK;
 }
 
-int myFocusController::SendCommand(const unsigned char* command, unsigned length)
+int ThorlabsMCM3000::SendCommand(const unsigned char* command, unsigned length)
 {
     // Clear any leftover bytes
     int ret = ClearPort();
@@ -560,7 +572,7 @@ int myFocusController::SendCommand(const unsigned char* command, unsigned length
     return DEVICE_OK;
 }
 
-int myFocusController::GetResponse(unsigned char* response, unsigned length)
+int ThorlabsMCM3000::GetResponse(unsigned char* response, unsigned length)
 {
     if (!response)
         return DEVICE_ERR;
@@ -628,7 +640,7 @@ int myFocusController::GetResponse(unsigned char* response, unsigned length)
     return DEVICE_OK;
 }
 
-int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
+int ThorlabsMCM3000::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
     {
@@ -652,7 +664,7 @@ int myFocusController::OnPort(MM::PropertyBase* pProp, MM::ActionType eAct)
 // Property action handler for position control
 // Allows setting Z position from µM UI
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::OnPosition(MM::PropertyBase* pProp, MM::ActionType eAct)
+int ThorlabsMCM3000::OnPosition(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
     {
@@ -674,7 +686,7 @@ int myFocusController::OnPosition(MM::PropertyBase* pProp, MM::ActionType eAct)
 // Property action handler for setting origin (Z=0)
 // When set to "Yes", zeros the stage at current position
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::OnSetOrigin(MM::PropertyBase* pProp, MM::ActionType eAct)
+int ThorlabsMCM3000::OnSetOrigin(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::AfterSet)
     {
@@ -696,7 +708,7 @@ int myFocusController::OnSetOrigin(MM::PropertyBase* pProp, MM::ActionType eAct)
 // Property action handler for the step size selection
 // Maps UI-friendly descriptions to exact step size values
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
+int ThorlabsMCM3000::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
     {
@@ -711,7 +723,7 @@ int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
     else if (eAct == MM::AfterSet)
     {
         if (initialized_)
-            return ERR_PORT_CHANGE_FORBIDDEN;
+            return ERR_CANNOT_CHANGE_PROPERTY;
 
         std::string stepStr;
         pProp->Get(stepStr);
@@ -729,7 +741,7 @@ int myFocusController::OnStepSize(MM::PropertyBase* pProp, MM::ActionType eAct)
 // Property action handler for the axis ID selection
 // Validates axis ID is in range 0-2
 // Returns DEVICE_OK on success, error code on failure
-int myFocusController::OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct)
+int ThorlabsMCM3000::OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct)
 {
     if (eAct == MM::BeforeGet)
     {
@@ -739,8 +751,8 @@ int myFocusController::OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct)
     {
         if (initialized_)
         {
-            LogMessage("Can't change axis ID after initialization", false);
-            return ERR_PORT_CHANGE_FORBIDDEN;
+            LogMessage("Cannot change axis ID after initialization", false);
+            return ERR_CANNOT_CHANGE_PROPERTY;
         }
         long id;
         pProp->Get(id);
@@ -754,7 +766,7 @@ int myFocusController::OnAxisID(MM::PropertyBase* pProp, MM::ActionType eAct)
     return DEVICE_OK;
 }
 
-int myFocusController::MoveBlocking(long steps, bool relative)
+int ThorlabsMCM3000::MoveBlocking(long steps, bool relative)
 {
     if (Busy())
         return ERR_BUSY;
@@ -773,65 +785,46 @@ int myFocusController::MoveBlocking(long steps, bool relative)
     return SetPositionSteps(target);  // Use SetPositionSteps which now handles completion
 }
 
-int myFocusController::Home()
+int ThorlabsMCM3000::Home()
 {
     if (Busy())
         return ERR_BUSY;
 
-    // Set encoder to 0 at current position
-    unsigned char cmd[] = {CMD_SET_ENCODER, 0x04, 0x06, 0x00, 0x00, 0x00,
-                          (unsigned char)(axisID_ & 0xFF),        // LSB
-                          0x00,                             // MSB (always 0 for axis 0-2)
-                          0x00, 0x00, 0x00, 0x00};         // Position 0
-
-    int ret = SendCommand(cmd, SET_POS_LENGTH);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    // Wait for response
-    unsigned char response[20];
-    ret = GetResponse(response, 20);
-    if (ret != DEVICE_OK)
-        return ret;
-
-    // Update cached position
-    curSteps_ = 0;
-    home_ = true;
-    positionValid_ = true;
-
-    return DEVICE_OK;
+    // MCM3000 doesn't have a hardware home command, so we just set current position as origin
+    // This is the same as SetOrigin()
+    return SetOrigin();
 }
 
-int myFocusController::SetAdapterOriginUm(double)
+int ThorlabsMCM3000::SetAdapterOriginUm(double)
 {
     return DEVICE_OK;
 }
 
-int myFocusController::Move(double /*velocity*/)
+int ThorlabsMCM3000::Move(double /*velocity*/)
 {
     // MCM3000 doesn't support continuous motion
     return DEVICE_UNSUPPORTED_COMMAND;
 }
 
-int myFocusController::GetFocusDirection(MM::FocusDirection& direction)
+int ThorlabsMCM3000::GetFocusDirection(MM::FocusDirection& direction)
 {
     direction = MM::FocusDirectionUnknown;
     return DEVICE_OK;
 }
 
-int myFocusController::IsStageSequenceable(bool& isSequenceable) const
+int ThorlabsMCM3000::IsStageSequenceable(bool& isSequenceable) const
 {
     isSequenceable = false;
     return DEVICE_OK;
 }
 
-int myFocusController::IsStageLinearSequenceable(bool& isSequenceable) const 
+int ThorlabsMCM3000::IsStageLinearSequenceable(bool& isSequenceable) const 
 {
     isSequenceable = false;
     return DEVICE_OK;
 }
 
-bool myFocusController::IsContinuousFocusDrive() const
+bool ThorlabsMCM3000::IsContinuousFocusDrive() const
 {
     return false;
 }
